@@ -1,0 +1,178 @@
+<app-header></app-header>
+
+<div class="container mt-3">
+    <div class="infoCont" id="infoCont"> 
+    <form>
+        <div class="dates">
+            <div class="dataDates">
+                <label for="fechaInit">Fecha Compra:</label>
+                <div class="d">
+                    <input type="date" id="fechaInit" class="input-control"  value="{{ datenow }}">
+                    <div class="formato">
+                        <span class="icon-calendar"></span>
+                        (dd/mm/yyyy)
+                    </div>
+                </div>
+            </div>
+            <div class="dataDates">
+                <label for="fechaDepre">Fecha Depreciar:</label>
+                <div class="d">
+                    <input type="date" id="fechaDepre" class="input-control" value="{{ datenow }}">
+                    <div class="formato">
+                        <span class="icon-calendar"></span>
+                        (dd/mm/yyyy)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr class="hr mt-3 mb-3">
+        <div class="div-conj">
+        <div class="impts" id="CodActivAA">
+            <label for="CodActiv">Cod. Activo:</label>
+            <input type="text" class="input-control" id="CodActivA">
+        </div>
+        <div class="impts" id="CodActivAB">
+            <label for="CodActiv">Cod. Barra:</label>
+            <input type="text" class="input-control" id="CodActivB">
+        </div>
+        <div class="impts" id="CodActivAC">
+            <label for="CodActiv">Cod. descripción:</label>
+            <input type="text" class="input-control" id="CodActivC">
+        </div>
+    </div>
+    <hr class="hr mt-3 mb-3">
+        <div class="div-conj">
+            <div class="imptsB" id="CodActivB-1">
+                <label  for="CodActiv">Descripción:</label>
+                <textarea class="form-control" rows="1" id="CodActivA" aria-label="With textarea"></textarea>
+            </div>
+            <div class="imptsB" id="CodActivAD">
+                <div id="subA">
+                    <label for="CodActiv">Grupo Activo:</label>
+                    <input type="text" class="input-control" id="CodActivC">
+                </div>
+                <input type="text" class="input-control" readonly style="background-color: rgba(10,105,250,0.3);">
+            </div>
+        </div>
+        <hr class="hr mt-3 mb-3">
+        <div class="div-conj">
+            <div class="imptsB" id="CodActivAD">
+                <div id="subA">
+                    <label for="CodActiv">Modelo:</label>
+                    <input type="text" class="input-control" id="CodActivC">
+                </div>
+                <input type="text" class="input-control" readonly style="background-color: rgba(10,105,250,0.3);">
+            </div>
+            <div class="imptsB" id="CodActivAD">
+                <div id="subA">
+                    <label for="CodActiv">Marca:</label>
+                    <input type="text" class="input-control" id="CodActivC">
+                </div>
+                <input type="text" class="input-control" readonly style="background-color: rgba(10,105,250,0.3);">
+            </div>
+        </div>   
+        <hr class="hr mt-3 mb-3">
+        <div class="div-conj">
+        <div class="imptsC" >
+            <label for="CostActiv">Costo Activo:</label>
+            <input type="text" class="input-control" id="CostActivA">
+        </div>
+        <div class="imptsC" >
+            <label for="Rev">Revalor:</label>
+            <input type="text" class="input-control" id="Rev">
+        </div>
+        <div class="imptsC" >
+            <label for="vutil">Vida Útil:</label>
+            <input type="text" class="input-control" id="vutil">
+        </div>        
+        <div class="imptsC" >
+            <label for="vutil">% Valor Residual:</label>
+            <input type="text" class="input-control" id="vutil">
+        </div>
+    </div>  
+    <hr class="hr mt-3 mb-3">
+    <div class="div-conj">
+        <div class="imptsB" id="CodActivAD">
+            <div id="subA">
+                <label for="Custodio">Custodio:</label>
+                <input type="text" class="input-control" id="Custodio">
+            </div>
+            <input type="text" class="input-control" readonly style="background-color: rgba(10,105,250,0.3);">
+        </div>
+        <div class="dataDates">
+            <label for="fechaDepre">Fecha Custodio:</label>
+            <div class="d">
+                <input type="date" id="fechaDepre" class="input-control" value="{{ datenow }}">
+                <div class="formato">
+                    <span class="icon-calendar"></span>
+                    (dd/mm/yyyy)
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="hr mt-3 mb-3">
+        <div class="div-conj">
+            <div class="imptsB" id="CodActivAD">
+                <div id="subA">
+                    <label for="CodActiv">Ciudad:</label>
+                    <input type="text" class="input-control" id="CodActivC">
+                </div>
+                <input type="text" class="input-control" readonly style="background-color: rgba(10,105,250,0.3);">
+            </div>
+            <div class="imptsB" id="CodActivAD">
+                <div id="subA">
+                    <label for="CodActiv">Departamento:</label>
+                    <input type="text" class="input-control" id="CodActivC">
+                </div>
+                <input type="text" class="input-control" readonly style="background-color: rgba(10,105,250,0.3);">
+            </div>
+        </div>   
+        <hr class="hr mt-3 mb-3">
+        <div class="div-conj">
+            <div class="impts" id="CodActivAA">
+                <label for="nSerie">Número de Serie:</label>
+                <input type="text" class="input-control" id="nSerie">
+            </div>
+            <div class="impts" id="CodActivAB">
+                <label for="refer">Referencia:</label>
+                <input type="text" class="input-control" id="refer">
+            </div>
+            <div class="impts" id="CodActivAC">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                    <label class="form-check-label" for="exampleRadios1">
+                      <span class="icon-ok"></span> Si
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                    <label class="form-check-label" for="exampleRadios2">
+                      <span class="icon-cancel"></span> No
+                    </label>
+                  </div>
+            </div>
+        </div>
+        <hr class="hr mt-3 mb-3">
+        <div class="div-conj">
+            <div class="impts" id="CodActivAA">
+                <label for="nSerie">Cuenta de Gastos:</label>
+                <input type="text" class="input-control" id="nSerie">
+            </div>
+            <div class="impts" id="CodActivAB">
+                <label for="refer">Cta. Depre. Acum. Normal:</label>
+                <input type="text" class="input-control" id="refer">
+            </div>
+            <div class="impts" id="CodActivAB">
+                <label for="refer">Cta. Depre. Acum. Revalor:</label>
+                <input type="text" class="input-control" id="refer">
+            </div>
+            
+        </div>
+        <hr class="hr mt-3 mb-4">
+        <div class="btnSettings">
+            <button class="btn btn-info mb-5"><span class="icon-floppy"></span> Guardar</button>
+            <button class="btn btn-danger mb-5"><span class="icon-cancel"></span> Cancelar</button>
+        </div>
+    </form>
+    </div>
+</div>
