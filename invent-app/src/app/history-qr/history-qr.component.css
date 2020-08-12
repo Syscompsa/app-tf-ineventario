@@ -1,0 +1,29 @@
+.dataQR{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    height: 590px;
+    background-color: whitesmoke !important;
+    border: solid 1px white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    margin-right: 7px;
+    font-size: 8pt;
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+.cons{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.el{
+    width: 100px;
+    height: auto;
+    border-radius: 5px;
+    border: solid 0.5px gray;
+    border-style: dashed;
+    padding: 10px;
+}
