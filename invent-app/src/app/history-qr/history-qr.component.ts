@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { GQRService } from '../Services/gqr.service';
 import { QRDATA } from '../Models/QRDATA';
-import { resolve } from 'url';
-import { create } from 'domain';
-const qrcode = require('qrcode-generator');  
-import * as printJS from 'print-js';
-import { jsPDF } from "jspdf";
+import * as qrcode from 'qrcode-generator' 
+//const qrcode = require('qrcode-generator');  
+
 
 @Component({
   selector: 'app-history-qr',
@@ -58,9 +56,7 @@ export class HistoryQRComponent implements OnInit {
         dataDiv.style.padding = "15px";
         dataDiv.style.fontSize = "9pt";
 
-        var typeNumber = 4;
-        var errorCorrectionLevel = 'L';
-        var qr = qrcode(typeNumber, errorCorrectionLevel);
+        var qr = qrcode(4, 'M');
         qr.addData(this.dataQRExtract[i].placa);
         qr.make();
         dataDiv.innerHTML = qr.createImgTag();
