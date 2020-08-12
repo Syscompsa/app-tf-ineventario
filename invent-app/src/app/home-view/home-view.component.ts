@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { GQRService } from '../Services/gqr.service';
+import { Placa_Post_Url } from '../Models/Placa_Post_Url';
+import { resolve } from 'url';
+import { QRDATA } from '../Models/QRDATA';
 
 @Component({
   selector: 'app-home-view',
@@ -8,12 +12,25 @@ import { Component, OnInit } from '@angular/core';
 export class HomeViewComponent implements OnInit {
 
   public datenow: any;
-
-  constructor() { }
+  public placa: Placa_Post_Url[] = [];
+  public product: QRDATA[] = [];
+  constructor(public placas: GQRService, public products: GQRService) { }
 
   ngOnInit() {
     this.fechActual();
     // this.detectHeight();
+    this.placas.getPlaca().subscribe( resp => 
+       { 
+         this.placa = resp ;
+         let lengthPlaca = this.placa.length;
+         let DataPlaca = this.placa[0].Placa_Post;
+         console.log(this.placa);
+         console.log(DataPlaca);
+         console.log(lengthPlaca);
+         // this.products.getQRGenById()      
+       }
+      )
+   // this.placas.getQRGenById().subscribe(x => console.log(x));
   }
 
   // detectHeight(){

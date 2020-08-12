@@ -13,6 +13,7 @@ import * as qrcode from 'qrcode-generator'
 export class HistoryQRComponent implements OnInit {
 
   public dataQRExtract: QRDATA[] = [];
+  public https = 'https://syscapi-inv.azurewebsites.net/api/AR_INV-QRcodProdGet/getPlaca/';
 
   constructor(public QRData: GQRService) { }
 
@@ -30,13 +31,10 @@ export class HistoryQRComponent implements OnInit {
       this.dataQRExtract = x;
       let dataQRDiv = document.getElementById('dataQR');
       let placa = [];
-      console.log(this.dataQRExtract)
+      console.log(this.https.length)
+      console.log(this.dataQRExtract);
       for(let i = 0; i <= this.dataQRExtract.length; i++)
       {
-        placa.push(this.dataQRExtract[i].placa) 
-        console.log(this.dataQRExtract[i].placa)
-        
-        // console.log(placa)
         
         let createPlaca = document.createElement('div');
         createPlaca.setAttribute('id', this.dataQRExtract[i].id.toString());
@@ -56,17 +54,15 @@ export class HistoryQRComponent implements OnInit {
         dataDiv.style.padding = "15px";
         dataDiv.style.fontSize = "9pt";
 
-        var qr = qrcode(4, 'M');
-        qr.addData(this.dataQRExtract[i].placa);
-        qr.make();
-        dataDiv.innerHTML = qr.createImgTag();
+        let url = this.https + this.dataQRExtract[i].placa
 
+        this.createQR(dataDiv, url);
         
         let createDataA = document.createElement('p');
         createDataA.textContent =  ` No. Placa:  ${this.dataQRExtract[i].placa}`;
         let createDataB = document.createElement('p');
         createDataB.textContent =  ` Nombre:  ${this.dataQRExtract[i].nombre}`;
-        
+                
         createPlaca.appendChild(createDataA);
         createPlaca.appendChild(createDataB);
       
@@ -78,6 +74,12 @@ export class HistoryQRComponent implements OnInit {
     });
   }
 
+  createQR(obj, http){
+    var qr = qrcode(4, 'L');
+        qr.addData(http);
+        qr.make();
+        obj.innerHTML = qr.createImgTag();
+  }
   
 
 
