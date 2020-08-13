@@ -1,8 +1,12 @@
 <app-header></app-header>
 <div class="cons container p-3" id="const">
-    <button type="button" (click)="prints()">
+    <div class="container-fluid display d-flex justify-content-between align-items-end">
+        <button type="button" id="prods" (mouseover)="changeHeight('auto')" (mouseleave)="changeHeight('510px')" (click)="prints()">
        <span class="icon-print"></span>  Imprimir Productos
      </button>
-    <div class="dataQR" id="dataQR" ></div>
+        <div class="prods">
+            <span style="color: blueviolet;" class="icon-database"></span> Actualmente tienes <strong style="color: blueviolet;">{{ dataQRExtract.length }}</strong> productos, en tu base de datos.
+        </div>
+    </div>
+    <div class="dataQR" id="dataQR"></div>
 </div>
-

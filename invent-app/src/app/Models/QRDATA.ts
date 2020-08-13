@@ -34,7 +34,7 @@ export interface QRDATA {
    cdan       : string;
    cdar       : string;
    val_normal : number;
-   val_reval  : number;
+   vaL_REVAL  : number;
    imagen     : string;
    valor_resi : number;
    valor_res2 : number;

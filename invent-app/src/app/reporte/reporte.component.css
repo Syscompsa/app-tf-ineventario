@@ -1,0 +1,213 @@
+.infoCont {
+    width: 100%;
+    padding: 25px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    background-color: white;
+    border-radius: 5px;
+}
+
+#infoCont {
+    height: 590px;
+    overflow-y: scroll;
+    scrollbar-color: rgb(92, 92, 92) #b3b3b3;
+    scrollbar-width: 7px;
+}
+
+.input-control {
+    color: green;
+}
+
+
+/* Ponemos un color de fondo y redondeamos las esquinas del thumb */
+
+#infoContr::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+
+/* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+
+#infoCont::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Cambiamos el fondo cuando esté en active */
+
+#infoCont::-webkit-scrollbar-thumb:active {
+    background-color: #999999;
+}
+
+.div-conj {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: flex-end;
+}
+
+.impts {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    margin-top: 15px;
+}
+
+.radio {
+    display: flex;
+    justify-content: stretch;
+    transition: ease all 1s;
+}
+
+.radio:hover {
+    cursor: pointer;
+    transition: ease all 1s;
+    background-color: rgb(218, 218, 218);
+}
+
+.input-control-radio {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+input {
+    border: none;
+    border-bottom: solid 0.5px gray;
+    background-color: transparent;
+    width: 100%;
+}
+
+.formato {
+    background-color: #b1b1b1;
+    border: solid 1px rgb(143, 143, 143);
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    padding: 10px;
+    width: 156px;
+    font-size: 9pt;
+}
+
+label {
+    margin-bottom: 0px;
+}
+
+.d {
+    display: flex;
+}
+
+.dates {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+form {
+    width: 100%;
+}
+
+#CodActivC {
+    width: 150px;
+}
+
+.dataDates {
+    width: 45%;
+}
+
+#CodActivAD {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.imptsB {
+    width: 48%;
+}
+
+.imptsC {
+    width: 23%;
+}
+
+#Clase {
+    width: 120px;
+}
+
+.dataQR {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    height: 510px;
+    background-color: whitesmoke !important;
+    border: solid 1px white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    margin-right: 7px;
+    font-size: 8pt;
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+.cons {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.el {
+    width: 100px;
+    height: auto;
+    border-radius: 5px;
+    border: solid 0.5px gray;
+    border-style: dashed;
+    padding: 10px;
+}
+
+#prods {
+    border: none;
+    background-color: steelblue;
+    color: white;
+    border-top-right-radius: 5px;
+    padding: 7px;
+    transition: ease all 0.5s;
+}
+
+#prods:hover {
+    transition: ease all 0.5s;
+    background-color: blueviolet;
+}
+
+@media screen and (max-width: 768px) {
+    .impts {
+        width: 100%;
+    }
+    .infoCont {
+        background-color: white;
+    }
+    .dataDates {
+        width: 100%;
+    }
+    .imptsB {
+        width: 100%;
+    }
+    .imptsC {
+        width: 100%;
+    }
+    #CodActivC {
+        width: 100%;
+    }
+    #subA {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    #CodActivAD {
+        flex-direction: column;
+        margin-top: 10px;
+    }
+    #CodActivAE {
+        width: 100%;
+    }
+    #clase {
+        width: 100%;
+    }
+}

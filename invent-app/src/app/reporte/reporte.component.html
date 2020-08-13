@@ -1,0 +1,56 @@
+<app-header></app-header>
+
+
+<div class="container mt-4 " style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+
+    <div class="dataDates mt-3 mb-4 ">
+
+        <label for="fechaInit">Fecha Compra:</label>
+        <div class="d">
+            <input type="date" id="fechaInit" class="input-control" value="{{ datenow }}">
+            <div class="formato">
+                <span class="icon-calendar"></span> (dd/mm/yyyy)
+            </div>
+        </div>
+
+    </div>
+    <div class="User" style="text-align: right;">
+        <strong>Usuario: </strong> Test Admin Demo <br>
+        <strong>No. Inventario: </strong> 000004 <br>
+    </div>
+</div>
+<div class="container">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Cod. Placa</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Custodio</th>
+                <th scope="col">Departamento</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>ISN001</td>
+                <td>LG Monitor</td>
+                <td>000000002 | Francisco</td>
+                <td>Sistemas</td>
+            </tr>
+            <tr>
+                <td>ISN002</td>
+                <td>CPU core i7</td>
+                <td>000000003 | Alex</td>
+                <td>Sistemas</td>
+            </tr>
+
+            <tr>
+                <td>ISN003</td>
+                <td>Teclado</td>
+                <td>000000003 | Alex</td>
+                <td>Sistemas</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button type="button" id="prods" (click)="prints()"><span class="icon-print"></span>Imprimir Reporte</button>
+</div>

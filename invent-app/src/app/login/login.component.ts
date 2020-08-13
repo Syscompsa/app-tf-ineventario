@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     if (this.userService.estaLogueado()) {
       this.env.header = true;
-      this.router.navigate(['\HomeView']);
+      this.router.navigate(['\QRData']);
     }
   }
 
@@ -85,8 +85,8 @@ export class LoginComponent implements OnInit {
                     footer: ''
       });
       // tslint:disable-next-line: no-unused-expression
-      this.router.navigate(['\HomeView']);
-        
+      this.router.navigate(['\QRData']);
+
       }, err => {
         Swal.fire({
                   icon:  'error',

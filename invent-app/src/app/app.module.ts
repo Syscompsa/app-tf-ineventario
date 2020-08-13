@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeViewComponent } from './home-view/home-view.component';
 import { HeaderComponent } from './header/header.component';
 import { HistoryQRComponent } from './history-qr/history-qr.component';
+import { ReporteComponent } from './reporte/reporte.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HistoryQRComponent } from './history-qr/history-qr.component';
     LoginComponent,
     HomeViewComponent,
     HeaderComponent,
-    HistoryQRComponent
+    HistoryQRComponent,
+    ReporteComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +28,7 @@ import { HistoryQRComponent } from './history-qr/history-qr.component';
     ReactiveFormsModule,
     RouterModule.forRoot([
       { path: 'HomeView', component: HomeViewComponent },
+      { path: 'Reporte', component: ReporteComponent },
       { path: 'QRData', component: HistoryQRComponent },
       { path: 'Login', component: LoginComponent, pathMatch: 'full' },
       { path: '**', pathMatch: 'full', redirectTo: 'Login'  }

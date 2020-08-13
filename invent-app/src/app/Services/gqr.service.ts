@@ -25,9 +25,13 @@ export class GQRService {
   }
 
   getPlaca(): Observable<Placa_Post_Url[]>{
-    return this.http.get<Placa_Post_Url[]>(this.apiURL + '/AR_INV-QRcodProdGet/GetProduct')
+    return this.http.get<Placa_Post_Url[]>(this.apiURL + '/AR_INV-QRcodProdGet/GetProduct');
   }
-  
+
+  getProductByPlaca(GetPlaca): Observable<QRDATA[]>{
+    return this.http.get<QRDATA[]>(this.apiURL + '/AR_INV-QRcodProdGet/getPlacaProduct/' + GetPlaca);
+  }
+
 
 
 }
