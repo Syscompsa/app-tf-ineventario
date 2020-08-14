@@ -42,7 +42,8 @@ export class HomeViewComponent implements OnInit {
 
   constructor(public placas: GQRService,
               public products: GQRService,
-              public saveDemo: DemoService, public router: Router) { }
+              public saveDemo: DemoService,
+              public router: Router) { }
 
   ngOnInit() {
     this.fechActual();
@@ -52,9 +53,9 @@ export class HomeViewComponent implements OnInit {
          this.placa = resp ;
          const lengthPlaca = this.placa.length;
          const DataPlaca = this.placa[0].placa_Post;
-         console.log(this.placa);
-         console.log(DataPlaca);
-         console.log(lengthPlaca);
+         //console.log(this.placa);
+         //console.log(DataPlaca);
+         //console.log(lengthPlaca);
          // this.products.getQRGenById()
          this.products.getProductByPlaca(DataPlaca).subscribe(x => {
            this.productByPlaca = x;
@@ -71,7 +72,6 @@ export class HomeViewComponent implements OnInit {
   //   if( infoCont == '590px'){
   //     console.log('Llegaste al limite de el alto del div');
   //   }
-
   // }
 
   fechActual() {

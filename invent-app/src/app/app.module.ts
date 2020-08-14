@@ -10,6 +10,7 @@ import { HomeViewComponent } from './home-view/home-view.component';
 import { HeaderComponent } from './header/header.component';
 import { HistoryQRComponent } from './history-qr/history-qr.component';
 import { ReporteComponent } from './reporte/reporte.component';
+import { ConfigurationsComponent } from './configurations/configurations.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ReporteComponent } from './reporte/reporte.component';
     HomeViewComponent,
     HeaderComponent,
     HistoryQRComponent,
-    ReporteComponent
+    ReporteComponent,
+    ConfigurationsComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +29,7 @@ import { ReporteComponent } from './reporte/reporte.component';
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
+      { path: 'Conf', component: ConfigurationsComponent },
       { path: 'HomeView', component: HomeViewComponent },
       { path: 'Reporte', component: ReporteComponent },
       { path: 'QRData', component: HistoryQRComponent },
