@@ -1,58 +1,319 @@
 <app-header></app-header>
 
-<div class="cont container">
+<div class="cont container-fluid">
 
     <div class="Interfaz-conf ">
-        <strong><span class="icon-eye"></span>Modificar entrada de datos.</strong>
+        <strong><span class="icon-eye" style="color: gray;"></span>Modificar entrada de datos.</strong>
         <p class="text text-info" style="font-size: 7pt;">
-        <span class="icon-warning"></span>
+        <span class="icon-warning" style="color: steelblue;"></span>
         Realizar estos cambios tendrà efecto tanto en el formulario de ingreso de activos fijos y el de toma de inventario.
         <hr>
-        <form>
+        <form id="form">
             <div class="form-group">
-              <label for="placa"><span class="icon-tag"></span> Placa</label>
-              <input type="range" min="0" max="1" class="form-control-range" id="placa">
+              <label for="placa"><span id="splaca" class="icon-tag"></span> Placa</label>
+              <input type="range" min="{{minRange}}" max="{{maxRange}}" (change)="controller('placa', 'splaca')"
+               class="form-control-range" id="placa" value="{{rValue}}" [ngModel]="_placa" name="_placa">
                 <div class="sin">
-                <span class="icon-ok">Si</span>
-                <span class="icon-cancel">No</span>
+                    <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
                 </div>
             </div>
             <div class="form-group">
-                <label for="clase"><span class="icon-tag"></span> Clase</label>
-                <input type="range" min="0" max="1" class="form-control-range" id="clase">
+                <label for="clase"><span id="sclase" class="icon-tag"></span> Clase</label>
+                <input type="range" min="{{minRange}}" max="{{maxRange}}" (change)="controller('clase', 'sclase')"
+                 class="form-control-range" id="clase" value="{{rValue}}" [ngModel]="_clase" name="_clase">
                 <div class="sin">
-                    <span class="icon-ok">Si</span>
                     <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
                 </div>
             </div>
             <div class="form-group">
-                <label for="clase"><span class="icon-tag"></span> Nombre</label>
-                <input type="range" min="0" max="1" class="form-control-range" id="clase">
+                <label for="nombre" title="Nombre del Producto"><span id="snombre" class="icon-tag"></span> N. Prod.</label>
+                <input type="range"  min="{{minRange}}" max="{{maxRange}}" (change)="controller('nombre', 'snombre')"
+                 class="form-control-range" id="nombre" value="{{rValue}}" [ngModel]="_nombre" name="_nombre">
                 <div class="sin">
-                    <span class="icon-ok">Si</span>
                     <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
                 </div>
             </div>
             <div class="form-group">
-                <label for="clase"><span class="icon-tag"></span> Custodio</label>
-                <input type="range" min="0" max="1" class="form-control-range" id="clase">
+                <label for="custodio"><span id="scustodio" class="icon-tag"></span> Custodio</label>
+                <input type="range" min="{{minRange}}" max="{{maxRange}}" (change)="controller('custodio', 'scustodio')"
+                 class="form-control-range" id="custodio" value="{{rValue}}" [ngModel]="_custodio" name="_custodio">
                 <div class="sin">
-                    <span class="icon-ok">Si</span>
                     <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
                 </div>
             </div>
             <div class="form-group" title="Departamento">
-                <label for="clase"><span class="icon-tag"></span> Dpto.</label>
-                <input type="range" min="0" max="1" class="form-control-range" id="clase">
+                <label for="dpto"><span id="sdpto" class="icon-tag"></span> Dpto.</label>
+                <input type="range" min="{{minRange}}" max="{{maxRange}}" (change)="controller('dpto', 'sdpto')"
+                  class="form-control-range" id="dpto" value="{{rValue}}" [ngModel]="_dpto" name="_dpto">
                 <div class="sin">
-                    <span class="icon-ok">Si</span>
                     <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="serie"><span id="sserie" class="icon-tag"></span> Serie.</label>
+                <input type="range" min="{{minRange}}" max="{{maxRange}}" (change)="controller('serie', 'sserie')"
+                 class="form-control-range" id="serie" value="{{rValue}}" [ngModel]="_serie" name="_serie">
+                <div class="sin">
+                    <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="valor"><span id="svalor" class="icon-tag"></span> Valor.</label>
+                <input type="range" min="{{minRange}}" max="{{maxRange}}" (change)="controller('valor', 'svalor')"
+                 class="form-control-range" id="valor" value="{{rValue}}" [ngModel]="_valor" name="_valor">
+                <div class="sin">
+                    <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="activo"><span id="sactivo" class="icon-tag"></span> Activo.</label>
+                <input type="range" min="{{minRange}}" max="{{maxRange}}" (change)="controller('activo', 'sactivo')"
+                 class="form-control-range" id="activo" value="{{rValue}}" [ngModel]="_activo" name="_activo">
+                <div class="sin">
+                    <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="refer"><span id="srefer" class="icon-tag"></span> Referido.</label>
+                <input type="range" min="{{minRange}}" max="{{maxRange}}" (change)="controller('refer', 'srefer')"
+                 class="form-control-range" id="refer" value="{{rValue}}" [ngModel]="_refer" name="_refer">
+                <div class="sin">
+                    <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
+                </div>
+            </div>
+            
+            <div class="form-group" >
+                <label for="fec" title="Fecha Actual">
+                    <span id="sfac" class="icon-tag"></span> Fecha Ac.</label>
+                <input type="range" min="{{minRange}}" max="{{maxRange}}"
+                (input)="fActual = $event.target.value"
+                (change)="controller('fac', 'sfac', fActual)" 
+                class="form-control-range" id="fac" value="{{rValue}}" [ngModel]="_fac" name="_fac">
+                <div class="sin">
+                    <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="usuc"  title="Usuario creación"><span id="susuc" class="icon-tag"></span> User C.</label>
+                <input type="range" min="{{minRange}}" max="{{maxRange}}" (change)="controller('usuc', 'susuc')"
+                 class="form-control-range" id="usuc" value="{{rValue}}" [ngModel]="_usuc" name="_usuc">
+                <div class="sin">
+                    <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="fmod" title="Fecha Modifcación"><span id="sfmod" class="icon-tag"></span> Fecha M.</label>
+                <input type="range" min="{{minRange}}" max="{{maxRange}}"
+                (input)="fMod = $event.target.value"
+                (change)="controller('fmod', 'sfmod')"
+                class="form-control-range" id="fmod" value="{{rValue}}" [ngModel]="_fmod" name="_fmod">
+                <div class="sin">
+                    <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="usm" title="Usuario Modifcación"><span id="susm" class="icon-tag"></span> User M.</label>
+                <input type="range"  min="{{minRange}}" max="{{maxRange}}" (change)="controller('usm', 'susm')"
+                 class="form-control-range" id="usm" value="{{rValue}}" [ngModel]="_usm" name="_usm">
+                <div class="sin">
+                    <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="ffin" title="Fecha fin"><span id="sffin" class="icon-tag"></span> Fecha F.</label>
+                <input type="range"  min="{{minRange}}" max="{{maxRange}}" (change)="controller('ffin', 'sffin')"
+                 class="form-control-range" id="ffin" value="{{rValue}}" [ngModel]="_ffin" name="_ffin">
+                <div class="sin">
+                    <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="ufin" title="Usuario final"><span id="sufin" class="icon-tag"></span> User F.</label>
+                <input type="range"  min="{{minRange}}" max="{{maxRange}}" (change)="controller('ufin', 'sufin')"
+                 class="form-control-range" id="ufin" value="{{rValue}}" [ngModel]="_ufin" name="_ufin">
+                <div class="sin">
+                    <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="grupo" ><span id="sgrupo" class="icon-tag"></span> Grupo.</label>
+                <input type="range"  min="{{minRange}}" max="{{maxRange}}" (change)="controller('grupo', 'sgrupo')"
+                 class="form-control-range" id="grupo" value="{{rValue}}" [ngModel]="_grupo" name="_grupo">
+                <div class="sin">
+                    <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="marca" title="Marca del producto"><span id="sgrupo" class="icon-tag"></span> Marca.</label>
+                <input type="range"  min="{{minRange}}" max="{{maxRange}}" (change)="controller('marca', 'smarca')"
+                 class="form-control-range" id="marca" value="{{rValue}}" [ngModel]="_marca" name="_marca">
+                <div class="sin">
+                    <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="color" title="Color del producto"><span id="scolor" class="icon-tag"></span> Color.</label>
+                <input type="range"  min="{{minRange}}" max="{{maxRange}}" (change)="controller('color', 'scolor')"
+                 class="form-control-range" id="color" value="{{rValue}}" [ngModel]="_color" name="_color">
+                <div class="sin">
+                    <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="fc" title="Fecha de Creación"><span id="sfc" class="icon-tag"></span> Fecha C.</label>
+                <input type="range"  min="{{minRange}}" max="{{maxRange}}" (change)="controller('fc', 'sfc')"
+                 class="form-control-range" id="fc" value="{{rValue}}" [ngModel]="_fc" name="_fc">
+                <div class="sin">
+                    <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="prov" title="Proveedor"><span id="sprov" class="icon-tag"></span> Pvdor.</label>
+                <input type="range"  min="{{minRange}}" max="{{maxRange}}" (change)="controller('prov', 'sprov')"
+                 class="form-control-range" id="prov" value="{{rValue}}" [ngModel]="_prov" name="_prov">
+                <div class="sin">
+                    <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="mp" title="Modelo del producto"><span id="smp" class="icon-tag"></span> Modelo.</label>
+                <input type="range"  min="{{minRange}}" max="{{maxRange}}" (change)="controller('mp', 'smp')"
+                 class="form-control-range" id="mp" value="{{rValue}}" [ngModel]="_mp" name="_mp">
+                <div class="sin">
+                    <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="vut" title="Vida útil del producto"><span id="svut" class="icon-tag"></span> V. Útil.</label>
+                <input type="range"  min="{{minRange}}" max="{{maxRange}}" (change)="controller('vut', 'svut')"
+                 class="form-control-range" id="vut" value="{{rValue}}" [ngModel]="_vut" name="_vut">
+                <div class="sin">
+                    <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="vre" title="Valor residual del producto">
+                    <span id="svre" class="icon-tag"></span> V. Resi.</label>
+                <input type="range"  min="{{minRange}}" max="{{maxRange}}" (change)="controller('vre', 'svre')"
+                 class="form-control-range" id="vre" value="{{rValue}}" [ngModel]="_vre" name="_vre">
+                <div class="sin">
+                    <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="finc" title="Fecha de inicio">
+                    <span id="sfinc" class="icon-tag"></span> Fecha In.</label>
+                <input type="range"  min="{{minRange}}" max="{{maxRange}}" (change)="controller('finc', 'sfinc')"
+                 class="form-control-range" id="finc" value="{{rValue}}" [ngModel]="_finc" name="_finc">
+                <div class="sin">
+                    <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="fcu" title="Fecha Custodio">
+                    <span id="sfcu" class="icon-tag"></span> Fecha Co.</label>
+                <input type="range"  min="{{minRange}}" max="{{maxRange}}" (change)="controller('fcu', 'sfcu')"
+                 class="form-control-range" id="fcu" value="{{rValue}}" [ngModel]="_fcu" name="_fcu">
+                <div class="sin">
+                    <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="cgas" title="Cuenta de gastos"><span id="scgas" class="icon-tag"></span> C. Gasto.</label>
+                <input type="range"  min="{{minRange}}" max="{{maxRange}}" (change)="controller('cgas', 'scgas')"
+                 class="form-control-range" id="cgas" value="{{rValue}}" [ngModel]="_cgas" name="_cgas">
+                <div class="sin">
+                    <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="cdan" title="Cuenta de depreciación acumulada"><span id="scdan" class="icon-tag"></span> C. Dan.</label>
+                <input type="range"  min="{{minRange}}" max="{{maxRange}}" (change)="controller('cdan', 'scdan')"
+                 class="form-control-range" id="cdan" value="{{rValue}}" [ngModel]="_cdan" name="_cdan">
+                <div class="sin">
+                    <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="cdar" title="Cuenta de depreciación"><span id="scdar" class="icon-tag"></span> C. Dar.</label>
+                <input type="range"  min="{{minRange}}" max="{{maxRange}}" (change)="controller('cdar', 'scdar')"
+                 class="form-control-range" id="cdar" value="{{rValue}}" [ngModel]="_cdar" name="_cdar">
+                <div class="sin">
+                    <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="vnor" title="Valor normal"><span id="svnor" class="icon-tag"></span> V. Normal.</label>
+                <input type="range"  min="{{minRange}}" max="{{maxRange}}" (change)="controller('vnor', 'svnor')"
+                 class="form-control-range" id="vnor" value="{{rValue}}" [ngModel]="_vnor" name="_vnor">
+                <div class="sin">
+                    <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="vrev" title="Valor Revaluo"><span id="svrev" class="icon-tag"></span> V. Reval.</label>
+                <input type="range"  min="{{minRange}}" max="{{maxRange}}" (change)="controller('vrev', 'svrev')"
+                 class="form-control-range" id="vrev" value="{{rValue}}" [ngModel]="_vrev" name="_vrev">
+                <div class="sin">
+                    <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="img" title="Valor Revaluo"><span id="simg" class="icon-tag"></span> Imagen.</label>
+                <input type="range"  min="{{minRange}}" max="{{maxRange}}" (change)="controller('img', 'simg')"
+                 class="form-control-range" id="img" value="{{rValue}}" [ngModel]="_img" name="_img">
+                <div class="sin">
+                    <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
                 </div>
             </div>
         </form>
+        <div class="btnSettings">
+            <button class="btn btn-info" (click)="saveInterfaz()">
+                <span class="icon-floppy" style="color: white;"></span>Guardar
+            </button>
+            <button class="btn btn-success" (click)="porDefecto()">
+                <span class="icon-ccw" style="color: white;"></span>Por defecto
+            </button>
+        </div>       
     </div>
     <div class="viewForm">
-        <div class="formV"></div>
+       <p class="note mb-2">Previsualización final para el formulario de ingreso de activo fijo:</p>
+       <app-activo-fijo style="width: 100%;"
+        [Factual]="fActual"
+         ></app-activo-fijo>
+
     </div>
 
 </div>

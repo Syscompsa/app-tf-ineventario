@@ -1,0 +1,81 @@
+<div class="actFijo">
+    <form id="fActivoFijo">
+        <div class="head mb-2"><strong><span class="icon-calendar">
+            </span>Fechas y producto</strong>
+        </div>
+        <div class="groupA">
+    <div class="img">
+        <img src="../../assets/prodDefecto/prod-defect.jpg" >
+        <label id="imgBut" for="file">
+            <span class="icon-camera"></span>
+        </label>
+        <input type="file" class="file" id="file">
+    </div>
+    <div class="inpDates">
+        <div class="dataDates">
+            <label for="fechacrea">Fecha Creación:</label>
+            <div class="d">
+                <input type="date" id="fechacrea" class="input-control" value="{{ datenow }}">
+                <div class="formato">
+                    <span class="icon-calendar"></span>
+                     (dd/mm/yyyy)
+                </div>
+            </div>
+        </div>
+        <div class="dataDates">
+            <label for="fechaCompra">Fecha Compra:</label>
+            <div class="d">
+                <input type="date" id="fechaCompra"
+                 class="input-control" value="{{ datenow }}">
+                <div class="formato">
+                    <span class="icon-calendar"></span>
+                     (dd/mm/yyyy)
+                </div>
+            </div>
+        </div>
+        <div class="dataDates" *ngIf="FMod">
+            <label for="fechamod" > Fecha Modificación:</label>
+            <div class="d">
+                <input type="date" id="fechamod" 
+                class="input-control" value="{{ datenow }}">
+                <div class="formato">
+                    <span class="icon-calendar"></span>
+                     (dd/mm/yyyy)
+                </div>
+            </div>
+        </div>
+        <div class="dataDates">
+            <label for="fechafin">Fecha Final:</label>
+            <div class="d">
+                <input type="date" id="fechafin" class="input-control" value="{{ datenow }}">
+                <div class="formato">
+                    <span class="icon-calendar"></span>
+                     (dd/mm/yyyy)
+                </div>
+            </div>
+        </div>
+        <div class="dataDates" *ngIf="Factual">
+            <label for="fechafin">Fecha Actual:</label>
+            <div class="d">
+                <input type="date" id="fechafin" class="input-control" value="{{ datenow }}">
+                <div class="formato">
+                    <span class="icon-calendar"></span>
+                     (dd/mm/yyyy)
+                </div>
+            </div>
+        </div>
+        
+        <div class="dataDates">
+            <label for="fechafin">Fecha Custodio:</label>
+            <div class="d">
+                <input type="date" id="fechafin" class="input-control" value="{{ datenow }}">
+                <div class="formato">
+                    <span class="icon-calendar"></span>
+                     (dd/mm/yyyy)
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </form>
+</div>

@@ -11,6 +11,7 @@ import { HeaderComponent } from './header/header.component';
 import { HistoryQRComponent } from './history-qr/history-qr.component';
 import { ReporteComponent } from './reporte/reporte.component';
 import { ConfigurationsComponent } from './configurations/configurations.component';
+import { ActivoFijoComponent } from './activo-fijo/activo-fijo.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ConfigurationsComponent } from './configurations/configurations.compone
     HeaderComponent,
     HistoryQRComponent,
     ReporteComponent,
-    ConfigurationsComponent
+    ConfigurationsComponent,
+    ActivoFijoComponent
   ],
   imports: [
     BrowserModule,
