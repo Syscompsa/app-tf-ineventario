@@ -12,7 +12,7 @@
         <input type="file" class="file" id="file">
     </div>
     <div class="inpDates">
-        <div class="dataDates">
+        <div class="dataDates" *ngIf="FCrea">
             <label for="fechacrea">Fecha Creación:</label>
             <div class="d">
                 <input type="date" id="fechacrea" class="input-control" value="{{ datenow }}">
@@ -44,8 +44,8 @@
                 </div>
             </div>
         </div>
-        <div class="dataDates">
-            <label for="fechafin">Fecha Final:</label>
+        <div class="dataDates" *ngIf="FFin">
+            <label for="fechafin" >Fecha Final:</label>
             <div class="d">
                 <input type="date" id="fechafin" class="input-control" value="{{ datenow }}">
                 <div class="formato">
@@ -65,7 +65,7 @@
             </div>
         </div>
         
-        <div class="dataDates">
+        <div class="dataDates" *ngIf="FCust">
             <label for="fechafin">Fecha Custodio:</label>
             <div class="d">
                 <input type="date" id="fechafin" class="input-control" value="{{ datenow }}">

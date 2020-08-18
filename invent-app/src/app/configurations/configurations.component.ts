@@ -10,15 +10,18 @@ export class ConfigurationsComponent implements OnInit {
   public maxRange: any = 1;
   public rValue: any;
   public datenow;
-
-
-  public fMod;
-
+  public IdInp;
   public toggle;
 
-  public fActual = this.toggle;
+  // variables para los Inputs comunicacion de compronentes INICIO
+  public fActual: any;
+  public refers: any;
+  public fMod: any;
+  public fecFin: any;
+  public feCreac: any;
+  public feCusto: any;
+  // variables para los Inputs comunicacion de compronentes FIN
   
-
   // ngModel inicio
   public _placa;
   public _clase;
@@ -29,9 +32,10 @@ export class ConfigurationsComponent implements OnInit {
   public _valor;
   public _activo;
   public _refer;
+  public _fac:any = 0;
   public _fec;
   public _usuc;
-  public _fmod;
+  public _fmod: any = 0;
   public _usm;
   public _ufin;
   public _grupo;
@@ -40,14 +44,16 @@ export class ConfigurationsComponent implements OnInit {
   public _mp;
   public _vut;
   public _vre;
-  public _finc;
-  public _fcu;
+  public _ffin: any = 0;
+  public _finc: any = 0 ;
+  public _fcu: any = 0;
   public _cgas;
   public _cdan;
   public _cdar;
   public _vnor;
   public _vrev;
   public _img;
+  public _fc: any = 0;
   // ngModel fin
 
   constructor() { }
@@ -56,35 +62,137 @@ export class ConfigurationsComponent implements OnInit {
     
   }
 
-  controller(o, so, objs) {
-    let obj = <HTMLInputElement> document.getElementById(o);
-    let sobj = <HTMLInputElement> document.getElementById(so);
-    // console.log(obj.value);
-    switch(obj.value){
+  fac(id) {
+    let a = <HTMLInputElement> document.getElementById('_fac');
+    this._fac = a.value;
+    this.dynamicSwitch(a, id, a);
+    switch(this.fActual){
       case '0':
-        obj.style.opacity = '0.5';
-        sobj.style.color = 'red';
-        this.toggle = false;
-        objs = false;
-        console.log('Togle ' + this.toggle);
-        console.log('Fecha ' + this.fActual);
+        this.fActual = false;
         break;
       case '1':
-        obj.style.opacity = '1';
-        sobj.style.color = 'green';
-        this.toggle = true;
-        objs = true;
-        console.log('Togle ' + this.toggle);
-        console.log('Fecha ' + this.fActual);
+        this.fActual = true;
         break;
-      default:
-        sobj.style.color = 'green';
-        this.toggle = true;
+    }
+    // console.log('fActual');    
+    // console.log(this.fActual);
+  }
+
+  feMod(id) {
+    let a = <HTMLInputElement> document.getElementById('_feMod');    
+    this._fmod = a.value;
+    this.dynamicSwitch(a, id, a);
+    // console.log(a);
+    switch(this.fMod){
+      case '0':
+        this.fMod = false;
+        break;
+      case '1':
+        this.fMod = true;
+        break;
+    }
+    // console.log(this.fMod)
+  }
+
+  feFin(id) {
+    let a = <HTMLInputElement> document.getElementById('_feFin'); 
+    // console.log(a);   
+    this._ffin = a.value;
+    this.dynamicSwitch(a, id, a);
+    // console.log(a);
+    switch(this.fecFin){
+      case '0':
+        this.fecFin = false;
+        break;
+      case '1':
+        this.fecFin = true;
+        break;
+    }
+    console.log(this._ffin)
+  }
+
+  feCrea(id) {
+
+    let a = <HTMLInputElement> document.getElementById('_feCrea'); 
+    // console.log(a);   
+    this._fc = a.value;
+    this.dynamicSwitch(a, id, a);
+    switch(this.feCreac){
+      case '0':
+        this.feCreac = false;
+        break;
+      case '1':
+        this.feCreac = true;
         break;
     }
 
-  
+    // console.log(this.feCreac)
 
+  }
+
+  feCust(id) {
+
+    let a = <HTMLInputElement> document.getElementById('_fCust'); 
+    // console.log(a);   
+    this._fcu = a.value;
+    this.dynamicSwitch(a, id, a);
+    switch(this.feCusto){
+      case '0':
+        this.feCusto = false;
+        break;
+      case '1':
+        this.feCusto = true;
+        break;
+    }
+
+    console.log(this._fcu)
+
+  }
+
+  feComp(id) {
+
+    let a = <HTMLInputElement> document.getElementById('_fCust'); 
+    console.log(a);   
+    // this._fcu = a.value;
+    // this.dynamicSwitch(a, id, a);
+    // switch(this.feCusto){
+    //   case '0':
+    //     this.feCusto = false;
+    //     break;
+    //   case '1':
+    //     this.feCusto = true;
+    //     break;
+    // }
+
+    // console.log(this._fcu)
+
+  }
+
+
+
+  changeTagColor(id, cid, color) {
+    let b = document.getElementById(id)
+    let c = document.getElementById(cid);
+    b.style.color = color;
+  }
+
+  dynamicSwitch(a, id, cid){
+    switch(a.value) {
+      case '0':
+        cid.style.opacity = '0.5';
+        this.changeTagColor(id, cid,  'red');
+        break;
+    
+      case '1':
+        cid.style.opacity = '1';
+        this.changeTagColor(id, cid, 'green');
+        break;
+    
+      default:
+        cid.style.opacity = '0.5';
+        this.changeTagColor(id, cid, 'red'); 
+        break;
+    }
   }
 
   saveInterfaz(){
@@ -112,3 +220,33 @@ export class ConfigurationsComponent implements OnInit {
  }
 
 }
+
+
+
+// recycle code
+// switch(obj.value){
+  //   case '0':
+  //     obj.style.opacity = '0.5';
+  //     sobj.style.color = 'red';
+  //     this.toggle = false;
+  //     this.fActual = false;
+  //     break;
+  //   case '1':
+  //     obj.style.opacity = '1';
+  //     sobj.style.color = 'green';
+  //     this.toggle = true;
+  //     this.fActual = true;
+  //     break;
+  //   default:
+  //     sobj.style.color = 'green';
+  //     this.toggle = true;
+  //     this.fActual = false;
+  //     break;
+  // }
+
+  // controller(o, so) {
+  //   let obj = <HTMLInputElement> document.getElementById(o);
+  //   let sobj = <HTMLInputElement> document.getElementById(so);
+  //   this.inpChange(obj);
+    
+  // }
