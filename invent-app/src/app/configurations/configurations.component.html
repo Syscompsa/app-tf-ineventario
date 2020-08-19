@@ -214,6 +214,8 @@
             <div class="form-group">
                 <label for="color" title="Color del producto"><span id="scolor" class="icon-tag"></span> Color.</label>
                 <input type="range"  min="{{minRange}}" max="{{maxRange}}" 
+                (input)="colorVar = $event.target.value" id="color"
+                (change)="colorFunc('scolor')"
                  class="form-control-range" value="{{rValue}}" [ngModel]="_color" name="_color">
                 <div class="sin">
                     <span class="icon-cancel">No</span>
@@ -325,7 +327,9 @@
             <div class="form-group">
                 <label for="cgas" title="Cuenta de gastos"><span id="scgas" class="icon-tag"></span> C. Gasto.</label>
                 <input type="range"  min="{{minRange}}" max="{{maxRange}}"
-                 class="form-control-range" value="{{rValue}}" [ngModel]="_cgas" name="_cgas">
+                (input)="cGastVar = $event.target.value" id="cgas"
+                (change)="cGastFunc('scgas')"
+                class="form-control-range" [ngModel]="_cgas" name="_cgas">
                 <div class="sin">
                     <span class="icon-cancel">No</span>
                     <span class="icon-ok">Si</span>
@@ -335,7 +339,9 @@
             <div class="form-group">
                 <label for="cdan" title="Cuenta de depreciación acumulada"><span id="scdan" class="icon-tag"></span> C. Dan.</label>
                 <input type="range"  min="{{minRange}}" max="{{maxRange}}" 
-                 class="form-control-range" value="{{rValue}}" [ngModel]="_cdan" name="_cdan">
+                (input)="cDan = $event.target.value" id="cdan"
+                (change)="cDanFunc('scdan')"
+                class="form-control-range" value="{{rValue}}" [ngModel]="_cdan" name="_cdan">
                 <div class="sin">
                     <span class="icon-cancel">No</span>
                     <span class="icon-ok">Si</span>
@@ -345,7 +351,9 @@
             <div class="form-group">
                 <label for="cdar" title="Cuenta de depreciación"><span id="scdar" class="icon-tag"></span> C. Dar.</label>
                 <input type="range"  min="{{minRange}}" max="{{maxRange}}"
-                 class="form-control-range" value="{{rValue}}" [ngModel]="_cdar" name="_cdar">
+                (input)="cDar = $event.target.value" id="cdar"
+                (change)="valNormal('scdar')"
+                class="form-control-range" value="{{rValue}}" [ngModel]="_cdar" name="_cdar">
                 <div class="sin">
                     <span class="icon-cancel">No</span>
                     <span class="icon-ok">Si</span>
@@ -355,7 +363,9 @@
             <div class="form-group">
                 <label for="vnor" title="Valor normal"><span id="svnor" class="icon-tag"></span> V. Normal.</label>
                 <input type="range"  min="{{minRange}}" max="{{maxRange}}"
-                 class="form-control-range" value="{{rValue}}" [ngModel]="_vnor" name="_vnor">
+                (input)="vNor = $event.target.value" id="vnor"
+                (change)="vNorFunc('svnor')"
+                 class="form-control-range" [ngModel]="_vnor" name="_vnor">
                 <div class="sin">
                     <span class="icon-cancel">No</span>
                     <span class="icon-ok">Si</span>
@@ -365,6 +375,8 @@
             <div class="form-group">
                 <label for="vrev" title="Valor Revaluo"><span id="svrev" class="icon-tag"></span> V. Reval.</label>
                 <input type="range"  min="{{minRange}}" max="{{maxRange}}"
+                (input)="vRval = $event.target.value" id="vrev"
+                (change)="vRvalFunc('svrev')"
                  class="form-control-range" value="{{rValue}}" [ngModel]="_vrev" name="_vrev">
                 <div class="sin">
                     <span class="icon-cancel">No</span>
@@ -403,7 +415,7 @@
         [Factual]="fActual" [FMod]="fMod"
         [FFin]="fecFin"     [FCrea]="feCreac"
         [FCust]="feCusto"   [FeInde]="feInde"
-        [FCompra]="fCompra" [Imagen]="Imge"
+        [FCompra]="fCompra" [Imagen]="Imge"s
         [Placa]="placa"     [CLase]="Clas"
         [NProd]="nProd"     [Custodio]="nCustodios"
         [Depart]="ndepar"   [Serie]="nSerie"
@@ -412,7 +424,10 @@
         [USM]="nUsm"        [USF]="UsFin"
         [GRP]="nGroup"      [MRC]="mArca"
         [PROV]="ProvVar"    [MODL]="ModVar"
-        [VUTL]="VitVar"     [VRES]="ValrVar">
+        [VUTL]="VitVar"     [VRES]="ValrVar"
+        [CGAS]="cGastVar"   [CDAN]="cDan"
+        [CDAR]="cDar"       [VNOR]="vNor"
+        [VREVAL]="vRval"    [COLOR]="colorVar">
        </app-activo-fijo>
 
     </div>

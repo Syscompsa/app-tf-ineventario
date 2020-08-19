@@ -40,6 +40,12 @@ export class ConfigurationsComponent implements OnInit {
   public ModVar: any;
   public VitVar: any;
   public ValrVar: any;
+  public cGastVar: any;
+  public cDan: any;
+  public cDar: any;
+  public vNor: any;
+  public vRval: any;
+  public colorVar: any;
   // variables para los Inputs comunicacion de compronentes FIN
   
   // ngModel inicio
@@ -53,14 +59,13 @@ export class ConfigurationsComponent implements OnInit {
   public _activo: any = 0;
   public _refer: any = 0;
   public _fac:any = 0;
-  public _fec;
   public _usuc: any = 0;
   public _fmod: any = 0;
   public _usm: any = 0;
   public _ufin: any = 0;
   public _grupo: any = 0;
   public _marca: any = 0;
-  public _color;
+  public _color: any = 0;
   public _prov: any = 0;
   public _mp: any = 0;
   public _vut: any = 0;
@@ -70,11 +75,11 @@ export class ConfigurationsComponent implements OnInit {
   public _fcu: any = 0;
   public _ide: any = 0;
   public _fComp: any = 0;
-  public _cgas;
-  public _cdan;
-  public _cdar;
-  public _vnor;
-  public _vrev;
+  public _cgas: any = 0;
+  public _cdan: any = 0;
+  public _cdar: any = 0;
+  public _vnor: any = 0;
+  public _vrev: any = 0;
   public _img: any = 0;
   public _fc: any = 0;
   // ngModel fin
@@ -82,6 +87,14 @@ export class ConfigurationsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    let a = document.getElementsByTagName('input'); 
+    for (let i = 0; i <= a.length; i++) {
+      if(a[i].value == '50'){
+        console.log('son todos 0');
+        a[i].style.opacity = '0.5'
+    }
+  }
+
   }
 
   fac(id) {
@@ -200,6 +213,7 @@ export class ConfigurationsComponent implements OnInit {
    // console.log(this.Imge)
   }
 
+  //OJO ESTO HAY QUE RESOLVER BUG
   feComp(id) {
     let a = <HTMLInputElement> document.getElementById('fComp'); 
     // console.log(a);   
@@ -514,6 +528,119 @@ export class ConfigurationsComponent implements OnInit {
     // console.log(this.nUsuc)
   }
 
+  cGastFunc(id) {
+    let a = <HTMLInputElement> document.getElementById('cgas');
+    // console.log(a);
+    this._cgas = a.value;
+    this.dynamicSwitch(a, id, a);
+    switch(this.cGastVar) {
+      case '0':
+        this.cGastVar = false;
+        break;
+      case '1':
+        this.cGastVar = true;
+        break;
+    }
+    // console.log(this.nUsuc)
+  }
+
+  cDanFunc(id) {
+    let a = <HTMLInputElement> document.getElementById('cdan');
+    // console.log(a);
+    this._cdan = a.value;
+    this.dynamicSwitch(a, id, a);
+    switch(this.cDan) {
+      case '0':
+        this.cDan = false;
+        break;
+      case '1':
+        this.cDan = true;
+        break;
+    }
+    // console.log(this.nUsuc)
+  }
+
+  cDarFunc(id) {
+    let a = <HTMLInputElement> document.getElementById('cdar');
+    // console.log(a);
+    this._cdar = a.value;
+    this.dynamicSwitch(a, id, a);
+    switch(this.cDar) {
+      case '0':
+        this.cDar = false;
+        break;
+      case '1':
+        this.cDar = true;
+        break;
+    }
+    // console.log(this.nUsuc)
+  }
+
+
+  valNormal(id) {
+    let a = <HTMLInputElement> document.getElementById('cdar');
+    // console.log(a);
+    this._cdar = a.value;
+    this.dynamicSwitch(a, id, a);
+    switch(this.cDar) {
+      case '0':
+        this.cDar = false;
+        break;
+      case '1':
+        this.cDar = true;
+        break;
+    }
+    // console.log(this.nUsuc)
+  }
+
+
+  vNorFunc(id) {
+    let a = <HTMLInputElement> document.getElementById('vnor');
+    // console.log(a);
+    this._vnor = a.value;
+    this.dynamicSwitch(a, id, a);
+    switch(this.vNor) {
+      case '0':
+        this.vNor = false;
+        break;
+      case '1':
+        this.vNor = true;
+        break;
+    }
+    // console.log(this.nUsuc)
+  }
+
+  vRvalFunc(id) {
+    let a = <HTMLInputElement> document.getElementById('vrev');
+    // console.log(a);
+    this._vrev = a.value;
+    this.dynamicSwitch(a, id, a);
+    switch(this.vRval) {
+      case '0':
+        this.vRval = false;
+        break;
+      case '1':
+        this.vRval = true;
+        break;
+    }
+    // console.log(this.nUsuc)
+  }
+
+  colorFunc(id) {
+    let a = <HTMLInputElement> document.getElementById('color');
+    // console.log(a);
+    this._color = a.value;
+    this.dynamicSwitch(a, id, a);
+    switch(this.colorVar) {
+      case '0':
+        this.colorVar = false;
+        break;
+      case '1':
+        this.colorVar = true;
+        break;
+    }
+    // console.log(this.nUsuc)
+  }
 
   //configuraciones
   changeTagColor(id, cid, color) {

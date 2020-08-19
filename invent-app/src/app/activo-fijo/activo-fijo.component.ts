@@ -35,6 +35,12 @@ export class ActivoFijoComponent implements OnInit {
   private _MODL: any;
   private _VUTL: any;
   private _VRES: any;
+  private _CGAS: any;
+  private _CDAN: any;
+  private _CDAR: any;
+  private _VNOR: any;
+  private _VREVAL: any;
+  private _COLOR: any;
 
   @Input()
   set Factual(value: any){
@@ -242,6 +248,54 @@ export class ActivoFijoComponent implements OnInit {
   }
   get VRES():any {
     return this._VRES;
+  }
+
+  @Input()
+  set CGAS(value: any){
+    this._CGAS = value;
+  }
+  get CGAS():any {
+    return this._CGAS;
+  }
+
+  @Input()
+  set CDAN(value: any){
+    this._CDAN = value;
+  }
+  get CDAN():any {
+    return this._CDAN;
+  }
+
+  @Input()
+  set CDAR(value: any){
+    this._CDAR = value;
+  }
+  get CDAR():any {
+    return this._CDAR;
+  }
+
+  @Input()
+  set VNOR(value: any){
+    this._VNOR = value;
+  }
+  get VNOR():any {
+    return this._VNOR;
+  }
+
+  @Input()
+  set VREVAL(value: any){
+    this._VREVAL = value;
+  }
+  get VREVAL():any {
+    return this._VREVAL;
+  }
+
+  @Input()
+  set COLOR(value: any){
+    this._COLOR = value;
+  }
+  get COLOR():any {
+    return this._COLOR;
   }
 
   ngOnInit() {

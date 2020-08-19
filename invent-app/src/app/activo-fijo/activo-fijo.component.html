@@ -227,6 +227,15 @@
             </div>
         </div>
     </div>
+    
+    <div class="inpData" *ngIf="COLOR">
+        <div class="dataDates">
+            <label for="_col" title="">Color:</label>
+            <div class="d">
+                <input type="text" id="_col" class="input-control" >
+            </div>
+        </div>
+    </div>
 
     <div class="inpData" *ngIf="PROV">
         <div class="dataDates">
@@ -260,6 +269,52 @@
             <label for="_vares" title="">Valor Residual:</label>
             <div class="d">
                 <input type="text" id="_vares" class="input-control" >
+            </div>
+        </div>
+    </div>
+
+    <div class="inpData" *ngIf="CGAS">
+        <div class="dataDates">
+            <label for="_cGAS" title="">Cuenta de Gasto:</label>
+            <div class="d">
+                <input type="text" id="_cGAS" class="input-control" >
+            </div>
+        </div>
+    </div>
+    
+    <div class="inpData" *ngIf="CDAN">
+        <div class="dataDates">
+            <label for="_cDan" title="">Cuenta de Depreciación Acumulada:</label>
+            <div class="d">
+                <input type="text" id="_cDan" class="input-control" >
+            </div>
+        </div>
+    </div>
+
+    <div class="inpData" *ngIf="CDAR">
+        <div class="dataDates">
+            <label for="_cDar" title="">Cuenta de Depreciación:</label>
+            <div class="d">
+                <input type="text" id="_cDan" class="input-control" >
+            </div>
+        </div>
+    </div>
+
+    <div class="inpData" *ngIf="VNOR">
+        <div class="dataDates">
+            <label for="_vNor" title="">Valor Normal:</label>
+            <div class="d">
+                <input type="text" id="_vNor" class="input-control" >
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="inpData" *ngIf="VREVAL">
+        <div class="dataDates">
+            <label for="vReval" title="">Valor de Revaluo:</label>
+            <div class="d">
+                <input type="text" id="vReval" class="input-control" >
             </div>
         </div>
     </div>
