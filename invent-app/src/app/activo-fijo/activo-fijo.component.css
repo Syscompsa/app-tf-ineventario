@@ -49,6 +49,13 @@ form{
     width: 100%;
     justify-content: space-between;
 }
+.groupB{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-shrink: unset;
+}
 
 .inpDates{
     display: flex;

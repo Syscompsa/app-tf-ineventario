@@ -10,17 +10,21 @@
         <hr>
         <form id="form">
             <div class="form-group">
-              <label for="placa"><span id="splaca" class="icon-tag"></span> Placa</label>
-              <input type="range" min="{{minRange}}" max="{{maxRange}}" 
-               class="form-control-range" [ngModel]="_placa" name="_placa">
+              <label for="_pla"><span id="splaca" class="icon-tag"></span> Placa</label>
+              <input type="range" min="{{minRange}}" max="{{maxRange}}"
+                (input)="placa = $event.target.value" id="_pla"
+                (change)="cPlaca('splaca')"
+                class="form-control-range" [ngModel]="_placa" name="_placa">
                 <div class="sin">
                     <span class="icon-cancel">No</span>
-                    <span class="icon-ok">Si</span>
+                    <span class="icon-ok">    Si</span>
                 </div>
             </div>
             <div class="form-group">
-                <label for="clase"><span id="sclase" class="icon-tag"></span> Clase</label>
+                <label for="_class"><span id="sclase" class="icon-tag"></span> Clase</label>
                 <input type="range" min="{{minRange}}" max="{{maxRange}}" 
+                (input)="Clas = $event.target.value" id="_class"
+                (change)="Class('sclase')"
                  class="form-control-range" [ngModel]="_clase" name="_clase">
                 <div class="sin">
                     <span class="icon-cancel">No</span>
@@ -28,8 +32,10 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="nombre" title="Nombre del Producto"><span id="snombre" class="icon-tag"></span> N. Prod.</label>
+                <label for="_nPr" title="Nombre del Producto"><span id="snombre" class="icon-tag"></span> N. Prod.</label>
                 <input type="range"  min="{{minRange}}" max="{{maxRange}}" 
+                (input)="nProd = $event.target.value" id="_nPr"
+                (change)="nProduc('snombre')"
                  class="form-control-range" [ngModel]="_nombre" name="_nombre">
                 <div class="sin">
                     <span class="icon-cancel">No</span>
@@ -37,8 +43,10 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="custodio"><span id="scustodio" class="icon-tag"></span> Custodio</label>
+                <label for="_custodio"><span id="scustodio" class="icon-tag"></span> Custodio</label>
                 <input type="range" min="{{minRange}}" max="{{maxRange}}" 
+                (input)="nCustodios = $event.target.value" id="_custodio"
+                (change)="nCust('scustodio')"
                  class="form-control-range" [ngModel]="_custodio" name="_custodio">
                 <div class="sin">
                     <span class="icon-cancel">No</span>
@@ -46,8 +54,10 @@
                 </div>
             </div>
             <div class="form-group" title="Departamento">
-                <label for="dpto"><span id="sdpto" class="icon-tag"></span> Dpto.</label>
-                <input type="range" min="{{minRange}}" max="{{maxRange}}" 
+                <label for="_dpto"><span id="sdpto" class="icon-tag"></span> Dpto.</label>
+                <input type="range" min="{{minRange}}" max="{{maxRange}}"
+                  (input)="ndepar = $event.target.value" id="_dpto"
+                  (change)="nDeps('sdpto')"
                   class="form-control-range" [ngModel]="_dpto" name="_dpto">
                 <div class="sin">
                     <span class="icon-cancel">No</span>
@@ -55,9 +65,13 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="serie"><span id="sserie" class="icon-tag"></span> Serie.</label>
+                <label for="_serie"><span id="sserie" class="icon-tag"></span> Serie.</label>
                 <input type="range" min="{{minRange}}" max="{{maxRange}}" 
-                 class="form-control-range" [ngModel]="_serie" name="_serie">
+                 (input)="nSerie = $event.target.value" id="_serie"
+                 (change)="SerieFunc('sserie')"
+                 class="form-control-range" 
+                 [ngModel]="_serie"
+                 name="_serie">
                 <div class="sin">
                     <span class="icon-cancel">No</span>
                     <span class="icon-ok">Si</span>
@@ -66,7 +80,9 @@
             <div class="form-group">
                 <label for="valor"><span id="svalor" class="icon-tag"></span> Valor.</label>
                 <input type="range" min="{{minRange}}" max="{{maxRange}}" 
-                 class="form-control-range" [ngModel]="_valor" name="_valor">
+                (input)="nValor = $event.target.value" id="valor"
+                (change)="nValorFunc('svalor')"
+                class="form-control-range" [ngModel]="_valor" name="_valor">
                 <div class="sin">
                     <span class="icon-cancel">No</span>
                     <span class="icon-ok">Si</span>
@@ -74,8 +90,10 @@
             </div>
             <div class="form-group">
                 <label for="activo"><span id="sactivo" class="icon-tag"></span> Activo.</label>
-                <input type="range" min="{{minRange}}" max="{{maxRange}}" 
-                 class="form-control-range"  [ngModel]="_activo" name="_activo">
+                <input type="range" min="{{minRange}}" max="{{maxRange}}"
+                (input)="nActivo = $event.target.value" id="activo"
+                (change)="nActivoFunc('sactivo')"
+                class="form-control-range" [ngModel]="_activo" name="_activo">
                 <div class="sin">
                     <span class="icon-cancel">No</span>
                     <span class="icon-ok">Si</span>
@@ -85,6 +103,7 @@
                 <label for="refer"><span id="srefer" class="icon-tag"></span> Referido.</label>
                 <input type="range" min="{{minRange}}" max="{{maxRange}}" 
                  (input)="refers = $event.target.value"
+                 (change)="nRefersFunc('srefer')" id="refer"
                  class="form-control-range"  [ngModel]="_refer" name="_refer">
                 <div class="sin">
                     <span class="icon-cancel">No</span>
@@ -104,15 +123,19 @@
                     <span class="icon-ok">Si</span>
                 </div>
             </div>
+            
             <div class="form-group">
                 <label for="usuc"  title="Usuario creación"><span id="susuc" class="icon-tag"></span> User C.</label>
-                <input type="range" min="{{minRange}}" max="{{maxRange}}" 
-                 class="form-control-range" [ngModel]="_usuc" name="_usuc">
+                <input type="range" min="{{minRange}}" max="{{maxRange}}"
+                (input)="nUsuc = $event.target.value" id="usuc"
+                (change)="nUsucr('susuc')"
+                class="form-control-range" [ngModel]="_usuc" name="_usuc">
                 <div class="sin">
                     <span class="icon-cancel">No</span>
                     <span class="icon-ok">Si</span>
                 </div>
             </div>
+            
             <div class="form-group">
                 <label for="fmod" title="Fecha Modifcación"><span id="sfmod" class="icon-tag"></span> Fecha M.</label>
                 <input type="range" min="{{minRange}}" max="{{maxRange}}"
@@ -124,15 +147,19 @@
                     <span class="icon-ok">Si</span>
                 </div>
             </div>
+            
             <div class="form-group">
                 <label for="usm" title="Usuario Modifcación"><span id="susm" class="icon-tag"></span> User M.</label>
-                <input type="range"  min="{{minRange}}" max="{{maxRange}}" 
+                <input type="range"  min="{{minRange}}" max="{{maxRange}}"
+                (input)="nUsm= $event.target.value" id="usm"
+                (change)="nUsmr('susm')"
                  class="form-control-range" [ngModel]="_usm" name="_usm">
                 <div class="sin">
                     <span class="icon-cancel">No</span>
                     <span class="icon-ok">Si</span>
                 </div>
             </div>
+
             <div class="form-group">
                 <label for="ffin" title="Fecha fin"><span id="sffin" class="icon-tag"></span> Fecha F.</label>
                 <input type="range"  min="{{minRange}}" max="{{maxRange}}" 
@@ -144,33 +171,46 @@
                     <span class="icon-ok">Si</span>
                 </div>
             </div>
+            
             <div class="form-group">
                 <label for="ufin" title="Usuario final"><span id="sufin" class="icon-tag"></span> User F.</label>
                 <input type="range"  min="{{minRange}}" max="{{maxRange}}" 
-                 class="form-control-range" value="{{rValue}}" [ngModel]="_ufin" name="_ufin">
+                (input)="UsFin = $event.target.value" id="ufin"
+                (change)="nUsFin('sufin')"
+                class="form-control-range" value="{{rValue}}" [ngModel]="_ufin" name="_ufin">
                 <div class="sin">
                     <span class="icon-cancel">No</span>
                     <span class="icon-ok">Si</span>
                 </div>
             </div>
+            
             <div class="form-group">
                 <label for="grupo" ><span id="sgrupo" class="icon-tag"></span> Grupo.</label>
-                <input type="range"  min="{{minRange}}" max="{{maxRange}}" 
-                 class="form-control-range" value="{{rValue}}" [ngModel]="_grupo" name="_grupo">
+                <input type="range"  min="{{minRange}}" max="{{maxRange}}"
+                (input)="nGroup = $event.target.value" id="grupo"
+                (change)="nGroupFun('sgrupo')"
+                class="form-control-range"
+                value="{{rValue}}" [ngModel]="_grupo" name="_grupo">
                 <div class="sin">
                     <span class="icon-cancel">No</span>
                     <span class="icon-ok">Si</span>
                 </div>
             </div>
+            
             <div class="form-group">
-                <label for="marca" title="Marca del producto"><span id="sgrupo" class="icon-tag"></span> Marca.</label>
+                <label for="marca" title="Marca del producto"><span id="smarca" class="icon-tag"></span> Marca.</label>
                 <input type="range"  min="{{minRange}}" max="{{maxRange}}" 
-                 class="form-control-range" value="{{rValue}}" [ngModel]="_marca" name="_marca">
+                (input)="mArca = $event.target.value" id="marca"
+                (change)="nMarca('smarca')"
+                 class="form-control-range" 
+                 value="{{rValue}}" [ngModel]="_marca" 
+                 name="_marca">
                 <div class="sin">
                     <span class="icon-cancel">No</span>
                     <span class="icon-ok">Si</span>
                 </div>
             </div>
+            
             <div class="form-group">
                 <label for="color" title="Color del producto"><span id="scolor" class="icon-tag"></span> Color.</label>
                 <input type="range"  min="{{minRange}}" max="{{maxRange}}" 
@@ -180,8 +220,9 @@
                     <span class="icon-ok">Si</span>
                 </div>
             </div>
+            
             <div class="form-group">
-                <label for="fc" title="Fecha de Creación"><span id="sfc" class="icon-tag"></span> Fecha C.</label>
+                <label for="fc" title="Fecha de Creación"><span id="sfc" class="icon-tag"></span> Fecha Cr.</label>
                 <input type="range"  min="{{minRange}}" max="{{maxRange}}"
                 (input)="feCreac = $event.target.value" id="_feCrea"
                 (change)="feCrea('sfc')"
@@ -191,65 +232,96 @@
                     <span class="icon-ok">Si</span>
                 </div>
             </div>
+            
             <div class="form-group">
                 <label for="prov" title="Proveedor"><span id="sprov" class="icon-tag"></span> Pvdor.</label>
                 <input type="range"  min="{{minRange}}" max="{{maxRange}}"
-                 class="form-control-range" value="{{rValue}}" [ngModel]="_prov" name="_prov">
+                (input)="ProvVar = $event.target.value" id="prov"
+                (change)="ProvFunc('sprov')"
+                class="form-control-range" value="{{rValue}}"
+                [ngModel]="_prov" name="_prov">
                 <div class="sin">
                     <span class="icon-cancel">No</span>
                     <span class="icon-ok">Si</span>
                 </div>
             </div>
+            
             <div class="form-group">
-                <label for="mp" title="Modelo del producto"><span id="smp" class="icon-tag"></span> Modelo.</label>
+                <label for="mp" title="Modelo del producto"><span id="smod" class="icon-tag"></span> Modelo.</label>
                 <input type="range"  min="{{minRange}}" max="{{maxRange}}"
-                 class="form-control-range" value="{{rValue}}" [ngModel]="_mp" name="_mp">
+                (input)="ModVar = $event.target.value" id="mp"
+                (change)="ModFunc('smod')"
+                class="form-control-range"
+                [ngModel]="_mp" name="_mp">
                 <div class="sin">
                     <span class="icon-cancel">No</span>
                     <span class="icon-ok">Si</span>
                 </div>
             </div>
+            
             <div class="form-group">
                 <label for="vut" title="Vida útil del producto"><span id="svut" class="icon-tag"></span> V. Útil.</label>
                 <input type="range"  min="{{minRange}}" max="{{maxRange}}"
+                (input)="VitVar = $event.target.value" id="vut"
+                (change)="VitFunc('svut')"
                  class="form-control-range" value="{{rValue}}" [ngModel]="_vut" name="_vut">
                 <div class="sin">
                     <span class="icon-cancel">No</span>
                     <span class="icon-ok">Si</span>
                 </div>
             </div>
+            
             <div class="form-group">
                 <label for="vre" title="Valor residual del producto">
                     <span id="svre" class="icon-tag"></span> V. Resi.</label>
                 <input type="range"  min="{{minRange}}" max="{{maxRange}}"
+                (input)="ValrVar = $event.target.value" id="vre"
+                (change)="ValrFunc('svre')"
                  class="form-control-range" value="{{rValue}}" [ngModel]="_vre" name="_vre">
                 <div class="sin">
                     <span class="icon-cancel">No</span>
                     <span class="icon-ok">Si</span>
                 </div>
             </div>
+            
             <div class="form-group">
-                <label for="finc" title="Fecha de inicio">
-                    <span id="sfinc" class="icon-tag"></span> Fecha In.</label>
+                <label for="fComp" title="Fecha de Compra">
+                    <span id="sfcomp" class="icon-tag"></span> Fecha Cm.</label>
                 <input type="range"  min="{{minRange}}" max="{{maxRange}}"
-                 class="form-control-range" value="{{rValue}}" [ngModel]="_finc" name="_finc">
+                 (input)="fCompra = $event.target.value" id="fComp"
+                 (change)="feComp('sfcomp')"
+                 class="form-control-range" value="{{rValue}}" [ngModel]="_fComp" name="_fComp">
                 <div class="sin">
                     <span class="icon-cancel">No</span>
                     <span class="icon-ok">Si</span>
                 </div>
             </div>
+
             <div class="form-group">
                 <label for="fcu" title="Fecha Custodio">
                     <span id="sfcu" class="icon-tag"></span> Fecha Co.</label>
-                <input type="range"  min="{{minRange}}" max="{{maxRange}}" id="_fCust"
-                (input)="feCusto = $event.target.value"
-                (change)="feCust('sfcu')"
-                 class="form-control-range" value="{{rValue}}" [ngModel]="_fcu" name="_fcu">
+                <input type="range" min="{{minRange}}" max="{{maxRange}}" id="_fCust"
+                (input)="feCusto = $event.target.value" (change)="feCust('sfcu')"
+                class="form-control-range" value="{{rValue}}" [ngModel]="_fcu" name="_fcu">
                 <div class="sin">
                     <span class="icon-cancel">No</span>
                     <span class="icon-ok">Si</span>
                 </div>
             </div>
+
+            <div class="form-group">
+                <label for="fcu" title="Fecha inicio depreciación">
+                    <span id="side" class="icon-tag"></span> Fecha I.D..</label>
+                <input type="range"  min="{{minRange}}" max="{{maxRange}}" id="_iDep"
+                (input)="feInde = $event.target.value"
+                (change)="feIndepre('side')"
+                class="form-control-range" value="{{rValue}}" [ngModel]="_ide" name="_ide">
+                <div class="sin">
+                    <span class="icon-cancel">No</span>
+                    <span class="icon-ok">Si</span>
+                </div>
+            </div>
+
             <div class="form-group">
                 <label for="cgas" title="Cuenta de gastos"><span id="scgas" class="icon-tag"></span> C. Gasto.</label>
                 <input type="range"  min="{{minRange}}" max="{{maxRange}}"
@@ -259,6 +331,7 @@
                     <span class="icon-ok">Si</span>
                 </div>
             </div>
+
             <div class="form-group">
                 <label for="cdan" title="Cuenta de depreciación acumulada"><span id="scdan" class="icon-tag"></span> C. Dan.</label>
                 <input type="range"  min="{{minRange}}" max="{{maxRange}}" 
@@ -268,6 +341,7 @@
                     <span class="icon-ok">Si</span>
                 </div>
             </div>
+            
             <div class="form-group">
                 <label for="cdar" title="Cuenta de depreciación"><span id="scdar" class="icon-tag"></span> C. Dar.</label>
                 <input type="range"  min="{{minRange}}" max="{{maxRange}}"
@@ -287,6 +361,7 @@
                     <span class="icon-ok">Si</span>
                 </div>
             </div>
+
             <div class="form-group">
                 <label for="vrev" title="Valor Revaluo"><span id="svrev" class="icon-tag"></span> V. Reval.</label>
                 <input type="range"  min="{{minRange}}" max="{{maxRange}}"
@@ -296,16 +371,21 @@
                     <span class="icon-ok">Si</span>
                 </div>
             </div>
+
             <div class="form-group">
                 <label for="img" title="Valor Revaluo"><span id="simg" class="icon-tag"></span> Imagen.</label>
-                <input type="range"  min="{{minRange}}" max="{{maxRange}}"
+                <input type="range"  min="{{minRange}}" max="{{maxRange}}" id="img"
+                (input)="Imge = $event.target.value"
+                (change)="IMG('simg')"
                  class="form-control-range" value="{{rValue}}" [ngModel]="_img" name="_img">
                 <div class="sin">
                     <span class="icon-cancel">No</span>
                     <span class="icon-ok">Si</span>
                 </div>
             </div>
+
         </form>
+
         <div class="btnSettings">
             <button class="btn btn-info" (click)="saveInterfaz()">
                 <span class="icon-floppy" style="color: white;"></span>Guardar
@@ -315,14 +395,25 @@
             </button>
         </div>       
     </div>
+
     <div class="viewForm">
        <p class="note mb-2">Previsualización final para el formulario de ingreso de activo fijo:</p>
-       <app-activo-fijo style="width: 100%;"
-        [Factual]="fActual"
-        [FMod]="fMod"
-        [FFin]="fecFin"
-        [FCrea]="feCreac"
-        [FCust]="feCusto"></app-activo-fijo>
+       <app-activo-fijo
+        style="width: 100%;"
+        [Factual]="fActual" [FMod]="fMod"
+        [FFin]="fecFin"     [FCrea]="feCreac"
+        [FCust]="feCusto"   [FeInde]="feInde"
+        [FCompra]="fCompra" [Imagen]="Imge"
+        [Placa]="placa"     [CLase]="Clas"
+        [NProd]="nProd"     [Custodio]="nCustodios"
+        [Depart]="ndepar"   [Serie]="nSerie"
+        [Valor]="nValor"    [Activo]="nActivo"
+        [Referido]="refers" [USC]="nUsuc"
+        [USM]="nUsm"        [USF]="UsFin"
+        [GRP]="nGroup"      [MRC]="mArca"
+        [PROV]="ProvVar"    [MODL]="ModVar"
+        [VUTL]="VitVar"     [VRES]="ValrVar">
+       </app-activo-fijo>
 
     </div>
 

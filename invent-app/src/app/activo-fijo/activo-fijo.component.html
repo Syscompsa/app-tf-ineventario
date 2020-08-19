@@ -3,14 +3,16 @@
         <div class="head mb-2"><strong><span class="icon-calendar">
             </span>Fechas y producto</strong>
         </div>
-        <div class="groupA">
-    <div class="img">
+
+    <div class="groupA">
+    <div class="img" *ngIf="Imagen">
         <img src="../../assets/prodDefecto/prod-defect.jpg" >
         <label id="imgBut" for="file">
             <span class="icon-camera"></span>
         </label>
         <input type="file" class="file" id="file">
     </div>
+<!--FECHA INPUT INICIO-->
     <div class="inpDates">
         <div class="dataDates" *ngIf="FCrea">
             <label for="fechacrea">Fecha Creación:</label>
@@ -22,7 +24,20 @@
                 </div>
             </div>
         </div>
-        <div class="dataDates">
+
+        <div class="dataDates" *ngIf="FeInde">
+            <label for="fecha Inicio de Depreciación">Fecha I. Depreciación:</label>
+            <div class="d">
+                <input type="date" id="fechaCompra"
+                 class="input-control" value="{{ datenow }}">
+                <div class="formato">
+                    <span class="icon-calendar"></span>
+                     (dd/mm/yyyy)
+                </div>
+            </div>
+        </div>
+        
+        <div class="dataDates" *ngIf="FCompra">
             <label for="fechaCompra">Fecha Compra:</label>
             <div class="d">
                 <input type="date" id="fechaCompra"
@@ -33,6 +48,7 @@
                 </div>
             </div>
         </div>
+
         <div class="dataDates" *ngIf="FMod">
             <label for="fechamod" > Fecha Modificación:</label>
             <div class="d">
@@ -44,6 +60,7 @@
                 </div>
             </div>
         </div>
+
         <div class="dataDates" *ngIf="FFin">
             <label for="fechafin" >Fecha Final:</label>
             <div class="d">
@@ -54,6 +71,7 @@
                 </div>
             </div>
         </div>
+
         <div class="dataDates" *ngIf="Factual">
             <label for="fechafin">Fecha Actual:</label>
             <div class="d">
@@ -75,7 +93,178 @@
                 </div>
             </div>
         </div>
+
     </div>
-</div>
+<!--FECHA INPUT FIN-->
+    </div>
+
+
+
+    <div class="groupB">
+<!--DATA INPUT INICIO-->
+    <div class="inpData" *ngIf="Placa">
+        <div class="dataDates" >
+            <label for="fechacrea" title="Código Placa">Placa:</label>
+            <div class="d">
+                <input type="text" id="placa" class="input-control" >
+            </div>
+        </div>
+    </div>
+
+    <div class="inpData" *ngIf="CLase">
+        <div class="dataDates" >
+            <label for="_Clase" title="">Clase:</label>
+            <div class="d">
+                <input type="text" id="_Clase" class="input-control" >
+            </div>
+        </div>
+    </div>
+
+    <div class="inpData" *ngIf="NProd">
+        <div class="dataDates" >
+            <label for="_nProd" title="">Nombre Producto:</label>
+            <div class="d">
+                <input type="text" id="_nProd" class="input-control" >
+            </div>
+        </div>
+    </div>
+
+    <div class="inpData" *ngIf="Custodio">
+        <div class="dataDates" >
+            <label for="_cust" title="">Custodio:</label>
+            <div class="d">
+                <input type="text" id="_cust" class="input-control" >
+            </div>
+        </div>
+    </div>
+
+    <div class="inpData" *ngIf="Depart">
+        <div class="dataDates" >
+            <label for="_dep" title="">Departamento:</label>
+            <div class="d">
+                <input type="text" id="_dep" class="input-control" >
+            </div>
+        </div>
+    </div>
+
+    <div class="inpData" *ngIf="Serie">
+        <div class="dataDates" >
+            <label for="_ser" title="">Serie:</label>
+            <div class="d">
+                <input type="text" id="_ser" class="input-control" >
+            </div>
+        </div>
+    </div>
+    
+    <div class="inpData" *ngIf="Valor">
+        <div class="dataDates" >
+            <label for="_val" title="">Valor:</label>
+            <div class="d">
+                <input type="text" id="_val" class="input-control" >
+            </div>
+        </div>
+    </div>
+
+    <div class="inpData" *ngIf="Activo">
+        <div class="dataDates" >
+            <label for="_actv" title="">Activo:</label>
+            <div class="d">
+                <input type="text" id="_actv" class="input-control" >
+            </div>
+        </div>
+    </div>
+
+    <div class="inpData"  *ngIf="Referido">
+        <div class="dataDates">
+            <label for="_ref" title="">Referido:</label>
+            <div class="d">
+                <input type="text" id="_ref" class="input-control" >
+            </div>
+        </div>
+    </div>
+
+    <div class="inpData" *ngIf="USC">
+        <div class="dataDates">
+            <label for="_usc" title="">Usuario Creación:</label>
+            <div class="d">
+                <input type="text" id="_usc" class="input-control" >
+            </div>
+        </div>
+    </div>
+
+    <div class="inpData" *ngIf="USM">
+        <div class="dataDates">
+            <label for="_usm" title="">Usuario Modificación:</label>
+            <div class="d">
+                <input type="text" id="_usm" class="input-control" >
+            </div>
+        </div>
+    </div>
+
+    <div class="inpData" *ngIf="USF">
+        <div class="dataDates">
+            <label for="_usf" title="">Usuario Final:</label>
+            <div class="d">
+                <input type="text" id="_usf" class="input-control" >
+            </div>
+        </div>
+    </div>
+
+    <div class="inpData" *ngIf="GRP">
+        <div class="dataDates">
+            <label for="_group" title="">Grupo:</label>
+            <div class="d">
+                <input type="text" id="_group" class="input-control" >
+            </div>
+        </div>
+    </div>
+    
+    <div class="inpData" *ngIf="MRC">
+        <div class="dataDates">
+            <label for="_mar" title="">Marca:</label>
+            <div class="d">
+                <input type="text" id="_mar" class="input-control" >
+            </div>
+        </div>
+    </div>
+
+    <div class="inpData" *ngIf="PROV">
+        <div class="dataDates">
+            <label for="_prov" title="">Proveedor:</label>
+            <div class="d">
+                <input type="text" id="_prov" class="input-control" >
+            </div>
+        </div>
+    </div>
+
+    <div class="inpData" *ngIf="MODL">
+        <div class="dataDates">
+            <label for="_modl" title="">Modelo:</label>
+            <div class="d">
+                <input type="text" id="_modl" class="input-control" >
+            </div>
+        </div>
+    </div>
+
+    <div class="inpData" *ngIf="VUTL">
+        <div class="dataDates">
+            <label for="_vitl" title="">Vida Útil:</label>
+            <div class="d">
+                <input type="text" id="_vitl" class="input-control" >
+            </div>
+        </div>
+    </div>
+
+    <div class="inpData" *ngIf="VRES">
+        <div class="dataDates">
+            <label for="_vares" title="">Valor Residual:</label>
+            <div class="d">
+                <input type="text" id="_vares" class="input-control" >
+            </div>
+        </div>
+    </div>
+
+<!--DATA INPUT FIN-->
+    </div>
     </form>
 </div>
