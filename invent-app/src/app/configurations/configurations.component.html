@@ -31,6 +31,19 @@
                     <span class="icon-ok">Si</span>
                 </div>
             </div>
+
+            <div class="form-group">
+                <label for="_ciud" title=""><span id="sciud" class="icon-tag"></span> Ciudad.</label>
+                <input type="range"  min="{{minRange}}" max="{{maxRange}}"
+                (input)="ciudVar = $event.target.value" id="_ciud"
+                (change)="ciudFunc('sciud')"
+                 class="form-control-range" value="{{rValue}}" [ngModel]="_ciud" name="_ciud">
+                <div class="sin">
+                    <span class="icon-cancel">    No    </span>
+                    <span class="icon-ok">        Si    </span>
+                </div>
+            </div>
+
             <div class="form-group">
                 <label for="_nPr" title="Nombre del Producto"><span id="snombre" class="icon-tag"></span> N. Prod.</label>
                 <input type="range"  min="{{minRange}}" max="{{maxRange}}" 
@@ -233,7 +246,7 @@
                     <span class="icon-cancel">No</span>
                     <span class="icon-ok">Si</span>
                 </div>
-            </div>
+            </div>            
             
             <div class="form-group">
                 <label for="prov" title="Proveedor"><span id="sprov" class="icon-tag"></span> Pvdor.</label>
@@ -427,7 +440,8 @@
         [VUTL]="VitVar"     [VRES]="ValrVar"
         [CGAS]="cGastVar"   [CDAN]="cDan"
         [CDAR]="cDar"       [VNOR]="vNor"
-        [VREVAL]="vRval"    [COLOR]="colorVar">
+        [VREVAL]="vRval"    [COLOR]="colorVar"
+        [CIUD]= "ciudVar">
        </app-activo-fijo>
 
     </div>

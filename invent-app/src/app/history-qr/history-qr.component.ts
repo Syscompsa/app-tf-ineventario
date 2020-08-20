@@ -42,7 +42,7 @@ export class HistoryQRComponent implements OnInit {
 
         const dataDiv =  document.getElementById(this.dataQRExtract[i].id.toString());
         dataDiv.style.border = 'solid 0.5px gray';
-        dataDiv.style.width = '150px';
+        dataDiv.style.width = '140px';
         dataDiv.style.marginTop = '5px';
         dataDiv.style.backgroundColor = 'white';
         dataDiv.style.borderRadius = '5px';

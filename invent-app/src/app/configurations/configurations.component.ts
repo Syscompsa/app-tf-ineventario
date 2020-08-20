@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfigService } from '../Services/config.service';
+import { configPresets } from '../Models/configPresets';
 
 @Component({
   selector: 'app-configurations',
@@ -12,90 +14,108 @@ export class ConfigurationsComponent implements OnInit {
   public datenow;
   public IdInp;
   public toggle;
+  public _confPres: configPresets[] = [];
 
   // variables para los Inputs comunicacion de compronentes INICIO
-  public fActual: any;
-  public refers: any;
-  public fMod: any;
-  public fecFin: any;
-  public feCreac: any;
-  public feCusto: any;
-  public feInde: any;
-  public fCompra: any;
-  public Imge: any;
-  public placa: any;
-  public Clas: any;
-  public nProd: any;
-  public nCustodios: any;
-  public ndepar: any;
-  public nSerie: any;
-  public nValor: any;
-  public nActivo: any;
-  public nUsuc: any;
-  public nUsm: any;
-  public UsFin: any;
-  public nGroup: any;
-  public mArca: any;
-  public ProvVar: any;
-  public ModVar: any;
-  public VitVar: any;
-  public ValrVar: any;
-  public cGastVar: any;
-  public cDan: any;
-  public cDar: any;
-  public vNor: any;
-  public vRval: any;
-  public colorVar: any;
+  public fActual:   any;
+  public refers:    any;
+  public fMod:      any;
+  public fecFin:    any;
+  public feCreac:   any;
+  public feCusto:   any;
+  public feInde:    any;
+  public fCompra:   any;
+  public Imge:      any;
+  public placa:     any;
+  public Clas:      any;
+  public nProd:     any;
+  public nCustodios:any;
+  public ndepar:    any;
+  public nSerie:    any;
+  public nValor:    any;
+  public nActivo:   any;
+  public nUsuc:     any;
+  public nUsm:      any;
+  public UsFin:     any;
+  public nGroup:    any;
+  public mArca:     any;
+  public ProvVar:   any;
+  public ModVar:    any;
+  public VitVar:    any;
+  public ValrVar:   any;
+  public cGastVar:  any;
+  public cDan:      any;
+  public cDar:      any;
+  public vNor:      any;
+  public vRval:     any;
+  public colorVar:  any;
+  public ciudVar:   any;
   // variables para los Inputs comunicacion de compronentes FIN
-  
+    
   // ngModel inicio
-  public _placa: any = 0;
-  public _clase: any = 0;
-  public _nombre: any = 0;
-  public _custodio: any = 0;
-  public _dpto: any = 0;
-  public _serie: any = 0;
-  public _valor: any = 0;
-  public _activo: any = 0;
-  public _refer: any = 0;
-  public _fac:any = 0;
-  public _usuc: any = 0;
-  public _fmod: any = 0;
-  public _usm: any = 0;
-  public _ufin: any = 0;
-  public _grupo: any = 0;
-  public _marca: any = 0;
-  public _color: any = 0;
-  public _prov: any = 0;
-  public _mp: any = 0;
-  public _vut: any = 0;
-  public _vre: any = 0 ;
-  public _ffin: any = 0;
-  public _finc: any = 0 ;
-  public _fcu: any = 0;
-  public _ide: any = 0;
-  public _fComp: any = 0;
-  public _cgas: any = 0;
-  public _cdan: any = 0;
-  public _cdar: any = 0;
-  public _vnor: any = 0;
-  public _vrev: any = 0;
-  public _img: any = 0;
-  public _fc: any = 0;
+  public _placa:      any = 0;
+  public _clase:      any = 0;
+  public _nombre:     any = 0;
+  public _custodio:   any = 0;
+  public _dpto:       any = 0;
+  public _serie:      any = 0;
+  public _valor:      any = 0;
+  public _activo:     any = 0;
+  public _refer:      any = 0;
+  public _fac:        any = 0;
+  public _usuc:       any = 0;
+  public _fmod:       any = 0;
+  public _usm:        any = 0;
+  public _ufin:       any = 0;
+  public _grupo:      any = 0;
+  public _marca:      any = 0;
+  public _color:      any = 0;
+  public _prov:       any = 0;
+  public _mp:         any = 0;
+  public _vut:        any = 0;
+  public _vre:        any = 0;
+  public _ffin:       any = 0;
+  public _finc:       any = 0;
+  public _fcu:        any = 0;
+  public _ide:        any = 0;
+  public _fComp:      any = 0;
+  public _cgas:       any = 0;
+  public _cdan:       any = 0;
+  public _cdar:       any = 0;
+  public _vnor:       any = 0;
+  public _vrev:       any = 0;
+  public _img:        any = 0;
+  public _fc:         any = 0;
+  public _ciud:       any = 0;
   // ngModel fin
 
-  constructor() { }
+  constructor(public conf: ConfigService) { }
 
   ngOnInit() {
+    this.getinterface();
     let a = document.getElementsByTagName('input'); 
+    let b = document.getElementsByTagName('label'); 
     for (let i = 0; i <= a.length; i++) {
-      if(a[i].value == '50'){
+      if(a[i].value == '50') {
         console.log('son todos 0');
-        a[i].style.opacity = '0.5'
+        a[i].style.opacity = '0.5';
     }
   }
 
   }
+
+  //Services CONFIG Inicio
+
+  getinterface(){
+    this.conf.getConfig().subscribe( 
+      x => {
+        console.log(this._confPres);
+        console.log(x);
+     }
+    )
+  }
+
+  //Services CONFIG Fin
 
   fac(id) {
     let a = <HTMLInputElement> document.getElementById('_fac');
@@ -588,6 +608,22 @@ export class ConfigurationsComponent implements OnInit {
         break;
       case '1':
         this.cDar = true;
+        break;
+    }
+    // console.log(this.nUsuc)
+  }
+
+  ciudFunc(id) {
+    let a = <HTMLInputElement> document.getElementById('_ciud');
+    // console.log(a);
+    this._ciud = a.value;
+    this.dynamicSwitch(a, id, a);
+    switch(this.ciudVar) {
+      case '0':
+        this.ciudVar = false;
+        break;
+      case '1':
+        this.ciudVar = true;
         break;
     }
     // console.log(this.nUsuc)

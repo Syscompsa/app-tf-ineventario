@@ -10,37 +10,38 @@ export class ActivoFijoComponent implements OnInit {
   constructor() { }
 
   private _Factual: any;
-  private _FMod: any;
-  private _FFin: any;
-  private _FCrea: any;
-  private _FCust: any;
-  private _FeInde: any;
+  private _FMod:    any;
+  private _FFin:    any;
+  private _FCrea:   any;
+  private _FCust:   any;
+  private _FeInde:  any;
   private _FCompra: any;
-  private _Imagen: any;
-  private _Placa: any;
-  private _CLase: any;
-  private _NProd: any;
-  private _Custodio: any;
-  private _Depart: any;
-  private _Serie: any;
-  private _Valor: any;
-  private _Activo: any;
-  private _Referido: any;
-  private _USC: any;
-  private _USM: any;
-  private _USF: any;
-  private _GRP: any;
-  private _MRC: any;
-  private _PROV: any;
-  private _MODL: any;
-  private _VUTL: any;
-  private _VRES: any;
-  private _CGAS: any;
-  private _CDAN: any;
-  private _CDAR: any;
-  private _VNOR: any;
-  private _VREVAL: any;
-  private _COLOR: any;
+  private _Imagen:  any;
+  private _Placa:   any;
+  private _CLase:   any;
+  private _NProd:   any;
+  private _Custodio:any;
+  private _Depart:  any;
+  private _Serie:   any;
+  private _Valor:   any;
+  private _Activo:  any;
+  private _Referido:any;
+  private _USC:     any;
+  private _USM:     any;
+  private _USF:     any;
+  private _GRP:     any;
+  private _MRC:     any;
+  private _PROV:    any;
+  private _MODL:    any;
+  private _VUTL:    any;
+  private _VRES:    any;
+  private _CGAS:    any;
+  private _CDAN:    any;
+  private _CDAR:    any;
+  private _VNOR:    any;
+  private _VREVAL:  any;
+  private _COLOR:   any;
+  private _CIUD:    any;
 
   @Input()
   set Factual(value: any){
@@ -296,6 +297,13 @@ export class ActivoFijoComponent implements OnInit {
   }
   get COLOR():any {
     return this._COLOR;
+  }
+  @Input()
+  set CIUD(value: any){
+    this._CIUD = value;
+  }
+  get CIUD():any {
+    return this._CIUD;
   }
 
   ngOnInit() {
