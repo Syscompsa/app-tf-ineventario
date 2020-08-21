@@ -171,10 +171,12 @@
                     <span class="icon-cancel">No</span>
                     <span class="icon-ok">Si</span>
                 </div>
+
             </div>
 
             <div class="form-group">
-                <label for="ffin" title="Fecha fin"><span id="sffin" class="icon-tag"></span> Fecha F.</label>
+                <label for="ffin" title="Fecha fin">
+                    <span id="sffin" class="icon-tag"></span> Fecha F.</label>
                 <input type="range"  min="{{minRange}}" max="{{maxRange}}" 
                 (input)="fecFin = $event.target.value" id="_feFin"
                 (change)="feFin('sffin')"
@@ -315,9 +317,12 @@
             <div class="form-group">
                 <label for="fcu" title="Fecha Custodio">
                     <span id="sfcu" class="icon-tag"></span> Fecha Co.</label>
-                <input type="range" min="{{minRange}}" max="{{maxRange}}" id="_fCust"
-                (input)="feCusto = $event.target.value" (change)="feCust('sfcu')"
-                class="form-control-range" value="{{rValue}}" [ngModel]="_fcu" name="_fcu">
+                <input type="range" min="{{minRange}}" max="{{maxRange}}"
+                id="_fCust"
+                (input)="feCusto = $event.target.value"
+                (change)="feCust('sfcu')"
+                class="form-control-range" value="{{rValue}}"
+                [ngModel]="_fcu" name="_fcu">
                 <div class="sin">
                     <span class="icon-cancel">No</span>
                     <span class="icon-ok">Si</span>
@@ -326,7 +331,8 @@
 
             <div class="form-group">
                 <label for="fcu" title="Fecha inicio depreciación">
-                    <span id="side" class="icon-tag"></span> Fecha I.D..</label>
+                    <span id="side" class="icon-tag"></span>
+                     Fecha I.D..</label>
                 <input type="range"  min="{{minRange}}" max="{{maxRange}}" id="_iDep"
                 (input)="feInde = $event.target.value"
                 (change)="feIndepre('side')"

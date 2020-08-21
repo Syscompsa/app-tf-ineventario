@@ -14,6 +14,7 @@ export class ConfigurationsComponent implements OnInit {
   public datenow;
   public IdInp;
   public toggle;
+  public arr: configPresets[] = [];
   public _confPres: configPresets[] = [];
 
   // variables para los Inputs comunicacion de compronentes INICIO
@@ -96,23 +97,64 @@ export class ConfigurationsComponent implements OnInit {
     let a = document.getElementsByTagName('input'); 
     let b = document.getElementsByTagName('label'); 
     for (let i = 0; i <= a.length; i++) {
-      if(a[i].value == '50') {
-        console.log('son todos 0');
+      if (a[i].value == '50') {
+        // console.log('son todos 0');
         a[i].style.opacity = '0.5';
+      }
     }
-  }
+
+    console.log(this.arr);
 
   }
 
   //Services CONFIG Inicio
-
   getinterface(){
     this.conf.getConfig().subscribe( 
       x => {
-        console.log(this._confPres);
-        console.log(x);
+      this.arr = [
+
+         this._placa    = x[0].placa_i,       // 1
+         this._clase    = x[0].clase_i,       // 2
+         this._nombre   = x[0].nombre_i,      // 3
+         this._custodio = x[0].custodio_i,    // 4
+         this._dpto     = x[0].dpto_i,        // 5
+         this._ciud     = x[0].ciudad_i,      // 6
+         this._serie    = x[0].serie_i,       // 7
+         this._valor    = x[0].valor_i,       // 8
+         this._activo   = x[0].activo_i,      // 9
+         this._refer    = x[0].refer_i,       // 10
+         this._fc       = x[0].feccrea_i,     // 11
+         this._usuc     = x[0].usucrea_i,     // 12
+         this._fmod     = x[0].fecmodi_i,     // 13
+         this._usm      = x[0].usumodi_i,     // 14
+         this._ffin     = x[0].fecfin_i,      // 15
+         this._ufin     = x[0].userfin_i,     // 16
+         this._grupo    = x[0].grupo_i,       // 17
+         this._marca    = x[0].marca_i,       // 18
+         this._color    = x[0].color_i,       // 19
+         this._fcu      = x[0].fechac_i,      // 20
+         this._ide      = x[0].fechac_i,      // 21
+         this._prov     = x[0].proveedor_i,   // 22
+         this._mp       = x[0].modelo_i,      // 23
+         this._vut      = x[0].vidautil_i,    // 24
+         this._vre      = x[0].valres_i,      // 25
+         this._finc     = x[0].fechaa_i,      // 26
+         this._fcu      = x[0].fcustodio,     // 27
+         this._cgas     = x[0].cgasto_i,      // 28
+         this._cdan     = x[0].cdan_i,        // 29
+         this._cdar     = x[0].cdar_i,        // 30
+         this._valor    = x[0].val_normal_i,  // 31
+         this._vnor     = x[0].val_normal_i,  // 32
+         this._vrev     = x[0].val_reval_i,   // 33
+         this._img      = x[0].imagen         // 34
+
+        ]
+         // console.log(this.arr)       
+         // console.log(x);
      }
+     
     )
+    
   }
 
   //Services CONFIG Fin
@@ -188,7 +230,7 @@ export class ConfigurationsComponent implements OnInit {
   feCust(id) {
     let a = <HTMLInputElement> document.getElementById('_fCust'); 
    // console.log(a);   
-    this._fcu = a.value;
+    this.feCusto = a.value;
     this.dynamicSwitch(a, id, a);
     switch(this.feCusto){
       case '0':
@@ -237,7 +279,7 @@ export class ConfigurationsComponent implements OnInit {
   feComp(id) {
     let a = <HTMLInputElement> document.getElementById('fComp'); 
     // console.log(a);   
-    this._ide = a.value;
+    this.fCompra = a.value;
     this.dynamicSwitch(a, id, a);
     switch(this.fCompra){
       case '0':
@@ -254,7 +296,7 @@ export class ConfigurationsComponent implements OnInit {
 
     let a = <HTMLInputElement> document.getElementById('_pla'); 
    // console.log(a);
-    this._placa = a.value;
+    this.placa = a.value;
     this.dynamicSwitch(a, id, a);
     switch(this.placa){
       case '0':
@@ -665,7 +707,7 @@ export class ConfigurationsComponent implements OnInit {
   colorFunc(id) {
     let a = <HTMLInputElement> document.getElementById('color');
     // console.log(a);
-    this._color = a.value;
+    this.colorVar = a.value;
     this.dynamicSwitch(a, id, a);
     switch(this.colorVar) {
       case '0':
