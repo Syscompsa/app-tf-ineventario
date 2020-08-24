@@ -54,40 +54,40 @@ export class ConfigurationsComponent implements OnInit {
   // variables para los Inputs comunicacion de compronentes FIN
     
   // ngModel inicio
-  public _placa:      any = 0;
-  public _clase:      any = 0;
-  public _nombre:     any = 0;
-  public _custodio:   any = 0;
-  public _dpto:       any = 0;
-  public _serie:      any = 0;
-  public _valor:      any = 0;
-  public _activo:     any = 0;
-  public _refer:      any = 0;
-  public _fac:        any = 0;
-  public _usuc:       any = 0;
-  public _fmod:       any = 0;
-  public _usm:        any = 0;
-  public _ufin:       any = 0;
-  public _grupo:      any = 0;
-  public _marca:      any = 0;
-  public _color:      any = 0;
-  public _prov:       any = 0;
-  public _mp:         any = 0;
-  public _vut:        any = 0;
-  public _vre:        any = 0;
-  public _ffin:       any = 0;
-  public _finc:       any = 0;
-  public _fcu:        any = 0;
-  public _ide:        any = 0;
-  public _fComp:      any = 0;
-  public _cgas:       any = 0;
-  public _cdan:       any = 0;
-  public _cdar:       any = 0;
-  public _vnor:       any = 0;
-  public _vrev:       any = 0;
-  public _img:        any = 0;
-  public _fc:         any = 0;
-  public _ciud:       any = 0;
+  public _placa:    any;
+  public _clase:    any;
+  public _nombre:   any;
+  public _custodio: any;
+  public _dpto:     any;
+  public _serie:    any;
+  public _valor:    any;
+  public _activo:   any;
+  public _refer:    any;
+  public _fac:      any;
+  public _usuc:     any;
+  public _fmod:     any;
+  public _usm:      any;
+  public _ufin:     any;
+  public _grupo:    any;
+  public _marca:    any;
+  public _color:    any;
+  public _prov:     any;
+  public _mp:       any;
+  public _vut:      any;
+  public _vre:      any;
+  public _ffin:     any;
+  public _finc:     any;
+  public _fcu:      any;
+  public _ide:      any;
+  public _fComp:    any;
+  public _cgas:     any;
+  public _cdan:     any;
+  public _cdar:     any;
+  public _vnor:     any;
+  public _vrev:     any;
+  public _img:      any;
+  public _fc:       any;
+  public _ciud:     any;
   // ngModel fin
 
   constructor(public conf: ConfigService) { }
@@ -99,7 +99,7 @@ export class ConfigurationsComponent implements OnInit {
     for (let i = 0; i <= a.length; i++) {
       if (a[i].value == '50') {
         // console.log('son todos 0');
-        a[i].style.opacity = '0.5';
+        a[i].style.opacity = '0.6';
       }
     }
 
@@ -112,7 +112,6 @@ export class ConfigurationsComponent implements OnInit {
     this.conf.getConfig().subscribe( 
       x => {
       this.arr = [
-
          this._placa    = x[0].placa_i,       // 1
          this._clase    = x[0].clase_i,       // 2
          this._nombre   = x[0].nombre_i,      // 3
@@ -147,10 +146,9 @@ export class ConfigurationsComponent implements OnInit {
          this._vnor     = x[0].val_normal_i,  // 32
          this._vrev     = x[0].val_reval_i,   // 33
          this._img      = x[0].imagen         // 34
-
         ]
-         // console.log(this.arr)       
-         // console.log(x);
+         console.log(this.arr)       
+         console.log(x);
      }
      
     )
@@ -658,7 +656,7 @@ export class ConfigurationsComponent implements OnInit {
   ciudFunc(id) {
     let a = <HTMLInputElement> document.getElementById('_ciud');
     // console.log(a);
-    this._ciud = a.value;
+    this.ciudVar = a.value;
     this.dynamicSwitch(a, id, a);
     switch(this.ciudVar) {
       case '0':
@@ -746,8 +744,16 @@ export class ConfigurationsComponent implements OnInit {
     }
   }
 
-  saveInterfaz(){
-    console.log('activ save')
+  saveInterfaz() {
+
+    this._placa;
+    console.log(this._placa);
+    console.log('activ save');
+    // this.conf.updateConfig(1)
+    // .subscribe( x => {
+              
+    // })
+    
   }
 
   porDefecto(){
