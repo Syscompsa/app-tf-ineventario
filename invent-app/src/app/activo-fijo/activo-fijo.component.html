@@ -1,5 +1,5 @@
-<div class="actFijo">
-    <form id="fActivoFijo">
+<div >
+    <form id="fActivoFijo" class="actFijo">
         <div class="head mb-2"><strong><span class="icon-calendar">
             </span>Fechas y producto</strong>
         </div>
@@ -88,7 +88,8 @@
             <div class="d">
                 <input type="date" id="fechafin" class="input-control" value="{{ datenow }}">
                 <div class="formato">
-                    <span class="icon-calendar"></span>
+                    <span class="icon-calendar">                        
+                    </span>
                      (dd/mm/yyyy)
                 </div>
             </div>
@@ -100,7 +101,8 @@
 
 
 
-    <div class="groupB">
+
+    <div class="groupB mt-4">
 <!--DATA INPUT INICIO-->
     <div class="inpData" *ngIf="Placa">
         <div class="dataDates" >
@@ -112,10 +114,16 @@
     </div>
 
     <div class="inpData" *ngIf="CLase">
-        <div class="dataDates" >
-            <label for="_Clase" title="">Clase:</label>
-            <div class="d">
-                <input type="text" id="_Clase" class="input-control" >
+        <div class="Clase" >           
+            <div class="d" id="clas">
+                <label for="_Clase" title="">Clase:</label>
+                <input type="text" id="_Clase" (keyup)="getDataCall()" [(ngModel)]="_Class" name="_Class" class="input-control" >
+            </div>
+            <div class="d" id="clase">
+                <label for="_Clase" title=""><span style="opacity: 0;" class="icon-search"></span></label>
+                <input type="text" id="_ClaseB"
+                 style="background-color: steelblue; color: white;"
+                 readonly class="input-control" [value]="_cRead" >
             </div>
         </div>
     </div>
@@ -330,5 +338,14 @@
 
 <!--DATA INPUT FIN-->
     </div>
+         
     </form>
+    <div class="btnSettings mt-4">
+        <button class="btn btn-info" (click)="saveInterfaz()">
+            <span class="icon-floppy" style="color: white;"></span>Guardar
+        </button>
+        <button class="btn btn-danger" (click)="porDefecto()">
+            <span class="icon-cancel" style="color: white;"></span>Cancelar
+        </button>
+    </div>
 </div>

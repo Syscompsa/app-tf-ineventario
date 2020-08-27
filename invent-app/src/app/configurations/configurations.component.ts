@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConfigService } from '../Services/config.service';
 import { configPresets } from '../Models/configPresets';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-configurations',
@@ -15,7 +16,7 @@ export class ConfigurationsComponent implements OnInit {
   public IdInp;
   public toggle;
   public arr: configPresets[] = [];
-  public _confPres: configPresets[] = [];
+  // public _confPres: configPresets[] = [];
 
   // variables para los Inputs comunicacion de compronentes INICIO
   public fActual:   any;
@@ -103,7 +104,7 @@ export class ConfigurationsComponent implements OnInit {
       }
     }
 
-    console.log(this.arr);
+   // console.log(this.arr);
 
   }
 
@@ -131,21 +132,20 @@ export class ConfigurationsComponent implements OnInit {
          this._grupo    = x[0].grupo_i,       // 17
          this._marca    = x[0].marca_i,       // 18
          this._color    = x[0].color_i,       // 19
-         this._fcu      = x[0].fechac_i,      // 20
-         this._ide      = x[0].fechac_i,      // 21
-         this._prov     = x[0].proveedor_i,   // 22
-         this._mp       = x[0].modelo_i,      // 23
-         this._vut      = x[0].vidautil_i,    // 24
-         this._vre      = x[0].valres_i,      // 25
-         this._finc     = x[0].fechaa_i,      // 26
-         this._fcu      = x[0].fcustodio,     // 27
-         this._cgas     = x[0].cgasto_i,      // 28
-         this._cdan     = x[0].cdan_i,        // 29
-         this._cdar     = x[0].cdar_i,        // 30
-         this._valor    = x[0].val_normal_i,  // 31
-         this._vnor     = x[0].val_normal_i,  // 32
-         this._vrev     = x[0].val_reval_i,   // 33
-         this._img      = x[0].imagen         // 34
+         this._ide      = x[0].fechac_i,      // 20
+         this._prov     = x[0].proveedor_i,   // 21
+         this._mp       = x[0].modelo_i,      // 22
+         this._vut      = x[0].vidautil_i,    // 23
+         this._vre      = x[0].valres_i,      // 24
+         this._finc     = x[0].fechaa_i,      // 25
+         this._fcu      = x[0].fcustodio,     // 26
+         this._cgas     = x[0].cgasto_i,      // 27
+         this._cdan     = x[0].cdan_i,        // 28
+         this._cdar     = x[0].cdar_i,        // 29
+         this._valor    = x[0].val_normal_i,  // 30
+         this._vnor     = x[0].val_normal_i,  // 31
+         this._vrev     = x[0].val_reval_i,   // 32
+         this._img      = x[0].imagen         // 33
         ]
          console.log(this.arr)       
          console.log(x);
@@ -159,7 +159,7 @@ export class ConfigurationsComponent implements OnInit {
 
   fac(id) {
     let a = <HTMLInputElement> document.getElementById('_fac');
-    this._fac = a.value;
+    this.fActual = a.value;
     this.dynamicSwitch(a, id, a);
     switch(this.fActual){
       case '0':
@@ -294,7 +294,7 @@ export class ConfigurationsComponent implements OnInit {
 
     let a = <HTMLInputElement> document.getElementById('_pla'); 
    // console.log(a);
-    this.placa = a.value;
+    this._placa = a.value;
     this.dynamicSwitch(a, id, a);
     switch(this.placa){
       case '0':
@@ -636,7 +636,6 @@ export class ConfigurationsComponent implements OnInit {
     // console.log(this.nUsuc)
   }
 
-
   valNormal(id) {
     let a = <HTMLInputElement> document.getElementById('cdar');
     // console.log(a);
@@ -745,15 +744,59 @@ export class ConfigurationsComponent implements OnInit {
   }
 
   saveInterfaz() {
+    let arr : configPresets = {
+      id           : 1,
+      placa_i      : this._placa,
+      clase_i      : this._clase,
+      nombre_i     : this._nombre,
+      custodio_i   : this._custodio,
+      dpto_i       : this._dpto,
+      ciudad_i     : this._ciud,
+      serie_i      : this._custodio,
+      valor_i      : this._valor,
+      activo_i     : this._activo,
+      refer_i      : this._refer,
+      feccrea_i    : this._fc,
+      usucrea_i    : this._usuc,
+      fecmodi_i    : this._fmod,
+      usumodi_i    : this._usm,
+      fecfin_i     : this._ffin,
+      horafin_i    : this._fac,
+      userfin_i    : this._ufin,
+      barra_i      : '0',
+      grupo_i      : this._grupo,
+      marca_i      : this._marca,
+      color_i      : this._color,
+      fechac_i     : this._fac,
+      proveedor_i  : this._prov,
+      modelo_i     : this._mp,
+      vidautil_i   : this._vut,
+      valres_i     : this._vre,
+      valor2_i     :'0',
+      fechaa_i     : this._ide,
+      fcustodio    : this._fcu,
+      cgasto_i     : this._cgas,
+      cdan_i       : this._cdan,
+      cdar_i       : this._cdar,
+      val_normal_i : this._vnor,
+      val_reval_i  : this._vrev,
+      imagen       : this._img,
+      valor_resi_i : this._vre,
+      valor_res2_i : '0',
+      xxx_i        : '0'
+    }
 
-    this._placa;
-    console.log(this._placa);
-    console.log('activ save');
-    // this.conf.updateConfig(1)
-    // .subscribe( x => {
-              
-    // })
-    
+    this.conf.updateConfig(arr).subscribe(x => {
+      arr = x ;
+        Swal.fire({
+        icon: 'success',
+        title: '¡Bien!...',
+        text: 'Haz cambiado tu interfáz con éxito!'
+      })
+      this.getinterface();
+    });
+
+    // console.log(arr);
   }
 
   porDefecto(){
@@ -777,33 +820,3 @@ export class ConfigurationsComponent implements OnInit {
   }
 
 }
-
-
-
-// recycle code
-// switch(obj.value){
-  //   case '0':
-  //     obj.style.opacity = '0.5';
-  //     sobj.style.color = 'red';
-  //     this.toggle = false;
-  //     this.fActual = false;
-  //     break;
-  //   case '1':
-  //     obj.style.opacity = '1';
-  //     sobj.style.color = 'green';
-  //     this.toggle = true;
-  //     this.fActual = true;
-  //     break;
-  //   default:
-  //     sobj.style.color = 'green';
-  //     this.toggle = true;
-  //     this.fActual = false;
-  //     break;
-  // }
-
-  // controller(o, so) {
-  //   let obj = <HTMLInputElement> document.getElementById(o);
-  //   let sobj = <HTMLInputElement> document.getElementById(so);
-  //   this.inpChange(obj);
-    
-  // }

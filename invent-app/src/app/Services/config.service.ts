@@ -17,9 +17,10 @@ export class ConfigService {
   }
 
   //update Config
-  updateConfig(id): Observable<configPresets> {
-    return this.http.put<configPresets>(this.apiURL + 'AR_2-Interface/UpdateInterfaceConfig/', id);
+  updateConfig(Content: configPresets): Observable<configPresets> {
+    return this.http.put<configPresets>(this.apiURL + '/AR_2-Interface/UpdateInterfaceConfig/' + Content.id, Content);
   }
-  
+
+    
   
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ConfigService } from '../Services/config.service';
+import { DataCallService } from '../Services/data-call.service';
 
 @Component({
   selector: 'app-activo-fijo',
@@ -8,7 +9,7 @@ import { ConfigService } from '../Services/config.service';
 })
 export class ActivoFijoComponent implements OnInit {
 
-  constructor(public conf: ConfigService) { }
+  constructor(public conf: ConfigService, public data: DataCallService) { }
 
   private _Factual: any;
   private _FMod:    any;
@@ -309,6 +310,7 @@ export class ActivoFijoComponent implements OnInit {
 
   ngOnInit() {    
     this.getInterfaz();
+   // this.getDataCall();
   }
 
   public arr: any[] = []
@@ -456,7 +458,31 @@ export class ActivoFijoComponent implements OnInit {
 
       }
     )
+  }    
+  
+  
+  //variables  [(ngModel)] INICIO
+  public _Class: string;
+  public _cRead: string;
+  //variables  [(ngModel)] FIN
+  
+
+  getDataCall(){
+    // console.log(this._Class);
+    const promise = new Promise((resolve, reject) => {
+      this.data.getDataModel(this._Class ).subscribe(x => {
+        let _ClassRead = {
+          nombre: x[0].nombre
+        }
+        resolve(this._cRead = _ClassRead.nombre );
+      })
+    }).then( res => {
+        // let read = <HTMLInputElement> document.getElementById('_ClaseB');
+        // read.value = res;
+        console.log('Este es mi valo obtenido: ' +  res);
+    })
   }
 
+  
 
 }
