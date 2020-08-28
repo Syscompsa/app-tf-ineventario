@@ -19,11 +19,15 @@ export class HistoryQRComponent implements OnInit {
 
   ngOnInit() {
     this.QRDataFunc();
+    this.QRData.getQRGen().subscribe(x => {
+      console.log(x)
+    })
+    this.createQRDemo(document.getElementById('dataQR'));
   }
 
   prints() {
     // const a = document.getElementById('const');
-    window.print();
+    window.print();    
   }
 
   QRDataFunc() {
@@ -78,6 +82,14 @@ export class HistoryQRComponent implements OnInit {
     qr.make();
     obj.innerHTML = qr.createImgTag();
   }
+
+  createQRDemo(obj) {
+    const qr = qrcode(4, 'L');
+    qr.addData('Monitor de Laptop');
+    qr.make();
+    obj.innerHTML = qr.createImgTag();
+  }
+
 
 changeHeight(h) {
   const dataQR = document.getElementById('dataQR');

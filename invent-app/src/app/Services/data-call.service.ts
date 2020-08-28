@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { claseGen } from '../Models/AuthMod';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +16,16 @@ export class DataCallService {
     return this.http.get(this.apiURL + '/Modelo/' + codigo);
   }
 
+  getDataModelGen(): Observable<claseGen> {
+    return this.http.get<claseGen>(this.apiURL + '/ModeloGen/');
+  }
+
   getDataGrupoActivo(codigo) {
     return this.http.get(this.apiURL + '/Modelo/' + codigo);
+  }
+
+  getDataCiud(codigo) {
+    return this.http.get(this.apiURL + '/GrupoActivo/' + codigo);
   }
   
 }

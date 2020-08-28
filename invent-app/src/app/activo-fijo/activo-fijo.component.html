@@ -115,25 +115,47 @@
 
     <div class="inpData" *ngIf="CLase">
         <div class="Clase" >           
-            <div class="d" id="clas">
+            <div class="d" id="clas" style="width: 100px;">
                 <label for="_Clase" title="">Clase:</label>
-                <input type="text" id="_Clase" (keyup)="getDataCall()" [(ngModel)]="_Class" name="_Class" class="input-control" >
+                <input type="text" id="_Clase"
+                       (keyup)="getDataCall()"
+                       [(ngModel)]="_Class"
+                       name="_Class"
+                       class="input-control" >
             </div>
-            <div class="d" id="clase">
-                <label for="_Clase" title=""><span style="opacity: 0;" class="icon-search"></span></label>
+            <div class="d" id="clase" id="clas">
+                <label for="_Clase" title="">
+                    <span class="icon-key-1"></span></label>
                 <input type="text" id="_ClaseB"
                  style="background-color: steelblue; color: white;"
-                 readonly class="input-control" [value]="_cRead" >
+                 readonly class="input-control"
+                 [value]="_cRead">
             </div>
         </div>
     </div>
 
     <div class="inpData" *ngIf="CIUD">
-        <div class="dataDates" >
-            <label for="_ciu" title="">Ciudad:</label>
-            <div class="d">
-                <input type="text" id="_ciu" class="input-control" >
+        <div class="Clase" >           
+            
+            <div class="d" id="clas" style="width: 100px;">
+                <label for="_ciu" title="">Ciudad:</label>
+                <input type="text" id="_ciu"
+                       class="input-control"
+                       (keyup)="getDataCiudad()"
+                       [(ngModel)]="_ciudClass"
+                       name="_ciudClass">
             </div>
+
+            <div class="d" id="clas">
+                <label for="_Clase" title="">
+                    <span class="icon-key-1"></span></label>
+                <input type="text" id="_ClaseB"
+                 style="background-color: steelblue;
+                        color: white;"
+                 readonly class="input-control"
+                 [value]="_ciudRead">
+            </div>
+
         </div>
     </div>
 
