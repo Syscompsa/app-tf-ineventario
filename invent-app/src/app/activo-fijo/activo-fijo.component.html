@@ -120,68 +120,100 @@
                 <input type="text" id="_Clase"
                        (keyup)="getDataCall()"
                        [(ngModel)]="_Class"
-                       name="_Class"
-                       class="input-control" >
+                       name="_Class" class="input-control">
             </div>
             <div class="d" id="clase" id="clas">
                 <label for="_Clase" title="">
                     <span class="icon-key-1"></span></label>
-                <input type="text" id="_ClaseB"
+                <input type="text" class="_ClaseB"
                  style="background-color: steelblue; color: white;"
-                 readonly class="input-control"
-                 [value]="_cRead">
+                 readonly disabled class="input-control" [value]="_cRead">
             </div>
+            
+        </div>
+        <div class="options"  *ngIf="optB">
+            <p class="opti" *ngFor = "let d of modelArr">
+                Codigo: {{d.codigo}} | Nombre: {{d.nombre}}
+            </p>
+            <hr>
+
         </div>
     </div>
 
-    <div class="inpData" *ngIf="CIUD">
-        <div class="Clase" >           
-            
+    <div  class="inpData" *ngIf="CIUD">
+        <div class="Clase" >            
             <div class="d" id="clas" style="width: 100px;">
-                <label for="_ciu" title="">Ciudad:</label>
+                <label for="_ciu" title="Código de ciudad">
+                    Cod. Ciudad:
+                </label>
                 <input type="text" id="_ciu"
                        class="input-control"
-                       (keyup)="getDataCiudad()"
-                       [(ngModel)]="_ciudClass"
+                       (keyup)="getDataCiudad()"    
+                       [(ngModel)]="_ciudClass"                       
                        name="_ciudClass">
             </div>
-
+            
             <div class="d" id="clas">
                 <label for="_Clase" title="">
                     <span class="icon-key-1"></span></label>
-                <input type="text" id="_ClaseB"
-                 style="background-color: steelblue;
-                        color: white;"
-                 readonly class="input-control"
-                 [value]="_ciudRead">
+                <input type="text" class="_ClaseB"      
+                 style="background-color: steelblue; color: white;"
+                 readonly disabled class="input-control" [value]="_ciudRead">
             </div>
-
+            
         </div>
+
+            <div class="options"  *ngIf="optA">
+                <p class="opti" id="{{c.codigo}}" *ngFor = "let c of ciudArr">
+                    Codigo: {{c.codigo}} | Nombre: {{c.nombre}} </p>
+            </div> 
+
     </div>
 
     <div class="inpData" *ngIf="NProd">
         <div class="dataDates" >
             <label for="_nProd" title="">Nombre Producto:</label>
             <div class="d">
-                <input type="text" id="_nProd" class="input-control" >
+                <input type="text"
+                 [(ngModel)]="_nProducto"
+                 name="_nProducto"
+                 id="_nProd" class="input-control" >
             </div>
+            
         </div>
     </div>
 
     <div class="inpData" *ngIf="Custodio">
         <div class="dataDates" >
-            <label for="_cust" title="">Custodio:</label>
+            <label for="_cust" title="">
+                Custodio:
+            </label>
             <div class="d">
-                <input type="text" id="_cust" class="input-control" >
+                <input type="text" id="_cust" 
+                (keyup)="getDataCust()"    
+                [(ngModel)]="_CustClass"                       
+                name="_CustClass"
+                class="input-control">
             </div>
         </div>
+        <div class="d" id="clas">
+            <label for="_Clase" title="">
+                <span class="icon-key-1"></span></label>
+            <input type="text" class="_ClaseB"  
+             style="background-color: steelblue; color: white;"
+             readonly disabled class="input-control" [value]="_CustRead">
+        </div>
+        <div class="options"  *ngIf="optC">
+            <p class="opti" id="{{e.codigo}}" (click)="getId(e.codigo)" *ngFor = "let e of custArr">
+                Codigo: {{e.codigo}} | Nombre: {{e.nombre}} | Apéllido: {{e.apellido}} | Fecha Creación: {{e.feccrea | date: 'short'}}</p>
+        </div> 
     </div>
 
     <div class="inpData" *ngIf="Depart">
         <div class="dataDates" >
             <label for="_dep" title="">Departamento:</label>
             <div class="d">
-                <input type="text" id="_dep" class="input-control" >
+                <input type="text" id="_dep" class="input-control">
             </div>
         </div>
     </div>
@@ -205,11 +237,25 @@
     </div>
 
     <div class="inpData" *ngIf="Activo">
-        <div class="dataDates" >
-            <label for="_actv" title="">Activo:</label>
-            <div class="d">
-                <input type="text" id="_actv" class="input-control" >
+        <!-- ESTE CAMPO TAMBIÉN ES
+        DE RELLENO AUTOMATICO PERO 
+        ACTUALMENTE ESTA VACÍO -->
+        <div class="dataDates" >            
+            <div class="d" id="clas" style="width: 100px;">
+                <label for="_actv" title="">Activo:</label>
+                <input type="text" id="_actv"
+                (keyup)="getDataActive()"
+                [(ngModel)]="_actvClass"
+                name="_actvClass" class="input-control" >
             </div>
+            <!-- <div class="d" id="clas">
+                <label for="_Clase" title="">
+                    <span class="icon-key-1"></span></label>
+                <input type="text" class="_ClaseB"
+                 style="background-color: steelblue; color: white;"                        
+                 readonly class="input-control"
+                 [value]="_activeRead">
+            </div> -->
         </div>
     </div>
 

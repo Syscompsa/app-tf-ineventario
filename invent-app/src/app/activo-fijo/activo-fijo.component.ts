@@ -1,11 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ConfigService } from '../Services/config.service';
 import { DataCallService } from '../Services/data-call.service';
-import tippy, {animateFill} from 'tippy.js';
-import 'tippy.js/dist/backdrop.css';
-import 'tippy.js/animations/shift-away.css';
+import tippy from 'tippy.js';
 import 'tippy.js/dist/tippy.css'; // optional for styling
-import { claseGen } from '../Models/AuthMod';
 
 @Component({
   selector: 'app-activo-fijo',
@@ -316,6 +313,7 @@ export class ActivoFijoComponent implements OnInit {
   ngOnInit() {    
     this.getInterfaz();
    // this.getDataCall();
+   // this.getCiudGen();
   }
 
   public arr: any[] = []
@@ -463,77 +461,63 @@ export class ActivoFijoComponent implements OnInit {
 
       }
     )
-  }    
-  
+  }  
   
   //variables  [(ngModel)] INICIO
   public _Class: string;
   public _cRead: string;
-  public cGen: claseGen[] = [];
-  //variables  [(ngModel)] FIN
-  
+  //variables  [(ngModel)] FIN  
+  public modelArr;
+  public _disp: string;
+  public optC;
 
   getDataCall(){
     // console.log(this._Class);
+    this.optA = false;
+    this.optB = true;
+    this.optC = false;
     const promise = new Promise((resolve, reject) => {
-      this.data.getDataModel(this._Class ).subscribe(x => {
-        this.data.getDataModelGen().subscribe(y => {
-          let data = [];
-          for( let j = 0; j <= this.cGen.length; j++ )  {
-            this.cGen.push(y[j].nombre);
-          } 
-          console.log(y)
-          console.log(this.cGen)
-        });
+      this.data.getDataModel(this._Class).subscribe(x => {
+        this.modelArr = x;
         let _ClassRead = {
           nombre: x[0].nombre
         }
-  
+        console.log(this.modelArr);
         resolve(this._cRead = _ClassRead.nombre );
-      })
+     })
     }).then( res => {
-        // let read = <HTMLInputElement> document.getElementById('_ClaseB');
-        // read.value = res;
-        console.log('Este es mi valo obtenido: ' +  res);
+         console.log('Este es mi valo obtenido: ' +  res);
     })
   }
 
-  // getDataGenCall() {
-  //   const promise = new Promise((resolve, reject) => {
-  //     this.data.getDataModel(this._Class ).subscribe(x => {              
-  //       let _ClassRead = {
-  //         nombre: x[0].nombre
-  //       }
-  
-  //       resolve(this._cRead = _ClassRead.nombre );
-  //     })
-  //   }).then( res => {
-  //       // let read = <HTMLInputElement> document.getElementById('_ClaseB');
-  //       // read.value = res;
-  //       console.log('Este es mi valo obtenido: ' +  res);
-  //   })
-  // }  
+     //variables  [(ngModel)] INICIO
+    public _ciudClass: string;
+    public _ciudRead: string;
+    //variables  [(ngModel)] FIN
 
-  //variables  [(ngModel)] INICIO
-  public _ciudClass: string;
-  public _ciudRead: string;
-  //variables  [(ngModel)] FIN
+    public optA: boolean;
+    public optB: boolean;
+    public ciudArr;
 
-  getDataCiudad(){
+    getDataCiudad(){
     // console.log(this._ciudClass);
+    this.optA = true;
+    this.optB = false;
+    this.optC = false;
+    
     const promise = new Promise((resolve, reject) => {
       this.data.getDataCiud(this._ciudClass ).subscribe(x => {
+        this.ciudArr = x;
         let _ClassRead = {
           nombre: x[0].nombre
         }
+        console.log(this.ciudArr);
         resolve(this._ciudRead = _ClassRead.nombre );
       })
     }).then( res => {
-        // let read = <HTMLInputElement> document.getElementById('_ClaseB');
-        // read.value = res;
         console.log('Este es mi valo obtenido: ' +  res);
     })
-  }
+    }
 
     // variables  [(ngModel)] INICIO
     public _ActiveClass: string;
@@ -544,7 +528,6 @@ export class ActivoFijoComponent implements OnInit {
      // console.log(this._ciudClass);
       const promise = new Promise((resolve, reject) => {
         this.data.getDataGrupoActivo(this._ActiveClass ).subscribe(x => {
-        
           let _ClassRead = {
             nombre: x[0].nombre
           }
@@ -556,15 +539,39 @@ export class ActivoFijoComponent implements OnInit {
           console.log('Este es mi valo obtenido: ' +  res);
       })
     }
+
+    // variables  [(ngModel)] INICIO
+    public _CustClass: string;
+    public _CustRead: string;
+    // variables  [(ngModel)] FIN
+    public custArr;
+
+    getDataCust(b) {
+      this.optA = false;
+      this.optB = false;
+      this.optC = true;
+      const promise = new Promise((resolve, reject) => {
+        this.data.getDataCustodio(this._CustClass ).subscribe(x => {
+          this.custArr = x;
   
-  
-    tooltip(data){
-      tippy('#_Clase', {
-        content: data
-      });
+          let _ClassRead = {
+            nombre: x[0].nombre
+          }
+          resolve(this._CustRead = _ClassRead.nombre);
+        })
+      }).then( res => {
+          // let read = <HTMLInputElement> document.getElementById('_ClaseB');
+          // read.value = res;
+          console.log('Este es mi valo obtenido: ' +  res);
+      })
     }
-
-
   
+    tooltipo() {
+      tippy('#myButton', {
+        content: 'My tooltip!',
+      });
+    }  
+
+    getId (b) { let a = b; console.log(a)};    
 
 }

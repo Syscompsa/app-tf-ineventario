@@ -1,13 +1,13 @@
 
 
-#imgBut{
+#imgBut {
     font-size: 15pt;
     position: absolute;
     transition: ease all 1s;
     transform: scale(0.9);
 }
 
-input{
+input {
     background-color: transparent;
     border: none;
     border-bottom: solid 0.5px gray;
@@ -15,48 +15,76 @@ input{
     padding-bottom: 3px;
 }
 
-.Clase{
+.options {
+    background-color: white;
+    color: rgb(44, 44, 44); 
+    padding: 15px;
+    box-shadow: 2px 3px 10px rgba(0,0,0,0.5);
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    height: 200px;
+    overflow-y: auto;
+}
+
+.opti {
+    padding: 5px;
+    transition: ease all 0.5s;
+
+}
+
+.opti:hover{
+    cursor: pointer;
+    background-color: steelblue;
+    transition: ease all 0.5s;
+    color: white;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.6);
+    
+}
+
+.Clase {
     display: flex;
 }
 
-#clase{
+
+#clase {
     width:400px;
 }
 
-#clas{
+#clas {
     display: flex;
     flex-direction: column;
 }
-label{
+
+label {
     margin-bottom: 0px;
     margin-top: 10px;
 }
 
-#imgBut:hover{
+#imgBut:hover {
     cursor: pointer;
     transition: ease all 0.5s;
     transform: scale(1.1);
     color: steelblue;
 }
 
-#file{
+#file {
     width: 0px;
     height: 0px;
     opacity: 0;
 }
 
-.img{
+.img {
     display: flex;
     flex-direction: column;
 }
 
-.actFijo{
+.actFijo {
     width: 100%;
     height: 530px;
     overflow-y: auto;
 }
 
-form{
+form {
     width: 100%;
 }
 
@@ -73,12 +101,13 @@ form{
     font-size: 9pt;
 }
 
-.groupA{
+.groupA {
     display: flex;
     width: 100%;
     justify-content: space-between;
 }
-.groupB{
+
+.groupB {
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -86,7 +115,7 @@ form{
     flex-shrink: unset;
 }
 
-.inpDates{
+.inpDates {
     display: flex;
     flex-wrap: wrap;
 }
