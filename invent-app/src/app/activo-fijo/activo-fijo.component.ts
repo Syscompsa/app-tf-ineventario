@@ -314,6 +314,11 @@ export class ActivoFijoComponent implements OnInit {
     this.getInterfaz();
    // this.getDataCall();
    // this.getCiudGen();
+  // let l = document.getElementById('reactForms');
+  // l.addEventListener('click', () => {
+  //   this.hideOptions();
+  // })
+
   }
 
   public arr: any[] = []
@@ -471,7 +476,7 @@ export class ActivoFijoComponent implements OnInit {
   public _disp: string;
   public optC;
 
-  getDataCall(){
+  getDataCall(w, y){
     // console.log(this._Class);
     this.optA = false;
     this.optB = true;
@@ -480,10 +485,15 @@ export class ActivoFijoComponent implements OnInit {
       this.data.getDataModel(this._Class).subscribe(x => {
         this.modelArr = x;
         let _ClassRead = {
-          nombre: x[0].nombre
+          nombre: this.modelArr.nombre
         }
-        console.log(this.modelArr);
+        // console.log(this.modelArr);
         resolve(this._cRead = _ClassRead.nombre );
+        
+        let a:  string[]  = [
+          this._Class  = w,
+          this._cRead  = y
+        ]
      })
     }).then( res => {
          console.log('Este es mi valo obtenido: ' +  res);
@@ -499,7 +509,7 @@ export class ActivoFijoComponent implements OnInit {
     public optB: boolean;
     public ciudArr;
 
-    getDataCiudad(){
+    getDataCiudad(w, y){
     // console.log(this._ciudClass);
     this.optA = true;
     this.optB = false;
@@ -509,10 +519,16 @@ export class ActivoFijoComponent implements OnInit {
       this.data.getDataCiud(this._ciudClass ).subscribe(x => {
         this.ciudArr = x;
         let _ClassRead = {
-          nombre: x[0].nombre
+          nombre: this.ciudArr.nombre
         }
-        console.log(this.ciudArr);
+        // console.log(this.ciudArr);
         resolve(this._ciudRead = _ClassRead.nombre );
+
+        let a:  string[]  = [
+          this._ciudClass = w,
+          this._ciudRead  = y
+        ]
+
       })
     }).then( res => {
         console.log('Este es mi valo obtenido: ' +  res);
@@ -524,7 +540,7 @@ export class ActivoFijoComponent implements OnInit {
     public _activeRead: string;
     // variables  [(ngModel)] FIN
   
-    getDataActive(){
+    getDataActive() {
      // console.log(this._ciudClass);
       const promise = new Promise((resolve, reject) => {
         this.data.getDataGrupoActivo(this._ActiveClass ).subscribe(x => {
@@ -532,46 +548,98 @@ export class ActivoFijoComponent implements OnInit {
             nombre: x[0].nombre
           }
           resolve(this._activeRead = _ClassRead.nombre );
+          
         })
       }).then( res => {
           // let read = <HTMLInputElement> document.getElementById('_ClaseB');
           // read.value = res;
-          console.log('Este es mi valo obtenido: ' +  res);
+          console.log('Este es mi valor obtenido: ' +  res);
       })
     }
 
     // variables  [(ngModel)] INICIO
-    public _CustClass: string;
+    public _CustClass: any;
     public _CustRead: string;
     // variables  [(ngModel)] FIN
     public custArr;
 
-    getDataCust(b) {
+    getDataCust(w, y) {
       this.optA = false;
       this.optB = false;
       this.optC = true;
+      // this.closDrop(m);
       const promise = new Promise((resolve, reject) => {
-        this.data.getDataCustodio(this._CustClass ).subscribe(x => {
+        this.data.getDataCustodio(this._CustClass ).subscribe(
+          x => {
           this.custArr = x;
-  
           let _ClassRead = {
-            nombre: x[0].nombre
+            nombre: this.custArr.nombre
           }
+          
           resolve(this._CustRead = _ClassRead.nombre);
-        })
+
+          let a:  string[]  = [
+            this._CustClass = w,
+            this._CustRead  = y
+          ]
+
+          // this._UC = this.custArr.usucrea;
+          console.log(this.custArr.usucrea);
+          })
       }).then( res => {
-          // let read = <HTMLInputElement> document.getElementById('_ClaseB');
-          // read.value = res;
-          console.log('Este es mi valo obtenido: ' +  res);
+          console.log('Este es mi valor obtenido: ' +  res);
       })
     }
-  
-    tooltipo() {
-      tippy('#myButton', {
-        content: 'My tooltip!',
-      });
-    }  
 
-    getId (b) { let a = b; console.log(a)};    
+  // FUNCIONES PARA OCULTAR LOS DROWDOWN GENERADOS POR LOS INPUTS INICIO
+    
+    closCus(m) {
+      this.optC = m;
+    }
+
+    closCiud(m) {
+      this.optA = m;
+    }
+
+    closModel(m) {
+      this.optB = m;
+    }
+
+  // FUNCIONES PARA OCULTAR LOS DROWDOWN GENERADOS POR LOS INPUTS FIN
+
+    public _FeCREA:   string;
+    public _FeMOD:    string;
+    public _FeDEP:    string;
+    public _FeCOMP:   string;
+    public _FeFINAL:  string;
+    public _FeACT:    string;
+    public _FeFN:     string;
+    public _PLAC:     string;
+    public _CLAS:     string;
+    public _DP:       string;
+    public _SER:      string;
+    public _VLR:      string;
+    public _REFE:     string;
+    public _UC:       string;
+    public _USMO:     string;
+    public _USFI:     string;
+    public _GRPO:     string;
+    public _MRCA:     string;
+    public _CLR:      string;
+    public _PRVR:     string;
+    public _MDL:      string;
+    public _VUL:      string;
+    public _VRE:      string;
+    public _CGT:      string;
+    public _CD:       string;
+    public _CDN:      string;
+    public _VNO:      string;
+    public _VRVA:     string;
+    public _IMGE:     any;
+
+    
+
+
+
 
 }

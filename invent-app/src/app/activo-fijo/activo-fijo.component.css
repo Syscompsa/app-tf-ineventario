@@ -2,9 +2,18 @@
 
 #imgBut {
     font-size: 15pt;
-    position: absolute;
     transition: ease all 1s;
-    transform: scale(0.9);
+    margin-top: -295px;
+}
+
+#imgBut:hover {
+    cursor: pointer;
+    transition: ease all 0.5s;
+    color: steelblue;
+}
+
+#_cust{
+    width: 300px;
 }
 
 input {
@@ -60,12 +69,6 @@ label {
     margin-top: 10px;
 }
 
-#imgBut:hover {
-    cursor: pointer;
-    transition: ease all 0.5s;
-    transform: scale(1.1);
-    color: steelblue;
-}
 
 #file {
     width: 0px;
