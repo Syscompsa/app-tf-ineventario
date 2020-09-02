@@ -136,12 +136,32 @@
             </div>
             
         </div>
-        <div class="options"  *ngIf="optB">
+        <!-- <div class="options"  *ngIf="optB">
             <p class="opti" *ngFor = "let d of modelArr"
             (click)="getDataCall(d.codigo, d.nombre) || closModel(false)" >
                 Codigo: {{d.codigo}} | Nombre: {{d.nombre}}
             </p>
-        </div>
+        </div> -->
+        <!-- SELECT MEDIANTE DROPDOWN -->
+        <div class="input-group mb-3" style="width: 100%;" *ngIf="optB">
+            <div class="input-group-prepend" style="width: 100%;">
+              <button class="btn btn-outline-secondary dropdown-toggle"
+              style="width: 100%;"
+              type="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="true">
+              <span class="icon-search"></span> Selecciona una opción</button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item"
+                id="{{e.codigo}}"
+                (click)="getDataCall(d.codigo, d.nombre) || closModel(false)" 
+                *ngFor = "let d of modelArr"
+                href="javascript: void(0)">
+                Codigo: {{d.codigo}} | Nombre: {{d.nombre}}
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- SELECT MEDIANTE DROPDOWN -->
     </div>
 
     <div  class="inpData" *ngIf="CIUD">
@@ -167,12 +187,34 @@
             
         </div>
 
-            <div class="options"  *ngIf="optA">
+            <!-- <div class="options"  *ngIf="optA">
                 <p class="opti" id="{{c.codigo}}" 
                 (click)="getDataCiudad(c.codigo, c.nombre) || closCiud(false) " *ngFor = "let c of ciudArr">
                     Codigo: {{c.codigo}}
                      | Nombre: {{c.nombre}} </p>
-            </div> 
+            </div>  -->
+
+
+            <!-- SELECT MEDIANTE DROPDOWN -->
+        <div class="input-group mb-3" style="width: 100%;" *ngIf="optA">
+            <div class="input-group-prepend" style="width: 100%;">
+              <button class="btn btn-outline-secondary dropdown-toggle" style="width: 100%;"
+              type="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="true">
+              <span class="icon-search"></span> Selecciona una opción</button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item"
+                id="{{c.codigo}}" 
+                (click)="getDataCiudad(c.codigo, c.nombre) || closCiud(false) "
+                *ngFor = "let c of ciudArr"
+                href="javascript: void(0)">
+                Codigo: {{c.codigo}}
+                | Nombre: {{c.nombre}}
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- SELECT MEDIANTE DROPDOWN -->
 
     </div>
 
@@ -214,18 +256,30 @@
             
         </div>
        
-        <div class="options"  *ngIf="optC">
-            <p class="opti" id="{{e.codigo}}"
-            (click)="getDataCust(e.codigo, e.nombre) || closCus(false)"
-            *ngFor = "let e of custArr">
+        
+        <!-- SELECT MEDIANTE DROPDOWN -->
+        <div class="input-group mb-3" style="width: 100%;" *ngIf="optC">
+            <div class="input-group-prepend" style="width: 100%;">
+              <button class="btn btn-outline-secondary dropdown-toggle" style="width: 100%;"
+              type="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="true">
+              <span class="icon-search"></span> Selecciona una opción</button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item"
+                id="{{e.codigo}}"
+                (click)="getDataCust(e.codigo, e.nombre) || closCus(false)"
+                *ngFor = "let e of custArr"
+                href="javascript: void(0)">
                 Codigo: {{e.codigo}} 
                 | Nombre: {{e.nombre}}
                 | Apéllido: {{e.apellido}}
                 | Fecha Creación:
-                 {{e.feccrea | date: 'short'}}</p>
-        </div>
-
-
+                 {{e.feccrea | date: 'short'}}
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- SELECT MEDIANTE DROPDOWN -->
     </div>
     <!-- CUSTODIOS FIN -->
     <div class="inpData" *ngIf="Depart">

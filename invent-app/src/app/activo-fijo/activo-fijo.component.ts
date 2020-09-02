@@ -468,6 +468,38 @@ export class ActivoFijoComponent implements OnInit {
     )
   }  
   
+
+
+  public _FeCREA:   string;
+  public _FeMOD:    string;
+  public _FeDEP:    string;
+  public _FeCOMP:   string;
+  public _FeFINAL:  string;
+  public _FeACT:    string;
+  public _FeFN:     string;
+  public _PLAC:     string;
+  public _CLAS:     string;
+  public _DP:       string;
+  public _SER:      string;
+  public _VLR:      string;
+  public _REFE:     string;
+  public _UC:       string;
+  public _USMO:     string;
+  public _USFI:     string;
+  public _GRPO:     string;
+  public _MRCA:     string;
+  public _CLR:      string;
+  public _PRVR:     string;
+  public _MDL:      string;
+  public _VUL:      string;
+  public _VRE:      string;
+  public _CGT:      string;
+  public _CD:       string;
+  public _CDN:      string;
+  public _VNO:      string;
+  public _VRVA:     string;
+  public _IMGE:     any;
+
   //variables  [(ngModel)] INICIO
   public _Class: string;
   public _cRead: string;
@@ -563,6 +595,8 @@ export class ActivoFijoComponent implements OnInit {
     // variables  [(ngModel)] FIN
     public custArr;
 
+
+    
     getDataCust(w, y) {
       this.optA = false;
       this.optB = false;
@@ -585,6 +619,7 @@ export class ActivoFijoComponent implements OnInit {
 
           // this._UC = this.custArr.usucrea;
           console.log(this.custArr.usucrea);
+
           })
       }).then( res => {
           console.log('Este es mi valor obtenido: ' +  res);
@@ -605,41 +640,15 @@ export class ActivoFijoComponent implements OnInit {
       this.optB = m;
     }
 
+    // keyFunction(a) {
+    //   let object = document.getElementById(a);
+    //   object.addEventListener('focusin', () => object.classList.add('focused'));
+    //   object.addEventListener('focusout', () => object.classList.remove('focused'));
+    // }
+
   // FUNCIONES PARA OCULTAR LOS DROWDOWN GENERADOS POR LOS INPUTS FIN
 
-    public _FeCREA:   string;
-    public _FeMOD:    string;
-    public _FeDEP:    string;
-    public _FeCOMP:   string;
-    public _FeFINAL:  string;
-    public _FeACT:    string;
-    public _FeFN:     string;
-    public _PLAC:     string;
-    public _CLAS:     string;
-    public _DP:       string;
-    public _SER:      string;
-    public _VLR:      string;
-    public _REFE:     string;
-    public _UC:       string;
-    public _USMO:     string;
-    public _USFI:     string;
-    public _GRPO:     string;
-    public _MRCA:     string;
-    public _CLR:      string;
-    public _PRVR:     string;
-    public _MDL:      string;
-    public _VUL:      string;
-    public _VRE:      string;
-    public _CGT:      string;
-    public _CD:       string;
-    public _CDN:      string;
-    public _VNO:      string;
-    public _VRVA:     string;
-    public _IMGE:     any;
 
     
-
-
-
 
 }

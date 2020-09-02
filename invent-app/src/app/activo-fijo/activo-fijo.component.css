@@ -38,22 +38,24 @@ input {
 .opti {
     padding: 5px;
     transition: ease all 0.5s;
-
 }
 
 .opti:hover{
-    cursor: pointer;
     background-color: steelblue;
+    cursor: pointer;
+    /* background-color: steelblue; */
     transition: ease all 0.5s;
     color: white;
     box-shadow: 3px 3px 10px rgba(0,0,0,0.6);
-    
 }
+
+
+/* .opti { cursor: pointer; }
+:focus { outline: 1px dashed green; } */
 
 .Clase {
     display: flex;
 }
-
 
 #clase {
     width:400px;
