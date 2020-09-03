@@ -1,8 +1,10 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { ConfigService } from '../Services/config.service';
 import { DataCallService } from '../Services/data-call.service';
 import tippy from 'tippy.js';
 import 'tippy.js/dist/tippy.css'; // optional for styling
+import { Router } from '@angular/router';
+import { truncate } from 'fs';
 
 @Component({
   selector: 'app-activo-fijo',
@@ -10,9 +12,12 @@ import 'tippy.js/dist/tippy.css'; // optional for styling
   styleUrls: ['./activo-fijo.component.css']
 })
 export class ActivoFijoComponent implements OnInit {
+  constructor(public conf: ConfigService,
+    public data: DataCallService,
+    public router: Router) { }
 
-  constructor(public conf: ConfigService, public data: DataCallService) { }
-
+  //#region "@INPUTS VALUES"
+  // estas son variables para los values de los inputs
   private _Factual: any;
   private _FMod:    any;
   private _FFin:    any;
@@ -46,6 +51,8 @@ export class ActivoFijoComponent implements OnInit {
   private _VREVAL:  any;
   private _COLOR:   any;
   private _CIUD:    any;
+  //#endregion
+  //#region "@Input()" 
 
   @Input()
   set Factual(value: any){
@@ -309,20 +316,14 @@ export class ActivoFijoComponent implements OnInit {
   get CIUD():any {
     return this._CIUD;
   }
-
+  //#endregion
+  
   ngOnInit() {    
     this.getInterfaz();
-   // this.getDataCall();
-   // this.getCiudGen();
-  // let l = document.getElementById('reactForms');
-  // l.addEventListener('click', () => {
-  //   this.hideOptions();
-  // })
-
   }
 
-  public arr: any[] = []
-
+  //#region "Obtener la interfaz del componente Configuración de formulario"
+public arr: any[] = []
   getInterfaz() {
     this.conf.getConfig().subscribe(
       x=>{
@@ -467,9 +468,11 @@ export class ActivoFijoComponent implements OnInit {
       }
     )
   }  
-  
+//#endregion
 
-
+  //#region "Empaquetamiento de datos INICIO"
+  // Variables para ngModel. Empaquetamiento de la infromación obtenida
+  //por los inoputs   para enviar en una petición HTTP POST
   public _FeCREA:   string;
   public _FeMOD:    string;
   public _FeDEP:    string;
@@ -499,16 +502,63 @@ export class ActivoFijoComponent implements OnInit {
   public _VNO:      string;
   public _VRVA:     string;
   public _IMGE:     any;
-
-  //variables  [(ngModel)] INICIO
+  public _ciudClass: string;
+  public _ciudRead: string;
   public _Class: string;
   public _cRead: string;
-  //variables  [(ngModel)] FIN  
-  public modelArr;
   public _disp: string;
-  public optC;
+  public _ActiveClass: string;
+  public _activeRead: string;
+  // Variables para ngModel. Empaquetamiento de la infromación obtenida
+  //por los inoputs   para enviar en una petición HTTP POST FIN
+  //#endregion
+  
+  //#region "@Viewchild, para poder utilizarlos en el focus() reactivo  del formulario INICIO"
+  // Variables para desplazarse con focus elementNative INICIO
+  @ViewChild('file',    {static: false})   file: ElementRef;      //#file | INPUT ELEMENT
+  @ViewChild('fecrea',  {static: false})   fecrea: ElementRef;    //#fecrea | INPUT ELEMENT
+  @ViewChild('fedep',   {static: false})   fedep: ElementRef;     //#fedep | INPUT ELEMENT
+  @ViewChild('fecomp',  {static: false})   fecomp: ElementRef;    //#fecomp | INPUT ELEMENT
+  @ViewChild('femod',   {static: false})   femod: ElementRef;     //#femod | INPUT ELEMENT
+  @ViewChild('fefin',   {static: false})   fefin: ElementRef;     //#fefin | INPUT ELEMENT
+  @ViewChild('fact',    {static: false})   fact: ElementRef;      //#fact | INPUT ELEMENT
+  @ViewChild('fefn',    {static: false})   fefn: ElementRef;      //#fefn | INPUT ELEMENT
+  @ViewChild('plac',    {static: false})   plac: ElementRef;      //#plac | INPUT ELEMENT
+  @ViewChild('clases',  {static: false})   clases: ElementRef;     //#clase | INPUT ELEMENT
+  @ViewChild('btnClase',{static: false})   btnClase: ElementRef;  //#btnClase | BUTTON ELEMENT
+  @ViewChild('ciud',    {static: false})   ciud: ElementRef;      //#ciud | INPUT ELEMENT
+  @ViewChild('ciudOpt', {static: false})   ciudOpt: ElementRef;   //#ciudOpt | BUTTON ELEMENT
+  @ViewChild('custodio',{static: false})   custodio: ElementRef;  //#custodio | INPUT ELEMENT
+  @ViewChild('nomProd', {static: false})   nomProd: ElementRef;  //#custodio | INPUT ELEMENT
+  @ViewChild('custOpt', {static: false})   custOpt: ElementRef;   //#custOpt | BUTTON ELEMENT
+  @ViewChild('serie',   {static: false})   serie: ElementRef;     //#serie | INPUT ELEMENT
+  @ViewChild('actv',    {static: false})   actv: ElementRef;      //#actv | INPUT ELEMENT
+  @ViewChild('refe',    {static: false})   refe: ElementRef;      //#refe | INPUT ELEMENT
+  @ViewChild('usercre', {static: false})   usercre: ElementRef;   //#usercre | INPUT ELEMENT
+  @ViewChild('usermo',  {static: false})   usermo: ElementRef;    //#usermo | INPUT ELEMENT
+  @ViewChild('userfin', {static: false})   userfin: ElementRef;   //#userfin | INPUT ELEMENT
+  @ViewChild('marca',   {static: false})   marca: ElementRef;     //#marca | INPUT ELEMENT
+  @ViewChild('color',   {static: false})   color: ElementRef;     //#color | INPUT ELEMENT
+  @ViewChild('prov',    {static: false})   prov: ElementRef;      //#prov | INPUT ELEMENT
+  @ViewChild('vidul',   {static: false})   vidul: ElementRef;     //#vidul | INPUT ELEMENT
+  @ViewChild('cgas',    {static: false})   cgas: ElementRef;      //#cgas | INPUT ELEMENT
+  @ViewChild('cdan',    {static: false})   cdan: ElementRef;      //#cdan | INPUT ELEMENT
+  @ViewChild('cudpre',  {static: false})   cudpre: ElementRef;    //#cudpre | INPUT ELEMENT
+  @ViewChild('vnorm',   {static: false})   vnorm: ElementRef;     //#vnorm | INPUT ELEMENT
+  @ViewChild('vreval',  {static: false})   vreval: ElementRef;    //#vreval | INPUT ELEMENT
+  // Variables para desplazarse con focus elementNative FIN  
+  //#endregion
 
-  getDataCall(w, y){
+  focus(inputs){
+    // console.log('Estamos en Focus')
+    inputs.nativeElement.focus();
+  }
+
+  public modelArr;
+  public optC;
+  
+
+  getDataCall(w, y) {
     // console.log(this._Class);
     this.optA = false;
     this.optB = true;
@@ -532,16 +582,11 @@ export class ActivoFijoComponent implements OnInit {
     })
   }
 
-     //variables  [(ngModel)] INICIO
-    public _ciudClass: string;
-    public _ciudRead: string;
-    //variables  [(ngModel)] FIN
-
     public optA: boolean;
     public optB: boolean;
     public ciudArr;
 
-    getDataCiudad(w, y){
+    getDataCiudad(w, y) {
     // console.log(this._ciudClass);
     this.optA = true;
     this.optB = false;
@@ -567,11 +612,6 @@ export class ActivoFijoComponent implements OnInit {
     })
     }
 
-    // variables  [(ngModel)] INICIO
-    public _ActiveClass: string;
-    public _activeRead: string;
-    // variables  [(ngModel)] FIN
-  
     getDataActive() {
      // console.log(this._ciudClass);
       const promise = new Promise((resolve, reject) => {
@@ -594,8 +634,6 @@ export class ActivoFijoComponent implements OnInit {
     public _CustRead: string;
     // variables  [(ngModel)] FIN
     public custArr;
-
-
     
     getDataCust(w, y) {
       this.optA = false;
@@ -603,7 +641,8 @@ export class ActivoFijoComponent implements OnInit {
       this.optC = true;
       // this.closDrop(m);
       const promise = new Promise((resolve, reject) => {
-        this.data.getDataCustodio(this._CustClass ).subscribe(
+        this.data.getDataCustodio(this._CustClass )
+        .subscribe(
           x => {
           this.custArr = x;
           let _ClassRead = {
@@ -616,14 +655,27 @@ export class ActivoFijoComponent implements OnInit {
             this._CustClass = w,
             this._CustRead  = y
           ]
-
+          
           // this._UC = this.custArr.usucrea;
           console.log(this.custArr.usucrea);
 
           })
       }).then( res => {
-          console.log('Este es mi valor obtenido: ' +  res);
+          console.log(res)
       })
+    }
+    public cuentasArr;
+    getDataCuent(w, y){
+      this.data.getDataCuentas(this._CGT).subscribe(
+        x => {
+          this.cuentasArr = x;
+          let a:  string[]  = [
+            this._CustClass = w,
+            this._CustRead  = y
+          ]
+          console.log(this.cuentasArr);
+        }
+      )
     }
 
   // FUNCIONES PARA OCULTAR LOS DROWDOWN GENERADOS POR LOS INPUTS INICIO
@@ -640,15 +692,6 @@ export class ActivoFijoComponent implements OnInit {
       this.optB = m;
     }
 
-    // keyFunction(a) {
-    //   let object = document.getElementById(a);
-    //   object.addEventListener('focusin', () => object.classList.add('focused'));
-    //   object.addEventListener('focusout', () => object.classList.remove('focused'));
-    // }
-
   // FUNCIONES PARA OCULTAR LOS DROWDOWN GENERADOS POR LOS INPUTS FIN
-
-
-    
 
 }

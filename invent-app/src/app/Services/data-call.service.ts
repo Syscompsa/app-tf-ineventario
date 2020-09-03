@@ -28,5 +28,9 @@ export class DataCallService {
     return this.http.get(this.apiURL + '/custodio/' + codigo);
   }
 
+  getDataCuentas(codigo){
+    return this.http.get(this.apiURL + '/cuentas/'+ codigo);
+  }
+
 }
 

@@ -113,6 +113,7 @@ form {
 }
 
 .groupB {
+    margin-top: 125px;
     display: flex;
     width: 100%;
     justify-content: space-between;
@@ -123,4 +124,10 @@ form {
 .inpDates {
     display: flex;
     flex-wrap: wrap;
+}
+
+@media screen and (max-width: 1199px){
+    .groupB{
+        margin-top: 25px;
+    }
 }
