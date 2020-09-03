@@ -563,6 +563,7 @@ public arr: any[] = []
     this.optA = false;
     this.optB = true;
     this.optC = false;
+    this.optC = false;
     const promise = new Promise((resolve, reject) => {
       this.data.getDataModel(this._Class).subscribe(x => {
         this.modelArr = x;
@@ -591,6 +592,7 @@ public arr: any[] = []
     this.optA = true;
     this.optB = false;
     this.optC = false;
+    this.optD = false;
     
     const promise = new Promise((resolve, reject) => {
       this.data.getDataCiud(this._ciudClass ).subscribe(x => {
@@ -639,6 +641,7 @@ public arr: any[] = []
       this.optA = false;
       this.optB = false;
       this.optC = true;
+      this.optD = false;
       // this.closDrop(m);
       const promise = new Promise((resolve, reject) => {
         this.data.getDataCustodio(this._CustClass )
@@ -665,7 +668,12 @@ public arr: any[] = []
       })
     }
     public cuentasArr;
+    public optD;
     getDataCuent(w, y){
+      this.optA = false;
+      this.optB = false;
+      this.optC = false;
+      this.optD = true;
       this.data.getDataCuentas(this._CGT).subscribe(
         x => {
           this.cuentasArr = x;
