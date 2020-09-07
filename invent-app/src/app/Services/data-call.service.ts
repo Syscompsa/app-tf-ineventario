@@ -7,7 +7,7 @@ import { claseGen } from '../Models/AuthMod';
   providedIn: 'root'
 })
 export class DataCallService {
-  private apiURL = 'https://inventario-fijo.azurewebsites.net/api/ALPTABLA';
+  private apiURL = 'https://alp-cloud.com:8445/api/ALPTABLA';
 
   constructor(private http: HttpClient) { }
 

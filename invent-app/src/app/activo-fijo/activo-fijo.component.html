@@ -205,7 +205,6 @@
                 id="{{c.codigo}}" 
                 (click)="getDataCiudad(c.codigo, c.nombre) || closCiud(false) "
                 *ngFor = "let c of ciudArr"
-                (keyup)="focus(nomProd) || getDataCiudad(c.codigo, c.nombre) || closCiud(false) "
                 href="javascript: void(0)">
                 Codigo: {{c.codigo}}
                 | Nombre: {{c.nombre}}
@@ -270,15 +269,15 @@
               <span class="icon-search"></span> Selecciona una opción</button>
               <div class="dropdown-menu">
                 <a class="dropdown-item"
-                id="{{e.codigo}}"
-                (click)="getDataCust(e.codigo, e.nombre) || closCus(false)"
-                *ngFor = "let e of custArr"
+                id="{{custo.codigo}}"
+                (click)="getDataCust(custo.codigo, custo.nombre) || closCus(false)"
+                *ngFor = "let custo of custArr"
                 href="javascript: void(0)">
-                Codigo: {{e.codigo}} 
-                | Nombre: {{e.nombre}}
-                | Apéllido: {{e.apellido}}
+                Codigo: {{custo.codigo}}
+                | Nombre: {{custo.nombre}}
+                | Apéllido: {{custo.apellido}}
                 | Fecha Creación:
-                 {{e.feccrea | date: 'short'}}
+                 {{custo.feccrea | date: 'short'}}
                 </a>
               </div>
             </div>
@@ -463,10 +462,34 @@
         <div class="dataDates">
             <label for="_cGAS" title="">Cuenta de Gasto:</label>
             <div class="d">
-                <input type="text" #cgas [(ngModel)]="_CGT" (keyup)="getDataCuent(cuentas.nombre)" name="_CGT" id="_cGAS" class="input-control" >
+                <input type="text" #cgas
+                 [(ngModel)]="_CGT"
+                 (keyup)="getDataCuent()" [value]="_CuentRead"
+                 name="_CGT" id="_cGAS" class="input-control" >
             </div>
         </div>
-        <p *ngFor="let cuentas of cuentasArr">Holi</p>
+             <!-- SELECT MEDIANTE DROPDOWN -->
+             <div class="input-group mb-3" style="width: 100%;" *ngIf="optD">
+                <div class="input-group-prepend" style="width: 100%;">
+                  <button class="btn btn-outline-secondary dropdown-toggle"
+                  #ciudOpt
+                  style="width: 100%;"
+                  type="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="true">
+                  <span class="icon-search"></span> Selecciona una opción</button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item"
+                    id="{{cuent.codigo}}"
+                    (click)="getDataCuent(cuent.codigo, cuent.nombre) || closCuent(false)"
+                    *ngFor = "let cuent of cuentasArr"
+                    href="javascript: void(0)">
+                    Código: {{cuent.codigo}}
+                    | Nombre: {{cuent.nombre}}
+                    </a>
+                  </div>
+                </div>
+              </div>
+        <!-- <p *ngFor="let cuentas of cuentasArr">Holi</p> -->
     </div>
     
     <div class="inpData" *ngIf="CDAN">

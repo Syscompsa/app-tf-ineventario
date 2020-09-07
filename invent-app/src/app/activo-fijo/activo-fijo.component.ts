@@ -4,7 +4,7 @@ import { DataCallService } from '../Services/data-call.service';
 import tippy from 'tippy.js';
 import 'tippy.js/dist/tippy.css'; // optional for styling
 import { Router } from '@angular/router';
-import { truncate } from 'fs';
+
 
 @Component({
   selector: 'app-activo-fijo',
@@ -669,24 +669,40 @@ public arr: any[] = []
     }
     public cuentasArr;
     public optD;
-    getDataCuent(w, y){
+    public _CuentClass;
+    public _CuentRead;
+    getDataCuent(w, y) {
       this.optA = false;
       this.optB = false;
       this.optC = false;
       this.optD = true;
-      this.data.getDataCuentas(this._CGT).subscribe(
-        x => {
+      console.log(this._CGT);
+      // this.data.getDataCuentas(this._CGT).subscribe(x => {
+
+      // })
+      const promise = new Promise((resolve, reject) => {
+        this.data.getDataCuentas(this._CGT )
+        .subscribe(
+          x => {
           this.cuentasArr = x;
+          let _ClassRead = {
+            nombre: this.cuentasArr.nombre
+          }
+          resolve(this._CuentRead = _ClassRead.nombre);  
           let a:  string[]  = [
-            this._CustClass = w,
-            this._CustRead  = y
+            this._CuentClass = w,
+            this._CuentRead  = y
           ]
-          console.log(this.cuentasArr);
-        }
-      )
+          // this._UC = this.custArr.usucrea;
+          console.log(a);
+          })
+      }).then( res => {
+          console.log(res)
+      })
     }
 
-  // FUNCIONES PARA OCULTAR LOS DROWDOWN GENERADOS POR LOS INPUTS INICIO
+  // FUNCIONES PARA OCULTAR LOS DROWDOWN
+  // GENERADOS POR LOS INPUTS INICIO
     
     closCus(m) {
       this.optC = m;
@@ -700,6 +716,11 @@ public arr: any[] = []
       this.optB = m;
     }
 
-  // FUNCIONES PARA OCULTAR LOS DROWDOWN GENERADOS POR LOS INPUTS FIN
+    closCuent(m){
+      this.optD = m;
+    }
+
+  // FUNCIONES PARA OCULTAR LOS DROWDOWN
+  // GENERADOS POR LOS INPUTS FIN
 
 }
