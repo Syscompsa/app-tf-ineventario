@@ -54,6 +54,7 @@ export class ActivoFijoComponent implements OnInit {
   private _COLOR:   any;
   private _CIUD:    any;
   //#endregion
+
   //#region "@Input()" 
 
   @Input()
@@ -880,10 +881,12 @@ public arr: any[] = []
         var fileReader = new FileReader();
   
         fileReader.onloadend = function(fileLoadedEvent) {
-          var srcData = fileLoadedEvent.target.result.toString(); // <--- data: base64
+          let target: any = fileLoadedEvent.target;
+          let content: string = target.result;
+          // var srcData = fileLoadedEvent.conm; // <--- data: base64
   
           var newImage = document.createElement('img');
-          newImage.src = srcData;
+          newImage.src = content;
           newImage.setAttribute('id', 'img');
           newImage.style.width= "100%";
           newImage.style.height= "auto";          
