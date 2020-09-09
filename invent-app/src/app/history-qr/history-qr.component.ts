@@ -28,7 +28,7 @@ export class HistoryQRComponent implements OnInit {
     // const a = document.getElementById('const');
     window.print();    
   }
-
+  public cont;
   QRDataFunc() {
     this.QRData.getQRGen().subscribe(x => {
       this.dataQRExtract = x;
@@ -36,8 +36,8 @@ export class HistoryQRComponent implements OnInit {
       console.log(this.dataQRExtract);
       const dataQRDiv = document.getElementById('dataQR');
       // const placa = [];
-      console.log(this.https.length);
-      console.log(this.dataQRExtract);
+     this.cont = this.dataQRExtract.length;
+     console.log(this.cont)
       // for (let i = 0; i <= this.dataQRExtract.length; i++) {
       //   const createPlaca = document.createElement('div');
       //   createPlaca.setAttribute('id', this.dataQRExtract[i].id.toString());
@@ -72,16 +72,16 @@ export class HistoryQRComponent implements OnInit {
     });
   }
 
-  createQR(obj, http) {
-    const qr = qrcode(4, 'L');
-    qr.addData(http);
-    qr.make();
-    obj.innerHTML = qr.createImgTag();
-  }
+  // createQR(obj, http) {
+  //   const qr = qrcode(4, 'L');
+  //   qr.addData(http);
+  //   qr.make();
+  //   obj.innerHTML = qr.createImgTag();
+  // }
 
-  createQRO(placa, data){
+  createQRO(placa){
     var qr = qrcode(4, 'L');
-    const url = this.https + data
+    const url = "https://alp-cloud.com:8445/api/AR_INV-QRcodProdGet/getPlaca/" 
     qr.addData(url);
     qr.make();
     document.getElementById(placa).innerHTML = qr.createImgTag();

@@ -25,8 +25,7 @@
             <div class="d">
                 <input type="date" #fecrea id="fechacrea" [(ngModel)]="_FeCREA"
                 name="_FeCREA"
-                class="input-control"
-                value="{{ datenow }}">
+                class="input-control">
                 <div class="formato">
                     <span class="icon-calendar"></span>
                      (dd/mm/yyyy)
@@ -38,7 +37,7 @@
             <div class="d">
                 <input type="date" #fedep [(ngModel)]="_FeDEP"
                 name="_FeDEP" id="fechaCompra"
-                 class="input-control" value="{{ datenow }}">
+                 class="input-control" >
                 <div class="formato">
                     <span class="icon-calendar"></span>
                      (dd/mm/yyyy)
@@ -50,7 +49,7 @@
             <label for="fechaCompra">Fecha Compra:</label>
             <div class="d">
                 <input type="date" #fecomp id="fechaCompra" [(ngModel)]="_FeCOMP" name="_FeCOMP"
-                 class="input-control" value="{{ datenow }}">
+                 class="input-control">
                 <div class="formato">
                     <span class="icon-calendar"></span>
                      (dd/mm/yyyy)
@@ -63,7 +62,7 @@
             <div class="d">
                 <input type="date" #femod [(ngModel)]="_FeMOD"
                 name="_FeMOD"
-                class="input-control" value="{{ datenow }}">
+                class="input-control">
                 <div class="formato">
                     <span class="icon-calendar"></span>
                      (dd/mm/yyyy)
@@ -76,7 +75,7 @@
             <div class="d">
                 <input type="date" #fefin id="fechafin"
                 [(ngModel)]="_FeFINAL" name="_FeFINAL"
-                class="input-control" value="{{ datenow }}">
+                class="input-control">
                 <div class="formato">
                     <span class="icon-calendar"></span>
                      (dd/mm/yyyy)
@@ -88,7 +87,7 @@
             <label for="fact">Fecha Actual:</label>
             <div class="d">
                 <input type="date" [(ngModel)]="_FeACT" name="_FeACT"
-                 id="fact" class="input-control" #fact value="{{ datenow }}">
+                 id="fact" class="input-control" #fact >
                 <div class="formato">
                     <span class="icon-calendar"></span>
                      (dd/mm/yyyy)
@@ -99,7 +98,7 @@
         <div class="dataDates" *ngIf="FCust">
             <label for="fechafin">Fecha Custodio:</label>
             <div class="d">
-                <input type="date" id="fechafin" #fefn [(ngModel)]="_FeFN" name="_FeFN"  class="input-control" value="{{ datenow }}">
+                <input type="date" id="fechafin" #fefn [(ngModel)]="_FeFN" name="_FeFN"  class="input-control" >
                 <div class="formato">
                     <span class="icon-calendar">                        
                     </span>
@@ -128,7 +127,7 @@
             <div class="d" id="clas" style="width: 100px;">
                 <label for="_Clase" title="">Clase:</label>
                 <input type="text" id="_Clase"
-                       (keyup)="getDataCall()"
+                       (keyup)="getDataCall('', '')"
                        [(ngModel)]="_Class"
                        name="_Class" #clases
                        class="input-control">
@@ -180,7 +179,7 @@
                 </label>
                 <input type="text" id="_ciu" #ciud
                        class="input-control"
-                       (keyup)="getDataCiudad()"    
+                       (keyup)="getDataCiudad('', '')"    
                        [(ngModel)]="_ciudClass"                       
                        name="_ciudClass">
             </div>
@@ -246,7 +245,7 @@
                 <div class="d">
                     <input type="text" id="_cust" 
                     #custodio
-                    (keyup)="getDataCust()"
+                    (keyup)="getDataCust('', '')"
                     [(ngModel)]="_CustClass"
                     name="_CustClass"
                     class="input-control">
@@ -273,16 +272,14 @@
               aria-haspopup="true" aria-expanded="true">
               <span class="icon-search"></span> Selecciona una opción</button>
               <div class="dropdown-menu">
-                <a class="dropdown-item"
+                <a class="dropdown-item" style="font-size: 9pt;"
                 id="{{custo.codigo}}"
                 (click)="getDataCust(custo.codigo, custo.nombre) || closCus(false)"
                 *ngFor = "let custo of custArr"
                 href="javascript: void(0)">
-                Codigo: {{custo.codigo}}
-                | Nombre: {{custo.nombre}}
-                | Apéllido: {{custo.apellido}}
-                | Fecha Creación:
-                 {{custo.feccrea | date: 'short'}}
+                    Codigo: {{custo.codigo}}
+                    | Nombre: {{custo.nombre}}
+                    | Apéllido: {{custo.apellido}}
                 </a>
               </div>
             </div>
@@ -378,11 +375,48 @@
     </div>
 
     <div class="inpData" *ngIf="GRP">
-        <div class="dataDates">
-            <label for="_group" title="">Grupo:</label>
-            <div class="d">
-                <input type="text" id="_group" #grupo [(ngModel)]="_GRPO" name="_GRPO" class="input-control" >
+        <div class="dataDates">           
+            <div class="d" id="clas" style="width: 100px;">
+                <label for="_GRPO" title="Código de ciudad">
+                    Grupo Activo:
+                </label>
+                <input type="text" id="_GRPO" #grupo
+                       class="input-control"
+                       (keyup)="getDataGrupo('','')"    
+                       [(ngModel)]="_GRPO"                       
+                       name="_GRPO">
             </div>
+            
+            <div class="d" id="clas">
+                <label for="_Clase" title="">
+                    <span class="icon-key-1"></span></label>
+                <input type="text" class="_ClaseB"
+                 style="background-color: steelblue; color: white;"
+                 readonly disabled class="input-control"
+                 [value]="_grupRead">
+            </div>
+             <!-- SELECT MEDIANTE DROPDOWN -->
+        <div class="input-group mb-3" style="width: 100%;" *ngIf="optG">
+            <div class="input-group-prepend" style="width: 100%;">
+              <button class="btn btn-outline-secondary dropdown-toggle"
+              #ciudOpt
+              style="width: 100%;"
+              type="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="true">
+              <span class="icon-search"></span> Selecciona una opción</button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item"
+                id="{{gr.grupo}}" 
+                (click)="getDataGrupo(gr.grupo, gr.nombre) || closGrup(false)"
+                *ngFor = "let gr of grupArr"
+                href="javascript: void(0)">
+                Codigo: {{gr.grupo}}
+                | Nombre: {{gr.nombre}}
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- SELECT MEDIANTE DROPDOWN -->
         </div>
     </div>
     
@@ -469,7 +503,7 @@
             <div class="d">
                 <input type="text" #cgas
                  [(ngModel)]="_CGT"
-                 (keyup)="getDataCuent()" [value]="_CuentRead"
+                 (keyup)="getDataCuent('','')" [value]="_CuentRead"
                  name="_CGT" id="_cGAS" class="input-control" >
             </div>
         </div>
@@ -502,7 +536,7 @@
             <label for="_cDan" title="">Cuenta de Depreciación Acumulada:</label>
             <div class="d">
                 <input type="text" #cdan [(ngModel)]="_CD"
-                (keyup)="getDataCuentB()" [value]="_CuentReadB"
+                (keyup)="getDataCuentB('','')" [value]="_CuentReadB"
                 name="_CD" id="_cDan" class="input-control" >
             </div>
         </div>
@@ -536,7 +570,7 @@
             <div class="d">
                 <input type="text" #cudpre
                 [(ngModel)]="_CDN"
-                (keyup)="getDataCuentC()" [value]="_CuentReadC"
+                (keyup)="getDataCuentC('','')" [value]="_CuentReadC"
                 name="_CDN"
                 id="_cDan"
                 class="input-control" >

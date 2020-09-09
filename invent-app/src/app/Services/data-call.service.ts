@@ -34,6 +34,10 @@ export class DataCallService {
     return this.http.get(this.apiURL + 'api/ALPTABLA/cuentas/'+ codigo);
   }
 
+  getDataGrup(codigo){
+    return this.http.get(this.apiURL + 'api/Grup/GetGrupo/'+ codigo);
+  }
+
   saveDataInv(content: QRDATA): Observable<QRDATA>{
     return this.http.post<QRDATA>(this.apiURLPOST + '/ProductoSave/', content);
   }

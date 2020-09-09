@@ -561,8 +561,8 @@ public arr: any[] = []
   public optC: boolean;
   public optE: boolean;
   public optF: boolean;
+  public optG: boolean;
   //#endregion
-
 
   focus(inputs){
     // console.log('Estamos en Focus')
@@ -591,7 +591,7 @@ public arr: any[] = []
     }).then( res => {
          console.log('Este es mi valo obtenido: ' +  res);
     })
-    this.funcClose(false, true, false,false,false,false)
+    this.funcClose(false, true, false,false,false,false,false)
   }
 
    
@@ -619,8 +619,33 @@ public arr: any[] = []
     }).then( res => {
         console.log('Este es mi valo obtenido: ' +  res);
     })
-    this.funcClose(true, false, false,false,false,false)
+    this.funcClose(true, false, false,false,false,false, false)
     }
+
+    public grupArr;
+    public _grupRead;
+    public _grupClass;
+    getDataGrupo(w, y) {
+      
+      const promise = new Promise((resolve, reject) => {
+        this.data.getDataGrup(this._GRPO).subscribe(x => {
+          this.grupArr = x;
+          let _ClassRead = {
+            nombre: this.grupArr.nombre
+          }
+          console.log(this.grupArr);
+          resolve(this._grupRead = _ClassRead.nombre );  
+          let a:  string[]  = [
+            this._GRPO = w,
+            this._grupRead  = y
+          ]
+  
+        })
+      }).then( res => {
+          console.log('Este es mi valo obtenido: ' +  res);
+      })
+      this.funcClose(true, false, false,false,false,false, true)
+      }
 
     getDataActive() {
      // console.log(this._ciudClass);
@@ -671,7 +696,7 @@ public arr: any[] = []
       }).then( res => {
           console.log(res)
       })
-      this.funcClose(false, false, true,false,false,false);
+      this.funcClose(false, false, true,false,false,false, false);
     }
 
     public cuentasArr;
@@ -704,7 +729,7 @@ public arr: any[] = []
         //  console.log(res)
       })
 
-      this.funcClose(false, false, false,true,false,false);
+      this.funcClose(false, false, false,true,false,false, false);
     }
     public cuentasArrB;
     public _CuentClassB;
@@ -736,18 +761,13 @@ public arr: any[] = []
           console.log(res)
       })
 
-      this.funcClose(false, false, false,false,true,false)
+      this.funcClose(false, false, false,false,true,false,false)
     }
 
     public cuentasArrC;
     public _CuentClassC;
     public _CuentReadC;
-    getDataCuentC(w, y, object) {
-  
-     // console.log(object);
-      // this.data.getDataCuentas(this._CGT).subscribe(x => {
-
-      // })
+    getDataCuentC(w, y, object) {   
       const promise = new Promise((resolve, reject) => {
         this.data.getDataCuentas(object)
         .subscribe(
@@ -767,10 +787,10 @@ public arr: any[] = []
       }).then( res => {
           console.log(res)
       })
-      this.funcClose(false, false, false,false,false,true)
+      this.funcClose(false, false, false,false,false,true,false)
     }
 
-  // FUNCIONES PARA OCULTAR LOS DROWDOWN
+  //#region  FUNCIONES PARA OCULTAR LOS DROWDOWN
   // GENERADOS POR LOS INPUTS INICIO
     
     closCus(m) {
@@ -798,34 +818,21 @@ public arr: any[] = []
       this.optF = m;
     }
 
-    funcClose(a,b,c,d,e, f){
+    closGrup(m){
+      this.optG = m;
+    }
+
+    funcClose(a,b,c,d,e, f, g){
       this.optA = a;
       this.optB = b;
       this.optC = c;
       this.optD = d;
       this.optE = e;
       this.optF = f;
+      this.optG = g;
     }
+//#endregion
 
-  // FUNCIONES PARA OCULTAR LOS DROWDOWN
-  // GENERADOS POR LOS INPUTS FIN
-
-    //#region IMAGEN
-
-    // getBaseUrl ()  {
-    //   const file = document.querySelector('input[type=file]')['files'][0];
-    //   var reader = new FileReader();
-    //   let baseString
-    //   reader.onloadend = function () {
-    //       baseString = reader.result;
-    //       let img = document.getElementById('img');
-    //       img.setAttribute('src', "data:image/jpg|png;base64," + baseString);
-    //       console.log(img);
-    //       console.log(baseString); 
-    //   };
-    //   reader.readAsDataURL(file);
-     
-    // }
 //#region funcion para limpiar el formulario
     cleanForm(){
       this._IMGE = "";
@@ -872,9 +879,8 @@ public arr: any[] = []
     //#endregion
 
     encodeImageFileAsURL() {
-
       var filesSelected = <HTMLInputElement> document.getElementById("inputFileToLoad");
-    let fileId = filesSelected.files;
+      let fileId = filesSelected.files;
       if (fileId.length > 0) {
         var fileToLoad = filesSelected[0];
   
@@ -894,7 +900,7 @@ public arr: any[] = []
          // alert("Converted Base64 version is " + document.getElementById("imgTest").innerHTML);
          // console.log("Converted Base64 version is " + document.getElementById("imgTest").innerHTML);
         }
-        for(var i=0;i<fileId.length;i++){
+        for(var i=0;i<fileId.length;i++) {
           fileReader.readAsDataURL(fileId[i]);
        }
       }
@@ -957,19 +963,6 @@ public arr: any[] = []
       })
     this.cleanForm();
     })
-    // let arrReport: any = {
-    //   fechaInv: "2020-09-09T00:00:00",
-    //   placaInv: "022202",
-    //   descripInv: "TESTINVENTARIO 2",
-    //   custodio: "ADMIN",
-    //   ciudad: "GUAYAQUIL",
-    //   campoA: "--",
-    //   campoB: "--"
-    // }
-    // this.data.saveReport(arrReport).subscribe(y => {
-    //   arrReport = y
-    // })
-
     }
 
  
