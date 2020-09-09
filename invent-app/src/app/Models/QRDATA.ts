@@ -1,6 +1,6 @@
 export interface QRDATA {
 
-   id         : number;
+   id?         : number;
    placa      : string;
    clase      : string;
    nombre     : string;
@@ -39,5 +39,5 @@ export interface QRDATA {
    valor_resi : number;
    valor_res2 : number;
    xxx        : number;
-
+   IMAGENBIT  : string;
 }

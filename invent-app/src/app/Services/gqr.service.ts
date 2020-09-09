@@ -8,8 +8,8 @@ import { Placa_Post_Url } from '../Models/Placa_Post_Url';
 })
 export class GQRService {
 
-  private apiURL = 'https://inventario-fijo.azurewebsites.net/api';
-  // https://syscapi-inv.azurewebsites.net/api/AR_INV-QRcodProdGet/getPlaca/EQU003
+  private apiURL = 'https://alp-cloud.com:8445/api';
+
   constructor(private http: HttpClient) { }
 
   getQRGen(): Observable<QRDATA[]>{

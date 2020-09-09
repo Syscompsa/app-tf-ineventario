@@ -6,11 +6,17 @@
 
     <div class="groupA">
     <div class="img" *ngIf="Imagen">
-        <img src="../../assets/prodDefecto/prod-defect.jpg" >
+        <!-- <img src="https://alp-cloud.com:4446/000001.jpg" id="img">
         <label id="imgBut" for="file">
             <span class="icon-camera"></span>
         </label>
-        <input type="file" #file class="file" id="file" [(ngModel)]="_IMGE" name="_IMGE">
+        <input type="file" #file class="file"
+         id="file" (change)="getBaseUrl()"
+         [(ngModel)]="_IMGE" name="_IMGE"> -->
+         <input id="inputFileToLoad" type="file"
+         (change)="encodeImageFileAsURL();"
+         [(ngModel)]="_IMGE" name="_IMGE">
+<div id="imgTest"></div>
     </div>
 <!--FECHA INPUT INICIO-->
     <div class="inpDates">
@@ -27,7 +33,6 @@
                 </div>
             </div>
         </div>
-
         <div class="dataDates" *ngIf="FeInde">
             <label for="fecha Inicio de Depreciación">Fecha I. Depreciación:</label>
             <div class="d">
@@ -336,7 +341,7 @@
 
     <div class="inpData"  *ngIf="Referido">
         <div class="dataDates">
-            <label for="_ref" title="">Referido:</label>
+            <label for="_ref" title="">Refencia:</label>
             <div class="d">
                 <input type="text" #refe
                 [(ngModel)]="_REFE" name="_REFE"
@@ -480,7 +485,7 @@
                   <div class="dropdown-menu">
                     <a class="dropdown-item"
                     id="{{cuent.codigo}}"
-                    (click)="getDataCuent(cuent.codigo, cuent.nombre) || closCuent(false)"
+                    (click)="getDataCuent(cuent.codigo, cuent.nombre, _CGT) || closCuent(false)"
                     *ngFor = "let cuent of cuentasArr"
                     href="javascript: void(0)">
                     Código: {{cuent.codigo}}
@@ -496,18 +501,69 @@
         <div class="dataDates">
             <label for="_cDan" title="">Cuenta de Depreciación Acumulada:</label>
             <div class="d">
-                <input type="text" #cdan [(ngModel)]="_CD" name="_CD" id="_cDan" class="input-control" >
+                <input type="text" #cdan [(ngModel)]="_CD"
+                (keyup)="getDataCuentB()" [value]="_CuentReadB"
+                name="_CD" id="_cDan" class="input-control" >
             </div>
         </div>
+        <!-- SELECT MEDIANTE DROPDOWN -->
+        <div class="input-group mb-3" style="width: 100%;" *ngIf="optE">
+            <div class="input-group-prepend" style="width: 100%;">
+              <button class="btn btn-outline-secondary dropdown-toggle"
+              #ciudOpt
+              style="width: 100%;"
+              type="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="true">
+              <span class="icon-search"></span> Selecciona una opción</button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item"
+                id="{{cuentB.codigo}}"
+                (click)="getDataCuentB(cuentB.codigo, cuentB.nombre, _CD) || closCuentB(false)"
+                *ngFor = "let cuentB of cuentasArrB"
+                href="javascript: void(0)">
+                Código: {{cuentB.codigo}}
+                | Nombre: {{cuentB.nombre}}
+                </a>
+              </div>
+            </div>
+          </div>
+    <!-- <p *ngFor="let cuentas of cuentasArr">Holi</p> -->
     </div>
 
     <div class="inpData" *ngIf="CDAR">
         <div class="dataDates">
             <label for="_cDar" title="">Cuenta de Depreciación:</label>
             <div class="d">
-                <input type="text" #cudpre [(ngModel)]="_CDN" name="_CDN" id="_cDan" class="input-control" >
+                <input type="text" #cudpre
+                [(ngModel)]="_CDN"
+                (keyup)="getDataCuentC()" [value]="_CuentReadC"
+                name="_CDN"
+                id="_cDan"
+                class="input-control" >
             </div>
         </div>
+        <!-- SELECT MEDIANTE DROPDOWN -->
+        <div class="input-group mb-3" style="width: 100%;" *ngIf="optF">
+            <div class="input-group-prepend" style="width: 100%;">
+              <button class="btn btn-outline-secondary dropdown-toggle"
+              #ciudOpt
+              style="width: 100%;"
+              type="button" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="true">
+              <span class="icon-search"></span> Selecciona una opción</button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item"
+                id="{{cuentC.codigo}}"
+                (click)="getDataCuentC(cuentC.codigo, cuentC.nombre, _CDN) || closCuentC(false)"
+                *ngFor = "let cuentC of cuentasArrC"
+                href="javascript: void(0)">
+                Código: {{cuentC.codigo}}
+                | Nombre: {{cuentC.nombre}}
+                </a>
+              </div>
+            </div>
+          </div>
+    <!-- <p *ngFor="let cuentas of cuentasArr">Holi</p> -->
     </div>
 </div>
 <!--DATA INPUT FIN-->
@@ -515,7 +571,7 @@
          
     </form>
     <div class="btnSettings mt-4">
-        <button class="btn btn-info" (click)="saveInterfaz()">
+        <button class="btn btn-info" (click)="saveItem()">
             <span class="icon-floppy" style="color: white;"></span>Guardar
         </button>
         <button class="btn btn-danger" (click)="porDefecto()">

@@ -4,6 +4,8 @@ import { DataCallService } from '../Services/data-call.service';
 import tippy from 'tippy.js';
 import 'tippy.js/dist/tippy.css'; // optional for styling
 import { Router } from '@angular/router';
+import { QRDATA } from '../Models/QRDATA';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -320,6 +322,7 @@ export class ActivoFijoComponent implements OnInit {
   
   ngOnInit() {    
     this.getInterfaz();
+    this.cleanForm();
   }
 
   //#region "Obtener la interfaz del componente Configuración de formulario"
@@ -473,42 +476,44 @@ public arr: any[] = []
   //#region "Empaquetamiento de datos INICIO"
   // Variables para ngModel. Empaquetamiento de la infromación obtenida
   //por los inoputs   para enviar en una petición HTTP POST
-  public _FeCREA:   string;
-  public _FeMOD:    string;
-  public _FeDEP:    string;
-  public _FeCOMP:   string;
-  public _FeFINAL:  string;
-  public _FeACT:    string;
-  public _FeFN:     string;
-  public _PLAC:     string;
-  public _CLAS:     string;
-  public _DP:       string;
-  public _SER:      string;
-  public _VLR:      string;
-  public _REFE:     string;
-  public _UC:       string;
-  public _USMO:     string;
-  public _USFI:     string;
-  public _GRPO:     string;
-  public _MRCA:     string;
-  public _CLR:      string;
-  public _PRVR:     string;
-  public _MDL:      string;
-  public _VUL:      string;
-  public _VRE:      string;
-  public _CGT:      string;
-  public _CD:       string;
-  public _CDN:      string;
-  public _VNO:      string;
-  public _VRVA:     string;
-  public _IMGE:     any;
-  public _ciudClass: string;
-  public _ciudRead: string;
-  public _Class: string;
-  public _cRead: string;
-  public _disp: string;
-  public _ActiveClass: string;
-  public _activeRead: string;
+  public _FeCREA:    any = toString();
+  public _FeMOD:     any = toString();
+  public _nProducto: any = toString();
+  public _FeDEP:    any = toString();
+  public _FeCOMP:   any = toString();
+  public _FeFINAL:  any = toString();
+  public _FeACT:    any = toString();
+  public _FeFN:     any = toString();
+  public _PLAC:     any = toString();
+  public _CLAS:     any = toString();
+  public _DP:       any = toString();
+  public _SER:      any = toString();
+  public _VLR:      any = toString();
+  public _REFE:     any = toString();
+  public _UC:       any = toString();
+  public _actvClass: any = toString();
+  public _USMO:     any = toString();
+  public _USFI:     any = toString();
+  public _GRPO:     any = toString();
+  public _MRCA:     any = toString();
+  public _CLR:      any = toString();
+  public _PRVR:     any = toString();
+  public _MDL:      any = toString();
+  public _VUL:      any = toString();
+  public _VRE:      any = toString();
+  public _CGT:      any = toString();
+  public _CD:       any = toString();
+  public _CDN:      any = toString();
+  public _VNO:      any = toString();
+  public _VRVA:     any = toString();
+  public _IMGE:     any = toString();
+  public _ciudClass: any = toString();
+  public _ciudRead: any = toString();
+  public _Class: any = toString();
+  public _cRead: any = toString();
+  public _disp: any = toString();
+  public _ActiveClass: any = toString();
+  public _activeRead: any = toString();
   // Variables para ngModel. Empaquetamiento de la infromación obtenida
   //por los inoputs   para enviar en una petición HTTP POST FIN
   //#endregion
@@ -549,21 +554,25 @@ public arr: any[] = []
   // Variables para desplazarse con focus elementNative FIN  
   //#endregion
 
+  //#region "ng IF dropdown"  
+  public optA: boolean;
+  public optB: boolean;
+  public optC: boolean;
+  public optE: boolean;
+  public optF: boolean;
+  //#endregion
+
+
   focus(inputs){
     // console.log('Estamos en Focus')
     inputs.nativeElement.focus();
   }
 
-  public modelArr;
-  public optC;
-  
+  public modelArr;  
 
   getDataCall(w, y) {
     // console.log(this._Class);
-    this.optA = false;
-    this.optB = true;
-    this.optC = false;
-    this.optC = false;
+     
     const promise = new Promise((resolve, reject) => {
       this.data.getDataModel(this._Class).subscribe(x => {
         this.modelArr = x;
@@ -581,19 +590,16 @@ public arr: any[] = []
     }).then( res => {
          console.log('Este es mi valo obtenido: ' +  res);
     })
+    this.funcClose(false, true, false,false,false,false)
   }
 
-    public optA: boolean;
-    public optB: boolean;
+   
     public ciudArr;
 
     getDataCiudad(w, y) {
     // console.log(this._ciudClass);
-    this.optA = true;
-    this.optB = false;
-    this.optC = false;
-    this.optD = false;
-    
+     
+     
     const promise = new Promise((resolve, reject) => {
       this.data.getDataCiud(this._ciudClass ).subscribe(x => {
         this.ciudArr = x;
@@ -612,6 +618,7 @@ public arr: any[] = []
     }).then( res => {
         console.log('Este es mi valo obtenido: ' +  res);
     })
+    this.funcClose(true, false, false,false,false,false)
     }
 
     getDataActive() {
@@ -638,10 +645,7 @@ public arr: any[] = []
     public custArr;
     
     getDataCust(w, y) {
-      this.optA = false;
-      this.optB = false;
-      this.optC = true;
-      this.optD = false;
+  
       // this.closDrop(m);
       const promise = new Promise((resolve, reject) => {
         this.data.getDataCustodio(this._CustClass )
@@ -666,22 +670,21 @@ public arr: any[] = []
       }).then( res => {
           console.log(res)
       })
+      this.funcClose(false, false, true,false,false,false);
     }
+
     public cuentasArr;
     public optD;
     public _CuentClass;
     public _CuentRead;
-    getDataCuent(w, y) {
-      this.optA = false;
-      this.optB = false;
-      this.optC = false;
-      this.optD = true;
-      console.log(this._CGT);
+    getDataCuent(w, y, object) {
+     
+     // console.log(object);
       // this.data.getDataCuentas(this._CGT).subscribe(x => {
 
       // })
       const promise = new Promise((resolve, reject) => {
-        this.data.getDataCuentas(this._CGT )
+        this.data.getDataCuentas(object)
         .subscribe(
           x => {
           this.cuentasArr = x;
@@ -697,8 +700,73 @@ public arr: any[] = []
           console.log(a);
           })
       }).then( res => {
+        //  console.log(res)
+      })
+
+      this.funcClose(false, false, false,true,false,false);
+    }
+    public cuentasArrB;
+    public _CuentClassB;
+    public _CuentReadB;
+    getDataCuentB(w, y, object) {
+     
+      
+      console.log(object);
+      // this.data.getDataCuentas(this._CGT).subscribe(x => {
+
+      // })
+      const promise = new Promise((resolve, reject) => {
+        this.data.getDataCuentas(object)
+        .subscribe(
+          x => {
+          this.cuentasArrB = x;
+          let _ClassRead = {
+            nombre: this.cuentasArrB.nombre
+          }
+          resolve(this._CuentReadB = _ClassRead.nombre);  
+          let a:  string[]  = [
+            this._CuentClassB = w,
+            this._CuentReadB  = y
+          ]
+          // this._UC = this.custArr.usucrea;
+          console.log(a);
+          })
+      }).then( res => {
           console.log(res)
       })
+
+      this.funcClose(false, false, false,false,true,false)
+    }
+
+    public cuentasArrC;
+    public _CuentClassC;
+    public _CuentReadC;
+    getDataCuentC(w, y, object) {
+  
+     // console.log(object);
+      // this.data.getDataCuentas(this._CGT).subscribe(x => {
+
+      // })
+      const promise = new Promise((resolve, reject) => {
+        this.data.getDataCuentas(object)
+        .subscribe(
+          x => {
+          this.cuentasArrC = x;
+          let _ClassRead = {
+            nombre: this.cuentasArrC.nombre
+          }
+          resolve(this._CuentReadC = _ClassRead.nombre);  
+          let a:  string[]  = [
+            this._CuentClassC = w,
+            this._CuentReadC  = y
+          ]
+          // this._UC = this.custArr.usucrea;
+          console.log(a);
+          })
+      }).then( res => {
+          console.log(res)
+      })
+      this.funcClose(false, false, false,false,false,true)
     }
 
   // FUNCIONES PARA OCULTAR LOS DROWDOWN
@@ -720,7 +788,187 @@ public arr: any[] = []
       this.optD = m;
     }
 
+    
+    closCuentB(m){
+      this.optE = m;
+    }
+
+    closCuentC(m){
+      this.optF = m;
+    }
+
+    funcClose(a,b,c,d,e, f){
+      this.optA = a;
+      this.optB = b;
+      this.optC = c;
+      this.optD = d;
+      this.optE = e;
+      this.optF = f;
+    }
+
   // FUNCIONES PARA OCULTAR LOS DROWDOWN
   // GENERADOS POR LOS INPUTS FIN
+
+    //#region IMAGEN
+
+    // getBaseUrl ()  {
+    //   const file = document.querySelector('input[type=file]')['files'][0];
+    //   var reader = new FileReader();
+    //   let baseString
+    //   reader.onloadend = function () {
+    //       baseString = reader.result;
+    //       let img = document.getElementById('img');
+    //       img.setAttribute('src', "data:image/jpg|png;base64," + baseString);
+    //       console.log(img);
+    //       console.log(baseString); 
+    //   };
+    //   reader.readAsDataURL(file);
+     
+    // }
+//#region funcion para limpiar el formulario
+    cleanForm(){
+      this._IMGE = "";
+      this._FeCREA    = new Date();
+      this._FeMOD     = new Date();
+      this._nProducto = "";
+      this._FeDEP = new Date();
+      this._FeCOMP = new Date();
+      this._FeFINAL = new Date();
+      this._FeACT = new Date();
+      this._FeFN = new Date();
+      this._PLAC = "";
+      this._CLAS = "";
+      this._CustClass = "";
+      this._DP = "";
+      this._SER = "";
+      this._VLR = 0;
+      this._REFE = "";
+      this._UC = "";
+      this._actvClass = "";
+      this._USMO  = "";
+      this._USFI = "";
+      this._GRPO  = "";
+      this._MRCA  = "";
+      this._CLR   = "";
+      this._PRVR  = "";
+      this._MDL   = "";
+      this._VUL   = 0;
+      this._VRE   = 0;
+      this._CGT   = "";
+      this._CD    = "";
+      this._CDN   = "";
+      this._VNO   = 0;
+      this._VRVA  = 0;
+      this._IMGE  = "";
+      this._ciudClass= "";
+      this._ciudRead = "";
+      this._Class = "";
+      this._cRead = "";
+      this._disp = "";
+      this._ActiveClass = "";
+      this._activeRead = "";
+    }
+    //#endregion
+
+    encodeImageFileAsURL() {
+
+      var filesSelected = <HTMLInputElement> document.getElementById("inputFileToLoad");
+    let fileId = filesSelected.files;
+      if (fileId.length > 0) {
+        var fileToLoad = filesSelected[0];
+  
+        var fileReader = new FileReader();
+  
+        fileReader.onloadend = function(fileLoadedEvent) {
+          var srcData = fileLoadedEvent.target.result.toString(); // <--- data: base64
+  
+          var newImage = document.createElement('img');
+          newImage.src = srcData;
+          newImage.setAttribute('id', 'img');
+          newImage.style.width= "100%";
+          newImage.style.height= "auto";          
+          document.getElementById("imgTest").innerHTML = newImage.outerHTML;
+         // alert("Converted Base64 version is " + document.getElementById("imgTest").innerHTML);
+         // console.log("Converted Base64 version is " + document.getElementById("imgTest").innerHTML);
+        }
+        for(var i=0;i<fileId.length;i++){
+          fileReader.readAsDataURL(fileId[i]);
+       }
+      }
+    }
+
+
+    //#endregion
+
+    saveItem(){
+    let formArr:QRDATA = {
+      placa      : this._PLAC,
+      clase      : this._Class,
+      nombre     : this._nProducto,
+      custodio   : this._CustClass,
+      dpto       : this._DP,
+      ciudad     : this._ciudClass,
+      serie      : this._SER,
+      valor      : this._VLR,
+      activo     : this._actvClass,
+      refer      : this._REFE,
+      feccrea    : this._FeCREA,
+      usucrea    : this._UC,
+      fecmodi    : this._FeMOD,
+      usumodi    : this._USMO,
+      fecfin     : this._FeFINAL,
+      horafin    : '',
+      userfin    : this._USFI,
+      barra      : '',
+      grupo      : this._GRPO,
+      marca      : this._MRCA,
+      color      : this._CLR,
+      fechac     : this._FeACT,
+      proveedor  : this._PRVR,
+      modelo     : this._MDL,
+      vidautil   : this._VUL,
+      valres     : this._VRE,
+      valor2     : 0,
+      fechaa     : this._FeDEP,
+      fcustodio  : this._FeMOD,
+      cgasto     : this._CGT,
+      cdan       : this._CD,
+      cdar       : this._CDN,
+      val_normal : this._VNO,
+      vaL_REVAL  : this._VRVA,
+      imagen     : this._IMGE,
+      valor_resi : this._VRE,
+      valor_res2 : 0,
+      xxx        : 0,
+      IMAGENBIT  : this._IMGE
+    }
+
+    console.log(formArr);
+    
+    this.data.saveDataInv(formArr).subscribe(x => {
+      formArr = x;
+      Swal.fire({
+        icon: 'success',
+        title: '¡Bien!...',
+        text: 'Haz guardado tu activo!'
+      })
+    this.cleanForm();
+    })
+    // let arrReport: any = {
+    //   fechaInv: "2020-09-09T00:00:00",
+    //   placaInv: "022202",
+    //   descripInv: "TESTINVENTARIO 2",
+    //   custodio: "ADMIN",
+    //   ciudad: "GUAYAQUIL",
+    //   campoA: "--",
+    //   campoB: "--"
+    // }
+    // this.data.saveReport(arrReport).subscribe(y => {
+    //   arrReport = y
+    // })
+
+    }
+
+ 
 
 }

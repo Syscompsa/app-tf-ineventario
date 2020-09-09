@@ -8,5 +8,16 @@
             <span style="color: blueviolet;" class="icon-database"></span> Actualmente tienes <strong style="color: blueviolet;">{{ dataQRExtract.length }}</strong> productos, en tu base de datos.
         </div>
     </div>
-    <div class="dataQR" id="dataQR"></div>
+    <div class="dataQR" id="dataQR">
+        <div class="box"  *ngFor="let a of dataQRExtract">
+            <div class="QR" [id]="a.placa">
+                CODE: {{createQRO(a.placa, a.nombre)}}<br>
+            </div>
+            <hr>
+            <div class="data">
+                Nombre: {{a.nombre}}<br>
+                Placa: {{a.placa}}
+            </div>
+        </div>
+    </div>
 </div>

@@ -14,6 +14,13 @@
     width: 100%;
 }
 
+.box{
+    width: 175px;
+    height: 181px;
+    padding: 10px;
+    border: solid 0.5px gray;
+}
+
 .cons {
     display: flex;
     justify-content: space-between;

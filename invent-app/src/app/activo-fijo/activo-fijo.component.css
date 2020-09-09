@@ -73,14 +73,17 @@ label {
 
 
 #file {
-    width: 0px;
-    height: 0px;
-    opacity: 0;
+    width: 110px;
+    height: 25px;
+    opacity: 1;
 }
 
 .img {
     display: flex;
     flex-direction: column;
+    padding: 10px;
+    border-right: solid 1px gray;
+    width: 48%;
 }
 
 .actFijo {
@@ -110,6 +113,8 @@ form {
     display: flex;
     width: 100%;
     justify-content: space-between;
+    flex-wrap: wrap;
+    flex-shrink: initial;
 }
 
 .groupB {
@@ -124,10 +129,39 @@ form {
 .inpDates {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+    flex-shrink: initial;
+    padding: 10px;
+    width: 48%;
 }
 
 @media screen and (max-width: 1199px){
     .groupB{
         margin-top: 25px;
+    }
+}
+
+
+@media screen and (max-width: 787px){
+    .inpDates{
+        width: 100%;
+        border: none;
+    }
+    .img{
+        width: 100%;
+        padding: 10px;
+    }
+    .d{
+        width: 100% !important;
+    }
+    .dataDates{
+        width: 100%;
+    }
+    .inpData{
+        width: 100% !important;
+    }
+    .Clase{
+        flex-direction: column;
+        width: 100%;
     }
 }
