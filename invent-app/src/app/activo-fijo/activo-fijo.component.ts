@@ -55,7 +55,7 @@ export class ActivoFijoComponent implements OnInit {
   private _CIUD:    any;
   //#endregion
 
-  //#region "@Input()" 
+  //#region "@Input()"
 
   @Input()
   set Factual(value: any){
@@ -64,7 +64,7 @@ export class ActivoFijoComponent implements OnInit {
   get Factual():any {
     return this._Factual;
   }
-  
+
   @Input()
   set FMod(value: any){
     this._FMod = value;
@@ -96,7 +96,7 @@ export class ActivoFijoComponent implements OnInit {
   get FCust():any {
     return this._FCust;
   }
-  
+
   @Input()
   set FeInde(value: any){
     this._FeInde = value;
@@ -104,7 +104,7 @@ export class ActivoFijoComponent implements OnInit {
   get FeInde():any {
     return this._FeInde;
   }
-  
+
   @Input()
   set FCompra(value: any){
     this._FCompra = value;
@@ -128,7 +128,7 @@ export class ActivoFijoComponent implements OnInit {
   get Placa():any {
     return this._Placa;
   }
-  
+
   @Input()
   set CLase(value: any){
     this._CLase = value;
@@ -320,8 +320,8 @@ export class ActivoFijoComponent implements OnInit {
     return this._CIUD;
   }
   //#endregion
-  
-  ngOnInit() {    
+
+  ngOnInit() {
     this.getInterfaz();
     this.cleanForm();
   }
@@ -365,17 +365,17 @@ public arr: any[] = []
           this.VNOR       = x[0].val_normal_i,  // 32
           this.VREVAL     = x[0].val_reval_i,   // 33
           this.Imagen     = x[0].imagen         // 34
-        ]        
-        
+        ]
+
         if(this.arr[0] == '0') { this.arr.push([ this.Placa = false ]) }
         else { this.arr.push([ this.Placa = true ]) }
-        
+
         if(this.arr[1] == '0') { this.arr.push([ this.CLase = false ]) }
         else { this.arr.push([ this.CLase = true ]) }
 
         if(this.arr[2] == '0') { this.arr.push([ this.NProd = false ]) }
         else { this.arr.push([ this.NProd = true ]) }
-        
+
         if(this.arr[3] == '0') { this.arr.push([ this.Custodio = false ]) }
         else { this.arr.push([ this.Custodio = true ]) }
 
@@ -384,55 +384,55 @@ public arr: any[] = []
 
         if(this.arr[5] == '0') { this.arr.push([ this.Depart = false ]) }
         else { this.arr.push([ this.Depart = true ]) }
-   
+
         if(this.arr[6] == '0') { this.arr.push([ this.CIUD = false ]) }
         else { this.arr.push([ this.CIUD = true ]) }
-   
+
         if(this.arr[7] == '0') { this.arr.push([ this.Serie = false ]) }
         else { this.arr.push([ this.Serie = true ]) }
-   
+
         if(this.arr[8] == '0') { this.arr.push([ this.Valor = false ]) }
         else { this.arr.push([ this.Valor = true ]) }
-   
+
         if(this.arr[9] == '0') { this.arr.push([ this.Activo = false ]) }
         else { this.arr.push([ this.Activo = true ]) }
-   
+
         if(this.arr[10] == '0') { this.arr.push([ this.Referido = false ]) }
         else { this.arr.push([ this.Referido = true ]) }
-   
+
         if(this.arr[11] == '0') { this.arr.push([ this.FCrea = false ]) }
         else { this.arr.push([ this.FCrea = true ]) }
-   
+
         if(this.arr[12] == '0') { this.arr.push([ this.USC = false ]) }
         else { this.arr.push([ this.USC = true ]) }
-   
+
         if(this.arr[13] == '0') { this.arr.push([ this.FMod = false ]) }
         else { this.arr.push([ this.FMod = true ]) }
-   
+
         if(this.arr[14] == '0') { this.arr.push([ this.USM = false ]) }
         else { this.arr.push([ this.USM = true ]) }
-   
+
         if(this.arr[15] == '0') { this.arr.push([ this.FFin = false ]) }
         else { this.arr.push([ this.FFin = true ]) }
-   
+
         if(this.arr[16] == '0') { this.arr.push([ this.USF = false ]) }
         else { this.arr.push([ this.USF = true ]) }
-   
+
         if(this.arr[17] == '0') { this.arr.push([ this.GRP = false ]) }
         else { this.arr.push([ this.GRP = true ]) }
-   
+
         if(this.arr[18] == '0') { this.arr.push([ this.MRC = false ]) }
         else { this.arr.push([ this.MRC = true ]) }
-   
+
         if(this.arr[19] == '0') { this.arr.push([ this.COLOR = false ]) }
         else { this.arr.push([ this.COLOR = true ]) }
-   
+
         if(this.arr[20] == '0') { this.arr.push([ this.FCrea = false ]) }
         else { this.arr.push([ this.FCrea = true ]) }
-   
+
         if(this.arr[21] == '0') { this.arr.push([ this.FeInde = false ]) }
         else { this.arr.push([ this.FeInde = true ]) }
-           
+
         if(this.arr[22] == '0') { this.arr.push([ this.PROV = false ]) }
         else { this.arr.push([ this.PROV = true ]) }
 
@@ -471,7 +471,7 @@ public arr: any[] = []
 
       }
     )
-  }  
+  }
 //#endregion
 
   //#region "Empaquetamiento de datos INICIO"
@@ -518,7 +518,7 @@ public arr: any[] = []
   // Variables para ngModel. Empaquetamiento de la infromación obtenida
   //por los inoputs   para enviar en una petición HTTP POST FIN
   //#endregion
-  
+
   //#region "@Viewchild, para poder utilizarlos en el focus() reactivo  del formulario INICIO"
   // Variables para desplazarse con focus elementNative INICIO
   @ViewChild('file',    {static: false})   file: ElementRef;      //#file | INPUT ELEMENT
@@ -552,10 +552,10 @@ public arr: any[] = []
   @ViewChild('cudpre',  {static: false})   cudpre: ElementRef;    //#cudpre | INPUT ELEMENT
   @ViewChild('vnorm',   {static: false})   vnorm: ElementRef;     //#vnorm | INPUT ELEMENT
   @ViewChild('vreval',  {static: false})   vreval: ElementRef;    //#vreval | INPUT ELEMENT
-  // Variables para desplazarse con focus elementNative FIN  
+  // Variables para desplazarse con focus elementNative FIN
   //#endregion
 
-  //#region "ng IF dropdown"  
+  //#region "ng IF dropdown"
   public optA: boolean;
   public optB: boolean;
   public optC: boolean;
@@ -569,11 +569,11 @@ public arr: any[] = []
     inputs.nativeElement.focus();
   }
 
-  public modelArr;  
+  public modelArr;
 
   getDataCall(w, y) {
     // console.log(this._Class);
-     
+
     const promise = new Promise((resolve, reject) => {
       this.data.getDataModel(this._Class).subscribe(x => {
         this.modelArr = x;
@@ -582,7 +582,7 @@ public arr: any[] = []
         }
         // console.log(this.modelArr);
         resolve(this._cRead = _ClassRead.nombre );
-        
+
         let a:  string[]  = [
           this._Class  = w,
           this._cRead  = y
@@ -594,13 +594,13 @@ public arr: any[] = []
     this.funcClose(false, true, false,false,false,false,false)
   }
 
-   
+
     public ciudArr;
 
     getDataCiudad(w, y) {
     // console.log(this._ciudClass);
-     
-     
+
+
     const promise = new Promise((resolve, reject) => {
       this.data.getDataCiud(this._ciudClass ).subscribe(x => {
         this.ciudArr = x;
@@ -626,7 +626,7 @@ public arr: any[] = []
     public _grupRead;
     public _grupClass;
     getDataGrupo(w, y) {
-      
+
       const promise = new Promise((resolve, reject) => {
         this.data.getDataGrup(this._GRPO).subscribe(x => {
           this.grupArr = x;
@@ -634,12 +634,12 @@ public arr: any[] = []
             nombre: this.grupArr.nombre
           }
           console.log(this.grupArr);
-          resolve(this._grupRead = _ClassRead.nombre );  
+          resolve(this._grupRead = _ClassRead.nombre );
           let a:  string[]  = [
             this._GRPO = w,
             this._grupRead  = y
           ]
-  
+
         })
       }).then( res => {
           console.log('Este es mi valo obtenido: ' +  res);
@@ -655,7 +655,7 @@ public arr: any[] = []
             nombre: x[0].nombre
           }
           resolve(this._activeRead = _ClassRead.nombre );
-          
+
         })
       }).then( res => {
           // let read = <HTMLInputElement> document.getElementById('_ClaseB');
@@ -669,9 +669,9 @@ public arr: any[] = []
     public _CustRead: string;
     // variables  [(ngModel)] FIN
     public custArr;
-    
+
     getDataCust(w, y) {
-  
+
       // this.closDrop(m);
       const promise = new Promise((resolve, reject) => {
         this.data.getDataCustodio(this._CustClass )
@@ -681,14 +681,14 @@ public arr: any[] = []
           let _ClassRead = {
             nombre: this.custArr.nombre
           }
-          
+
           resolve(this._CustRead = _ClassRead.nombre);
 
           let a:  string[]  = [
             this._CustClass = w,
             this._CustRead  = y
           ]
-          
+
           // this._UC = this.custArr.usucrea;
           console.log(this.custArr.usucrea);
 
@@ -704,7 +704,7 @@ public arr: any[] = []
     public _CuentClass;
     public _CuentRead;
     getDataCuent(w, y, object) {
-     
+
      // console.log(object);
       // this.data.getDataCuentas(this._CGT).subscribe(x => {
 
@@ -717,7 +717,7 @@ public arr: any[] = []
           let _ClassRead = {
             nombre: this.cuentasArr.nombre
           }
-          resolve(this._CuentRead = _ClassRead.nombre);  
+          resolve(this._CuentRead = _ClassRead.nombre);
           let a:  string[]  = [
             this._CuentClass = w,
             this._CuentRead  = y
@@ -735,8 +735,8 @@ public arr: any[] = []
     public _CuentClassB;
     public _CuentReadB;
     getDataCuentB(w, y, object) {
-     
-      
+
+
       console.log(object);
       // this.data.getDataCuentas(this._CGT).subscribe(x => {
 
@@ -749,7 +749,7 @@ public arr: any[] = []
           let _ClassRead = {
             nombre: this.cuentasArrB.nombre
           }
-          resolve(this._CuentReadB = _ClassRead.nombre);  
+          resolve(this._CuentReadB = _ClassRead.nombre);
           let a:  string[]  = [
             this._CuentClassB = w,
             this._CuentReadB  = y
@@ -767,7 +767,7 @@ public arr: any[] = []
     public cuentasArrC;
     public _CuentClassC;
     public _CuentReadC;
-    getDataCuentC(w, y, object) {   
+    getDataCuentC(w, y, object) {
       const promise = new Promise((resolve, reject) => {
         this.data.getDataCuentas(object)
         .subscribe(
@@ -776,7 +776,7 @@ public arr: any[] = []
           let _ClassRead = {
             nombre: this.cuentasArrC.nombre
           }
-          resolve(this._CuentReadC = _ClassRead.nombre);  
+          resolve(this._CuentReadC = _ClassRead.nombre);
           let a:  string[]  = [
             this._CuentClassC = w,
             this._CuentReadC  = y
@@ -792,35 +792,8 @@ public arr: any[] = []
 
   //#region  FUNCIONES PARA OCULTAR LOS DROWDOWN
   // GENERADOS POR LOS INPUTS INICIO
-    
-    closCus(m) {
-      this.optC = m;
-    }
 
-    closCiud(m) {
-      this.optA = m;
-    }
 
-    closModel(m) {
-      this.optB = m;
-    }
-
-    closCuent(m){
-      this.optD = m;
-    }
-
-    
-    closCuentB(m){
-      this.optE = m;
-    }
-
-    closCuentC(m){
-      this.optF = m;
-    }
-
-    closGrup(m){
-      this.optG = m;
-    }
 
     funcClose(a,b,c,d,e, f, g){
       this.optA = a;
@@ -883,19 +856,19 @@ public arr: any[] = []
       let fileId = filesSelected.files;
       if (fileId.length > 0) {
         var fileToLoad = filesSelected[0];
-  
+
         var fileReader = new FileReader();
-  
+
         fileReader.onloadend = function(fileLoadedEvent) {
           let target: any = fileLoadedEvent.target;
           let content: string = target.result;
           // var srcData = fileLoadedEvent.conm; // <--- data: base64
-  
+
           var newImage = document.createElement('img');
           newImage.src = content;
           newImage.setAttribute('id', 'img');
           newImage.style.width= "100%";
-          newImage.style.height= "auto";          
+          newImage.style.height= "auto";
           document.getElementById("imgTest").innerHTML = newImage.outerHTML;
          // alert("Converted Base64 version is " + document.getElementById("imgTest").innerHTML);
          // console.log("Converted Base64 version is " + document.getElementById("imgTest").innerHTML);
@@ -953,7 +926,7 @@ public arr: any[] = []
     }
 
     console.log(formArr);
-    
+
     this.data.saveDataInv(formArr).subscribe(x => {
       formArr = x;
       Swal.fire({
@@ -965,6 +938,6 @@ public arr: any[] = []
     })
     }
 
- 
+
 
 }
