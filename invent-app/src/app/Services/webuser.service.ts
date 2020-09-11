@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class WebuserService {
-  private apiURL = 'https://inventario-fijo.azurewebsites.net/api';
+  private apiURL = 'https://alp-cloud.com:8445/api';
 
   constructor(private http: HttpClient) { }
     

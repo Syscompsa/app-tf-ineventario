@@ -785,7 +785,8 @@ export class ConfigurationsComponent implements OnInit {
       valor_res2_i : '0',
       xxx_i        : '0'
     }
-
+    
+    console.log(arr);
     this.conf.updateConfig(arr).subscribe(x => {
       arr = x ;
         Swal.fire({

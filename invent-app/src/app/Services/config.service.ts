@@ -7,7 +7,7 @@ import { configPresets } from '../Models/configPresets';
   providedIn: 'root'
 })
 export class ConfigService {
-  private apiURL = 'https://inventario-fijo.azurewebsites.net/api';
+  private apiURL = 'https://alp-cloud.com:8445/api';
 
   constructor(private http: HttpClient) { }
 
