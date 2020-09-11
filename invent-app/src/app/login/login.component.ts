@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     if (this.userService.estaLogueado()) {
       this.env.header = true;
-      this.router.navigate(['\QRData']);
+      this.router.navigate(['\HomeView']);
     }
   }
 

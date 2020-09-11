@@ -47,8 +47,16 @@ export class DataCallService {
     return this.http.post(this.apiURL + 'api/Reporteria/reportSave/', content);
   }
 
-  getReport(){
+  getReport() {
     return this.http.get(this.apiURL + 'api/Reporteria/getReporte/');
+  }
+
+  getDataByPlaca() {
+    return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/GetProduct');
+  }
+
+  getDataByPlacaId(placa) {
+    return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/getPlacaProduct/' + placa);
   }
 
 }

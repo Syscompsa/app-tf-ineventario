@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReporteComponent implements OnInit {
   public datenow: any;
-  constructor() { }
+  constructor(  ) { }
 
   ngOnInit() {
     this.fechActual();

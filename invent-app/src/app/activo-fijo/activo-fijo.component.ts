@@ -15,319 +15,372 @@ import Swal from 'sweetalert2';
 })
 export class ActivoFijoComponent implements OnInit {
   constructor(public conf: ConfigService,
-    public data: DataCallService,
-    public router: Router) { }
+              public data: DataCallService,
+              public router: Router) { }
+
+              public datenow: any;
 
   //#region "@INPUTS VALUES"
   // estas son variables para los values de los inputs
   private _Factual: any;
-  private _FMod:    any;
-  private _FFin:    any;
-  private _FCrea:   any;
-  private _FCust:   any;
-  private _FeInde:  any;
+  private _FMod: any;
+  private _FFin: any;
+  private _FCrea: any;
+  private _FCust: any;
+  private _FeInde: any;
   private _FCompra: any;
-  private _Imagen:  any;
-  private _Placa:   any;
-  private _CLase:   any;
-  private _NProd:   any;
-  private _Custodio:any;
-  private _Depart:  any;
-  private _Serie:   any;
-  private _Valor:   any;
-  private _Activo:  any;
-  private _Referido:any;
-  private _USC:     any;
-  private _USM:     any;
-  private _USF:     any;
-  private _GRP:     any;
-  private _MRC:     any;
-  private _PROV:    any;
-  private _MODL:    any;
-  private _VUTL:    any;
-  private _VRES:    any;
-  private _CGAS:    any;
-  private _CDAN:    any;
-  private _CDAR:    any;
-  private _VNOR:    any;
-  private _VREVAL:  any;
-  private _COLOR:   any;
-  private _CIUD:    any;
+  private _Imagen: any;
+  private _Placa: any;
+  private _CLase: any;
+  private _NProd: any;
+  private _Custodio: any;
+  private _Depart: any;
+  private _Serie: any;
+  private _Valor: any;
+  private _Activo: any;
+  private _Referido: any;
+  private _USC: any;
+  private _USM: any;
+  private _USF: any;
+  private _GRP: any;
+  private _MRC: any;
+  private _PROV: any;
+  private _MODL: any;
+  private _VUTL: any;
+  private _VRES: any;
+  private _CGAS: any;
+  private _CDAN: any;
+  private _CDAR: any;
+  private _VNOR: any;
+  private _VREVAL: any;
+  private _COLOR: any;
+  private _CIUD: any;
   //#endregion
 
   //#region "@Input()"
 
   @Input()
-  set Factual(value: any){
+  set Factual(value: any) {
     this._Factual = value;
   }
-  get Factual():any {
+  get Factual(): any {
     return this._Factual;
   }
 
   @Input()
-  set FMod(value: any){
+  set FMod(value: any) {
     this._FMod = value;
   }
-  get FMod():any {
+  get FMod(): any {
     return this._FMod;
   }
 
   @Input()
-  set FFin(value: any){
+  set FFin(value: any) {
     this._FFin = value;
   }
-  get FFin():any {
+  get FFin(): any {
     return this._FFin;
   }
 
   @Input()
-  set FCrea(value: any){
+  set FCrea(value: any) {
     this._FCrea = value;
   }
-  get FCrea():any {
+  get FCrea(): any {
     return this._FCrea;
   }
 
   @Input()
-  set FCust(value: any){
+  set FCust(value: any) {
     this._FCust = value;
   }
-  get FCust():any {
+  get FCust(): any {
     return this._FCust;
   }
 
   @Input()
-  set FeInde(value: any){
+  set FeInde(value: any) {
     this._FeInde = value;
   }
-  get FeInde():any {
+  get FeInde(): any {
     return this._FeInde;
   }
 
   @Input()
-  set FCompra(value: any){
+  set FCompra(value: any) {
     this._FCompra = value;
   }
-  get FCompra():any {
+  get FCompra(): any {
     return this._FCompra;
   }
 
   @Input()
-  set Imagen(value: any){
+  set Imagen(value: any) {
     this._Imagen = value;
   }
-  get Imagen():any {
+  get Imagen(): any {
     return this._Imagen;
   }
 
   @Input()
-  set Placa(value: any){
+  set Placa(value: any) {
     this._Placa = value;
   }
-  get Placa():any {
+  get Placa(): any {
     return this._Placa;
   }
 
   @Input()
-  set CLase(value: any){
+  set CLase(value: any) {
     this._CLase = value;
   }
-  get CLase():any {
+  get CLase(): any {
     return this._CLase;
   }
 
   @Input()
-  set NProd(value: any){
+  set NProd(value: any) {
     this._NProd = value;
   }
-  get NProd():any {
+  get NProd(): any {
     return this._NProd;
   }
 
   @Input()
-  set Custodio(value: any){
+  set Custodio(value: any) {
     this._Custodio = value;
   }
-  get Custodio():any {
+  get Custodio(): any {
     return this._Custodio;
   }
 
   @Input()
-  set Depart(value: any){
+  set Depart(value: any) {
     this._Depart = value;
   }
-  get Depart():any {
+  get Depart(): any {
     return this._Depart;
   }
 
   @Input()
-  set Serie(value: any){
+  set Serie(value: any) {
     this._Serie = value;
   }
-  get Serie():any {
+  get Serie(): any {
     return this._Serie;
   }
 
   @Input()
-  set Valor(value: any){
+  set Valor(value: any) {
     this._Valor = value;
   }
-  get Valor():any {
+  get Valor(): any {
     return this._Valor;
   }
 
   @Input()
-  set Activo(value: any){
+  set Activo(value: any) {
     this._Activo = value;
   }
-  get Activo():any {
+  get Activo(): any {
     return this._Activo;
   }
 
   @Input()
-  set Referido(value: any){
+  set Referido(value: any) {
     this._Referido = value;
   }
-  get Referido():any {
+  get Referido(): any {
     return this._Referido;
   }
 
   @Input()
-  set USC(value: any){
+  set USC(value: any) {
     this._USC = value;
   }
-  get USC():any {
+  get USC(): any {
     return this._USC;
   }
 
   @Input()
-  set USM(value: any){
+  set USM(value: any) {
     this._USM = value;
   }
-  get USM():any {
+  get USM(): any {
     return this._USM;
   }
 
   @Input()
-  set USF(value: any){
+  set USF(value: any) {
     this._USF = value;
   }
-  get USF():any {
+  get USF(): any {
     return this._USF;
   }
 
   @Input()
-  set GRP(value: any){
+  set GRP(value: any) {
     this._GRP = value;
   }
-  get GRP():any {
+  get GRP(): any {
     return this._GRP;
   }
 
   @Input()
-  set MRC(value: any){
+  set MRC(value: any) {
     this._MRC = value;
   }
-  get MRC():any {
+  get MRC(): any {
     return this._MRC;
   }
 
   @Input()
-  set PROV(value: any){
+  set PROV(value: any) {
     this._PROV = value;
   }
-  get PROV():any {
+  get PROV(): any {
     return this._PROV;
   }
 
   @Input()
-  set MODL(value: any){
+  set MODL(value: any) {
     this._MODL = value;
   }
-  get MODL():any {
+  get MODL(): any {
     return this._MODL;
   }
 
   @Input()
-  set VUTL(value: any){
+  set VUTL(value: any) {
     this._VUTL = value;
   }
-  get VUTL():any {
+  get VUTL(): any {
     return this._VUTL;
   }
 
   @Input()
-  set VRES(value: any){
+  set VRES(value: any) {
     this._VRES = value;
   }
-  get VRES():any {
+  get VRES(): any {
     return this._VRES;
   }
 
   @Input()
-  set CGAS(value: any){
+  set CGAS(value: any) {
     this._CGAS = value;
   }
-  get CGAS():any {
+  get CGAS(): any {
     return this._CGAS;
   }
 
   @Input()
-  set CDAN(value: any){
+  set CDAN(value: any) {
     this._CDAN = value;
   }
-  get CDAN():any {
+  get CDAN(): any {
     return this._CDAN;
   }
 
   @Input()
-  set CDAR(value: any){
+  set CDAR(value: any) {
     this._CDAR = value;
   }
-  get CDAR():any {
+  get CDAR(): any {
     return this._CDAR;
   }
 
   @Input()
-  set VNOR(value: any){
+  set VNOR(value: any) {
     this._VNOR = value;
   }
-  get VNOR():any {
+  get VNOR(): any {
     return this._VNOR;
   }
 
   @Input()
-  set VREVAL(value: any){
+  set VREVAL(value: any) {
     this._VREVAL = value;
   }
-  get VREVAL():any {
+  get VREVAL(): any {
     return this._VREVAL;
   }
 
   @Input()
-  set COLOR(value: any){
+  set COLOR(value: any) {
     this._COLOR = value;
   }
-  get COLOR():any {
+  get COLOR(): any {
     return this._COLOR;
   }
   @Input()
-  set CIUD(value: any){
+  set CIUD(value: any) {
     this._CIUD = value;
   }
-  get CIUD():any {
+  get CIUD(): any {
     return this._CIUD;
   }
   //#endregion
-
+public placaServices;
+public modelData;
   ngOnInit() {
     this.getInterfaz();
     this.cleanForm();
+    this.data.getDataByPlaca().subscribe( x => {
+       this.placaServices = x;
+       console.log( this.placaServices);
+       this.data.getDataByPlacaId(this.placaServices[0].placa_Post)
+       .subscribe(resp => {
+        console.log(resp);
+        this.modelData = resp;
+        this._IMGE = this.modelData[0].imagen;
+        this._FeCREA    = this.modelData[0].fechac;
+        this._FeMOD     = new Date();
+        this._nProducto = this.modelData[0].nombre;
+        this._FeDEP = new Date();
+        this._FeCOMP = new Date();
+        this._FeFINAL = new Date();
+        this._FeACT = new Date();
+        this._FeFN = new Date();
+        this._PLAC = this.modelData[0].placa;
+        this._CLAS = this.modelData[0].clase;
+        this._CustClass = this.modelData[0].custodio;
+        this._DP = this.modelData[0].dpto;
+        this._SER = this.modelData[0].serie;
+        this._VLR = this.modelData[0].vaL_NORMAL;
+        this._REFE = this.modelData[0].refer;
+        this._UC = this.modelData[0].usucrea;
+        this._actvClass = this.modelData[0].activo;
+        // console.log(this._actvClass);
+        this._USMO  = this.modelData[0].usumodi;
+        this._USFI = this.modelData[0].userfin;
+        this._GRPO  = this.modelData[0].grupo;
+        this._MRCA  = this.modelData[0].marca;
+        this._CLR   = this.modelData[0].color;
+        this._PRVR  = this.modelData[0].proveedor;
+        this._MDL   = this.modelData[0].modelo;
+        this._VUL   = this.modelData[0].vidautil;
+        this._VRE   = this.modelData[0].valoR_RESI;
+        this._CGT   = this.modelData[0].cgasto;
+        this._CD    = this.modelData[0].cdan;
+        this._CDN   = this.modelData[0].cdar;
+        this._VNO   = this.modelData[0].vaL_NORMAL;
+        this._VRVA  = this.modelData[0].vaL_REVAL;
+        this._IMGE  = "";
+        this._ciudClass= "";
+        this._ciudRead = "";
+        this._Class = "";
+        this._cRead = "";
+        this._disp = "";
+        this._ActiveClass = "";
+        this._activeRead = "";
+      });
+    });
   }
 
   //#region "Obtener la interfaz del componente Configuración de formulario"
-public arr: any[] = []
+public arr: any[] = [];
   getInterfaz() {
     this.conf.getConfig().subscribe(
       x=>{
@@ -365,149 +418,115 @@ public arr: any[] = []
           this.VNOR       = x[0].val_normal_i,  // 32
           this.VREVAL     = x[0].val_reval_i,   // 33
           this.Imagen     = x[0].imagen         // 34
-        ]
+        ];
 
-        if(this.arr[0] == '0') { this.arr.push([ this.Placa = false ]) }
-        else { this.arr.push([ this.Placa = true ]) }
+        if(this.arr[0] == '0') { this.arr.push([ this.Placa = false ]); } else { this.arr.push([ this.Placa = true ]); }
 
-        if(this.arr[1] == '0') { this.arr.push([ this.CLase = false ]) }
-        else { this.arr.push([ this.CLase = true ]) }
+        if(this.arr[1] == '0') { this.arr.push([ this.CLase = false ]); } else { this.arr.push([ this.CLase = true ]); }
 
-        if(this.arr[2] == '0') { this.arr.push([ this.NProd = false ]) }
-        else { this.arr.push([ this.NProd = true ]) }
+        if(this.arr[2] == '0') { this.arr.push([ this.NProd = false ]); } else { this.arr.push([ this.NProd = true ]); }
 
-        if(this.arr[3] == '0') { this.arr.push([ this.Custodio = false ]) }
-        else { this.arr.push([ this.Custodio = true ]) }
+        if(this.arr[3] == '0') { this.arr.push([ this.Custodio = false ]); } else { this.arr.push([ this.Custodio = true ]); }
 
-        if(this.arr[4] == '0') { this.arr.push([ this.Depart = false ]) }
-        else { this.arr.push([ this.Depart = true ]) }
+        if(this.arr[4] == '0') { this.arr.push([ this.Depart = false ]); } else { this.arr.push([ this.Depart = true ]); }
 
-        if(this.arr[5] == '0') { this.arr.push([ this.Depart = false ]) }
-        else { this.arr.push([ this.Depart = true ]) }
+        if(this.arr[5] == '0') { this.arr.push([ this.Depart = false ]); } else { this.arr.push([ this.Depart = true ]); }
 
-        if(this.arr[6] == '0') { this.arr.push([ this.CIUD = false ]) }
-        else { this.arr.push([ this.CIUD = true ]) }
+        if(this.arr[6] == '0') { this.arr.push([ this.CIUD = false ]); } else { this.arr.push([ this.CIUD = true ]); }
 
-        if(this.arr[7] == '0') { this.arr.push([ this.Serie = false ]) }
-        else { this.arr.push([ this.Serie = true ]) }
+        if(this.arr[7] == '0') { this.arr.push([ this.Serie = false ]); } else { this.arr.push([ this.Serie = true ]); }
 
-        if(this.arr[8] == '0') { this.arr.push([ this.Valor = false ]) }
-        else { this.arr.push([ this.Valor = true ]) }
+        if(this.arr[8] == '0') { this.arr.push([ this.Valor = false ]); } else { this.arr.push([ this.Valor = true ]); }
 
-        if(this.arr[9] == '0') { this.arr.push([ this.Activo = false ]) }
-        else { this.arr.push([ this.Activo = true ]) }
+        if(this.arr[9] == '0') { this.arr.push([ this.Activo = false ]); } else { this.arr.push([ this.Activo = true ]); }
 
-        if(this.arr[10] == '0') { this.arr.push([ this.Referido = false ]) }
-        else { this.arr.push([ this.Referido = true ]) }
+        if(this.arr[10] == '0') { this.arr.push([ this.Referido = false ]); } else { this.arr.push([ this.Referido = true ]); }
 
-        if(this.arr[11] == '0') { this.arr.push([ this.FCrea = false ]) }
-        else { this.arr.push([ this.FCrea = true ]) }
+        if(this.arr[11] == '0') { this.arr.push([ this.FCrea = false ]); } else { this.arr.push([ this.FCrea = true ]); }
 
-        if(this.arr[12] == '0') { this.arr.push([ this.USC = false ]) }
-        else { this.arr.push([ this.USC = true ]) }
+        if(this.arr[12] == '0') { this.arr.push([ this.USC = false ]); } else { this.arr.push([ this.USC = true ]); }
 
-        if(this.arr[13] == '0') { this.arr.push([ this.FMod = false ]) }
-        else { this.arr.push([ this.FMod = true ]) }
+        if(this.arr[13] == '0') { this.arr.push([ this.FMod = false ]); } else { this.arr.push([ this.FMod = true ]); }
 
-        if(this.arr[14] == '0') { this.arr.push([ this.USM = false ]) }
-        else { this.arr.push([ this.USM = true ]) }
+        if(this.arr[14] == '0') { this.arr.push([ this.USM = false ]); } else { this.arr.push([ this.USM = true ]); }
 
-        if(this.arr[15] == '0') { this.arr.push([ this.FFin = false ]) }
-        else { this.arr.push([ this.FFin = true ]) }
+        if(this.arr[15] == '0') { this.arr.push([ this.FFin = false ]); } else { this.arr.push([ this.FFin = true ]); }
 
-        if(this.arr[16] == '0') { this.arr.push([ this.USF = false ]) }
-        else { this.arr.push([ this.USF = true ]) }
+        if(this.arr[16] == '0') { this.arr.push([ this.USF = false ]); } else { this.arr.push([ this.USF = true ]); }
 
-        if(this.arr[17] == '0') { this.arr.push([ this.GRP = false ]) }
-        else { this.arr.push([ this.GRP = true ]) }
+        if(this.arr[17] == '0') { this.arr.push([ this.GRP = false ]); } else { this.arr.push([ this.GRP = true ]); }
 
-        if(this.arr[18] == '0') { this.arr.push([ this.MRC = false ]) }
-        else { this.arr.push([ this.MRC = true ]) }
+        if(this.arr[18] == '0') { this.arr.push([ this.MRC = false ]); } else { this.arr.push([ this.MRC = true ]); }
 
-        if(this.arr[19] == '0') { this.arr.push([ this.COLOR = false ]) }
-        else { this.arr.push([ this.COLOR = true ]) }
+        if(this.arr[19] == '0') { this.arr.push([ this.COLOR = false ]); } else { this.arr.push([ this.COLOR = true ]); }
 
-        if(this.arr[20] == '0') { this.arr.push([ this.FCrea = false ]) }
-        else { this.arr.push([ this.FCrea = true ]) }
+        if(this.arr[20] == '0') { this.arr.push([ this.FCrea = false ]); } else { this.arr.push([ this.FCrea = true ]); }
 
-        if(this.arr[21] == '0') { this.arr.push([ this.FeInde = false ]) }
-        else { this.arr.push([ this.FeInde = true ]) }
+        if(this.arr[21] == '0') { this.arr.push([ this.FeInde = false ]); } else { this.arr.push([ this.FeInde = true ]); }
 
-        if(this.arr[22] == '0') { this.arr.push([ this.PROV = false ]) }
-        else { this.arr.push([ this.PROV = true ]) }
+        if(this.arr[22] == '0') { this.arr.push([ this.PROV = false ]); } else { this.arr.push([ this.PROV = true ]); }
 
-        if(this.arr[23] == '0') { this.arr.push([ this.MODL = false ]) }
-        else { this.arr.push([ this.MODL = true ]) }
+        if(this.arr[23] == '0') { this.arr.push([ this.MODL = false ]); } else { this.arr.push([ this.MODL = true ]); }
 
-        if(this.arr[24] == '0') { this.arr.push([ this.VUTL = false ]) }
-        else { this.arr.push([ this.VUTL = true ]) }
+        if(this.arr[24] == '0') { this.arr.push([ this.VUTL = false ]); } else { this.arr.push([ this.VUTL = true ]); }
 
-        if(this.arr[24] == '0') { this.arr.push([ this.VRES = false ]) }
-        else { this.arr.push([ this.VRES = true ]) }
+        if(this.arr[24] == '0') { this.arr.push([ this.VRES = false ]); } else { this.arr.push([ this.VRES = true ]); }
 
-        if(this.arr[25] == '0') { this.arr.push([ this.Factual = false ]) }
-        else { this.arr.push([ this.Factual = true ]) }
+        if(this.arr[25] == '0') { this.arr.push([ this.Factual = false ]); } else { this.arr.push([ this.Factual = true ]); }
 
-        if(this.arr[26] == '0') { this.arr.push([ this.FCust = false ]) }
-        else { this.arr.push([ this.FCust = true ]) }
+        if(this.arr[26] == '0') { this.arr.push([ this.FCust = false ]); } else { this.arr.push([ this.FCust = true ]); }
 
-        if(this.arr[27] == '0') { this.arr.push([ this.CGAS = false ]) }
-        else { this.arr.push([ this.CGAS = true ]) }
+        if(this.arr[27] == '0') { this.arr.push([ this.CGAS = false ]); } else { this.arr.push([ this.CGAS = true ]); }
 
-        if(this.arr[28] == '0') { this.arr.push([ this.CDAN = false ]) }
-        else { this.arr.push([ this.CDAN = true ]) }
+        if(this.arr[28] == '0') { this.arr.push([ this.CDAN = false ]); } else { this.arr.push([ this.CDAN = true ]); }
 
-        if(this.arr[29] == '0') { this.arr.push([ this.CDAR = false ]) }
-        else { this.arr.push([ this.CDAR = true ]) }
+        if(this.arr[29] == '0') { this.arr.push([ this.CDAR = false ]); } else { this.arr.push([ this.CDAR = true ]); }
 
-        if(this.arr[30] == '0') { this.arr.push([ this.VNOR = false ]) }
-        else { this.arr.push([ this.VNOR = true ]) }
+        if(this.arr[30] == '0') { this.arr.push([ this.VNOR = false ]); } else { this.arr.push([ this.VNOR = true ]); }
 
-        if(this.arr[31] == '0') { this.arr.push([ this.VREVAL = false ]) }
-        else { this.arr.push([ this.VREVAL = true ]) }
+        if(this.arr[31] == '0') { this.arr.push([ this.VREVAL = false ]); } else { this.arr.push([ this.VREVAL = true ]); }
 
-        if(this.arr[32] == '0') { this.arr.push([ this.Imagen = false ]) }
-        else { this.arr.push([ this.Imagen = true ]) }
+        if(this.arr[32] == '0') { this.arr.push([ this.Imagen = false ]); } else { this.arr.push([ this.Imagen = true ]); }
 
       }
-    )
+    );
   }
 //#endregion
 
   //#region "Empaquetamiento de datos INICIO"
   // Variables para ngModel. Empaquetamiento de la infromación obtenida
   //por los inoputs   para enviar en una petición HTTP POST
-  public _FeCREA:    any = toString();
-  public _FeMOD:     any = toString();
+  public _FeCREA: any = toString();
+  public _FeMOD: any = toString();
   public _nProducto: any = toString();
-  public _FeDEP:    any = toString();
-  public _FeCOMP:   any = toString();
-  public _FeFINAL:  any = toString();
-  public _FeACT:    any = toString();
-  public _FeFN:     any = toString();
-  public _PLAC:     any = toString();
-  public _CLAS:     any = toString();
-  public _DP:       any = toString();
-  public _SER:      any = toString();
-  public _VLR:      any = toString();
-  public _REFE:     any = toString();
-  public _UC:       any = toString();
+  public _FeDEP: any = toString();
+  public _FeCOMP: any = toString();
+  public _FeFINAL: any = toString();
+  public _FeACT: any = toString();
+  public _FeFN: any = toString();
+  public _PLAC: any = toString();
+  public _CLAS: any = toString();
+  public _DP: any = toString();
+  public _SER: any = toString();
+  public _VLR: any = toString();
+  public _REFE: any = toString();
+  public _UC: any = toString();
   public _actvClass: any = toString();
-  public _USMO:     any = toString();
-  public _USFI:     any = toString();
-  public _GRPO:     any = toString();
-  public _MRCA:     any = toString();
-  public _CLR:      any = toString();
-  public _PRVR:     any = toString();
-  public _MDL:      any = toString();
-  public _VUL:      any = toString();
-  public _VRE:      any = toString();
-  public _CGT:      any = toString();
-  public _CD:       any = toString();
-  public _CDN:      any = toString();
-  public _VNO:      any = toString();
-  public _VRVA:     any = toString();
-  public _IMGE:     any = toString();
+  public _USMO: any = toString();
+  public _USFI: any = toString();
+  public _GRPO: any = toString();
+  public _MRCA: any = toString();
+  public _CLR: any = toString();
+  public _PRVR: any = toString();
+  public _MDL: any = toString();
+  public _VUL: any = toString();
+  public _VRE: any = toString();
+  public _CGT: any = toString();
+  public _CD: any = toString();
+  public _CDN: any = toString();
+  public _VNO: any = toString();
+  public _VRVA: any = toString();
+  public _IMGE: any = toString();
   public _ciudClass: any = toString();
   public _ciudRead: any = toString();
   public _Class: any = toString();
@@ -564,7 +583,7 @@ public arr: any[] = []
   public optG: boolean;
   //#endregion
 
-  focus(inputs){
+  focus(inputs) {
     // console.log('Estamos en Focus')
     inputs.nativeElement.focus();
   }
@@ -579,19 +598,19 @@ public arr: any[] = []
         this.modelArr = x;
         let _ClassRead = {
           nombre: this.modelArr.nombre
-        }
+        };
         // console.log(this.modelArr);
         resolve(this._cRead = _ClassRead.nombre );
 
-        let a:  string[]  = [
+        let a: string[]  = [
           this._Class  = w,
           this._cRead  = y
-        ]
-     })
+        ];
+     });
     }).then( res => {
          console.log('Este es mi valo obtenido: ' +  res);
-    })
-    this.funcClose(false, true, false,false,false,false,false)
+    });
+    this.funcClose(false, true, false,false,false,false,false);
   }
 
 
@@ -606,45 +625,44 @@ public arr: any[] = []
         this.ciudArr = x;
         let _ClassRead = {
           nombre: this.ciudArr.nombre
-        }
+        };
         // console.log(this.ciudArr);
         resolve(this._ciudRead = _ClassRead.nombre );
 
-        let a:  string[]  = [
+        let a: string[]  = [
           this._ciudClass = w,
           this._ciudRead  = y
-        ]
+        ];
 
-      })
+      });
     }).then( res => {
         console.log('Este es mi valo obtenido: ' +  res);
-    })
-    this.funcClose(true, false, false,false,false,false, false)
+    });
+    this.funcClose(true, false, false,false,false,false, false);
     }
-
+    // tslint:disable-next-line: member-ordering
     public grupArr;
     public _grupRead;
-    public _grupClass;
     getDataGrupo(w, y) {
-
+      console.log(this._GRPO);
       const promise = new Promise((resolve, reject) => {
         this.data.getDataGrup(this._GRPO).subscribe(x => {
           this.grupArr = x;
           let _ClassRead = {
             nombre: this.grupArr.nombre
-          }
+          };
           console.log(this.grupArr);
           resolve(this._grupRead = _ClassRead.nombre );
-          let a:  string[]  = [
+          let a: string[]  = [
             this._GRPO = w,
-            this._grupRead  = y
-          ]
+            this._grupRead = y
+          ];
 
-        })
+        });
       }).then( res => {
           console.log('Este es mi valo obtenido: ' +  res);
-      })
-      this.funcClose(true, false, false,false,false,false, true)
+      });
+      this.funcClose(true, false, false,false,false,false, true);
       }
 
     getDataActive() {
@@ -653,15 +671,15 @@ public arr: any[] = []
         this.data.getDataGrupoActivo(this._ActiveClass ).subscribe(x => {
           let _ClassRead = {
             nombre: x[0].nombre
-          }
+          };
           resolve(this._activeRead = _ClassRead.nombre );
 
-        })
+        });
       }).then( res => {
           // let read = <HTMLInputElement> document.getElementById('_ClaseB');
           // read.value = res;
           console.log('Este es mi valor obtenido: ' +  res);
-      })
+      });
     }
 
     // variables  [(ngModel)] INICIO
@@ -680,114 +698,119 @@ public arr: any[] = []
           this.custArr = x;
           let _ClassRead = {
             nombre: this.custArr.nombre
-          }
+          };
 
           resolve(this._CustRead = _ClassRead.nombre);
 
-          let a:  string[]  = [
+          let a: string[]  = [
             this._CustClass = w,
             this._CustRead  = y
-          ]
+          ];
 
           // this._UC = this.custArr.usucrea;
           console.log(this.custArr.usucrea);
 
-          })
+          });
       }).then( res => {
-          console.log(res)
-      })
+          console.log(res);
+      });
       this.funcClose(false, false, true,false,false,false, false);
     }
 
     public cuentasArr;
     public optD;
-    public _CuentClass;
     public _CuentRead;
-    getDataCuent(w, y, object) {
+    public _CuentClass;
+    getDataCuent(w, y) {
 
      // console.log(object);
       // this.data.getDataCuentas(this._CGT).subscribe(x => {
 
       // })
       const promise = new Promise((resolve, reject) => {
-        this.data.getDataCuentas(object)
+        this.data.getDataCuentas(this._CGT)
         .subscribe(
           x => {
           this.cuentasArr = x;
           let _ClassRead = {
             nombre: this.cuentasArr.nombre
-          }
+          };
           resolve(this._CuentRead = _ClassRead.nombre);
-          let a:  string[]  = [
+          let a: string[]  = [
             this._CuentClass = w,
             this._CuentRead  = y
-          ]
+          ];
           // this._UC = this.custArr.usucrea;
           console.log(a);
-          })
+          });
       }).then( res => {
         //  console.log(res)
-      })
+      });
 
       this.funcClose(false, false, false,true,false,false, false);
     }
     public cuentasArrB;
     public _CuentClassB;
     public _CuentReadB;
-    getDataCuentB(w, y, object) {
+    getDataCuentB(w, y) {
 
-
-      console.log(object);
       // this.data.getDataCuentas(this._CGT).subscribe(x => {
 
       // })
       const promise = new Promise((resolve, reject) => {
-        this.data.getDataCuentas(object)
+        this.data.getDataCuentas(this._CD)
         .subscribe(
           x => {
           this.cuentasArrB = x;
+          console.log(this.cuentasArrB);
           let _ClassRead = {
             nombre: this.cuentasArrB.nombre
-          }
+          };
           resolve(this._CuentReadB = _ClassRead.nombre);
-          let a:  string[]  = [
+          let a: string[]  = [
             this._CuentClassB = w,
             this._CuentReadB  = y
-          ]
+          ];
           // this._UC = this.custArr.usucrea;
           console.log(a);
-          })
+          });
       }).then( res => {
-          console.log(res)
-      })
+          console.log(res);
+      });
 
-      this.funcClose(false, false, false,false,true,false,false)
+      this.funcClose(false, false, false,false,true,false,false);
     }
 
     public cuentasArrC;
     public _CuentClassC;
     public _CuentReadC;
-    getDataCuentC(w, y, object) {
+    getDataCuentC(w, y) {
       const promise = new Promise((resolve, reject) => {
-        this.data.getDataCuentas(object)
+        this.data.getDataCuentas(this._CDN)
         .subscribe(
           x => {
           this.cuentasArrC = x;
+          console.log(this._CDN);
+          console.log(this.cuentasArrC);
           let _ClassRead = {
             nombre: this.cuentasArrC.nombre
-          }
+          };
           resolve(this._CuentReadC = _ClassRead.nombre);
-          let a:  string[]  = [
+          let a: string[]  = [
             this._CuentClassC = w,
             this._CuentReadC  = y
-          ]
+          ];
           // this._UC = this.custArr.usucrea;
           console.log(a);
-          })
+          });
       }).then( res => {
-          console.log(res)
-      })
-      this.funcClose(false, false, false,false,false,true,false)
+          console.log(res);
+      });
+      this.funcClose(false, false, false,false,false,true,false);
+    }
+
+    sendPLaca() {
+
     }
 
   //#region  FUNCIONES PARA OCULTAR LOS DROWDOWN
@@ -795,7 +818,7 @@ public arr: any[] = []
 
 
 
-    funcClose(a,b,c,d,e, f, g){
+    funcClose(a,b,c,d,e, f, g) {
       this.optA = a;
       this.optB = b;
       this.optC = c;
@@ -807,7 +830,7 @@ public arr: any[] = []
 //#endregion
 
 //#region funcion para limpiar el formulario
-    cleanForm(){
+    cleanForm() {
       this._IMGE = "";
       this._FeCREA    = new Date();
       this._FeMOD     = new Date();
@@ -872,18 +895,16 @@ public arr: any[] = []
           document.getElementById("imgTest").innerHTML = newImage.outerHTML;
          // alert("Converted Base64 version is " + document.getElementById("imgTest").innerHTML);
          // console.log("Converted Base64 version is " + document.getElementById("imgTest").innerHTML);
-        }
+        };
         for(var i=0;i<fileId.length;i++) {
           fileReader.readAsDataURL(fileId[i]);
        }
       }
     }
 
-
     //#endregion
-
-    saveItem(){
-    let formArr:QRDATA = {
+    saveItem() {
+    let formArr: QRDATA = {
       placa      : this._PLAC,
       clase      : this._Class,
       nombre     : this._nProducto,
@@ -923,7 +944,7 @@ public arr: any[] = []
       valor_res2 : 0,
       xxx        : 0,
       IMAGENBIT  : this._IMGE
-    }
+    };
 
     console.log(formArr);
 
@@ -933,11 +954,43 @@ public arr: any[] = []
         icon: 'success',
         title: '¡Bien!...',
         text: 'Haz guardado tu activo!'
-      })
-    this.cleanForm();
-    })
+      }
+      );
+      this.cleanForm();
+    });
     }
 
+    saveInv() {
+      this.saveReport(this._FeCREA, this._PLAC, this._nProducto, this._CustClass, this._ciudClass);
+    }
+
+    fechActual() {
+      // tslint:disable-next-line: prefer-const
+     var fecha = new Date(); // Fecha actual
+      // tslint:disable-next-line: prefer-const
+     var mes: any = fecha.getMonth() + 1; // obteniendo mes
+     let dia: any = fecha.getDate(); // obteniendo dia
+     // tslint:disable-next-line: prefer-const
+     var ano: any = fecha.getFullYear(); // obteniendo año
+     if (dia < 10) {
+         dia = '0' + dia;
+       } // agrega cero si el menor de 10
+     if (mes < 10)
+       mes = '0' + mes; // agrega cero si el menor de 10
+     this.datenow = ano + '-' + mes + '-' + dia;
+   }
 
 
+    saveReport(finv, plainv, desinv, custinv, ciudinv) {
+      let arrReport: any = {
+        fechaInv: finv,
+        placaInv: plainv,
+        descripInv: desinv,
+        custodio: custinv,
+        ciudad:  ciudinv
+      };
+      this.data.saveReport(arrReport).subscribe(save => {
+        arrReport = save;
+      });
+    }
 }
