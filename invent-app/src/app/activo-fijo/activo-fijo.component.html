@@ -6,16 +6,10 @@
 
         <div class="groupA">
             <div class="img" *ngIf="Imagen">
-                <!-- <img src="https://alp-cloud.com:4446/000001.jpg" id="img">
-        <label id="imgBut" for="file">
-            <span class="icon-camera"></span>
-        </label>
-        <input type="file" #file class="file"
-         id="file" (change)="getBaseUrl()"
-         [(ngModel)]="_IMGE" name="_IMGE"> -->
                 <input id="inputFileToLoad" type="file" (change)="encodeImageFileAsURL();" [(ngModel)]="_IMGE" name="_IMGE">
                 <div id="imgTest"></div>
             </div>
+            
             <!--FECHA INPUT INICIO-->
             <div class="inpDates">
                 <div class="dataDates" *ngIf="FCrea">
