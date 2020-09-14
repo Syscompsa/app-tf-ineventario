@@ -21,7 +21,7 @@
                 <div class="dataDates" *ngIf="FCrea">
                     <label for="fechacrea">Fecha Creación:</label>
                     <div class="d">
-                        <input type="date" #fecrea id="fechacrea" [(ngModel)]="_FeCREA" name="_FeCREA" class="input-control" value="{{datenow}}">
+                        <input type="date" #fecrea id="fechacrea" [(ngModel)]="_FeCREA" name="_FeCREA" class="input-control">
                         <div class="formato">
                             <span class="icon-calendar"></span> (dd/mm/yyyy)
                         </div>
@@ -30,7 +30,7 @@
                 <div class="dataDates" *ngIf="FeInde">
                     <label for="fecha Inicio de Depreciación">Fecha I. Depreciación:</label>
                     <div class="d">
-                        <input type="date" #fedep [(ngModel)]="_FeDEP" name="_FeDEP" id="fechaCompra" class="input-control" value="{{datenow}}">
+                        <input type="date" #fedep [(ngModel)]="_FeDEP" name="_FeDEP" id="fechaCompra" class="input-control">
                         <div class="formato">
                             <span class="icon-calendar"></span> (dd/mm/yyyy)
                         </div>
@@ -40,7 +40,7 @@
                 <div class="dataDates" *ngIf="true">
                     <label for="fechaCompra">Fecha Compra:</label>
                     <div class="d">
-                        <input type="date" #fecomp id="fechaCompra" [(ngModel)]="_FeCOMP" name="_FeCOMP" class="input-control" value="{{datenow}}">
+                        <input type="date" #fecomp id="fechaCompra" [(ngModel)]="_FeCOMP" name="_FeCOMP" class="input-control">
                         <div class="formato">
                             <span class="icon-calendar"></span> (dd/mm/yyyy)
                         </div>
@@ -50,7 +50,7 @@
                 <div class="dataDates" *ngIf="FMod">
                     <label for="fechamod"> Fecha Modificación:</label>
                     <div class="d">
-                        <input type="date" #femod [(ngModel)]="_FeMOD" name="_FeMOD" class="input-control" value="{{datenow}}">
+                        <input type="date" #femod [(ngModel)]="_FeMOD" name="_FeMOD" class="input-control">
                         <div class="formato">
                             <span class="icon-calendar"></span> (dd/mm/yyyy)
                         </div>
