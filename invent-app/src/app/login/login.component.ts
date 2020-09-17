@@ -25,9 +25,12 @@ export class LoginComponent implements OnInit {
   constructor(  public userService: WebuserService,
                 public router: Router) { }
   ngOnInit() {
-    if (this.userService.estaLogueado()) {
+    if (localStorage.getItem('User') != '' || localStorage.getItem('User') != null || localStorage.getItem('User') != undefined) {
       this.env.header = true;
       this.router.navigate(['\HomeView']);
+    }
+    else {
+      this.router.navigate(['\Login']);
     }
   } 
 
@@ -48,8 +51,7 @@ export class LoginComponent implements OnInit {
       .subscribe(x => {
         this.env.header = true;
         this.env.nameUser = x.webUsu;
-        localStorage.setItem('token',x.webUsu);
-        localStorage.setItem('tokenExpiration', 'Falta para token');
+        localStorage.setItem('User',x.webUsu);
         Swal.fire({
                     icon: 'success',
                     title: 'Bien...',
@@ -57,7 +59,7 @@ export class LoginComponent implements OnInit {
                     footer: ''
       });
       // tslint:disable-next-line: no-unused-expression
-      this.router.navigate(['\QRData']);
+      this.router.navigate(['\HomeView']);
 
       }, err => {
         Swal.fire({

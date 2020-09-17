@@ -804,4 +804,6 @@ export class ConfigurationsComponent implements OnInit {
     console.log('defecto activo')
   }
 
+
+  
 }

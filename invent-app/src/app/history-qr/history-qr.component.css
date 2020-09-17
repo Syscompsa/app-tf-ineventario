@@ -14,12 +14,35 @@
     width: 100%;
 }
 
-.box{
+.box {
     width: 175px;
-    height: 181px;
+    height: auto;
     padding: 10px;
-    border: solid 0.2px rgb(211, 211, 211) ;
-    
+    border: solid 0.2px rgb(211, 211, 211);
+}
+
+.elim {
+    width: 25px;
+    height: 25px;
+    border: solid 1px gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    cursor: pointer;
+    background-color: rgb(32, 32, 32);
+    opacity: 0.8;
+    color: white;
+    transition: ease all 1.5s;
+    position: relative;
+    margin-left: 135px;
+    margin-top: -10px;
+}
+
+.elim:hover{
+    transition: ease all 0.5s;
+    background-color: red;
+    opacity: 1;
 }
 
 .cons {

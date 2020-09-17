@@ -16,25 +16,24 @@ export class WebuserService {
   }
 
   logout() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("tokenExpiration");
+    localStorage.removeItem("User");
   }
 
-  estaLogueado(): boolean {
+  // estaLogueado(): boolean {
 
-    var exp = this.obtenerExistenciaToken();
+  //   var exp = this.obtenerExistenciaToken();
 
-    if (!exp) {
-      // el token no existe
-      return false;
-    }
-     else {
-      return true;
-    }
-  }
+  //   if (!exp) {
+  //     // el token no existe
+  //     return false;
+  //   }
+  //    else {
+  //     return true;
+  //   }
+  // }
 
   obtenerExistenciaToken(): string {
-    return localStorage.getItem("token");
+    return localStorage.getItem("User");
   }
 
 

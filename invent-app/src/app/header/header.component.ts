@@ -11,17 +11,23 @@ import { environment } from 'src/environments/environment';
 })
 export class HeaderComponent implements OnInit {
   public env = environment;
+  public User;
 
   constructor(public userService: WebuserService,
     public router: Router) { }
 
   ngOnInit() {
+    this.getuser();
   }
 
   logOut() {
     this.userService.logout();
     this.router.navigate(['\login']);
     this.env.header = false;
+  }
+
+  getuser() {
+   this.User = this.userService.obtenerExistenciaToken();
   }
 
   fechActual(){

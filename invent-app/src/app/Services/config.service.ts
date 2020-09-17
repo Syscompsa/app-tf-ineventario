@@ -21,6 +21,6 @@ export class ConfigService {
     return this.http.put<configPresets>(this.apiURL + '/AR_2-Interface/UpdateInterfaceConfig/' + Content.id, Content);
   }
 
-    
+  
   
 }

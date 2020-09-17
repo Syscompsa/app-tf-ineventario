@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { claseGen } from '../Models/AuthMod';
 import { QRDATA } from '../Models/QRDATA';
+import { Content } from '@angular/compiler/src/render3/r3_ast';
+import { Dp12a120 } from '../Models/Dp12a120';
 
 @Injectable({
   providedIn: 'root'
@@ -13,9 +15,21 @@ export class DataCallService {
 
   constructor(private http: HttpClient) { }
 
+  updateProduct(content: Dp12a120): Observable<Dp12a120> {
+    return this.http.put<Dp12a120>(this.apiURL + 'api/AR_INV-QRcodProdGet/productUpdate/' + content.id, content)
+  }
+
+  delProduct(placa) {
+    return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/DeletProduct/' + placa);
+  }
+
   //Obtener data
   getDataModel(codigo) {
     return this.http.get(this.apiURL + 'api/ALPTABLA/Modelo/' + codigo);
+  }
+  
+  getDataMarca(codigo) {
+    return this.http.get(this.apiURL + 'api/ALPTABLA/MasterIA1/' + codigo);
   }
 
   getDataGrupoActivo(codigo) {
@@ -25,21 +39,25 @@ export class DataCallService {
   getDataCiud(codigo) {
     return this.http.get(this.apiURL + 'api/ALPTABLA/ACTCIU/' + codigo);
   }
+ 
+  getDataDep(codigo) {
+    return this.http.get(this.apiURL + 'api/ALPTABLA/DPTOS/' + codigo);
+  }
 
-  getDataCustodio(codigo){
+  getDataCustodio(codigo) {
     return this.http.get(this.apiURL + 'api/ALPTABLA/custodio/' + codigo);
   }
 
-  getDataCuentas(codigo){
+  getDataCuentas(codigo) {
     return this.http.get(this.apiURL + 'api/ALPTABLA/cuentas/'+ codigo);
   }
 
-  getDataGrup(codigo){
+  getDataGrup(codigo) {
     return this.http.get(this.apiURL + 'api/Grup/GetGrupo/'+ codigo);
   }
 
-  saveDataInv(content: QRDATA): Observable<QRDATA>{
-    return this.http.post<QRDATA>(this.apiURLPOST + '/ProductoSave/', content);
+  saveDataInv(content: Dp12a120): Observable<Dp12a120>{
+    return this.http.post<Dp12a120>(this.apiURL + 'api/AR_INV-QRcodProdGet/ProductoSave/', content);
   }
 
   //Servicios para Reporteria...

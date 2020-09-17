@@ -13,13 +13,18 @@
     </div>
     <div class="dataQR" id="dataQR">
         <div class="box"  *ngFor="let a of dataQRExtract">
+           
             <div class="QR" [id]="a.placa">
                 CODE: {{createQRO(a.placa)}}<br>
             </div>
             <hr>
             <div class="data">
                 Nombre: {{a.nombre}}<br>
-                Placa: {{a.placa}}
+                Placa: {{a.placa}}<br>
+                <p class="elim" (click)="delProd(a.placa)"
+                   title="Eliminar producto | activo">
+                    <span class="icon-trash"></span>
+                </p>
             </div>
         </div>
     </div>
