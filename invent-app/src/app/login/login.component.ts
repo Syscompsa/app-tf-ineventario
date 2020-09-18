@@ -25,13 +25,7 @@ export class LoginComponent implements OnInit {
   constructor(  public userService: WebuserService,
                 public router: Router) { }
   ngOnInit() {
-    if (localStorage.getItem('User') != '' || localStorage.getItem('User') != null || localStorage.getItem('User') != undefined) {
-      this.env.header = true;
-      this.router.navigate(['\HomeView']);
-    }
-    else {
-      this.router.navigate(['\Login']);
-    }
+    this.verificacion ();
   } 
 
   passwordHidShow() {
@@ -52,14 +46,13 @@ export class LoginComponent implements OnInit {
         this.env.header = true;
         this.env.nameUser = x.webUsu;
         localStorage.setItem('User',x.webUsu);
+        this.verificacion ();
         Swal.fire({
                     icon: 'success',
                     title: 'Bien...',
                     text: 'Has ingresado con exito!',
                     footer: ''
-      });
-      // tslint:disable-next-line: no-unused-expression
-      this.router.navigate(['\HomeView']);
+      });   
 
       }, err => {
         Swal.fire({
@@ -69,6 +62,17 @@ export class LoginComponent implements OnInit {
                   footer: ''
                 });
       });
+  }
+
+
+  verificacion (){
+    if (localStorage.getItem('User') != null) {
+      this.env.header = true;
+      this.router.navigate(['\HomeView']);
+    }
+    else {
+      this.router.navigate(['\Login']);
+    }
   }
 
 

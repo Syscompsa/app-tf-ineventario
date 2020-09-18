@@ -34,7 +34,7 @@ import { ActivoFijoComponent } from './activo-fijo/activo-fijo.component';
       { path: 'Conf', component: ConfigurationsComponent },
       { path: 'HomeView', component: HomeViewComponent },
       { path: 'Reporte', component: ReporteComponent },
-      { path: 'QRData', component: HistoryQRComponent },
+      { path: 'QRData', component: HistoryQRComponent },      
       { path: 'Login', component: LoginComponent, pathMatch: 'full' },
       { path: '**', pathMatch: 'full', redirectTo: 'Login'  }
     ])

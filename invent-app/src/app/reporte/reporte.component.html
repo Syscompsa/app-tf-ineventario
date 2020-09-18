@@ -15,8 +15,7 @@
 
     </div>
     <div class="User" style="text-align: right;">
-        <strong>Usuario: </strong> Test Admin Demo <br>
-        <strong>No. Inventario: </strong> 000004 <br>
+        <strong>Usuario: </strong> {{user}}<br>
     </div>
 </div>
 <div class="container">
@@ -27,28 +26,17 @@
                 <th scope="col">Descripción</th>
                 <th scope="col">Custodio</th>
                 <th scope="col">Departamento</th>
+                <th scope="col" title="Eliminar informe"><span class="icon-trash"></span></th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>ISN001</td>
-                <td>LG Monitor</td>
-                <td>000000002 | Francisco</td>
-                <td>Sistemas</td>
-            </tr>
-            <tr>
-                <td>ISN002</td>
-                <td>CPU core i7</td>
-                <td>000000003 | Alex</td>
-                <td>Sistemas</td>
-            </tr>
-
-            <tr>
-                <td>ISN003</td>
-                <td>Teclado</td>
-                <td>000000003 | Alex</td>
-                <td>Sistemas</td>
-            </tr>
+            <tr *ngFor = "let a of arrInv">
+                <td>{{a.placaInv}}</td>
+                <td>{{a.descripInv}}</td>
+                <td>{{a.custodio}}</td>
+                <td> {{a.ciudad}} / {{a.campoA}} / {{a.id}}</td>
+                <td (click)="delRepo(a.id)" title="Eliminar informe" class="erease"><span class="icon-trash"></span></td>
+            </tr>            
         </tbody>
     </table>
 

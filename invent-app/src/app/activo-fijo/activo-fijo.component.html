@@ -13,7 +13,9 @@
         </div>
         <div class="groupA">
             <div class="img" *ngIf="Imagen">
-                <input id="inputFileToLoad" type="file" (change)="encodeImageFileAsURL();" [(ngModel)]="_IMGE" name="_IMGE">
+                <input id="fileUp"
+                type="file" (change)="encodeImageFileAsURL();"
+                [(ngModel)]="_IMGE" name="_IMGE">
                 <div id="imgTest"></div>
             </div>
             
@@ -234,18 +236,17 @@
                         </label>
                         <div class="d">
                             <input type="text" id="_dep" #dep 
-                            (keyup)="getDataDep(_DP, _depRead)"
+                            (keyup)="getDataDep(_DP, DepRead)"
                             [(ngModel)]="_DP" name="_DP" class="input-control">
                         </div>
                     </div>
                     <div class="d" id="clase" id="clas" style="width: 100%;">
                         <label for="_Clase" title="">
-                    <span class="icon-key-1"></span></label>
+                            <span class="icon-key-1"></span></label>
                         <input type="text" class="_ClaseB" 
                         style="background-color: steelblue; color: white;"
-                        readonly disabled class="input-control" [value]="_DepRead">
-                    </div>
-                     
+                        readonly disabled class="input-control" [value]="DepRead">
+                    </div>                     
                 </div>
                 <!-- SELECT MEDIANTE DROPDOWN -->
                 <div class="input-group mb-3" style="width: 100%;" *ngIf="optG">
@@ -255,9 +256,10 @@
                         aria-expanded="true">
                         <span class="icon-search"></span> Selecciona una opción</button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" style="font-size: 9pt;" id="{{depa.codigo}}"
+                            <a class="dropdown-item" style="font-size: 9pt;"
+                            id="{{depa.codigo}}"
                             (click)="getDataDep(depa.codigo, depa.nombre)"
-                             *ngFor="let depa of DepArr"
+                            *ngFor="let depa of DepArr"
                             href="javascript: void(0)">
                                 | Nombre: {{depa.nombre}}
                                 | Código: {{depa.codigo}}
@@ -272,7 +274,9 @@
                 <div class="dataDates">
                     <label for="_ser" title="">Serie:</label>
                     <div class="d">
-                        <input type="text" #serie [(ngModel)]="_SER" name="_SER" id="_ser" class="input-control">
+                        <input type="text" #serie
+                        [(ngModel)]="_SER" name="_SER"
+                        id="_ser" class="input-control">
                     </div>
                 </div>
             </div>
@@ -281,7 +285,9 @@
                 <div class="dataDates">
                     <label for="_val" title="">Valor:</label>
                     <div class="d">
-                        <input type="text" [(ngModel)]="_VLR" name="_VLR" #vlr id="_val" class="input-control">
+                        <input type="text"
+                        [(ngModel)]="_VLR" name="_VLR" #vlr id="_val"
+                        class="input-control">
                     </div>
                 </div>
             </div>
@@ -292,8 +298,11 @@
         ACTUALMENTE ESTA VACÍO -->
                 <div class="dataDates">
                     <div class="d" id="clas" style="width: 100px;">
-                        <label for="_actv" title="">Activo:</label>
-                        <input type="text" id="_actv" #actv [(ngModel)]="_actvClass" name="_actvClass" class="input-control">
+                        <label for="_actv" title="">Activo: </label>
+                        <input type="range" min="0" max="1" id="_actv" #actv
+                        [(ngModel)]="_actvClass" name="_actvClass"
+                        class="input-control">
+                        <label><strong>No</strong> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong>Si</strong></label>
                     </div>
                 </div>
             </div>
@@ -302,7 +311,8 @@
                 <div class="dataDates">
                     <label for="_ref" title="">Referencia:</label>
                     <div class="d">
-                        <input type="text" #refe [(ngModel)]="_REFE" name="_REFE" id="_ref" class="input-control">
+                        <input type="text" #refe [(ngModel)]="_REFE"
+                        name="_REFE" id="_ref" class="input-control">
                     </div>
                 </div>
             </div>

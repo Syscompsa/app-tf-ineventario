@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, Inject } from '@angular/core';
 import { ConfigService } from '../Services/config.service';
 import { DataCallService } from '../Services/data-call.service';
 import tippy from 'tippy.js';
@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { QRDATA } from '../Models/QRDATA';
 import Swal from 'sweetalert2';
 import { Dp12a120 } from '../Models/Dp12a120';
+import { WebuserService } from '../Services/webuser.service';
 
 
 @Component({
@@ -17,8 +18,10 @@ import { Dp12a120 } from '../Models/Dp12a120';
 export class ActivoFijoComponent implements OnInit {
   constructor(public conf: ConfigService,
               public data: DataCallService,
-              public router: Router) { }
-
+              public router: Router,
+              public us: WebuserService
+              ) { }
+              // @Inject('BASE_URL') private baseUrl: string
               public datenow: any;
 
   //#region "@INPUTS VALUES"
@@ -326,6 +329,9 @@ export class ActivoFijoComponent implements OnInit {
 public placaServices;
 public modelData;
 public pId;
+public DepArr;
+public DepRead;
+public reportArr;
   ngOnInit() {
     this.getInterfaz();
     this.fechActual();
@@ -339,10 +345,9 @@ public pId;
         // this._actCont = this.modelData[0].af_control;
         this.modelData = resp;
         this.pId = this.modelData[0].id;
-        console.log(this.pId);
-        this._IMGE      = this.modelData[0].imagen;
+        this._IMGE = this.modelData[0].imagenbit.replace(/\\/g, '/');
+        // console.log(this._IMGE);
         this._FeCREA    = this.modelData[0].feccrea.toString().slice(0, 10);
-        console.log(this._FeCREA)
         this._FeMOD     = this.modelData[0].fecmodi.toString().slice(0, 10);
         this._nProducto = this.modelData[0].nombre;
         this._FeDEP     = this.modelData[0].fechac.toString().slice(0, 10);
@@ -374,13 +379,10 @@ public pId;
         this._VNO       = this.modelData[0].vaL_NORMAL;
         this._VRVA      = this.modelData[0].vaL_REVAL;
         this._IMGE      = "";
-        this._ciudClass = "";
-        this._ciudRead  = "";
-        this._Class     = "";
-        this._cRead     = "";
-        this._disp      = "";
+        this._ciudClass = this.modelData[0].ciudad;
+        this._Class     = this.modelData[0].clase;
         this._ActiveClass = "";
-        this._activeRead  = "";
+
       }, err => {
         this.cleanForm();
       }
@@ -544,6 +546,8 @@ public arr: any[] = [];
   public _disp: any;
   public _ActiveClass: any;
   public _activeRead: any;
+
+  
   // Variables para ngModel. Empaquetamiento de la infromación obtenida
   //por los inoputs   para enviar en una petición HTTP POST FIN
   //#endregion
@@ -693,7 +697,7 @@ public arr: any[] = [];
           console.log('Este es mi valo obtenido: ' +  res);
       });
       this.funcClose(false, false, false,false,false,false,false, true);
-      }
+    }
 
     getDataActive() {
      // console.log(this._ciudClass);
@@ -746,8 +750,7 @@ public arr: any[] = [];
       });
       this.funcClose(false, false, true,false,false,false, false, false);
     }
-    public DepArr;
-    public _DepRead;
+    
     getDataDep(w, y) {
 
       // this.closDrop(m);
@@ -760,11 +763,11 @@ public arr: any[] = [];
             nombre: this.DepArr.nombre
           };
 
-          resolve(this._DepRead = _ClassRead.nombre);
+          resolve(this.DepRead = _ClassRead.nombre);
 
           let a: string[]  = [
             this._DP = w,
-            this._DepRead  = y
+            this.DepRead  = y
           ];
 
           // this._UC = this.custArr.usucrea;
@@ -937,30 +940,29 @@ public arr: any[] = [];
     //#endregion
 
     encodeImageFileAsURL() {
-      var filesSelected = <HTMLInputElement> document.getElementById("inputFileToLoad");
+      var filesSelected = <HTMLInputElement> document.getElementById("fileUp");
       let fileId = filesSelected.files;
-      if (fileId.length > 0) {
-        var fileToLoad = filesSelected[0];
 
+      if (fileId.length > 0) {
+        var fileToLoad = filesSelected[0];        
         var fileReader = new FileReader();
 
         fileReader.onloadend = function(fileLoadedEvent) {
-          let target: any = fileLoadedEvent.target;
-          let content: string = target.result;
-          // var srcData = fileLoadedEvent.conm; // <--- data: base64
-
+          let target: any = fileLoadedEvent.target;          
+          let content = target.result;
           var newImage = document.createElement('img');
           newImage.src = content;
           newImage.setAttribute('id', 'img');
           newImage.style.width= "100%";
           newImage.style.height= "auto";
           document.getElementById("imgTest").innerHTML = newImage.outerHTML;
-         // alert("Converted Base64 version is " + document.getElementById("imgTest").innerHTML);
-         // console.log("Converted Base64 version is " + document.getElementById("imgTest").innerHTML);
+          console.log(content);
         };
+        
         for(var i=0;i<fileId.length;i++) {
-          fileReader.readAsDataURL(fileId[i]);
-       }
+          let a = fileReader.readAsDataURL(fileId[i]);
+        }
+
       }
     }
 
@@ -1037,12 +1039,20 @@ public arr: any[] = [];
           )
           this.data.saveDataInv(formArr).subscribe(x => { 
             formArr = x;
-            console.log(formArr);
-            this.cleanForm();
-          });
+            // console.log(formArr);
+           
+            // this.cleanForm();
+          }), err => {
+            Swal.fire({
+              icon: 'error',
+              text:'Ha ocurrido un error',
+              html: `<p>${err}</p>`
+             }
+          )
+          };
         }
       })     
-      console.log(formArr);   
+      
     }
     }
 
@@ -1117,7 +1127,19 @@ public arr: any[] = [];
             this.data.updateProduct(arr).subscribe(x => 
               {
                 arr = x;
-                console.log(arr);  
+                console.log(arr);
+                this.reportArr = {
+                  fechaInv: new Date(),
+                  placaInv: this._PLAC,
+                  descripInv: this._nProducto,
+                  custodio: this._CustRead,
+                  ciudad: this._ciudRead,
+                  campoA: this.DepRead,
+                  campoB: "--"
+                }
+                this.data.saveReport(this.reportArr).subscribe(x => {
+                  this.reportArr = x;
+                })
               }
               ), err => console.log('Algo ha pasado' + err);  
           }

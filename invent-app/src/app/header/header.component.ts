@@ -26,8 +26,9 @@ export class HeaderComponent implements OnInit {
     this.env.header = false;
   }
 
-  getuser() {
-   this.User = this.userService.obtenerExistenciaToken();
+  getuser(){
+   this.User = localStorage.getItem('User');
+   console.log(this.User)
   }
 
   fechActual(){
