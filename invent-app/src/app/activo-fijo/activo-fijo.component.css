@@ -1,5 +1,3 @@
-
-
 #imgBut {
     font-size: 15pt;
     transition: ease all 1s;
@@ -12,7 +10,7 @@
     color: steelblue;
 }
 
-#_cust{
+#_cust {
     width: 300px;
 }
 
@@ -26,9 +24,9 @@ input {
 
 .options {
     background-color: white;
-    color: rgb(44, 44, 44); 
+    color: rgb(44, 44, 44);
     padding: 15px;
-    box-shadow: 2px 3px 10px rgba(0,0,0,0.5);
+    box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.5);
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
     height: 200px;
@@ -40,13 +38,13 @@ input {
     transition: ease all 0.5s;
 }
 
-.opti:hover{
+.opti:hover {
     background-color: steelblue;
     cursor: pointer;
     /* background-color: steelblue; */
     transition: ease all 0.5s;
     color: white;
-    box-shadow: 3px 3px 10px rgba(0,0,0,0.6);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
 }
 
 
@@ -58,7 +56,7 @@ input {
 }
 
 #clase {
-    width:400px;
+    width: 400px;
 }
 
 #clas {
@@ -71,7 +69,6 @@ label {
     margin-top: 10px;
 }
 
-
 #file {
     width: 110px;
     height: 25px;
@@ -83,7 +80,7 @@ label {
     flex-direction: column;
     padding: 10px;
     border-right: solid 1px gray;
-    width: 48%;
+    width: 40%;
 }
 
 .actFijo {
@@ -99,6 +96,7 @@ form {
 .d {
     display: flex;
 }
+
 .formato {
     background-color: #b1b1b1;
     border: solid 1px rgb(143, 143, 143);
@@ -117,6 +115,11 @@ form {
     flex-shrink: initial;
 }
 
+header {
+    background-color: steelblue;
+    color: white;
+}
+
 .groupB {
     margin-top: 125px;
     display: flex;
@@ -132,35 +135,34 @@ form {
     justify-content: space-between;
     flex-shrink: initial;
     padding: 10px;
-    width: 48%;
+    width: 58%;
 }
 
-@media screen and (max-width: 1199px){
-    .groupB{
+@media screen and (max-width: 1199px) {
+    .groupB {
         margin-top: 25px;
     }
 }
 
-
-@media screen and (max-width: 787px){
-    .inpDates{
+@media screen and (max-width: 787px) {
+    .inpDates {
         width: 100%;
         border: none;
     }
-    .img{
+    .img {
         width: 100%;
         padding: 10px;
     }
-    .d{
+    .d {
         width: 100% !important;
     }
-    .dataDates{
+    .dataDates {
         width: 100%;
     }
-    .inpData{
+    .inpData {
         width: 100% !important;
     }
-    .Clase{
+    .Clase {
         flex-direction: column;
         width: 100%;
     }

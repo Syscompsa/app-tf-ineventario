@@ -12,11 +12,14 @@ import Swal from 'sweetalert2';
   styleUrls: ['./history-qr.component.css']
 })
 export class HistoryQRComponent implements OnInit {
+  constructor(public QRData: GQRService, public data: DataCallService) { }
 
   public dataQRExtract: QRDATA[] = [];
   public https = 'https://alp-cloud.com:8445/api/AR_INV-QRcodProdGet/getPlaca/';
-
-  constructor(public QRData: GQRService, public data: DataCallService) { }
+  public conterA = true;
+  public conterB = false;
+  public departemento;
+  public cont;
 
   ngOnInit() {
     this.QRDataFunc();
@@ -25,20 +28,41 @@ export class HistoryQRComponent implements OnInit {
     // })
   }
 
+  getDep(dep) {
+    this.data.getDataDep(dep).subscribe( x => {
+      this.departemento = x;
+      console.log(this.departemento[0].dpto);
+      // console.log(this.departemento);
+      return this.departemento[0].dpto;
+    });
+  }
+
+
+  viewOptionsA() {
+    this.conterA = false;
+    this.conterB = true;
+  }
+
+  viewOptionsB() {
+    this.conterB = false;
+    this.conterA = true;
+  }
+
   prints() {
     // const a = document.getElementById('const');
     window.print();
   }
-  public cont;
 
   QRDataFunc() {
     this.QRData.getQRGen().subscribe(x => {
       this.dataQRExtract = x;
-      console.log("this.dataQRExtract");
+      // tslint:disable-next-line: align
+      // tslint:disable-next-line: curly
+      console.log('this.dataQRExtract');
       console.log(this.dataQRExtract);
       const dataQRDiv = document.getElementById('dataQR');
       // const placa = [];
-     this.cont = this.dataQRExtract.length;
+      this.cont = this.dataQRExtract.length;
      // console.log(this.cont)
     });
   }
@@ -50,8 +74,8 @@ export class HistoryQRComponent implements OnInit {
   //   obj.innerHTML = qr.createImgTag();
   // }
 
-  createQRO(placa){
-    var qr = qrcode(4, 'L');
+  createQRO(placa) {
+    let qr = qrcode(4, 'L');
     const url = `https://alp-cloud.com:8445/api/AR_INV-QRcodProdGet/getPlaca/${placa}`;
     qr.addData(url);
     qr.make();
@@ -71,11 +95,11 @@ export class HistoryQRComponent implements OnInit {
         cancelButton: 'btn btn-danger'
       },
       buttonsStyling: false
-    })
-    
+    });
+
     swalWithBootstrapButtons.fire({
       title: 'Estás seguro?',
-      text: "Esta acción no se puede revertir!",
+      text: 'Esta acción no se puede revertir!',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Sí, eliminarlo!',
@@ -90,7 +114,7 @@ export class HistoryQRComponent implements OnInit {
           'Eliminado!',
           `Tu producto con placa ${a}, ha sido eliminado exitosamente`,
           'success'
-        )
+        );
       } else if (
         /* Read more about handling dismissals below */
         result.dismiss === Swal.DismissReason.cancel
@@ -99,9 +123,9 @@ export class HistoryQRComponent implements OnInit {
           'Cancelar',
           'Tu producto ha sido salvado :)',
           'error'
-        )
+        );
       }
-    })
+    });
   }
 
 }

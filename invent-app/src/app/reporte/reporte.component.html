@@ -12,7 +12,6 @@
                 <span class="icon-calendar"></span> (dd/mm/yyyy)
             </div>
         </div>
-
     </div>
     <div class="User" style="text-align: right;">
         <strong>Usuario: </strong> {{user}}<br>
@@ -30,13 +29,13 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor = "let a of arrInv">
+            <tr *ngFor="let a of arrInv">
                 <td>{{a.placaInv}}</td>
                 <td>{{a.descripInv}}</td>
                 <td>{{a.custodio}}</td>
-                <td> {{a.ciudad}} / {{a.campoA}} / {{a.id}}</td>
+                <td> {{a.ciudad}} / {{a.campoA}}</td>
                 <td (click)="delRepo(a.id)" title="Eliminar informe" class="erease"><span class="icon-trash"></span></td>
-            </tr>            
+            </tr>
         </tbody>
     </table>
 

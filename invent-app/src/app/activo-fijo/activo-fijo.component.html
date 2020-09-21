@@ -1,31 +1,24 @@
 <div id="reactForms">
     <form id="fActivoFijo" class="actFijo">
-        <div class="head mb-2"><strong><span class="icon-product">
-            </span>Activo Fijo</strong>
-        </div>
-        <div class="active" >
+        <div class="active">
             <label class="title"><strong>Activo de control:</strong> </label>
-        <input type="checkbox" style="width: 25px;"
-        (change)="actcon()" [(ngModel)]="_actCont" name="_actCont">
+            <input type="checkbox" style="width: 25px;" (change)="actcon()" [(ngModel)]="_actCont" name="_actCont">
 
-            <!-- <input type="checkbox" style="width: 25px;" (click)="actcon()" 
+            <!-- <input type="checkbox" style="width: 25px;" (click)="actcon()"
             [ngModel]="_actCont" name="_actCont"> -->
         </div>
         <div class="groupA">
             <div class="img" *ngIf="Imagen">
-                <input id="fileUp"
-                type="file" (change)="encodeImageFileAsURL();"
-                [(ngModel)]="_IMGE" name="_IMGE">
+                <input id="fileUp" type="file" (change)="encodeImageFileAsURL();" [(ngModel)]="_IMGE" name="_IMGE">
                 <div id="imgTest"></div>
             </div>
-            
+
             <!--FECHA INPUT INICIO-->
             <div class="inpDates">
                 <div class="dataDates" *ngIf="FCrea">
                     <label for="fechacrea">Fecha Creación:</label>
                     <div class="d">
-                        <input type="date" #fecrea id="fechacrea"
-                         [(ngModel)]="_FeCREA" name="_FeCREA" class="input-control">
+                        <input type="date" #fecrea id="fechacrea" [(ngModel)]="_FeCREA" name="_FeCREA" class="input-control">
                         <div class="formato">
                             <span class="icon-calendar"></span> (dd/mm/yyyy)
                         </div>
@@ -64,8 +57,7 @@
                 <div class="dataDates" *ngIf="FFin">
                     <label for="fechafin">Fecha Final:</label>
                     <div class="d">
-                        <input type="date" #fefin id="fechafin"
-                         [(ngModel)]="_FeFINAL" name="_FeFINAL" class="input-control">
+                        <input type="date" #fefin id="fechafin" [(ngModel)]="_FeFINAL" name="_FeFINAL" class="input-control">
                         <div class="formato">
                             <span class="icon-calendar"></span> (dd/mm/yyyy)
                         </div>
@@ -103,8 +95,7 @@
                 <div class="dataDates">
                     <label for="fechacrea" title="Código Placa">Placa:</label>
                     <div class="d">
-                        <input type="text" (keyup.enter)=" focus(clases)"
-                         #plac [(ngModel)]="_PLAC" name="_PLAC" id="placa" class="input-control">
+                        <input type="text" (keyup.enter)=" focus(clases)" #plac [(ngModel)]="_PLAC" name="_PLAC" id="placa" class="input-control">
                     </div>
                 </div>
             </div>
@@ -113,8 +104,7 @@
                 <div class="Clase">
                     <div class="d" id="clas" style="width: 100px;">
                         <label for="_Clase" title="">Clase:</label>
-                        <input type="text" id="_Clase"
-                        (keyup)="getDataCall(_Class, _cRead)" [(ngModel)]="_Class" name="_Class" #clases class="input-control">
+                        <input type="text" id="_Clase" (keyup)="getDataCall(_Class, _cRead)" [(ngModel)]="_Class" name="_Class" #clases class="input-control">
                     </div>
                     <div class="d" id="clase" id="clas">
                         <label for="_Clase" title="">
@@ -146,8 +136,7 @@
                         <label for="_ciu" title="Código de ciudad">
                     Cod. Ciudad:
                 </label>
-                        <input type="text" id="_ciu" #ciud class="input-control"
-                         (keyup)="getDataCiudad(_ciudClass, _ciudRead)" [(ngModel)]="_ciudClass" name="_ciudClass">
+                        <input type="text" id="_ciu" #ciud class="input-control" (keyup)="getDataCiudad(_ciudClass, _ciudRead)" [(ngModel)]="_ciudClass" name="_ciudClass">
                     </div>
 
                     <div class="d" id="clas">
@@ -192,8 +181,7 @@
                     Custodio:
                 </label>
                         <div class="d">
-                            <input type="text" id="_cust" #custodio (keyup)="getDataCust(_CustClass, _CustRead)"
-                             [(ngModel)]="_CustClass" name="_CustClass" class="input-control">
+                            <input type="text" id="_cust" #custodio (keyup)="getDataCust(_CustClass, _CustRead)" [(ngModel)]="_CustClass" name="_CustClass" class="input-control">
                         </div>
                     </div>
                     <div class="d" id="clase" id="clas" style="width: 100%;">
@@ -235,32 +223,22 @@
                             Departemento:
                         </label>
                         <div class="d">
-                            <input type="text" id="_dep" #dep 
-                            (keyup)="getDataDep(_DP, DepRead)"
-                            [(ngModel)]="_DP" name="_DP" class="input-control">
+                            <input type="text" id="_dep" #dep (keyup)="getDataDep(_DP, DepRead)" [(ngModel)]="_DP" name="_DP" class="input-control">
                         </div>
                     </div>
                     <div class="d" id="clase" id="clas" style="width: 100%;">
                         <label for="_Clase" title="">
                             <span class="icon-key-1"></span></label>
-                        <input type="text" class="_ClaseB" 
-                        style="background-color: steelblue; color: white;"
-                        readonly disabled class="input-control" [value]="DepRead">
-                    </div>                     
+                        <input type="text" class="_ClaseB" style="background-color: steelblue; color: white;" readonly disabled class="input-control" [value]="DepRead">
+                    </div>
                 </div>
                 <!-- SELECT MEDIANTE DROPDOWN -->
                 <div class="input-group mb-3" style="width: 100%;" *ngIf="optG">
                     <div class="input-group-prepend" style="width: 100%;">
-                        <button class="btn btn-outline-secondary dropdown-toggle" #custOpt 
-                        style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" 
-                        aria-expanded="true">
+                        <button class="btn btn-outline-secondary dropdown-toggle" #custOpt style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         <span class="icon-search"></span> Selecciona una opción</button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" style="font-size: 9pt;"
-                            id="{{depa.codigo}}"
-                            (click)="getDataDep(depa.codigo, depa.nombre)"
-                            *ngFor="let depa of DepArr"
-                            href="javascript: void(0)">
+                            <a class="dropdown-item" style="font-size: 9pt;" id="{{depa.codigo}}" (click)="getDataDep(depa.codigo, depa.nombre)" *ngFor="let depa of DepArr" href="javascript: void(0)">
                                 | Nombre: {{depa.nombre}}
                                 | Código: {{depa.codigo}}
                             </a>
@@ -274,9 +252,7 @@
                 <div class="dataDates">
                     <label for="_ser" title="">Serie:</label>
                     <div class="d">
-                        <input type="text" #serie
-                        [(ngModel)]="_SER" name="_SER"
-                        id="_ser" class="input-control">
+                        <input type="text" #serie [(ngModel)]="_SER" name="_SER" id="_ser" class="input-control">
                     </div>
                 </div>
             </div>
@@ -285,9 +261,7 @@
                 <div class="dataDates">
                     <label for="_val" title="">Valor:</label>
                     <div class="d">
-                        <input type="text"
-                        [(ngModel)]="_VLR" name="_VLR" #vlr id="_val"
-                        class="input-control">
+                        <input type="text" [(ngModel)]="_VLR" name="_VLR" #vlr id="_val" class="input-control">
                     </div>
                 </div>
             </div>
@@ -299,9 +273,7 @@
                 <div class="dataDates">
                     <div class="d" id="clas" style="width: 100px;">
                         <label for="_actv" title="">Activo: </label>
-                        <input type="range" min="0" max="1" id="_actv" #actv
-                        [(ngModel)]="_actvClass" name="_actvClass"
-                        class="input-control">
+                        <input type="range" min="0" max="1" id="_actv" #actv [(ngModel)]="_actvClass" name="_actvClass" class="input-control">
                         <label><strong>No</strong> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong>Si</strong></label>
                     </div>
                 </div>
@@ -311,8 +283,7 @@
                 <div class="dataDates">
                     <label for="_ref" title="">Referencia:</label>
                     <div class="d">
-                        <input type="text" #refe [(ngModel)]="_REFE"
-                        name="_REFE" id="_ref" class="input-control">
+                        <input type="text" #refe [(ngModel)]="_REFE" name="_REFE" id="_ref" class="input-control">
                     </div>
                 </div>
             </div>
@@ -321,9 +292,7 @@
                 <div class="dataDates">
                     <label for="_usc" title="">Usuario Creación:</label>
                     <div class="d">
-                        <input type="text" #usercre [(ngModel)]="_UC"
-                         name="_UC" id="_usc" class="input-control"
-                         [value]="_UC">
+                        <input type="text" #usercre [(ngModel)]="_UC" name="_UC" id="_usc" class="input-control" [value]="_UC">
                     </div>
                 </div>
             </div>
@@ -332,9 +301,7 @@
                 <div class="dataDates">
                     <label for="_usm" title="">Usuario Modificación:</label>
                     <div class="d">
-                        <input type="text" #usermo [ngModel]="_USMO"
-                         name="_USMO"
-                         id="_usm" class="input-control">
+                        <input type="text" #usermo [ngModel]="_USMO" name="_USMO" id="_usm" class="input-control">
                     </div>
                 </div>
             </div>
@@ -343,8 +310,7 @@
                 <div class="dataDates">
                     <label for="_usf" title="">Usuario Final:</label>
                     <div class="d">
-                        <input type="text" #userfin id="_usf" [ngModel]="_USFI"
-                         name="_USFI" class="input-control">
+                        <input type="text" #userfin id="_usf" [ngModel]="_USFI" name="_USFI" class="input-control">
                     </div>
                 </div>
             </div>
@@ -355,25 +321,18 @@
                         <label for="_GRPO" title="Código de ciudad">
                     Grupo Activo:
                 </label>
-                        <input type="text" id="_GRPO" #grupo class="input-control"
-                        (keyup)="getDataGrupo(_GRPO, _grupRead)" [(ngModel)]="_GRPO"
-                        name="_GRPO ">
+                        <input type="text" id="_GRPO" #grupo class="input-control" (keyup)="getDataGrupo(_GRPO, _grupRead)" [(ngModel)]="_GRPO" name="_GRPO ">
                     </div>
 
                     <div class="d " id="clas " style="display: flex; flex-direction: column; width: 70%;">
                         <label for="_Clase " title=" ">
                     <span class="icon-key-1 "></span></label>
-                        <input type="text " class="_ClaseB"
-                        style="background-color: steelblue; color: white;"
-                        readonly disabled class="input-control" [value]="_grupRead">
+                        <input type="text " class="_ClaseB" style="background-color: steelblue; color: white;" readonly disabled class="input-control" [value]="_grupRead">
 
                         <!-- SELECT MEDIANTE DROPDOWN -->
                         <div class="input-group mb-3" style="width: 100%;" *ngIf="optG">
                             <div class="input-group-prepend" style="width: 100%;">
-                                <button class="btn btn-outline-secondary dropdown-toggle"
-                                #custOpt style="width: 100%;" type="button"
-                                data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="true">
+                                <button class="btn btn-outline-secondary dropdown-toggle" #custOpt style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                 <span class="icon-search"></span>
                                 Selecciona una opción</button>
                                 <div class="dropdown-menu">
@@ -394,32 +353,22 @@
                         <label for="_mar" title="Código de ciudad">
                             Marca:
                         </label>
-                        <input type="text" id="_mar" [(ngModel)]="_MRCA" name="_MRCA" #marca
-                               class="input-control"
-                               (keyup)="getDataMarca(_MRCA, _MarcRead)">
+                        <input type="text" id="_mar" [(ngModel)]="_MRCA" name="_MRCA" #marca class="input-control" (keyup)="getDataMarca(_MRCA, _MarcRead)">
                     </div>
 
-                    <div class="d " id="clas " 
-                    style="display: flex; flex-direction: column; width: 70%;">
+                    <div class="d " id="clas " style="display: flex; flex-direction: column; width: 70%;">
                         <label for="_Clase " title=" ">
                     <span class="icon-key-1 "></span></label>
-                        <input type="text " class="_ClaseB "
-                         style="background-color: steelblue; color: white; "
-                          readonly disabled class="input-control " [value]="_MarcRead ">
+                        <input type="text " class="_ClaseB " style="background-color: steelblue; color: white; " readonly disabled class="input-control " [value]="_MarcRead ">
 
                         <!-- SELECT MEDIANTE DROPDOWN -->
                         <div class="input-group mb-3" style="width: 100%;" *ngIf="optH">
-                            <div class="input-group-prepend" style="width: 100%;">                                
-                                <button class="btn btn-outline-secondary dropdown-toggle"
-                                 #custOpt style="width: 100%;" type="button"
-                                  data-toggle="dropdown"
-                                  aria-haspopup="true" aria-expanded="true">
+                            <div class="input-group-prepend" style="width: 100%;">
+                                <button class="btn btn-outline-secondary dropdown-toggle" #custOpt style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                 <span class="icon-search"></span> Selecciona una opción</button>
                                 <div class="dropdown-menu" style=" height: 400px;
                                 overflow-y: auto;">
-                                    <a class="dropdown-item" style="font-size: 9pt;"
-                                     id="{{mrc.grupo}}" (click)="getDataMarca(mrc.codigo, mrc.nombre)"
-                                     *ngFor="let mrc of MarcArr " href="javascript: void(0)">
+                                    <a class="dropdown-item" style="font-size: 9pt;" id="{{mrc.grupo}}" (click)="getDataMarca(mrc.codigo, mrc.nombre)" *ngFor="let mrc of MarcArr " href="javascript: void(0)">
                                       Codigo: {{mrc.codigo}} | Nombre: {{mrc.nombre}}
                                     </a>
                                 </div>
@@ -461,8 +410,7 @@
                 <div class="dataDates ">
                     <label for="_vitl " title=" ">Vida Útil:</label>
                     <div class="d ">
-                        <input type="number " #vidul [(ngModel)]="_VUL"
-                        name="_VUL " id="_vitl " class="input-control ">
+                        <input type="number " #vidul [(ngModel)]="_VUL" name="_VUL " id="_vitl " class="input-control ">
                     </div>
                 </div>
             </div>
@@ -503,23 +451,16 @@
                     <div class="dataDates ">
                         <label for="_cGAS " title=" ">Cuenta de Gasto:</label>
                         <div class="d ">
-                            <input type="text " #cgas [(ngModel)]="_CGT "
-                            (keyup)="getDataCuent(_CGT, _CuentRead) "
-                            [value]="_CuentRead " name="_CGT " id="_cGAS " class="input-control ">
+                            <input type="text " #cgas [(ngModel)]="_CGT " (keyup)="getDataCuent(_CGT, _CuentRead) " [value]="_CuentRead " name="_CGT " id="_cGAS " class="input-control ">
                         </div>
                     </div>
                     <!-- SELECT MEDIANTE DROPDOWN -->
                     <div class="input-group mb-3" style="width: 100%;" *ngIf="optD">
                         <div class="input-group-prepend" style="width: 100%;">
-                            <button class="btn btn-outline-secondary dropdown-toggle"
-                            #custOpt style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <button class="btn btn-outline-secondary dropdown-toggle" #custOpt style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         <span class="icon-search"></span> Selecciona una opción</button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item"
-                                style="font-size: 9pt;"
-                                id="{{cuent.codigo}}"
-                                (click)="getDataCuent(cuent.codigo, cuent.nombre)"
-                                *ngFor="let cuent of cuentasArr " href="javascript: void(0)">
+                                <a class="dropdown-item" style="font-size: 9pt;" id="{{cuent.codigo}}" (click)="getDataCuent(cuent.codigo, cuent.nombre)" *ngFor="let cuent of cuentasArr " href="javascript: void(0)">
                                     Codigo: {{cuent.codigo}} | Nombre: {{cuent.nombre}}
                           </a>
                             </div>
@@ -541,9 +482,7 @@
                             <button class="btn btn-outline-secondary dropdown-toggle" #custOpt style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                       <span class="icon-search"></span> Selecciona una opción</button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" style="font-size: 9pt;" id="{{cuentB.codigo}}"
-                                (click)="getDataCuentB(cuentB.codigo, cuentB.nombre)"
-                                *ngFor="let cuentB of cuentasArrB" href="javascript: void(0)">
+                                <a class="dropdown-item" style="font-size: 9pt;" id="{{cuentB.codigo}}" (click)="getDataCuentB(cuentB.codigo, cuentB.nombre)" *ngFor="let cuentB of cuentasArrB" href="javascript: void(0)">
                                   Codigo: {{cuentB.codigo}} | Nombre: {{cuentB.nombre}}
                                 </a>
                             </div>
@@ -565,9 +504,7 @@
                             <button class="btn btn-outline-secondary dropdown-toggle" #custOpt style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                     <span class="icon-search"></span> Selecciona una opción</button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" style="font-size: 9pt;"
-                                id="{{cuentC.codigo}}" (click)="getDataCuentC(cuentC.nombre, cuentC.codigo)"
-                                *ngFor="let cuentC of cuentasArrC" href="javascript: void(0)">
+                                <a class="dropdown-item" style="font-size: 9pt;" id="{{cuentC.codigo}}" (click)="getDataCuentC(cuentC.nombre, cuentC.codigo)" *ngFor="let cuentC of cuentasArrC" href="javascript: void(0)">
                                 Codigo: {{cuentC.codigo}} | Nombre: {{cuentC.nombre}}
                               </a>
                             </div>

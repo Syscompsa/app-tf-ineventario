@@ -1,31 +1,69 @@
 <app-header></app-header>
 <div class="cons container p-3" id="const">
     <div class="container-fluid display d-flex justify-content-between align-items-end">
-        <button type="button" id="prods" (mouseover)="changeHeight('auto')" 
-        (mouseleave)="changeHeight('510px')" (click)="prints()">
+        <button type="button" id="prods" (mouseover)="changeHeight('auto')" (mouseleave)="changeHeight('510px')" (click)="prints()">
        <span class="icon-print"></span>  Imprimir Productos
      </button>
+        <div class="botones">
+            <div class="bn" title="Mostrar QR" (click)="viewOptionsB()">
+                <span class="icon-qrcode"></span> Mostrar etiquetas QR
+            </div>
+            <div class="bn" title="Mostrar QR" (click)="viewOptionsA()">
+                <span class="icon-list-alt"></span> Mostrar tabla de Productos
+            </div>
+        </div>
         <div class="prods">
             <span style="color: blueviolet;" class="icon-database">
             </span> Actualmente tienes <strong style="color: blueviolet;">{{ cont }}
             </strong> productos, en tu base de datos.
+            <!-- Search form -->
+            <div class="md-form mt-0">
+                <label title="Busqueda por local...">
+                  <span class="icon-info"></span> Productos / Local:
+                </label>
+                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+            </div>
         </div>
     </div>
-    <div class="dataQR" id="dataQR">
-        <div class="box"  *ngFor="let a of dataQRExtract">
-           
+    <div class="dataQR animated fadeIn" id="dataQR" *ngIf="conterA">
+
+        <div class="box" *ngFor="let a of dataQRExtract">
+
             <div class="QR" [id]="a.placa">
                 CODE: {{createQRO(a.placa)}}<br>
             </div>
             <hr>
             <div class="data">
-                Nombre: {{a.nombre}}<br>
-                Placa: {{a.placa}}<br>
-                <p class="elim" (click)="delProd(a.placa)"
-                   title="Eliminar producto | activo">
+                Nombre: {{a.nombre}}<br> Placa: {{a.placa}}<br>
+                <p class="elim" (click)="delProd(a.placa)" title="Eliminar producto | activo">
                     <span class="icon-trash"></span>
                 </p>
             </div>
+        </div>
+    </div>
+    <div class="dataQR" id="dataQR" *ngIf="conterB">
+
+        <div class="b animated fadeIn" style="width: 100%;">
+            <table class="table" style="font-size: 12pt;">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Placa</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Custodio</th>
+                        <th scope="col">Local</th>
+                        <th scope="col">Ciudad</th>
+                    </tr>
+                </thead>
+                <tbody style="height: 485px; overflow: auto; border: solid 0.5px gray;">
+                    <tr *ngFor="let b of dataQRExtract">
+                        <th scope="row">{{b.placa}}</th>
+                        <td>{{b.nombre}}</td>
+                        <td>{{b.custodio}}</td>
+                        <td>{{b.dpto}}</td>
+                        <td>{{b.ciudad}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

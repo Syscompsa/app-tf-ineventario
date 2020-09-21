@@ -1,3 +1,14 @@
+<header class="head pl-4 pr-4 display d-flex justify-content-between align-items-center">
+    <div class="m display d-flex justify-content-sm-start align-items-center">
+        <img src="../../assets/icono-act-fijo.png" width="65px" height="auto">
+        <p style="font-size: 18pt;">Aplicación de Inventario fijo.</p>
+    </div>
+    <div class="nav-item active">
+        <a style="color: white;" class="nav-link" [routerLink]="[ '/Conf' ]">
+            <span class="icon-cog"></span> Configuración
+        </a>
+    </div>
+</header>
 <div class="hi container-fluid">
     <div>
         <span class="icon-off" id="off" title="Cerrar Sesión" (click)="logOut()">
@@ -14,9 +25,9 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <!-- <li class="nav-item active">
                 <a class="nav-link" [routerLink]="[ '/Conf' ]"><span class="icon-cog"></span>Configuración<span class="sr-only">(current)</span></a>
-            </li>
+            </li> -->
             <li class="nav-item active">
                 <a class="nav-link" [routerLink]="[ '/Reporte' ]">Reporte Inventario <span class="sr-only">(current)</span></a>
             </li>
@@ -24,12 +35,13 @@
                 <a class="nav-link" [routerLink]="[ '/HomeView' ]">Ingresar Activo Fijo <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="[ '/QRData' ]" routerLinkActive="active">Productos-QR</a>
+                <a class="nav-link" [routerLink]="[ '/QRData' ]" routerLinkActive="active">Maestro de Activos</a>
+            </li>
+            <li class="nav-item">
+                <a class="btn btn-success" href="https://play.google.com/store/apps/details?id=com.gamma.scan" target="_BLANK">
+                    <span class=" icon-mobile-2"></span> Toma de Inventario
+                </a>
             </li>
         </ul>
-        <!-- <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form> -->
     </div>
 </nav>
