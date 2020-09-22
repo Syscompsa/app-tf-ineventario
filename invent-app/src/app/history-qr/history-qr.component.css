@@ -20,6 +20,10 @@
     flex-wrap: wrap;
 }
 
+.btnFilter {
+    display: flex;
+}
+
 label {
     margin-bottom: 0px;
 }

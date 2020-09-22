@@ -1,9 +1,14 @@
 <app-header></app-header>
 <div class="cons container p-3" id="const">
+
+    <div class="filterfor">
+        Filtrado por: {{filtro}}
+    </div>
     <div class="container-fluid display d-flex justify-content-between align-items-end">
+
         <button type="button" id="prods" (mouseover)="changeHeight('auto')" (mouseleave)="changeHeight('510px')" (click)="prints()">
-       <span class="icon-print"></span>  Imprimir Productos
-     </button>
+          <span class="icon-print"></span>  Imprimir Productos
+        </button>
         <div class="botones">
             <div class="bn" title="Mostrar QR" (click)="viewOptionsB()">
                 <span class="icon-qrcode"></span> Mostrar etiquetas QR
@@ -13,16 +18,84 @@
             </div>
         </div>
         <div class="prods">
-            <span style="color: blueviolet;" class="icon-database">
+            <!-- <span style="color: blueviolet;" class="icon-database">
             </span> Actualmente tienes <strong style="color: blueviolet;">{{ cont }}
-            </strong> productos, en tu base de datos.
+            </strong> productos, en tu base de datos. -->
             <!-- Search form -->
             <div class="md-form mt-0">
                 <label title="Busqueda por local...">
-                  <span class="icon-info"></span> Productos / Local:
+                  <span class="icon-info"></span> Filtrar por Local:
                 </label>
-                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+
+                <div class="btnFilter">
+                    <button type="button" style="border-bottom-right-radius: 0px !important; border-top-right-radius: 0px !important;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    <span class=" icon-equalizer"></span>
+                  </button>
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel"><span class="icon-equalizer"></span> Filtrar por otros parámetros.
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body" id="filtros">
+                                    <div class="accordion" id="accordionExample">
+                                        <div class="card">
+                                            <div class="card-header" id="headingOne">
+                                                <h2 class="mb-0">
+                                                    <button class="btn btn-link btn-block text-left" [id]="ida" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                                      <strong>Por custodio:</strong> Actualmente tiene(s), <strong> {{cantCust}} </strong> custodio(s), registrado en la base de datos.
+                                                    </button>
+                                                </h2>
+                                            </div>
+
+                                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                                <div class="card-body">
+                                                    <a class="dropdown-item" href="javascript: void(0)" (click)="getID(ida, cust.nombre)" *ngFor="let cust of custodios">
+                                                      {{ cust.nombre }} | {{ cust.apellido }}
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="card">
+                                            <div class="card-header" id="headingOne">
+                                                <h2 class="mb-0">
+                                                    <button class="btn btn-link btn-block text-left" [id]="idb" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                                      <strong>Por marca:</strong> Actualmente tiene(s), <strong> {{Mcs}} </strong> marca(s), registrado en la base de datos.
+                                                    </button>
+                                                </h2>
+                                            </div>
+
+                                            <div id="collapseTwo" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                                <div class="card-body" style="height: 300px !important; overflow-y: auto !important;">
+                                                    <a class="dropdown-item" href="javascript: void(0)" *ngFor="let mc of Marcas" (click)="getID(idb, mc.nombre)">
+                                                      {{mc.nombre }}
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input class="form-control" style="border-bottom-left-radius: 0px !important; border-top-left-radius: 0px !important;" (keyup)="getDep(SearchDep)" [(ngModel)]="SearchDep" name="SearchDep" type="text" placeholder="Search" aria-label="Search">
+                </div>
+
+
             </div>
+
+
         </div>
     </div>
     <div class="dataQR animated fadeIn" id="dataQR" *ngIf="conterA">
@@ -49,6 +122,7 @@
                     <tr>
                         <th scope="col">Placa</th>
                         <th scope="col">Nombre</th>
+                        <th scope="col">Marca</th>
                         <th scope="col">Custodio</th>
                         <th scope="col">Local</th>
                         <th scope="col">Ciudad</th>
@@ -58,9 +132,10 @@
                     <tr *ngFor="let b of dataQRExtract">
                         <th scope="row">{{b.placa}}</th>
                         <td>{{b.nombre}}</td>
-                        <td>{{b.custodio}}</td>
-                        <td>{{b.dpto}}</td>
-                        <td>{{b.ciudad}}</td>
+                        <td>{{b.nomMarca}}</td>
+                        <td>{{b.nombreCustodio}}</td>
+                        <td>{{b.nomDpto}}</td>
+                        <td>{{b.nomCiudad}}</td>
                     </tr>
                 </tbody>
             </table>

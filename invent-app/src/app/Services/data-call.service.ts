@@ -23,11 +23,11 @@ export class DataCallService {
     return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/DeletProduct/' + placa);
   }
 
-  //Obtener data
+  // Obtener data
   getDataModel(codigo) {
     return this.http.get(this.apiURL + 'api/ALPTABLA/Modelo/' + codigo);
   }
-  
+
   getDataMarca(codigo) {
     return this.http.get(this.apiURL + 'api/ALPTABLA/MasterIA1/' + codigo);
   }
@@ -39,7 +39,7 @@ export class DataCallService {
   getDataCiud(codigo) {
     return this.http.get(this.apiURL + 'api/ALPTABLA/ACTCIU/' + codigo);
   }
- 
+
   getDataDep(codigo) {
     return this.http.get(this.apiURL + 'api/ALPTABLA/DPTOS/' + codigo);
   }
@@ -49,24 +49,37 @@ export class DataCallService {
   }
 
   getDataCuentas(codigo) {
-    return this.http.get(this.apiURL + 'api/ALPTABLA/cuentas/'+ codigo);
+    return this.http.get(this.apiURL + 'api/ALPTABLA/cuentas/' + codigo);
   }
 
   getDataGrup(codigo) {
-    return this.http.get(this.apiURL + 'api/Grup/GetGrupo/'+ codigo);
+    return this.http.get(this.apiURL + 'api/Grup/GetGrupo/' + codigo);
   }
 
-  saveDataInv(content: Dp12a120): Observable<Dp12a120>{
+  saveDataInv(content: Dp12a120): Observable<Dp12a120> {
     return this.http.post<Dp12a120>(this.apiURL + 'api/AR_INV-QRcodProdGet/ProductoSave/', content);
   }
 
-  //Servicios para Reporteria...
+  // Servicios para Reporteria...
   saveReport(content) {
     return this.http.post(this.apiURL + 'api/Reporteria/reportSave/', content);
   }
 
   getReport() {
     return this.http.get(this.apiURL + 'api/Reporteria/getReporte/');
+  }
+
+  getDptoReporte(master) {
+    return this.http.get(this.apiURL + 'api/Reporteria/GetDptoReporte/' + master);
+  }
+
+  getMarcaReporte(master) {
+    return this.http.get(this.apiURL + 'api/Reporteria/GetMarcaReporte/' + master);
+  }
+
+
+  getCustodioReporte(master) {
+    return this.http.get(this.apiURL + 'api/Reporteria/GetCustodioReporte/' + master);
   }
 
   delReport(id) {

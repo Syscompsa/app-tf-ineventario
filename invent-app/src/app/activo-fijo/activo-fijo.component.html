@@ -1,5 +1,43 @@
 <div id="reactForms">
     <form id="fActivoFijo" class="actFijo">
+        <div class="inpData" *ngIf="Depart" style="width: 75%;">
+            <!-- <div class="dataDates">
+            <label for="_dep" title="">Departamento:</label>
+            <div class="d">
+                <input [(ngModel)]="_DP" #dep name="_DP" type="text" id="_dep" class="input-control">
+            </div>
+        </div> -->
+            <div class="Clase">
+                <div class="d" id="clas" style="width: 100px;">
+                    <label for="_DP" title="">
+                    Departemento:
+                </label>
+                    <div class="d">
+                        <input type="text" id="_dep" #dep (keyup)="getDataDep(_DP, DepRead)" [(ngModel)]="_DP" name="_DP" class="input-control">
+                    </div>
+                </div>
+                <div class="d" id="clase" id="clas" style="width: 100%;">
+                    <label for="_Clase" title="">
+                    <span class="icon-key-1"></span></label>
+                    <input type="text" class="_ClaseB" style="background-color: steelblue; color: white;" readonly disabled class="input-control" [value]="DepRead">
+                </div>
+            </div>
+            <!-- SELECT MEDIANTE DROPDOWN -->
+            <div class="input-group mb-3" style="width: 100%;" *ngIf="optG">
+                <div class="input-group-prepend" style="width: 100%;">
+                    <button class="btn btn-outline-secondary dropdown-toggle" #custOpt style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <span class="icon-search"></span> Selecciona una opción</button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" style="font-size: 9pt;" id="{{depa.codigo}}" (click)="getDataDep(depa.codigo, depa.nombre)" *ngFor="let depa of DepArr" href="javascript: void(0)">
+                        | Nombre: {{depa.nombre}}
+                        | Código: {{depa.codigo}}
+                    </a>
+                    </div>
+                </div>
+            </div>
+            <!-- SELECT MEDIANTE DROPDOWN -->
+        </div>
+
         <div class="active">
             <label class="title"><strong>Activo de control:</strong> </label>
             <input type="checkbox" style="width: 25px;" (change)="actcon()" [(ngModel)]="_actCont" name="_actCont">
@@ -8,10 +46,12 @@
             [ngModel]="_actCont" name="_actCont"> -->
         </div>
         <div class="groupA">
+
             <div class="img" *ngIf="Imagen">
                 <input id="fileUp" type="file" (change)="encodeImageFileAsURL();" [(ngModel)]="_IMGE" name="_IMGE">
                 <div id="imgTest"></div>
             </div>
+
 
             <!--FECHA INPUT INICIO-->
             <div class="inpDates">
@@ -210,43 +250,6 @@
                 <!-- SELECT MEDIANTE DROPDOWN -->
             </div>
             <!-- CUSTODIOS FIN -->
-            <div class="inpData" *ngIf="Depart" style="width: 45%;">
-                <!-- <div class="dataDates">
-                    <label for="_dep" title="">Departamento:</label>
-                    <div class="d">
-                        <input [(ngModel)]="_DP" #dep name="_DP" type="text" id="_dep" class="input-control">
-                    </div>
-                </div> -->
-                <div class="Clase">
-                    <div class="d" id="clas" style="width: 100px;">
-                        <label for="_DP" title="">
-                            Departemento:
-                        </label>
-                        <div class="d">
-                            <input type="text" id="_dep" #dep (keyup)="getDataDep(_DP, DepRead)" [(ngModel)]="_DP" name="_DP" class="input-control">
-                        </div>
-                    </div>
-                    <div class="d" id="clase" id="clas" style="width: 100%;">
-                        <label for="_Clase" title="">
-                            <span class="icon-key-1"></span></label>
-                        <input type="text" class="_ClaseB" style="background-color: steelblue; color: white;" readonly disabled class="input-control" [value]="DepRead">
-                    </div>
-                </div>
-                <!-- SELECT MEDIANTE DROPDOWN -->
-                <div class="input-group mb-3" style="width: 100%;" *ngIf="optG">
-                    <div class="input-group-prepend" style="width: 100%;">
-                        <button class="btn btn-outline-secondary dropdown-toggle" #custOpt style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        <span class="icon-search"></span> Selecciona una opción</button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" style="font-size: 9pt;" id="{{depa.codigo}}" (click)="getDataDep(depa.codigo, depa.nombre)" *ngFor="let depa of DepArr" href="javascript: void(0)">
-                                | Nombre: {{depa.nombre}}
-                                | Código: {{depa.codigo}}
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- SELECT MEDIANTE DROPDOWN -->
-            </div>
 
             <div class="inpData" *ngIf="Serie">
                 <div class="dataDates">
