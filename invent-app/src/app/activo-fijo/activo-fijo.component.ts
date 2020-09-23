@@ -939,34 +939,7 @@ public arr: any[] = [];
     }
     //#endregion
 
-    encodeImageFileAsURL() {
-      const filesSelected = document.getElementById('fileUp') as HTMLInputElement;
-      const fileId = filesSelected.files;
 
-      if (fileId.length > 0) {
-        const fileToLoad = filesSelected[0];
-        const fileReader = new FileReader();
-
-        // tslint:disable-next-line: only-arrow-functions
-        fileReader.onloadend = function(fileLoadedEvent) {
-          const target: any = fileLoadedEvent.target;
-          const content = target.result;
-          const newImage = document.createElement('img');
-          newImage.src = content;
-          newImage.setAttribute('id', 'img');
-          newImage.style.width = '100%';
-          newImage.style.height = 'auto';
-          document.getElementById('imgTest').innerHTML = newImage.outerHTML;
-          console.log(content);
-        };
-
-        // tslint:disable-next-line: prefer-for-of
-        for (let i = 0; i < fileId.length; i++) {
-          const a = fileReader.readAsDataURL(fileId[i]);
-        }
-
-      }
-    }
 
     //#endregion
 
@@ -1168,6 +1141,39 @@ public arr: any[] = [];
       // Lo ordenas a gusto.
       console.log('Fecha');
       this.datenow = y + '-' + m + '-' + d;
+    }
+
+    encodeImageFileAsURL() {
+      const filesSelected = document.getElementById('fileUp') as HTMLInputElement;
+      const fileId = filesSelected.files;
+
+      if (fileId.length > 0) {
+        const fileToLoad = filesSelected[0];
+        const fileReader = new FileReader();
+
+
+        // tslint:disable-next-line: only-arrow-functions
+        fileReader.onloadend = function(fileLoadedEvent) {
+          const target: any = fileLoadedEvent.target;
+          const content = target.result;
+          const newImage = document.createElement('img');
+          newImage.src = content;
+          newImage.setAttribute('id', 'img');
+          newImage.style.width = '100%';
+          newImage.style.height = 'auto';
+          document.getElementById('imgTest').innerHTML = newImage.outerHTML;
+        };
+
+
+
+
+
+        // tslint:disable-next-line: prefer-for-of
+        for (let i = 0; i < fileId.length; i++) {
+          const a = fileReader.readAsDataURL(fileId[i]);
+        }
+
+      }
     }
 
     //#region "SaveReport()"

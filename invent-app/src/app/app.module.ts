@@ -12,6 +12,8 @@ import { HistoryQRComponent } from './history-qr/history-qr.component';
 import { ReporteComponent } from './reporte/reporte.component';
 import { ConfigurationsComponent } from './configurations/configurations.component';
 import { ActivoFijoComponent } from './activo-fijo/activo-fijo.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
 
 @NgModule({
   declarations: [
@@ -34,12 +36,14 @@ import { ActivoFijoComponent } from './activo-fijo/activo-fijo.component';
       { path: 'Conf', component: ConfigurationsComponent },
       { path: 'HomeView', component: HomeViewComponent },
       { path: 'Reporte', component: ReporteComponent },
-      { path: 'QRData', component: HistoryQRComponent },      
+      { path: 'QRData', component: HistoryQRComponent },
       { path: 'Login', component: LoginComponent, pathMatch: 'full' },
       { path: '**', pathMatch: 'full', redirectTo: 'Login'  }
     ])
   ],
-  providers: [],
+  providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
+    ],
   bootstrap: [AppComponent]
 })
 

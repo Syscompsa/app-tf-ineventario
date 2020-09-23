@@ -16,6 +16,48 @@
     <div class="User" style="text-align: right;">
         <strong>Usuario: </strong> {{user}}<br>
     </div>
+    <button type="button" title="filtrar reporte" style="border-bottom-right-radius: 0px !important; border-top-right-radius: 0px !important;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+      <span class=" icon-equalizer"></span>
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><span class="icon-equalizer"></span> Filtrar por otros parámetros.
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                </div>
+                <div class="modal-body" id="filtros">
+                    <div class="accordion" id="accordionExample">
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h2 class="mb-0">
+                                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                      <strong>Por Local:</strong> Actualmente tiene(s), <strong> {{cont}}  </strong> Local(es), registrado en la base de datos.
+                                    </button>
+                                </h2>
+                            </div>
+
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <a class="dropdown-item" href="javascript: void(0)" (click)="getInvent(c.nombre)" *ngFor="let c of dataQRExtract">
+                                        {{c.nombre}}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="container">
     <table class="table">

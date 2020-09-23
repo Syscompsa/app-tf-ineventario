@@ -13,6 +13,8 @@ export class ReporteComponent implements OnInit {
   public datenow: any;
   public user = localStorage.getItem('User');
   public arrInv;
+  public dataQRExtract;
+  public cont;
   constructor( public dateCall: DataCallService, public us: WebuserService ) { }
 
   ngOnInit() {
@@ -20,8 +22,17 @@ export class ReporteComponent implements OnInit {
     //   this.getInvent();
     // },300)
     this.fechActual();
-    this.getInvent();
-    console.log(this.user);
+    this.getInvent('f');
+    // console.log(this.user);
+    this.getDep('0');
+  }
+
+  getDep(farm) {
+    this.dateCall.getDataDep(farm).subscribe(x => {
+      this.dataQRExtract = x;
+      this.cont = this.dataQRExtract.length;
+      console.log(this.dataQRExtract);
+    });
   }
 
   fechActual() {
@@ -34,7 +45,7 @@ export class ReporteComponent implements OnInit {
    let ano: any = fecha.getFullYear(); // obteniendo año
    if (dia < 10) {
        dia = '0' + dia;
-     }
+   }
   // agrega cero si el menor de 10
    if (mes < 10) {
     mes = '0' + mes;
@@ -42,11 +53,11 @@ export class ReporteComponent implements OnInit {
    this.datenow = ano + '-' + mes + '-' + dia;
   }
 
-  getInvent() {
-      this.dateCall.getReport().subscribe(x => {
+  getInvent(param) {
+      this.dateCall.getReportByParam(param).subscribe(x => {
       this.arrInv = x;
-      console.log('arr');
-      console.log(this.arrInv);
+      // console.log('arr');
+      // console.log(this.arrInv);
     });
   }
 
@@ -62,7 +73,7 @@ export class ReporteComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.dateCall.delReport(id).subscribe(x => {
-          this.getInvent();});
+          this.getInvent('f'); });
         Swal.fire(
           'Eliminado!',
           'Tu reporte se eliminó con éxito',
