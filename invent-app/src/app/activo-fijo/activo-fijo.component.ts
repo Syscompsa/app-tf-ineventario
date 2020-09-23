@@ -21,9 +21,9 @@ export class ActivoFijoComponent implements OnInit {
               public router: Router,
               public us: WebuserService
               ) { }
-  //#endregion
+    //#endregion
 
-  //#region "@Input()"
+    //#region "@Input()"
 
   @Input()
   set Factual(value: any) {
@@ -969,6 +969,8 @@ public arr: any[] = [];
     }
 
     //#endregion
+
+    //#region "Save function()"
     saveItem() {
 
       let formArr: any = {
@@ -1056,7 +1058,10 @@ public arr: any[] = [];
 
     }
     }
+    //#endregion
 
+
+    //#region  "Update function()"
     UpdateProduct() {
       let arr: Dp12a120 = {
         placa: this._PLAC,
@@ -1146,6 +1151,7 @@ public arr: any[] = [];
 
       }
     }
+    //#endregion
 
     actcon() {
       console.log(this._actCont);
@@ -1162,9 +1168,9 @@ public arr: any[] = [];
       // Lo ordenas a gusto.
       console.log('Fecha');
       this.datenow = y + '-' + m + '-' + d;
-
     }
 
+    //#region "SaveReport()"
    saveReport(finv, plainv, desinv, custinv, ciudinv) {
       let arrReport: any = {
         fechaInv: finv,
@@ -1177,4 +1183,5 @@ public arr: any[] = [];
         arrReport = save;
       });
     }
+    //#endregion
 }
