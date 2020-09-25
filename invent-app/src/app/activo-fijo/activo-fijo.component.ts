@@ -652,7 +652,7 @@ public arr: any[] = [];
         ];
      });
     }).then( res => {
-         console.log('Este es mi valo obtenido: ' +  res);
+        // console.log('Este es mi valo obtenido: ' +  res);
     });
     this.funcClose(false, true, false, false, false, false, false, false);
     }
@@ -682,7 +682,7 @@ public arr: any[] = [];
     this.funcClose(true, false, false, false, false, false, false, false);
     }
     getDataGrupo(w, y) {
-      console.log(this._GRPO);
+     // console.log(this._GRPO);
       this.data.getDataGrup(this._GRPO).subscribe(x => {
           this.grupArr = x;
           let _ClassRead = {
@@ -714,7 +714,7 @@ public arr: any[] = [];
 
         });
       }).then( res => {
-          console.log('Este es mi valo obtenido: ' +  res);
+         // console.log('Este es mi valo obtenido: ' +  res);
       });
       this.funcClose(false, false, false, false, false, false, false, true);
     }
@@ -732,7 +732,7 @@ public arr: any[] = [];
       }).then( res => {
           // let read = <HTMLInputElement> document.getElementById('_ClaseB');
           // read.value = res;
-          console.log('Este es mi valor obtenido: ' +  res);
+         // console.log('Este es mi valor obtenido: ' +  res);
       });
     }
 
@@ -756,7 +756,7 @@ public arr: any[] = [];
           ];
 
           // this._UC = this.custArr.usucrea;
-          console.log(this.custArr.usucrea);
+          // console.log(this.custArr.usucrea);
 
           });
       }).then( res => {
@@ -808,7 +808,7 @@ public arr: any[] = [];
             this._CuentRead  = w
           ];
           // this._UC = this.custArr.usucrea;
-          console.log(a);
+          // console.log(a);
           });
       }).then( res => {
         //  console.log(res)
@@ -945,7 +945,6 @@ public arr: any[] = [];
 
     //#region "Save function()"
     saveItem() {
-
       let formArr: any = {
         placa: this._PLAC,
         clase: this._Class,
@@ -990,6 +989,7 @@ public arr: any[] = [];
         af_control: this._actCont
       };
 
+      console.log(formArr);
       if (this._PLAC == '' || this._PLAC == null || this._PLAC == undefined) {
       Swal.fire({
         icon: 'error',
@@ -1015,9 +1015,9 @@ public arr: any[] = [];
           );
           this.data.saveDataInv(formArr).subscribe(x => {
             formArr = x;
-            // console.log(formArr);
-
+           // console.log(formArr);
             // this.cleanForm();
+            // tslint:disable-next-line: no-unused-expression
           }), err => {
             Swal.fire({
               icon: 'error',
@@ -1127,7 +1127,7 @@ public arr: any[] = [];
     //#endregion
 
     actcon() {
-      console.log(this._actCont);
+     // console.log(this._actCont);
     }
 
     fechActual() {
@@ -1139,9 +1139,12 @@ public arr: any[] = [];
       // Día
       const d = n.getDate();
       // Lo ordenas a gusto.
-      console.log('Fecha');
+     // console.log('Fecha');
       this.datenow = y + '-' + m + '-' + d;
     }
+
+    // tslint:disable-next-line: member-ordering
+    public dataimg;
 
     encodeImageFileAsURL() {
       const filesSelected = document.getElementById('fileUp') as HTMLInputElement;
@@ -1150,32 +1153,32 @@ public arr: any[] = [];
       if (fileId.length > 0) {
         const fileToLoad = filesSelected[0];
         const fileReader = new FileReader();
-
+        // console.log(fileReader.onloadend);
 
         // tslint:disable-next-line: only-arrow-functions
         fileReader.onloadend = function(fileLoadedEvent) {
           const target: any = fileLoadedEvent.target;
-          const content = target.result;
+          const cont = target.result;
+          // console.log(cont);
           const newImage = document.createElement('img');
-          newImage.src = content;
+          newImage.src = cont;
           newImage.setAttribute('id', 'img');
           newImage.style.width = '100%';
           newImage.style.height = 'auto';
           document.getElementById('imgTest').innerHTML = newImage.outerHTML;
         };
 
-
-
-
-
         // tslint:disable-next-line: prefer-for-of
         for (let i = 0; i < fileId.length; i++) {
           const a = fileReader.readAsDataURL(fileId[i]);
+          this.dataimg = fileReader.readAsBinaryString(fileId[i]);
         }
 
+        this._IMGE = this.dataimg;
+        console.log(this._IMGE);
       }
     }
-
+;
     //#region "SaveReport()"
    saveReport(finv, plainv, desinv, custinv, ciudinv) {
       let arrReport: any = {

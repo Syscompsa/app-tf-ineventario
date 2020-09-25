@@ -42,11 +42,34 @@ label {
     margin-bottom: 0px;
 }
 
+.filter {
+    animation: ease-in-out 2s infinite;
+    cursor: pointer;
+}
+
+@keyframes animFilter {
+    0% {
+        color: steelblue;
+        font-size: 12pt;
+        transform: rotate(0deg);
+    }
+    80% {
+        color: gray;
+        font-size: 12pt;
+    }
+    100% {
+        color: steelblue;
+        font-size: 12pt;
+        transform: rotate(90deg);
+    }
+}
+
 .bn {
     transition: ease all 0.5s;
     width: 200px;
     padding: 8px;
     font-size: 10pt;
+    text-align: center;
 }
 
 .bn:hover {
@@ -55,11 +78,51 @@ label {
     cursor: pointer;
 }
 
+.countss {
+    display: flex;
+    justify-content: space-between;
+}
+
+.count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    background-color: teal;
+    color: white;
+    width: 25px;
+    height: 25px;
+}
+
+#prevImprimir {
+    background-color: rgb(220, 233, 245);
+    /* border-top-right-radius: 5px; */
+    border-bottom-right-radius: 5px;
+    position: absolute;
+    padding: 10px;
+    z-index: 10000;
+    box-shadow: 5px 6px 8px rgba(0, 0, 0, 0.4);
+}
+
 .box {
     width: 175px;
     height: auto;
     padding: 10px;
     border: solid 0.2px rgb(211, 211, 211);
+}
+
+.active {
+    width: 175px !important;
+    height: auto !important;
+    padding: 10px !important;
+    border: dashed 3px rgb(43, 197, 164) !important;
+}
+
+.disabled {
+    width: 175px !important;
+    height: auto !important;
+    padding: 10px !important;
+    border: solid 0.2px rgb(211, 211, 211) !important;
 }
 
 .elim {

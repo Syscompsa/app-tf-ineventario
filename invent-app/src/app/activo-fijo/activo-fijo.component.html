@@ -50,7 +50,8 @@
             <div class="img" *ngIf="Imagen">
                 <input id="fileUp" type="file" (change)="encodeImageFileAsURL();" [(ngModel)]="_IMGE" name="_IMGE">
                 <div id="imgTest">
-                    <img src="" alt="imagen en esepera...">
+
+                    <img [src]="dataimg" alt="imagen en esepera...">
                 </div>
             </div>
 

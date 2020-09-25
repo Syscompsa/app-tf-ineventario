@@ -1,34 +1,43 @@
 <app-header></app-header>
+<div id="prevImprimir" style="width: 120px;" class="prevImprimir">
+    <div class="countss"><span class="icon-search" style="color: steelblue;">Prev.:</span>
+        <!-- <div class="count">{{indice}}</div> -->
+    </div>
+    <br>
+    <div class="d" style="width: 100%;" id="contenidoPrev">
+    </div>
+</div>
+
 <div class="cons container p-3" id="const">
 
-    <div class="filterfor">
-        Filtrado por:<strong style="font-size: 14pt; color: steelblue;"> {{filtro}} </strong>
+    <div class="filterfor" data-toggle="modal" data-target="#exampleModal">
+        <span class="filter icon-filter" data-toggle="modal" data-target="#exampleModal" id="an" (mouseover)="retAnim('animFilter')" (mouseleave)="retAnim('')" title="El filtro está activado por, {{filtro}}"></span> Filtrado por:
+        <strong style="font-size: 14pt; color: steelblue;">
+           {{filtro}}
+         </strong>
     </div>
-    <div class="container-fluid display d-flex justify-content-between align-items-end">
 
+    <div class="container-fluid display d-flex justify-content-between align-items-end">
         <button type="button" id="prods" (mouseover)="changeHeight('auto')" (mouseleave)="changeHeight('510px')" (click)="prints()">
           <span class="icon-print"></span>  Imprimir Productos
         </button>
         <div class="botones">
-            <div class="bn" title="Mostrar QR" (click)="viewOptionsB()">
+            <div class="bn" title="Mostrar QR" id="bnA" (click)="viewOptionsA()">
                 <span class="icon-qrcode"></span> Mostrar etiquetas QR
             </div>
-            <div class="bn" title="Mostrar QR" (click)="viewOptionsA()">
+            <div class="bn" title="Mostrar QR" id="bnB" (click)="viewOptionsB()">
                 <span class="icon-list-alt"></span> Mostrar tabla de Productos
             </div>
         </div>
+
         <div class="prods">
-            <!-- <span style="color: blueviolet;" class="icon-database">
-            </span> Actualmente tienes <strong style="color: blueviolet;">{{ cont }}
-            </strong> productos, en tu base de datos. -->
-            <!-- Search form -->
             <div class="md-form mt-0">
                 <label title="Busqueda por local...">
                   <span class="icon-info"></span> Filtrar por Local:
                 </label>
                 <div class="btnFilter">
                     <button type="button" style="border-bottom-right-radius: 0px !important; border-top-right-radius: 0px !important;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                    <span class=" icon-equalizer"></span>
+                    <span class="icon-equalizer"></span>
                   </button>
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -90,16 +99,12 @@
                     </div>
                     <input class="form-control" style="border-bottom-left-radius: 0px !important; border-top-left-radius: 0px !important;" (keyup)="getDep(SearchDep)" [(ngModel)]="SearchDep" name="SearchDep" type="text" placeholder="Search" aria-label="Search">
                 </div>
-
-
             </div>
-
-
         </div>
     </div>
-    <div class="dataQR animated fadeIn" id="dataQR" *ngIf="conterA">
+    <div class="dataQR animated fadeIn" id="dataQR" *ngIf="conterB">
 
-        <div class="box" *ngFor="let a of dataQRExtract">
+        <div class="box" style="cursor: pointer;" *ngFor="let a of dataQRExtract" id="box-{{a.id}}" (click)="imprimirUnidad(a.id, a.placa)">
 
             <div class="QR" [id]="a.placa">
                 CODE: {{createQRO(a.placa)}}<br>
@@ -110,10 +115,11 @@
                 <p class="elim" (click)="delProd(a.placa)" title="Eliminar producto | activo">
                     <span class="icon-trash"></span>
                 </p>
+
             </div>
         </div>
     </div>
-    <div class="dataQR" id="dataQR" *ngIf="conterB">
+    <div class="dataQR" id="dataQR" *ngIf="conterA">
 
         <div class="b animated fadeIn" style="width: 100%;">
             <table class="table" style="font-size: 12pt;">

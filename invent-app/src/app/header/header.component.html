@@ -1,7 +1,11 @@
 <header class="head pl-4 pr-4 display d-flex justify-content-between align-items-center">
     <div class="m display d-flex justify-content-sm-start align-items-center">
         <img src="../../assets/icono-act-fijo.png" width="65px" height="auto">
-        <p style="font-size: 18pt;">Aplicación de Inventario fijo.</p>
+        <p style="font-size: 18pt;">Aplicación de Inventario fijo. |
+            <strong style="color: rgb(187, 250, 255); text-shadow: 1px 1px 3px rgba(0,0,0,0.4);" class="animated fadeInLeft slow">
+              {{Site}} <span class="icon-location"></span>
+            </strong>
+        </p>
     </div>
     <div class="nav-item active">
         <a style="color: white; padding: 0px; padding-right: 10px;" class="nav-link" [routerLink]="[ '/Conf' ]">
@@ -28,16 +32,22 @@
             <!-- <li class="nav-item active">
                 <a class="nav-link" [routerLink]="[ '/Conf' ]"><span class="icon-cog"></span>Configuración<span class="sr-only">(current)</span></a>
             </li> -->
-            <li class="nav-item active">
-                <a class="nav-link" [routerLink]="[ '/Reporte' ]">Reporte Inventario <span class="sr-only">(current)</span></a>
+            <li class="nav-item" id="a">
+                <a class="nav-link" (mouseover)="active('a', report, 'b', 'c', '/Reporte')" (click)="active('a', report, 'b', 'c', '/Reporte')">
+                   {{report}}
+                </a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" [routerLink]="[ '/HomeView' ]">Ingresar Activo Fijo <span class="sr-only">(current)</span></a>
+            <li class="nav-item" id="b">
+                <a class="nav-link" (mouseover)="active('b', actFijo, 'a', 'c', '/HomeView')" (click)="active('b', report, 'a', 'c', '/HomeView')">
+                   {{actFijo}}
+                </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" [routerLink]="[ '/QRData' ]" routerLinkActive="active">Maestro de Activos</a>
+            <li class="nav-item" id="c">
+                <a class="nav-link" (mouseover)="active('c', mActivos, 'a', 'd', '/QRData')" (click)="active('c', report, 'a', 'd', '/QRData')">
+                   {{mActivos}}
+                </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" id="app" *ngIf="app">
                 <a class="btn btn-success" href="https://play.google.com/store/apps/details?id=com.gamma.scan" target="_BLANK">
                     <span class=" icon-mobile-2"></span> Toma de Inventario
                 </a>
