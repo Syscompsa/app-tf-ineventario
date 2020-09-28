@@ -55,58 +55,47 @@ export class HistoryQRComponent implements OnInit {
 
   imprimirUnidad(id, placa) {
     const ids = document.getElementById(`box-${id}`);
-    const node = document.createElement('li');
-    let am = document.getElementById(`li-${id}`);
+    const contenidoPrev = document.getElementById(`contenidoPrev`);
     switch (this.ensi) {
       case true:
         this.ensi = false;
-        // console.log(this.ensi);
-        this.pixelBorder = 2;
-        ids.style.border = `solid ${this.pixelBorder}px steelblue`;
-        ids.style.boxShadow = '2px 2px 10px rgba(0,0,0,0.5)';
-        ids.style.borderStyle = 'dashed';
-        ids.style.borderRadius = '10px';
-        ids.style.transition = 'ease all 0.8s';
-        ids.setAttribute('class', 'active');
-        console.log(this.arr);
-        // this.placaData = placa;
-        this.arr.push(placa);
-        const a = document.getElementById('contenidoPrev');
-        // tslint:disable-next-line: no-unused-expression
-        node.style.borderBottom = 'solid 1px gray';
-        node.style.padding = '5px';
-        node.setAttribute('class', 'lists animated fadeInLeft fast');
-        console.log(this.arr);
-        node.innerText = placa;
-        a.appendChild(node);
-        node.setAttribute('id', `li-${id}`);
+        console.log(this.ensi);
+        contenidoPrev.appendChild(this.createLi(id, placa));
+        this.objectSelectStyle(ids, 'dashed', '#0AC1AD', '2px');
         break;
       case false:
-        this.pixelBorder = 0.5;
-        ids.style.border = `solid ${this.pixelBorder}px rgba(0,0,0,0.2)`;
-        ids.style.borderStyle = 'groove';
-        ids.style.transition = 'ease all 0.5s';
-        ids.style.borderRadius = '0px';
-        ids.style.boxShadow = '0px 0px 0px rgba(0,0,0,0.0)';
-        ids.setAttribute('class', 'disabled');
-        const cont = document.getElementById('contenidoPrev');
-        let pla = cont.textContent;
-        const ind = this.arr.indexOf( placa );
-        // tslint:disable-next-line: no-unused-expression
-        ind !== -1 && this.arr.splice( ind, 1 );
-        console.log(id);
-        // am.style.backgroundColor = 'black';
-        console.log(am);
-        this.indice = this.arr.length;
         this.ensi = true;
+        console.log(this.ensi);
+        contenidoPrev.removeChild(document.getElementById(`li-${id}`));
+        this.objectSelectStyle(ids, 'solid', 'rgba(0,0,0,0.2)', '1px');
         break;
     }
+  }
+
+  createLi(idVar, placaText) {
+    const node = document.createElement('li');
+    node.innerText = placaText;
+    node.setAttribute('id', `li-${idVar}`);
+    node.setAttribute('class', 'animated fadeInLeft fast');
+    return node;
+  }
+
+  limpiarLi() {
+    console.log('Se esta limpiando');
+    const lis = document.getElementsByTagName('li');
+    const contenidoPrev = document.getElementById(`contenidoPrev`);
+    contenidoPrev.removeChild(lis[3]);
+  }
+
+  objectSelectStyle(obj, color, styleBorder, tam) {
+    obj.style.border = `${styleBorder} ${tam} ${color}`;
+    obj.style.transition = `ease all 0.5s`;
   }
 
   retAnim(param) {
    const an = document.getElementById('an');
    an.style.animationName = param;
- }
+  }
 
   getProductCustodio(custodio) {
     this.data.getCustodioReporte(custodio).subscribe(x => {
@@ -204,30 +193,9 @@ export class HistoryQRComponent implements OnInit {
   }
 
   prints() {
-    // const a = document.getElementById('const');
+    // const a = document.getElementById('dataQR');
     window.print();
   }
-
-  // QRDataFunc() {
-  //   this.QRData.getQRGen().subscribe(x => {
-  //     this.dataQRExtract = x;
-  //     // tslint:disable-next-line: align
-  //     // tslint:disable-next-line: curly
-  //     console.log('this.dataQRExtract');
-  //     console.log(this.dataQRExtract);
-  //     const dataQRDiv = document.getElementById('dataQR');
-  //     // const placa = [];
-  //     this.cont = this.dataQRExtract.length;
-  //    // console.log(this.cont)
-  //   });
-  // }
-
-  // createQR(obj, http) {
-  //   const qr = qrcode(4, 'L');
-  //   qr.addData(http);
-  //   qr.make();
-  //   obj.innerHTML = qr.createImgTag();
-  // }
 
   createQRO(placa) {
     const qr = qrcode(4, 'L');

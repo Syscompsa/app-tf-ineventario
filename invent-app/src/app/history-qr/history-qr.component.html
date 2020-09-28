@@ -1,7 +1,19 @@
 <app-header></app-header>
 <div id="prevImprimir" style="width: 120px;" class="prevImprimir">
-    <div class="countss"><span class="icon-search" style="color: steelblue;">Prev.:</span>
+    <div class="countss">
+        <div class="prev" style="width: 75px;" data-toggle="modal" data-target="#exampleModalCenteredScrollable">
+            <span class="icon-search" style="color: steelblue;">Prev.:</span>
+        </div>
         <!-- <div class="count">{{indice}}</div> -->
+        <div class="btnSettings">
+            <div id="limp" (click)="limpiarLi()">
+                <span class=" icon-trash-4"></span>
+            </div>
+        </div>
+        <!-- Vertically centered scrollable modal -->
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            ...
+        </div>
     </div>
     <br>
     <div class="d" style="width: 100%;" id="contenidoPrev">
@@ -29,7 +41,6 @@
                 <span class="icon-list-alt"></span> Mostrar tabla de Productos
             </div>
         </div>
-
         <div class="prods">
             <div class="md-form mt-0">
                 <label title="Busqueda por local...">
@@ -62,7 +73,7 @@
                                             </div>
 
                                             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                                <div class="card-body">
+                                                <div class="card-body" style="height: 300px !important; overflow-y: auto !important;">
                                                     <a class="dropdown-item" href="javascript: void(0)" (click)="getID(ida, cust.nombre)" *ngFor="let cust of custodios">
                                                       {{ cust.nombre }} | {{ cust.apellido }}
                                                     </a>
