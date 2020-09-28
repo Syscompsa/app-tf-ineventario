@@ -20,7 +20,7 @@ export class HistoryQRComponent implements OnInit {
   public conterB = false;
   public departemento;
   public cont;
-  public SearchDep = 'Farmacia';
+  public SearchDep = '0';
   public custodios;
   public cantCust;
   public Marcas;
@@ -48,10 +48,24 @@ export class HistoryQRComponent implements OnInit {
   getDep(master) {
     this.data.getDptoReporte(master).subscribe(x => {
       this.dataQRExtract = x;
-      this.cont = this.dataQRExtract.length;
-      console.log(this.dataQRExtract);
+      //this.cont = this.dataQRExtract.length;
+      for (let i = 0; i <= this.dataQRExtract.length; i++) {
+        console.log( this.dataQRExtract[i].nombre.length );
+        if(this.dataQRExtract.nombre.length >= 9) {
+          console.log('El nombre es muy largo');
+        }
+          console.log(this.dataQRExtract);
+      }
+     
     });
+
+    // this.data.getInfoByCiudad('a','a').subscribe( x => {
+    //   this.dataQRExtract = x;
+    //   console.log('Esto es el segundo');
+    //   console.log(this.dataQRExtract);
+    // })
   }
+
 
   imprimirUnidad(id, placa) {
     const ids = document.getElementById(`box-${id}`);
@@ -198,11 +212,17 @@ export class HistoryQRComponent implements OnInit {
   }
 
   createQRO(placa) {
+    let data: any = {
+      Placa : placa
+    }
+
     const qr = qrcode(4, 'L');
     const url = `https://alp-cloud.com:8445/api/AR_INV-QRcodProdGet/getPlaca/${placa}`;
     qr.addData(url);
     qr.make();
-    document.getElementById(placa).innerHTML = qr.createImgTag();
+    qr.isDark(2,2);
+    qr.addData('Esto es un Activo', 'Alphanumeric');
+    document.getElementById(placa).innerHTML = qr.createSvgTag(1.2);
   }
 
   // Estafuncion cambia la altura de este div al momento de imprimir

@@ -14,6 +14,15 @@
     width: 100%;
 }
 
+.QR {
+    width: 50%;
+}
+
+.data {
+    width: 50%;
+    font-size: 9pt;
+}
+
 #limp {
     background-color: gray;
     color: white;
@@ -23,7 +32,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 7px;
 }
 
 #limp:hover {
@@ -117,16 +125,15 @@ label {
     /* border-top-right-radius: 5px; */
     border-bottom-right-radius: 5px;
     position: absolute;
-    padding: 10px;
     z-index: 10000;
     box-shadow: 5px 6px 8px rgba(0, 0, 0, 0.4);
 }
 
 .box {
-    width: 175px;
-    height: auto;
-    padding: 10px;
+    width: 107.72px;
+    height: 70.87px;
     border: solid 0.2px rgb(211, 211, 211);
+    display: flex;
 }
 
 .active {

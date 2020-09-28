@@ -81,13 +81,16 @@ export class DataCallService {
     return this.http.get(this.apiURL + 'api/Reporteria/GetMarcaReporte/' + master);
   }
 
-
   getCustodioReporte(master) {
     return this.http.get(this.apiURL + 'api/Reporteria/GetCustodioReporte/' + master);
   }
 
   delReport(id) {
     return this.http.get(this.apiURL + 'api/Reporteria/DeleteReporte/' + id);
+  }
+// https://alp-cloud.com:8445/api/Reporteria/GetRepByCiud/a/a
+  getInfoByCiudad(farm, ciud) {
+    return this.http.get(this.apiURL + 'api/Reporteria/GetRepByCiud/' + farm + "/" + ciud);
   }
 
   getDataByPlaca() {

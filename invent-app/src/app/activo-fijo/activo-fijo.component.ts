@@ -473,10 +473,10 @@ public arr: any[] = [];
         // this._actCont = this.modelData[0].af_control;
         this.modelData = resp;
         this.pId = this.modelData[0].id;
-        this._IMGE = this.modelData[0].imagenbit.replace(/\\/g, '/');
+        // this._IMGE = this.modelData[0].imagenbit.replace(/\\/g, '/');
         // console.log(this._IMGE);
         this._FeCREA    = this.modelData[0].feccrea.toString().slice(0, 10);
-        this._FeMOD     = this.modelData[0].fecmodi.toString().slice(0, 10);
+        // this._FeMOD     = this.modelData[0].fecmodi.toString().slice(0, 10);
         this._nProducto = this.modelData[0].nombre;
         this._FeDEP     = this.modelData[0].fechac.toString().slice(0, 10);
         this._FeCOMP    = this.modelData[0].horafin.toString().slice(0, 10);
@@ -1145,6 +1145,7 @@ public arr: any[] = [];
 
     // tslint:disable-next-line: member-ordering
     public dataimg;
+    public img64;
 
     encodeImageFileAsURL() {
       const filesSelected = document.getElementById('fileUp') as HTMLInputElement;
@@ -1159,7 +1160,8 @@ public arr: any[] = [];
         fileReader.onloadend = function(fileLoadedEvent) {
           const target: any = fileLoadedEvent.target;
           const cont = target.result;
-          // console.log(cont);
+          // this.img64 = cont;
+          // console.log(cont)
           const newImage = document.createElement('img');
           newImage.src = cont;
           newImage.setAttribute('id', 'img');
@@ -1171,11 +1173,11 @@ public arr: any[] = [];
         // tslint:disable-next-line: prefer-for-of
         for (let i = 0; i < fileId.length; i++) {
           const a = fileReader.readAsDataURL(fileId[i]);
-          this.dataimg = fileReader.readAsBinaryString(fileId[i]);
+          const b = fileReader.readAsBinaryString(fileId[i]);
+          // console.log(b)
+          // console.log(a)
         }
-
-        this._IMGE = this.dataimg;
-        console.log(this._IMGE);
+        // console.log(this.dataimg);
       }
     }
 ;

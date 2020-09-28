@@ -1,21 +1,16 @@
 <app-header></app-header>
 <div id="prevImprimir" style="width: 120px;" class="prevImprimir">
-    <div class="countss">
-        <div class="prev" style="width: 75px;" data-toggle="modal" data-target="#exampleModalCenteredScrollable">
+    <div class="countss" style="height: 35px;">
+        <div class="prev" style="width: 75px; height: 35px;" data-toggle="modal" data-target="#exampleModalCenteredScrollable">
             <span class="icon-search" style="color: steelblue;">Prev.:</span>
         </div>
         <!-- <div class="count">{{indice}}</div> -->
         <div class="btnSettings">
-            <div id="limp" (click)="limpiarLi()">
+            <div id="limp" style="height: 35px;" (click)="limpiarLi()">
                 <span class=" icon-trash-4"></span>
             </div>
         </div>
-        <!-- Vertically centered scrollable modal -->
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            ...
-        </div>
     </div>
-    <br>
     <div class="d" style="width: 100%;" id="contenidoPrev">
     </div>
 </div>
@@ -115,18 +110,17 @@
     </div>
     <div class="dataQR animated fadeIn" id="dataQR" *ngIf="conterB">
 
-        <div class="box" style="cursor: pointer;" *ngFor="let a of dataQRExtract" id="box-{{a.id}}" (click)="imprimirUnidad(a.id, a.placa)">
+        <div  class="box" style="cursor: pointer;" *ngFor="let a of dataQRExtract" id="box-{{a.id}}" (click)="imprimirUnidad(a.id, a.placa)">
 
             <div class="QR" [id]="a.placa">
-                CODE: {{createQRO(a.placa)}}<br>
+                 {{createQRO(a.placa)}}<br>
             </div>
-            <hr>
-            <div class="data">
-                Nombre: {{a.nombre}}<br> Placa: {{a.placa}}<br>
-                <p class="elim" (click)="delProd(a.placa)" title="Eliminar producto | activo">
+            <div class="data p-2" style="font-size: 5pt;">
+                Nombre:<strong> {{a.nombre}} </strong><br>
+                Placa:<strong> {{a.placa}} </strong><br>
+                <!-- <p class="elim" (click)="delProd(a.placa)" title="Eliminar producto | activo">
                     <span class="icon-trash"></span>
-                </p>
-
+                </p> -->
             </div>
         </div>
     </div>
