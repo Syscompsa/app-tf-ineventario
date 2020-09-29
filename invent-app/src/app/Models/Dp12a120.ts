@@ -1,4 +1,5 @@
 export interface Dp12a120 {
+        id: number,
         placa: string,
         clase: string,
         nombre: string,
@@ -6,16 +7,16 @@ export interface Dp12a120 {
         dpto: string,
         ciudad: string,
         serie: string,
-        valor: number
+        valor: number,
         activo: string,
         refer: string,
-        feccrea: string,
+        feccrea: Date,
         usucrea: string,
         fecmodi: Date,
-        usumodi: Date,
+        usumodi: string,
         fecfin: Date,
         horafin: Date,
-        userfin: Date,
+        userfin: string,
         barra: string,
         grupo: string,
         marca: string,
@@ -36,9 +37,7 @@ export interface Dp12a120 {
         imagen: string,
         valoR_RESI: number,
         valoR_RES2: number,
-        xxx: number,
         placa_aux: string,
         imagenbit: string,
-        id: number,
         af_control: boolean
 }

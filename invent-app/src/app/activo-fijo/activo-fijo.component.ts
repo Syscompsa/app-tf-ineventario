@@ -10,6 +10,8 @@ import { Dp12a120 } from '../Models/Dp12a120';
 import { WebuserService } from '../Services/webuser.service';
 
 
+
+
 @Component({
   selector: 'app-activo-fijo',
   templateUrl: './activo-fijo.component.html',
@@ -962,7 +964,7 @@ public arr: any[] = [];
         usumodi: this._USMO,
         fecfin: this._FeFINAL,
         horafin: this._FeCOMP,
-        userfin: this._USFI,
+        userfin: this._USFI,        
         barra: '',
         grupo: this._GRPO,
         marca: this._MRCA,
@@ -980,17 +982,14 @@ public arr: any[] = [];
         cdar: this._CDN,
         vaL_NORMAL: this._VNO,
         vaL_REVAL: this._VRVA,
-        imagen: '',
+        imagen: "",
         valoR_RESI: 0,
         valoR_RES2: 0,
-        xxx: 0,
-        placa_aux: this._PLAC,
+        placa_aux: "",
         imagenbit: this._IMGE,
         af_control: this._actCont
       };
-
-      console.log(formArr);
-      if (this._PLAC == '' || this._PLAC == null || this._PLAC == undefined) {
+    if (this._PLAC == '' || this._PLAC == null || this._PLAC == undefined) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -998,132 +997,140 @@ public arr: any[] = [];
         'Para que se pueda generar el código QR.</p>',
       });
     } else {
-      Swal.fire({
-        title: '¿Guardar producto?',
-        text: 'Estas generando un nuevo producto',
+      const swalWithBootstrapButtons = Swal.mixin({
+        customClass: {
+          confirmButton: 'btn btn-success',
+          cancelButton: 'btn btn-danger'
+        },
+        buttonsStyling: false
+      })
+      
+      swalWithBootstrapButtons.fire({
+        title: 'Estás seguro?',
+        text: "Estás creando un nuevo producto!",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: '¡Si, deseo guardar!'
+        confirmButtonText: 'Sí, deseo crear!',
+        cancelButtonText: 'No, deseo crear!',
+        reverseButtons: true
       }).then((result) => {
         if (result.isConfirmed) {
-          Swal.fire(
-            'Guardando',
-            'Tu producto ha sido guardado.',
+          swalWithBootstrapButtons.fire(
+            'Guardado!',
+            'Tu producto ha si añadido.',
             'success'
-          );
+          )
           this.data.saveDataInv(formArr).subscribe(x => {
             formArr = x;
-           // console.log(formArr);
-            // this.cleanForm();
-            // tslint:disable-next-line: no-unused-expression
-          }), err => {
-            Swal.fire({
-              icon: 'error',
-              text: 'Ha ocurrido un error',
-              html: `<p>${err}</p>`
-             }
-          );
-          };
+            console.log(formArr);
+          })
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire(
+            'Cancelado',
+            'Tu producto no ha sido añadido',
+            'error'
+          )
         }
-      });
+      })
+      
 
     }
+      
     }
     //#endregion
 
-
     //#region  "Update function()"
-    UpdateProduct() {
-      let arr: Dp12a120 = {
-        placa: this._PLAC,
-        clase: this._Class,
-        nombre: this._nProducto,
-        custodio: this._CustClass,
-        dpto: this._DP,
-        ciudad: this._ciudClass,
-        serie: this._SER,
-        valor: this._VLR,
-        activo: this._actvClass,
-        refer: this._REFE,
-        feccrea: this._FeCREA,
-        usucrea: this._UC,
-        fecmodi: this._FeMOD,
-        usumodi: this._USMO,
-        fecfin: this._FeFINAL,
-        horafin: this._FeCOMP,
-        userfin: this._USFI,
-        barra: '',
-        grupo: this._GRPO,
-        marca: this._MRCA,
-        color: this._CLR,
-        fechac: this._FeACT,
-        proveedor: this._PRVR,
-        modelo: this._MDL,
-        vidautil: this._VUL,
-        valres: this._VRE,
-        valoR2: 0,
-        fechaa: this._FeDEP,
-        fcustodio: this._FeFN,
-        cgasto: this._CGT,
-        cdan: this._CD,
-        cdar: this._CDN,
-        vaL_NORMAL: this._VNO,
-        vaL_REVAL: this._VRVA,
-        imagen: '',
-        valoR_RESI: 0,
-        valoR_RES2: 0,
-        xxx: 0,
-        placa_aux: this._PLAC,
-        imagenbit: this._IMGE,
-        id: this.pId,
-        af_control: this._actCont
-      };
-      if (this.pId == '') {
-        Swal.fire({
-          icon: 'info',
-          title: 'Oops...',
-          text: 'Este producto es nuevo, no puedes actualizarlo!'
-        });
-      } else {
-        Swal.fire({
-          title: 'Actualizar producto?',
-          text: `Estas actualizando producto con Id: ${this.pId}, Nombre: ${this._nProducto}`,
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: '¡Si, deseo actualizar!'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            Swal.fire(
-              'Guardando',
-              'Tu producto ha sido actualizado.',
-              'success'
-            );
-            this.data.updateProduct(arr).subscribe(x => {
-                arr = x;
-                console.log(arr);
-                this.reportArr = {
-                  fechaInv: new Date(),
-                  placaInv: this._PLAC,
-                  descripInv: this._nProducto,
-                  custodio: this._CustRead,
-                  ciudad: this._ciudRead,
-                  campoA: this.DepRead,
-                  campoB: '--'
-                };
-                this.data.saveReport(this.reportArr).subscribe(x => {
-                  this.reportArr = x;
-                });
-              }
-              ), err => console.log('Algo ha pasado' + err);
-          }
-        });
+    // UpdateProduct() {
+    //   let arr: Dp12a120 = {
+    //     id: 2,
+    //     placa: "122212121",
+    //     clase: "TEST",
+    //     nombre: "TEST",
+    //     custodio: "CUST TEST",
+    //     dpto: "DEPT TEST",
+    //     ciudad: "CIUD TEST",
+    //     serie: "",
+    //     valor: 0,
+    //     activo: "",
+    //     refer: "",
+    //     feccrea: null,
+    //     usucrea: "",
+    //     fecmodi: null,
+    //     usumodi: "",
+    //     fecfin: null,
+    //     horafin: null,
+    //     userfin: "",        
+    //     barra: "",
+    //     grupo: "",
+    //     marca: "",
+    //     color: "",
+    //     fechac: null,
+    //     proveedor: "",
+    //     modelo: "",
+    //     vidautil: 0,
+    //     valres: 0,
+    //     valoR2: 0,
+    //     fechaa: null,
+    //     fcustodio: null,
+    //     cgasto: "",
+    //     cdan: "",
+    //     cdar: "",
+    //     vaL_NORMAL: 0,
+    //     vaL_REVAL: 0,
+    //     imagen: "",
+    //     valoR_RESI: 0,
+    //     valoR_RES2: 0,
+    //     placa_aux: "",
+    //     imagenbit: "",
+    //     af_control: true
+    //   };
+    //   if (this.pId == '') {
+    //     Swal.fire({
+    //       icon: 'info',
+    //       title: 'Oops...',
+    //       text: 'Este producto es nuevo, no puedes actualizarlo!'
+    //     });
+    //   } else {
+    //     Swal.fire({
+    //       title: 'Actualizar producto?',
+    //       text: `Estas actualizando producto con Id: ${this.pId}, Nombre: ${this._nProducto}`,
+    //       icon: 'warning',
+    //       showCancelButton: true,
+    //       confirmButtonColor: '#3085d6',
+    //       cancelButtonColor: '#d33',
+    //       confirmButtonText: '¡Si, deseo actualizar!'
+    //     }).then((result) => {
+    //       if (result.isConfirmed) {
+    //         Swal.fire(
+    //           'Guardando',
+    //           'Tu producto ha sido actualizado.',
+    //           'success'
+    //         );
+    //         this.data.updateProduct(arr).subscribe(x => {
+    //             arr = x;
+    //             console.log(arr);
+    //             this.reportArr = {
+    //               fechaInv: new Date(),
+    //               placaInv: this._PLAC,
+    //               descripInv: this._nProducto,
+    //               custodio: this._CustRead,
+    //               ciudad: this._ciudRead,
+    //               campoA: this.DepRead,
+    //               campoB: '--'
+    //             };
+    //             this.data.saveReport(this.reportArr).subscribe(x => {
+    //               this.reportArr = x;
+    //             });
+    //           }
+    //           ), err => console.log('Algo ha pasado' + err);
+    //       }
+    //     });
 
-      }
-    }
+    //   }
+    // }
     //#endregion
 
     actcon() {
@@ -1150,37 +1157,39 @@ public arr: any[] = [];
     encodeImageFileAsURL() {
       const filesSelected = document.getElementById('fileUp') as HTMLInputElement;
       const fileId = filesSelected.files;
-
+      const newImage = document.createElement('img');
+      newImage.setAttribute('id', 'img');
+      newImage.style.width = '100%';
+      newImage.style.height = 'auto';
+      
+      let base
       if (fileId.length > 0) {
         const fileToLoad = filesSelected[0];
         const fileReader = new FileReader();
-        // console.log(fileReader.onloadend);
-
-        // tslint:disable-next-line: only-arrow-functions
-        fileReader.onloadend = function(fileLoadedEvent) {
-          const target: any = fileLoadedEvent.target;
-          const cont = target.result;
-          // this.img64 = cont;
-          // console.log(cont)
-          const newImage = document.createElement('img');
-          newImage.src = cont;
-          newImage.setAttribute('id', 'img');
-          newImage.style.width = '100%';
-          newImage.style.height = 'auto';
+        
+        fileReader.onload = function () {
+          base = fileReader.result;
+          newImage.src = base;          
           document.getElementById('imgTest').innerHTML = newImage.outerHTML;
+          //console.log(base)
         };
-
-        // tslint:disable-next-line: prefer-for-of
-        for (let i = 0; i < fileId.length; i++) {
-          const a = fileReader.readAsDataURL(fileId[i]);
-          const b = fileReader.readAsBinaryString(fileId[i]);
-          // console.log(b)
-          // console.log(a)
+        fileReader.onloadend = () => {
+          this._IMGE = fileReader.result;
+          console.log(this._IMGE)
         }
-        // console.log(this.dataimg);
+        
+        
+        const a = fileReader.readAsDataURL(fileId[0]);
+        // console.log(a)
+        // // tslint:disable-next-line: prefer-for-of
+        // for (let i = 0; i < fileId.length; i++) {
+        // }
+
       }
+
     }
-;
+
+
     //#region "SaveReport()"
    saveReport(finv, plainv, desinv, custinv, ciudinv) {
       let arrReport: any = {
