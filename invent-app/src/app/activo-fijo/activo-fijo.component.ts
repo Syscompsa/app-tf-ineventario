@@ -964,7 +964,7 @@ public arr: any[] = [];
         usumodi: this._USMO,
         fecfin: this._FeFINAL,
         horafin: this._FeCOMP,
-        userfin: this._USFI,        
+        userfin: this._USFI,
         barra: '',
         grupo: this._GRPO,
         marca: this._MRCA,
@@ -1004,7 +1004,7 @@ public arr: any[] = [];
         },
         buttonsStyling: false
       })
-      
+
       swalWithBootstrapButtons.fire({
         title: 'Estás seguro?',
         text: "Estás creando un nuevo producto!",
@@ -1035,102 +1035,86 @@ public arr: any[] = [];
           )
         }
       })
-      
+
 
     }
-      
+
     }
     //#endregion
 
     //#region  "Update function()"
-    // UpdateProduct() {
-    //   let arr: Dp12a120 = {
-    //     id: 2,
-    //     placa: "122212121",
-    //     clase: "TEST",
-    //     nombre: "TEST",
-    //     custodio: "CUST TEST",
-    //     dpto: "DEPT TEST",
-    //     ciudad: "CIUD TEST",
-    //     serie: "",
-    //     valor: 0,
-    //     activo: "",
-    //     refer: "",
-    //     feccrea: null,
-    //     usucrea: "",
-    //     fecmodi: null,
-    //     usumodi: "",
-    //     fecfin: null,
-    //     horafin: null,
-    //     userfin: "",        
-    //     barra: "",
-    //     grupo: "",
-    //     marca: "",
-    //     color: "",
-    //     fechac: null,
-    //     proveedor: "",
-    //     modelo: "",
-    //     vidautil: 0,
-    //     valres: 0,
-    //     valoR2: 0,
-    //     fechaa: null,
-    //     fcustodio: null,
-    //     cgasto: "",
-    //     cdan: "",
-    //     cdar: "",
-    //     vaL_NORMAL: 0,
-    //     vaL_REVAL: 0,
-    //     imagen: "",
-    //     valoR_RESI: 0,
-    //     valoR_RES2: 0,
-    //     placa_aux: "",
-    //     imagenbit: "",
-    //     af_control: true
-    //   };
-    //   if (this.pId == '') {
-    //     Swal.fire({
-    //       icon: 'info',
-    //       title: 'Oops...',
-    //       text: 'Este producto es nuevo, no puedes actualizarlo!'
-    //     });
-    //   } else {
-    //     Swal.fire({
-    //       title: 'Actualizar producto?',
-    //       text: `Estas actualizando producto con Id: ${this.pId}, Nombre: ${this._nProducto}`,
-    //       icon: 'warning',
-    //       showCancelButton: true,
-    //       confirmButtonColor: '#3085d6',
-    //       cancelButtonColor: '#d33',
-    //       confirmButtonText: '¡Si, deseo actualizar!'
-    //     }).then((result) => {
-    //       if (result.isConfirmed) {
-    //         Swal.fire(
-    //           'Guardando',
-    //           'Tu producto ha sido actualizado.',
-    //           'success'
-    //         );
-    //         this.data.updateProduct(arr).subscribe(x => {
-    //             arr = x;
-    //             console.log(arr);
-    //             this.reportArr = {
-    //               fechaInv: new Date(),
-    //               placaInv: this._PLAC,
-    //               descripInv: this._nProducto,
-    //               custodio: this._CustRead,
-    //               ciudad: this._ciudRead,
-    //               campoA: this.DepRead,
-    //               campoB: '--'
-    //             };
-    //             this.data.saveReport(this.reportArr).subscribe(x => {
-    //               this.reportArr = x;
-    //             });
-    //           }
-    //           ), err => console.log('Algo ha pasado' + err);
-    //       }
-    //     });
+    UpdateProduct() {
+      let arr: Dp12a120 = {
+        id: this.pId,
+        placa: this._PLAC,
+        clase: this._Class,
+        nombre: this._nProducto,
+        custodio: this._CustClass,
+        dpto: this._DP,
+        ciudad: this._ciudClass,
+        serie: this._SER,
+        valor: this._VLR,
+        activo: this._actvClass,
+        refer: this._REFE,
+        feccrea: this._FeCREA,
+        usucrea: this._UC,
+        fecmodi: this._FeMOD,
+        usumodi: this._USMO,
+        fecfin: this._FeFINAL,
+        horafin: this._FeCOMP,
+        userfin: this._USFI,
+        barra: '',
+        grupo: this._GRPO,
+        marca: this._MRCA,
+        color: this._CLR,
+        fechac: this._FeACT,
+        proveedor: this._PRVR,
+        modelo: this._MDL,
+        vidautil: this._VUL,
+        valres: this._VRE,
+        valoR2: 0,
+        fechaa: this._FeDEP,
+        fcustodio: this._FeFN,
+        cgasto: this._CGT,
+        cdan: this._CD,
+        cdar: this._CDN,
+        vaL_NORMAL: this._VNO,
+        vaL_REVAL: this._VRVA,
+        imagen: "",
+        valoR_RESI: 0,
+        valoR_RES2: 0,
+        placa_aux: "",
+        imagenbit: this._IMGE,
+        af_control: this._actCont
+      };
 
-    //   }
-    // }
+      if (this.pId == '') {
+        Swal.fire({
+          icon: 'info',
+          title: 'Oops...',
+          text: 'Este producto es nuevo, no puedes actualizarlo!'
+        });
+      } else {
+        console.log(arr);
+        // this.data.updateProduct(arr).subscribe(x => {
+        //   arr = x;
+        //   console.log(arr);
+        //   this.reportArr = {
+        //     fechaInv: new Date(),
+        //     placaInv: this._PLAC,
+        //     descripInv: this._nProducto,
+        //     custodio: this._CustRead,
+        //     ciudad: this._ciudRead,
+        //     campoA: this.DepRead,
+        //     campoB: '--'
+        //   };
+        //   this.data.saveReport(this.reportArr).subscribe(x => {
+        //     this.reportArr = x;
+        //   });
+        // }
+        // )
+      }
+    }
     //#endregion
 
     actcon() {
@@ -1161,15 +1145,15 @@ public arr: any[] = [];
       newImage.setAttribute('id', 'img');
       newImage.style.width = '100%';
       newImage.style.height = 'auto';
-      
+
       let base
       if (fileId.length > 0) {
         const fileToLoad = filesSelected[0];
         const fileReader = new FileReader();
-        
+
         fileReader.onload = function () {
           base = fileReader.result;
-          newImage.src = base;          
+          newImage.src = base;
           document.getElementById('imgTest').innerHTML = newImage.outerHTML;
           //console.log(base)
         };
@@ -1177,8 +1161,8 @@ public arr: any[] = [];
           this._IMGE = fileReader.result;
           console.log(this._IMGE)
         }
-        
-        
+
+
         const a = fileReader.readAsDataURL(fileId[0]);
         // console.log(a)
         // // tslint:disable-next-line: prefer-for-of
