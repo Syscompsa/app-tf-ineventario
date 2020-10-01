@@ -1048,7 +1048,7 @@ public arr: any[] = [];
 
     //#region  "Update function()"
     UpdateProduct() {
-      const arr: Dp12a120 = {
+      let arr: Dp12a120 = {
         id: this.pId,
         placa: this._PLAC,
         clase: this._Class,
@@ -1100,23 +1100,23 @@ public arr: any[] = [];
         });
       } else {
         console.log(arr);
-        // this.data.updateProduct(arr).subscribe(x => {
-        //   arr = x;
-        //   console.log(arr);
-        //   this.reportArr = {
-        //     fechaInv: new Date(),
-        //     placaInv: this._PLAC,
-        //     descripInv: this._nProducto,
-        //     custodio: this._CustRead,
-        //     ciudad: this._ciudRead,
-        //     campoA: this.DepRead,
-        //     campoB: '--'
-        //   };
-        //   this.data.saveReport(this.reportArr).subscribe(x => {
-        //     this.reportArr = x;
-        //   });
-        // }
-        // )
+        this.data.updateProduct(arr).subscribe(x => {
+          arr = x;
+          console.log(arr);
+          this.reportArr = {
+            fechaInv: new Date(),
+            placaInv: this._PLAC,
+            descripInv: this._nProducto,
+            custodio: this._CustRead,
+            ciudad: this._ciudRead,
+            campoA: this.DepRead,
+            campoB: '--'
+          };
+          this.data.saveReport(this.reportArr).subscribe(x => {
+            this.reportArr = x;
+          });
+        }
+        )
       }
     }
     //#endregion
