@@ -1,8 +1,29 @@
 <app-header></app-header>
+<div class="progress">
+    <div class="progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+</div>
 <div id="prevImprimir" style="width: 120px;" class="prevImprimir">
     <div class="countss" style="height: 35px;">
-        <div class="prev" style="width: 75px; height: 35px;" data-toggle="modal" data-target="#exampleModalCenteredScrollable">
-            <span class="icon-search" style="color: steelblue;">Prev.:</span>
+        <div class="prev" id="printUnit" (click)="imprSelec()" style="width: 85px; height: 35px;">
+            <span class="icon-print"></span>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"><span class="icon-print"></span> Productos Seleccionados</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                    </div>
+                    <div class="modal-body" id="modalPrint"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- <div class="count">{{indice}}</div> -->
         <div class="btnSettings">
@@ -16,14 +37,12 @@
 </div>
 
 <div class="cons container p-3" id="const">
-
     <div class="filterfor" data-toggle="modal" data-target="#exampleModal">
         <span class="filter icon-filter" data-toggle="modal" data-target="#exampleModal" id="an" (mouseover)="retAnim('animFilter')" (mouseleave)="retAnim('')" title="El filtro está activado por, {{filtro}}"></span> Filtrado por:
         <strong style="font-size: 14pt; color: steelblue;">
-           {{filtro}}
-         </strong>
+           {{filtro}} | Productos alcanzados: <strong> {{contadorProdAct}} <span class="icon-database"></span> </strong>
+        </strong>
     </div>
-
     <div class="container-fluid display d-flex justify-content-between align-items-end">
         <button type="button" id="prods" (mouseover)="changeHeight('auto')" (mouseleave)="changeHeight('510px')" (click)="prints()">
           <span class="icon-print"></span>  Imprimir Productos
@@ -110,17 +129,35 @@
     </div>
     <div class="dataQR animated fadeIn" id="dataQR" *ngIf="conterB">
 
-        <div  class="box" style="cursor: pointer;" *ngFor="let a of dataQRExtract" id="box-{{a.id}}" (click)="imprimirUnidad(a.id, a.placa)">
-
-            <div class="QR" [id]="a.placa">
-                 {{createQRO(a.placa)}}<br>
+        <div class="box" style="cursor: pointer;" *ngFor="let a of dataQRExtract" id="box-{{a.id}}" (click)="imprimirUnidad(a.id, a.placa, a.nombre)">
+            <div class="info" data-title="Nombre: {{a.nombre}}&#10;Placa: {{a.placa}}&#10;Ciudad: {{a.nomCiudad}}&#10;Custodio: {{a.nombreCustodio}}&#10;Marca: {{a.nomMarca}}&#10;Departamento: {{a.nomDpto}}">
+                <span class="icon-info"></span>
             </div>
-            <div class="data p-2" style="font-size: 5pt;">
-                Nombre:<strong> {{a.nombre}} </strong><br>
-                Placa:<strong> {{a.placa}} </strong><br>
+            <div class="QR" [id]="a.placa">
+                {{createQRO(a.placa)}}<br>
+            </div>
+            <div class="data" style="font-size: 5pt;">
+                Nombre:<strong> {{a.nombre}} </strong><br> Placa:
+                <strong> {{a.placa}} </strong><br>
                 <!-- <p class="elim" (click)="delProd(a.placa)" title="Eliminar producto | activo">
                     <span class="icon-trash"></span>
                 </p> -->
+                <!-- <div class="tooltip animated fadeInLeft fast" id="pl-{{a.placa}}">
+                    <div class="titleTooltip" (click)="overProduct('pl-'+a.placa, 'none')">
+                        <span class="icon-database"> Datos Completos:</span>
+                        <div class="cer"><span class="icon-cancel"></span></div>
+                    </div>
+                    <br>
+                    <li class="lists">
+                        Placa: {{a.placa}}
+                    </li>
+                    <li class="lists">
+                        Nombre: {{a.nombre}}
+                    </li>
+                    <li class="lists">
+                        Ciudad: {{a.nomCiudad}}
+                    </li>
+                </div> -->
             </div>
         </div>
     </div>

@@ -5,6 +5,7 @@ import * as qrcode from 'qrcode-generator';
 import { DataCallService } from '../Services/data-call.service';
 // const qrcode = require('qrcode-generator');
 import Swal from 'sweetalert2';
+import { createPopper } from '@popperjs/core';
 
 @Component({
   selector: 'app-history-qr',
@@ -37,6 +38,7 @@ export class HistoryQRComponent implements OnInit {
   public arr: any = [];
   public indice;
   public contador = 0;
+  public tooltipView;
 
   ngOnInit() {
     this.getDep(this.SearchDep);
@@ -48,49 +50,74 @@ export class HistoryQRComponent implements OnInit {
   getDep(master) {
     this.data.getDptoReporte(master).subscribe(x => {
       this.dataQRExtract = x;
-      //this.cont = this.dataQRExtract.length;
-      for (let i = 0; i <= this.dataQRExtract.length; i++) {
-        console.log( this.dataQRExtract[i].nombre.length );
-        if(this.dataQRExtract.nombre.length >= 9) {
-          console.log('El nombre es muy largo');
-        }
-          console.log(this.dataQRExtract);
-      }
-     
+      this.contadorProdAct = this.dataQRExtract.length;
+      console.log(this.dataQRExtract);
     });
-
-    // this.data.getInfoByCiudad('a','a').subscribe( x => {
-    //   this.dataQRExtract = x;
-    //   console.log('Esto es el segundo');
-    //   console.log(this.dataQRExtract);
-    // })
   }
 
+  overProduct(ids, disp) {
+    const tooltip = document.getElementById(ids);
+    tooltip.style.display = 'none';
+    tooltip.style.display = disp;
+  }
 
-  imprimirUnidad(id, placa) {
+  imprimirUnidad(id, placa, nombre) {
     const ids = document.getElementById(`box-${id}`);
     const contenidoPrev = document.getElementById(`contenidoPrev`);
+    const modImp = document.getElementById('modalPrint');
     switch (this.ensi) {
       case true:
         this.ensi = false;
         console.log(this.ensi);
-        contenidoPrev.appendChild(this.createLi(id, placa));
-        this.objectSelectStyle(ids, 'dashed', '#0AC1AD', '2px');
+        contenidoPrev.appendChild(this.createLi(id, placa, nombre));
+        // modImp.appendChild(this.createLi(id, placa));
+
         break;
       case false:
         this.ensi = true;
         console.log(this.ensi);
         contenidoPrev.removeChild(document.getElementById(`li-${id}`));
+        // modImp.removeChild(document.getElementById(`li-${id}`));
         this.objectSelectStyle(ids, 'solid', 'rgba(0,0,0,0.2)', '1px');
         break;
     }
   }
 
-  createLi(idVar, placaText) {
+  createQRO(placa) {
+    const qr = qrcode(4, 'L');
+    const url = `https://alp-cloud.com:8445/api/AR_INV-QRcodProdGet/getPlaca/${placa}`;
+    qr.addData(url);
+    qr.make();
+    // qr.isDark(2, 2);
+    // qr.addData('Esto es un Activo', 'Alphanumeric');
+    document.getElementById(placa).innerHTML = qr.createSvgTag(1.2);
+  }
+
+  createLi(idVar, placaText, nombre) {
     const node = document.createElement('li');
-    node.innerText = placaText;
+    // document.getElementById('modalPrint').innerText = placaText;
     node.setAttribute('id', `li-${idVar}`);
     node.setAttribute('class', 'animated fadeInLeft fast');
+    node.style.listStyle = 'none';
+    node.style.padding = '2px';
+    node.style.borderBottom = 'dashed 1px gray';
+    const createSects = document.createElement('section');
+    node.style.width = '107.71px';
+    node.style.height = '70.87px';
+    node.style.display = 'flex';
+    node.style.justifyContent = 'center';
+    node.style.alignItems = 'center';
+    const createDiv = document.createElement('div');
+    createDiv.innerHTML = `Placa: <strong> ${placaText} </strong> \n Nombre: <strong>  ${nombre} </stong>`;
+    createDiv.style.fontSize = '5pt';
+    node.appendChild(createSects);
+    node.appendChild(createDiv);
+    // console.log(placaText);
+    const qr = qrcode(4, 'L');
+    const urlD =  `https://alp-cloud.com:8445/api/AR_INV-QRcodProdGet/getPlaca/${placaText}`;
+    qr.make();
+    createSects.innerHTML = qr.createSvgTag(1.2);
+
     return node;
   }
 
@@ -100,6 +127,15 @@ export class HistoryQRComponent implements OnInit {
     const contenidoPrev = document.getElementById(`contenidoPrev`);
     contenidoPrev.removeChild(lis[3]);
   }
+
+  imprSelec() {
+	  var ficha = document.getElementById('contenidoPrev');
+	  let ventimp = window.open(' ', 'popimpr');
+	  ventimp.document.write( ficha.innerHTML );
+	  ventimp.document.close();
+	  ventimp.print( );
+	  ventimp.close();
+	}
 
   objectSelectStyle(obj, color, styleBorder, tam) {
     obj.style.border = `${styleBorder} ${tam} ${color}`;
@@ -115,6 +151,7 @@ export class HistoryQRComponent implements OnInit {
     this.data.getCustodioReporte(custodio).subscribe(x => {
       this.dataQRExtract = x;
       console.log(this.dataQRExtract);
+      this.contadorProdAct = this.dataQRExtract.length;
     });
   }
 
@@ -122,6 +159,7 @@ export class HistoryQRComponent implements OnInit {
     this.data.getMarcaReporte(marca).subscribe( x => {
       this.dataQRExtract = x;
       console.log(this.dataQRExtract);
+      this.contadorProdAct = this.dataQRExtract.length;
     });
   }
 
@@ -176,15 +214,11 @@ export class HistoryQRComponent implements OnInit {
     switch (IDS) {
       case 1:
         this.filter(a);
-        // console.log(this.filtro);
         this.getProductCustodio(this.filtro);
-        // console.log('se ha elegido filtrar por custodio');
         break;
       case 2:
         this.filter(a);
-        // console.log(this.filtro);
         this.getProductMarca(this.filtro);
-        // console.log('se ha elegido filtrar por marca');
         break;
     }
     console.log(IDS);
@@ -209,20 +243,6 @@ export class HistoryQRComponent implements OnInit {
   prints() {
     // const a = document.getElementById('dataQR');
     window.print();
-  }
-
-  createQRO(placa) {
-    let data: any = {
-      Placa : placa
-    }
-
-    const qr = qrcode(4, 'L');
-    const url = `https://alp-cloud.com:8445/api/AR_INV-QRcodProdGet/getPlaca/${placa}`;
-    qr.addData(url);
-    qr.make();
-    qr.isDark(2,2);
-    qr.addData('Esto es un Activo', 'Alphanumeric');
-    document.getElementById(placa).innerHTML = qr.createSvgTag(1.2);
   }
 
   // Estafuncion cambia la altura de este div al momento de imprimir

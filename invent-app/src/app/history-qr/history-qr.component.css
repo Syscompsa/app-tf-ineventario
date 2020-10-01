@@ -120,9 +120,13 @@ label {
     height: 25px;
 }
 
-.prev {  
-
-
+.prev {
+    background-color: steelblue;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #prevImprimir {
@@ -139,6 +143,51 @@ label {
     height: 70.87px;
     border: solid 0.2px rgb(211, 211, 211);
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cer {
+    transition: ease all 0.5s;
+    color: aqua;
+}
+
+.cer:hover {
+    transition: ease all 0.5s;
+    color: orangered;
+}
+
+.lists {
+    border-bottom: solid 0.5px white;
+}
+
+.info {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    margin-top: -53px;
+    margin-left: 90px;
+    background-color: steelblue;
+    color: white;
+}
+
+.info[data-title] {
+    color: aqua;
+}
+
+.tooltip {
+    width: auto;
+    height: auto;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgb(36, 36, 36);
+    color: white;
+    position: absolute;
+}
+
+.titleTooltip {
+    display: flex;
+    justify-content: space-between;
 }
 
 .active {

@@ -462,6 +462,10 @@ public arr: any[] = [];
     public cuentasArrC;
     public _CuentClassC;
     public _CuentReadC;
+
+    // tslint:disable-next-line: member-ordering
+    public dataimg;
+    public img64;
   ngOnInit() {
     this.getInterfaz();
     this.fechActual();
@@ -982,14 +986,14 @@ public arr: any[] = [];
         cdar: this._CDN,
         vaL_NORMAL: this._VNO,
         vaL_REVAL: this._VRVA,
-        imagen: "",
+        imagen: '',
         valoR_RESI: 0,
         valoR_RES2: 0,
-        placa_aux: "",
+        placa_aux: '',
         imagenbit: this._IMGE,
         af_control: this._actCont
       };
-    if (this._PLAC == '' || this._PLAC == null || this._PLAC == undefined) {
+      if (this._PLAC == '' || this._PLAC == null || this._PLAC == undefined) {
       Swal.fire({
         icon: 'error',
         title: 'Oops...',
@@ -1003,11 +1007,11 @@ public arr: any[] = [];
           cancelButton: 'btn btn-danger'
         },
         buttonsStyling: false
-      })
+      });
 
       swalWithBootstrapButtons.fire({
         title: 'Estás seguro?',
-        text: "Estás creando un nuevo producto!",
+        text: 'Estás creando un nuevo producto!',
         icon: 'warning',
         showCancelButton: true,
         confirmButtonText: 'Sí, deseo crear!',
@@ -1019,11 +1023,11 @@ public arr: any[] = [];
             'Guardado!',
             'Tu producto ha si añadido.',
             'success'
-          )
+          );
           this.data.saveDataInv(formArr).subscribe(x => {
             formArr = x;
             console.log(formArr);
-          })
+          });
         } else if (
           /* Read more about handling dismissals below */
           result.dismiss === Swal.DismissReason.cancel
@@ -1032,9 +1036,9 @@ public arr: any[] = [];
             'Cancelado',
             'Tu producto no ha sido añadido',
             'error'
-          )
+          );
         }
-      })
+      });
 
 
     }
@@ -1044,7 +1048,7 @@ public arr: any[] = [];
 
     //#region  "Update function()"
     UpdateProduct() {
-      let arr: Dp12a120 = {
+      const arr: Dp12a120 = {
         id: this.pId,
         placa: this._PLAC,
         clase: this._Class,
@@ -1080,10 +1084,10 @@ public arr: any[] = [];
         cdar: this._CDN,
         vaL_NORMAL: this._VNO,
         vaL_REVAL: this._VRVA,
-        imagen: "",
+        imagen: '',
         valoR_RESI: 0,
         valoR_RES2: 0,
-        placa_aux: "",
+        placa_aux: '',
         imagenbit: this._IMGE,
         af_control: this._actCont
       };
@@ -1134,10 +1138,6 @@ public arr: any[] = [];
       this.datenow = y + '-' + m + '-' + d;
     }
 
-    // tslint:disable-next-line: member-ordering
-    public dataimg;
-    public img64;
-
     encodeImageFileAsURL() {
       const filesSelected = document.getElementById('fileUp') as HTMLInputElement;
       const fileId = filesSelected.files;
@@ -1146,22 +1146,22 @@ public arr: any[] = [];
       newImage.style.width = '100%';
       newImage.style.height = 'auto';
 
-      let base
+      let base;
       if (fileId.length > 0) {
         const fileToLoad = filesSelected[0];
         const fileReader = new FileReader();
 
-        fileReader.onload = function () {
+        // tslint:disable-next-line: only-arrow-functions
+        fileReader.onload = () => {
           base = fileReader.result;
           newImage.src = base;
           document.getElementById('imgTest').innerHTML = newImage.outerHTML;
-          //console.log(base)
+          // console.log(base)
         };
         fileReader.onloadend = () => {
           this._IMGE = fileReader.result;
-          console.log(this._IMGE)
-        }
-
+          console.log(this._IMGE);
+        };
 
         const a = fileReader.readAsDataURL(fileId[0]);
         // console.log(a)
