@@ -472,25 +472,25 @@ public arr: any[] = [];
     this.data.getDataByPlaca().subscribe( x => {
        this.placaServices = x;
        const placaNow = this.placaServices[0].placa_Post;
-       console.log(placaNow);
+       // console.log(placaNow);
        this.data.getDataByPlacaId(placaNow)
-       .subscribe(resp => {
-        console.log(resp);
-        // this._actCont = this.modelData[0].af_control;
+       .subscribe(resp => {        
         this.modelData = resp;
-        this.pId = this.modelData[0].id;
-        // this._IMGE = this.modelData[0].imagenbit.replace(/\\/g, '/');
-        // console.log(this._IMGE);
-        this._FeCREA    = this.modelData[0].feccrea.toString().slice(0, 10);
-        // this._FeMOD     = this.modelData[0].fecmodi.toString().slice(0, 10);
+        // console.log(this.modelData[0].imagenbit)
+        // console.log(this.modelData[0].length);
+        // console.log(this.modelData);
         this._nProducto = this.modelData[0].nombre;
+        this._PLAC = this.modelData[0].placa;
+        this.pId = this.modelData[0].id;
+        this._actCont = this.modelData[0].af_control;
+        this._FeCREA    = this.modelData[0].feccrea.toString().slice(0, 10);
+        this._FeMOD     = this.modelData[0].fecmodi.toString().slice(0, 10);
         this._FeDEP     = this.modelData[0].fechac.toString().slice(0, 10);
         this._FeCOMP    = this.modelData[0].horafin.toString().slice(0, 10);
         this._FeFINAL   = this.modelData[0].fecfin.toString().slice(0, 10);
         this._FeACT     = this.datenow.toString();
         this._FeFN      = this.modelData[0].fechac.toString().slice(0, 10);
-        this._PLAC      = this.modelData[0].placa;
-        this._CLAS      = this.modelData[0].clase;
+        this._Class      = this.modelData[0].clase;
         this._CustClass = this.modelData[0].custodio;
         this._DP        = this.modelData[0].dpto;
         this._SER       = this.modelData[0].serie;
@@ -512,7 +512,7 @@ public arr: any[] = [];
         this._CDN       = this.modelData[0].cdar;
         this._VNO       = this.modelData[0].vaL_NORMAL;
         this._VRVA      = this.modelData[0].vaL_REVAL;
-        this._IMGE      = '';
+        this._IMGE      = this.modelData[0].imagenbit;
         this._ciudClass = this.modelData[0].ciudad;
         this._Class     = this.modelData[0].clase;
         this._ActiveClass = '';
@@ -1049,12 +1049,11 @@ public arr: any[] = [];
     //#region  "Update function()"
     UpdateProduct() {
       let arr: Dp12a120 = {
-        id: this.pId,
         placa: this._PLAC,
         clase: this._Class,
         nombre: this._nProducto,
         custodio: this._CustClass,
-        dpto: this._DP,
+        dpto: this._DP,        
         ciudad: this._ciudClass,
         serie: this._SER,
         valor: this._VLR,
@@ -1063,33 +1062,34 @@ public arr: any[] = [];
         feccrea: this._FeCREA,
         usucrea: this._UC,
         fecmodi: this._FeMOD,
-        usumodi: this._USMO,
+        usumodi: '',
         fecfin: this._FeFINAL,
         horafin: this._FeCOMP,
-        userfin: this._USFI,
-        barra: '',
-        grupo: this._GRPO,
-        marca: this._MRCA,
+        userfin: '',
+        barra: "",
+        grupo: "005  ",
+        marca: "00058",
         color: this._CLR,
         fechac: this._FeACT,
-        proveedor: this._PRVR,
-        modelo: this._MDL,
-        vidautil: this._VUL,
-        valres: this._VRE,
-        valoR2: 0,
-        fechaa: this._FeDEP,
-        fcustodio: this._FeFN,
-        cgasto: this._CGT,
-        cdan: this._CD,
-        cdar: this._CDN,
-        vaL_NORMAL: this._VNO,
-        vaL_REVAL: this._VRVA,
-        imagen: '',
-        valoR_RESI: 0,
-        valoR_RES2: 0,
-        placa_aux: '',
+        proveedor: "      ",
+        modelo: "001  ",
+        vidautil: 0.00,
+        valres: 0.00,
+        valoR2: 0.00,
+        fechaa: null,
+        fcustodio: null,
+        cgasto: "5110200029",
+        cdan: "1230300003",
+        cdar: "",
+        vaL_NORMAL: 0.00,
+        vaL_REVAL: 0.00,
+        imagen: "",
+        valoR_RESI: 0.00,
+        valoR_RES2: 0.00,
+        placa_aux: "0000002",
         imagenbit: this._IMGE,
-        af_control: this._actCont
+        id: this.pId,
+        af_control: true
       };
 
       if (this.pId == '') {
@@ -1103,18 +1103,18 @@ public arr: any[] = [];
         this.data.updateProduct(arr).subscribe(x => {
           arr = x;
           console.log(arr);
-          this.reportArr = {
-            fechaInv: new Date(),
-            placaInv: this._PLAC,
-            descripInv: this._nProducto,
-            custodio: this._CustRead,
-            ciudad: this._ciudRead,
-            campoA: this.DepRead,
-            campoB: '--'
-          };
-          this.data.saveReport(this.reportArr).subscribe(x => {
-            this.reportArr = x;
-          });
+          // this.reportArr = {
+          //   fechaInv: new Date(),
+          //   placaInv: this._PLAC,
+          //   descripInv: this._nProducto,
+          //   custodio: this._CustRead,
+          //   ciudad: this._ciudRead,
+          //   campoA: this.DepRead,
+          //   campoB: '--'
+          // };
+          // this.data.saveReport(this.reportArr).subscribe(x => {
+          //   this.reportArr = x;
+          // });
         }
         )
       }
@@ -1145,7 +1145,6 @@ public arr: any[] = [];
       newImage.setAttribute('id', 'img');
       newImage.style.width = '100%';
       newImage.style.height = 'auto';
-
       let base;
       if (fileId.length > 0) {
         const fileToLoad = filesSelected[0];

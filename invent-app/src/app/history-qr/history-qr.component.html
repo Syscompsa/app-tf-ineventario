@@ -2,10 +2,12 @@
 <div class="progress">
     <div class="progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<div id="prevImprimir" style="width: 120px;" class="prevImprimir">
+<div id="prevImprimir" style="width: 150px;" class="prevImprimir">
     <div class="countss" style="height: 35px;">
-        <div class="prev" id="printUnit" (click)="imprSelec()" style="width: 85px; height: 35px;">
+        <div class="prev" id="printUnit" (click)="imprSelec()" style="width: 115px; height: 35px;">
             <span class="icon-print"></span>
+
+
         </div>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -35,16 +37,19 @@
     <div class="d" style="width: 100%;" id="contenidoPrev">
     </div>
 </div>
-
-<div class="cons container p-3" id="const">
+<div class="paginador">
+    <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
+</div>
+<div class="cons container" id="const">
     <div class="filterfor" data-toggle="modal" data-target="#exampleModal">
-        <span class="filter icon-filter" data-toggle="modal" data-target="#exampleModal" id="an" (mouseover)="retAnim('animFilter')" (mouseleave)="retAnim('')" title="El filtro está activado por, {{filtro}}"></span> Filtrado por:
+        <span class="filter icon-filter" data-toggle="modal" data-target="#exampleModal"
+         id="an" (mouseover)="retAnim('animFilter')" (mouseleave)="retAnim('')" title="El filtro está activado por, {{filtro}}"></span> Filtrado por:
         <strong style="font-size: 14pt; color: steelblue;">
            {{filtro}} | Productos alcanzados: <strong> {{contadorProdAct}} <span class="icon-database"></span> </strong>
         </strong>
     </div>
     <div class="container-fluid display d-flex justify-content-between align-items-end">
-        <button type="button" id="prods" (mouseover)="changeHeight('auto')" (mouseleave)="changeHeight('510px')" (click)="prints()">
+        <button type="button" id="prods" (mouseover)="changeHeight('auto')" (mouseleave)="changeHeight('410px')" (click)="prints()">
           <span class="icon-print"></span>  Imprimir Productos
         </button>
         <div class="botones">
@@ -57,9 +62,9 @@
         </div>
         <div class="prods">
             <div class="md-form mt-0">
-                <label title="Busqueda por local...">
+                <!-- <label title="Busqueda por local...">
                   <span class="icon-info"></span> Filtrar por Local:
-                </label>
+                </label> -->
                 <div class="btnFilter">
                     <button type="button" style="border-bottom-right-radius: 0px !important; border-top-right-radius: 0px !important;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                     <span class="icon-equalizer"></span>
@@ -127,16 +132,17 @@
             </div>
         </div>
     </div>
-    <div class="dataQR animated fadeIn" id="dataQR" *ngIf="conterB">
+    
+    <div class="dataQR mb-4 animated fadeIn" id="dataQR" *ngIf="conterB">
 
-        <div class="box" style="cursor: pointer;" *ngFor="let a of dataQRExtract" id="box-{{a.id}}" (click)="imprimirUnidad(a.id, a.placa, a.nombre)">
+        <div class="box" style="cursor: pointer;" *ngFor="let a of dataQRExtract | paginate: {itemsPerPage: 15, currentPage: pageActual}" id="box-{{a.id}}" (click)="imprimirUnidad(a.id, a.placa, a.nombre)">
             <div class="info" data-title="Nombre: {{a.nombre}}&#10;Placa: {{a.placa}}&#10;Ciudad: {{a.nomCiudad}}&#10;Custodio: {{a.nombreCustodio}}&#10;Marca: {{a.nomMarca}}&#10;Departamento: {{a.nomDpto}}">
                 <span class="icon-info"></span>
             </div>
             <div class="QR" [id]="a.placa">
                 {{createQRO(a.placa)}}<br>
             </div>
-            <div class="data" style="font-size: 5pt;">
+            <div class="data" style="font-size: 9pt;">
                 Nombre:<strong> {{a.nombre}} </strong><br> Placa:
                 <strong> {{a.placa}} </strong><br>
                 <!-- <p class="elim" (click)="delProd(a.placa)" title="Eliminar producto | activo">
@@ -161,8 +167,9 @@
             </div>
         </div>
     </div>
+    
     <div class="dataQR" id="dataQR" *ngIf="conterA">
-
+        
         <div class="b animated fadeIn" style="width: 100%;">
             <table class="table" style="font-size: 12pt;">
                 <thead class="thead-dark">
@@ -176,7 +183,7 @@
                     </tr>
                 </thead>
                 <tbody style="height: 485px; overflow: auto; border: solid 0.5px gray;">
-                    <tr *ngFor="let b of dataQRExtract">
+                    <tr *ngFor="let b of dataQRExtract | paginate: {itemsPerPage: 20, currentPage: pageActual}">
                         <th scope="row">{{b.placa}}</th>
                         <td>{{b.nombre}}</td>
                         <td>{{b.nomMarca}}</td>
@@ -186,6 +193,7 @@
                     </tr>
                 </tbody>
             </table>
+            
         </div>
     </div>
 </div>

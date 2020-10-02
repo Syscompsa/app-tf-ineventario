@@ -6,6 +6,8 @@ import { DataCallService } from '../Services/data-call.service';
 // const qrcode = require('qrcode-generator');
 import Swal from 'sweetalert2';
 import { createPopper } from '@popperjs/core';
+import { PageEvent } from '@angular/material/paginator';
+
 
 @Component({
   selector: 'app-history-qr',
@@ -54,6 +56,18 @@ export class HistoryQRComponent implements OnInit {
       console.log(this.dataQRExtract);
     });
   }
+  
+  pageActual: number = 1;
+
+  // page_size: number = 10;
+  // page_number : number = 1;
+  // pageSizeOptions = [10, 20, 50, 100, 130 ];
+
+  // handlePage(e: PageEvent) {
+  //   this.page_size = e.pageSize;
+  //   this.page_number = e.pageIndex + 1;
+  // }
+
 
   overProduct(ids, disp) {
     const tooltip = document.getElementById(ids);
@@ -90,7 +104,7 @@ export class HistoryQRComponent implements OnInit {
     qr.make();
     // qr.isDark(2, 2);
     // qr.addData('Esto es un Activo', 'Alphanumeric');
-    document.getElementById(placa).innerHTML = qr.createSvgTag(1.2);
+    document.getElementById(placa).innerHTML = qr.createSvgTag(1.9);
   }
 
   createLi(idVar, placaText, nombre) {
@@ -100,24 +114,24 @@ export class HistoryQRComponent implements OnInit {
     node.setAttribute('class', 'animated fadeInLeft fast');
     node.style.listStyle = 'none';
     node.style.padding = '2px';
-    node.style.borderBottom = 'dashed 1px gray';
+    // node.style.borderBottom = 'dashed 1px gray';
     const createSects = document.createElement('section');
-    node.style.width = '107.71px';
-    node.style.height = '70.87px';
+    node.style.width = '150px';
+    node.style.height = '85px';
     node.style.display = 'flex';
     node.style.justifyContent = 'center';
     node.style.alignItems = 'center';
     const createDiv = document.createElement('div');
-    createDiv.innerHTML = `Placa: <strong> ${placaText} </strong> \n Nombre: <strong>  ${nombre} </stong>`;
-    createDiv.style.fontSize = '5pt';
+    createDiv.innerHTML = `<strong> Placa: ${placaText} \n Nombre:  ${nombre} </strong>`;
+    createDiv.style.fontSize = '7pt';
     node.appendChild(createSects);
     node.appendChild(createDiv);
     // console.log(placaText);
     const qr = qrcode(4, 'L');
     const urlD =  `https://alp-cloud.com:8445/api/AR_INV-QRcodProdGet/getPlaca/${placaText}`;
+    qr.addData(urlD);
     qr.make();
-    createSects.innerHTML = qr.createSvgTag(1.2);
-
+    createSects.innerHTML = qr.createSvgTag(1.9);
     return node;
   }
 
