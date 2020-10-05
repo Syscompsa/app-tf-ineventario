@@ -328,8 +328,8 @@ export class ActivoFijoComponent implements OnInit {
   private _COLOR: any;
   private _CIUD: any;
   //#endregion
-public placaServices;
-public modelData;
+public placaServices: any = [];
+public modelData: any[] = [];
 public pId;
 public DepArr;
 public DepRead;
@@ -470,53 +470,58 @@ public arr: any[] = [];
     this.getInterfaz();
     this.fechActual();
     this.data.getDataByPlaca().subscribe( x => {
-       this.placaServices = x;
+       this.placaServices = x; 
        const placaNow = this.placaServices[0].placa_Post;
-       // console.log(placaNow);
+       console.log(this.placaServices);
        this.data.getDataByPlacaId(placaNow)
-       .subscribe(resp => {        
-        this.modelData = resp;
-        // console.log(this.modelData[0].imagenbit)
-        // console.log(this.modelData[0].length);
-        // console.log(this.modelData);
-        this._nProducto = this.modelData[0].nombre;
-        this._PLAC = this.modelData[0].placa;
-        this.pId = this.modelData[0].id;
-        this._actCont = this.modelData[0].af_control;
-        this._FeCREA    = this.modelData[0].feccrea.toString().slice(0, 10);
-        this._FeMOD     = this.modelData[0].fecmodi.toString().slice(0, 10);
-        this._FeDEP     = this.modelData[0].fechac.toString().slice(0, 10);
-        this._FeCOMP    = this.modelData[0].horafin.toString().slice(0, 10);
-        this._FeFINAL   = this.modelData[0].fecfin.toString().slice(0, 10);
-        this._FeACT     = this.datenow.toString();
-        this._FeFN      = this.modelData[0].fechac.toString().slice(0, 10);
-        this._Class      = this.modelData[0].clase;
-        this._CustClass = this.modelData[0].custodio;
-        this._DP        = this.modelData[0].dpto;
-        this._SER       = this.modelData[0].serie;
-        this._VLR       = this.modelData[0].vaL_NORMAL;
-        this._REFE      = this.modelData[0].refer;
-        this._UC        = this.modelData[0].usucrea;
-        this._actvClass = this.modelData[0].activo;
-        this._USMO      = this.modelData[0].usumodi;
-        this._USFI      = this.modelData[0].userfin;
-        this._GRPO      = this.modelData[0].grupo;
-        this._MRCA      = this.modelData[0].marca;
-        this._CLR       = this.modelData[0].color;
-        this._PRVR      = this.modelData[0].proveedor;
-        this._MDL       = this.modelData[0].modelo;
-        this._VUL       = this.modelData[0].vidautil;
-        this._VRE       = this.modelData[0].valoR_RESI;
-        this._CGT       = this.modelData[0].cgasto;
-        this._CD        = this.modelData[0].cdan;
-        this._CDN       = this.modelData[0].cdar;
-        this._VNO       = this.modelData[0].vaL_NORMAL;
-        this._VRVA      = this.modelData[0].vaL_REVAL;
-        this._IMGE      = this.modelData[0].imagenbit;
-        this._ciudClass = this.modelData[0].ciudad;
-        this._Class     = this.modelData[0].clase;
-        this._ActiveClass = '';
+       .subscribe(resp => {
+        this.modelData[0] = resp;
+        this._IMGE = this.modelData[0][0].imagenbit;        
+        console.log(this._IMGE)
+        this._nProducto = this.modelData[0][0].nombre;
+        this._DP = this.modelData[0][0].dpto
+        this._PLAC = this.modelData[0][0].placa;
+        // console.log(this._PLAC);
+        this.pId = this.modelData[0][0].id; 
 
+        this._actCont = this.modelData[0][0].af_control;
+        
+        this._Class      = this.modelData[0][0].clase;
+        console.log(this.modelData[0][0].clase);
+        this._CustClass = this.modelData[0][0].custodio;
+        // this._DP        = this.modelData[0].dpto;
+        // // console.log("Departamentos: " + this.modelData[0].dpto);
+        this._SER       = this.modelData[0][0].serie;
+        this._VLR       = this.modelData[0][0].vaL_NORMAL;
+        this._REFE      = this.modelData[0][0].refer;
+        this._UC        = this.modelData[0][0].usucrea;
+        this._actvClass = this.modelData[0][0].activo;
+        this._USMO      = this.modelData[0][0].usumodi;
+        this._USFI      = this.modelData[0][0].userfin;
+        this._GRPO      = this.modelData[0][0].grupo;
+        this._MRCA      = this.modelData[0][0].marca;
+        this._CLR       = this.modelData[0][0].color;
+        this._PRVR      = this.modelData[0][0].proveedor;
+        this._MDL       = this.modelData[0][0].modelo;
+        this._VUL       = this.modelData[0][0].vidautil;
+        this._VRE       = this.modelData[0][0].valoR_RESI;
+        this._CGT       = this.modelData[0][0].cgasto;
+        this._CD        = this.modelData[0][0].cdan;
+        this._CDN       = this.modelData[0][0].cdar;
+        this._VNO       = this.modelData[0][0].vaL_NORMAL;
+        this._VRVA      = this.modelData[0][0].vaL_REVAL;
+        this._VLR      = this.modelData[0][0].valor;
+        // this._IMGE      = this.modelData[0].imagenbit;        
+        this._ciudClass = this.modelData[0][0].ciudad;
+        // this._Class     = this.modelData[0].clase;
+        // this._ActiveClass = '';
+        this._FeCREA    = this.modelData[0][0].feccrea.slice(0, 10);
+        this._FeMOD     = this.modelData[0][0].fecmodi.slice(0, 10);
+        this._FeDEP     = this.modelData[0][0].fechac.slice(0, 10);
+        this._FeCOMP    = this.modelData[0][0].horafin.slice(0, 10);
+        this._FeFINAL   = this.modelData[0][0].fecfin.slice(0, 10);
+        this._FeACT     = this.datenow;
+        this._FeFN      = this.modelData[0][0].fcustodio.slice(0, 10);
       }, err => {
         this.cleanForm();
       }
@@ -987,7 +992,7 @@ public arr: any[] = [];
         vaL_NORMAL: this._VNO,
         vaL_REVAL: this._VRVA,
         imagen: '',
-        valoR_RESI: 0,
+        valoR_RESI: this._VRE,
         valoR_RES2: 0,
         placa_aux: '',
         imagenbit: this._IMGE,
@@ -1062,36 +1067,34 @@ public arr: any[] = [];
         feccrea: this._FeCREA,
         usucrea: this._UC,
         fecmodi: this._FeMOD,
-        usumodi: '',
+        usumodi: this._USMO,
         fecfin: this._FeFINAL,
         horafin: this._FeCOMP,
-        userfin: '',
+        userfin:  this._USFI,
         barra: "",
-        grupo: "005  ",
-        marca: "00058",
+        grupo: this._GRPO,
+        marca: this._MRCA,
         color: this._CLR,
         fechac: this._FeACT,
-        proveedor: "      ",
-        modelo: "001  ",
-        vidautil: 0.00,
-        valres: 0.00,
-        valoR2: 0.00,
-        fechaa: null,
-        fcustodio: null,
-        cgasto: "5110200029",
-        cdan: "1230300003",
-        cdar: "",
-        vaL_NORMAL: 0.00,
-        vaL_REVAL: 0.00,
+        proveedor: this._PRVR,
+        modelo: this._MDL,
+        vidautil:this._VUL,
+        fechaa: this._FeDEP,
+        fcustodio: this._FeFN,
+        cgasto: this._CGT,
+        cdan: this._CD,
+        cdar: this._CDN,
+        vaL_NORMAL: this._VNO,
+        vaL_REVAL: this._VRVA,
         imagen: "",
-        valoR_RESI: 0.00,
+        valoR_RESI: this._VRE,
         valoR_RES2: 0.00,
-        placa_aux: "0000002",
+        placa_aux: "",
         imagenbit: this._IMGE,
         id: this.pId,
-        af_control: true
+        af_control: this._actCont
       };
-
+      // console.log(arr);
       if (this.pId == '') {
         Swal.fire({
           icon: 'info',
@@ -1120,6 +1123,11 @@ public arr: any[] = [];
       }
     }
     //#endregion
+
+    prueb() {
+      console.log('listo')
+      console.log(this._USFI )
+    }
 
     actcon() {
      // console.log(this._actCont);

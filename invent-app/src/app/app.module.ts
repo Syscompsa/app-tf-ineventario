@@ -58,6 +58,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
+// import { FilterPipe } from './pipes/filter.pipe';
 
 //#endregion
 //import { NgxSpinnerModule } from 'ngx-spinner';
@@ -71,7 +72,8 @@ import {OverlayModule} from '@angular/cdk/overlay';
     HistoryQRComponent,
     ReporteComponent,
     ConfigurationsComponent,
-    ActivoFijoComponent
+    ActivoFijoComponent,
+    // FilterPipe
   ],
   imports: [
     //#region Angular MAterial

@@ -1,19 +1,15 @@
 <div id="reactForms">
     <form id="fActivoFijo" class="actFijo">
         <div class="inpData" *ngIf="Depart" style="width: 75%;">
-            <!-- <div class="dataDates">
-            <label for="_dep" title="">Departamento:</label>
-            <div class="d">
-                <input [(ngModel)]="_DP" #dep name="_DP" type="text" id="_dep" class="input-control">
-            </div>
-        </div> -->
+
             <div class="Clase">
                 <div class="d" id="clas" style="width: 100px;">
                     <label for="_DP" title="">
                         Departemento:
                     </label>
                     <div class="d">
-                        <input type="text" id="_dep" #dep (keyup)="getDataDep(_DP, DepRead)" [(ngModel)]="_DP" name="_DP" class="input-control">
+                        <input type="text" id="_dep" #dep (keyup)="getDataDep(_DP, DepRead)"
+                         [(ngModel)]="_DP" name="_DP" class="input-control">
                     </div>
                 </div>
                 <div class="d" id="clase" id="clas" style="width: 100%;">
@@ -280,7 +276,8 @@
                     <div class="d" id="clas" style="width: 100px;">
                         <label for="_actv" title="">Activo: </label>
                         <input type="range" min="0" max="1" id="_actv" #actv [(ngModel)]="_actvClass" name="_actvClass" class="input-control">
-                        <label><strong>No</strong> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <strong>Si</strong></label>
+                        <div style="display: flex; justify-content: space-between"><p><strong>No</strong></p>
+                            <p><strong>Si</strong></p></div>
                     </div>
                 </div>
             </div>
@@ -307,7 +304,7 @@
                 <div class="dataDates">
                     <label for="_usm" title="">Usuario Modificación:</label>
                     <div class="d">
-                        <input type="text" #usermo [ngModel]="_USMO" name="_USMO" id="_usm" class="input-control">
+                        <input type="text" #usermo [ngModel]="_USMO" name="_USMO" (keyup.enter)="prueb()" id="_usm" class="input-control">
                     </div>
                 </div>
             </div>

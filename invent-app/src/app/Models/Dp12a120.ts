@@ -25,8 +25,6 @@ export interface Dp12a120 {
         proveedor: string,
         modelo: string,
         vidautil: number,
-        valres: number,
-        valoR2: number,
         fechaa: Date,
         fcustodio: Date,
         cgasto: string,

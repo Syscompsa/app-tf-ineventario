@@ -41,12 +41,14 @@ export class HistoryQRComponent implements OnInit {
   public indice;
   public contador = 0;
   public tooltipView;
+  public filterPost = '';
 
   ngOnInit() {
     this.getDep(this.SearchDep);
     this.getCustoRep();
     this.getMarcRep();
     this.viewOptionsB();
+    
   }
 
   getDep(master) {
@@ -239,10 +241,11 @@ export class HistoryQRComponent implements OnInit {
   }
 
   getCustoRep() {
-    this.data.getDataCustodio('0').subscribe( x => {
+    this.data.getDataCustodio(this.filterPost).subscribe( x => {
       this.custodios = x;
       this.cantCust = this.custodios.length;
-      // console.log(this.custodios);
+      
+      console.log(this.custodios);
     });
   }
 
