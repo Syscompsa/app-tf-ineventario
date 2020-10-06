@@ -15,6 +15,7 @@ export class ReporteComponent implements OnInit {
   public arrInv;
   public dataQRExtract;
   public cont;
+  public filterPost;
   constructor( public dateCall: DataCallService, public us: WebuserService ) { }
 
   ngOnInit() {
@@ -24,7 +25,7 @@ export class ReporteComponent implements OnInit {
     this.fechActual();
     this.getInvent('f');
     // console.log(this.user);
-    this.getDep('0');
+    this.getDep(this.filterPost);
   }
 
   getDep(farm) {
@@ -83,9 +84,7 @@ export class ReporteComponent implements OnInit {
     });
 
   }
-
-
-
+  
 prints() {
   var ficha = document.getElementById('tableReporte');
   let ventimp = window.open(' ', 'popimpr');

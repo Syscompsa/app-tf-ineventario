@@ -85,12 +85,15 @@
                                         <div class="card">
                                             <div class="card-header" id="headingOne">
                                                 <h2 class="mb-0">
-                                                    <button class="btn btn-link btn-block text-left" [id]="ida" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                                      <strong>Por custodio:</strong> Actualmente tiene(s), <strong> {{cantCust}} </strong> custodio(s), registrado en la base de datos.
+                                                    <button class="btn btn-link btn-block text-left" [id]="ida" type="button"
+                                                     data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                                      <strong>Por custodio:</strong> Actualmente tiene(s), <strong> {{cantCust}}
+                                                           </strong> custodio(s), registrado en la base de datos.
                                                     </button>
                                                     <div class="display d-flex">
                                                         <label for="inpts"><span style="color: steelblue;" class="icon-search"></span></label>
-                                                        <input id="inpts" type="text" class="inpts" placeholder="Buscar por custodio..." [(ngModel)]="filterPost" name="filterPost" (keyup)="getCustoRep()">
+                                                        <input id="inpts" type="text" class="inpts" placeholder="Buscar por custodio..."
+                                                         [(ngModel)]="filterPost" name="filterPost" (keyup)="getCustoRep()">
                                                     </div>
                                                 </h2>
                                             </div>
@@ -151,30 +154,11 @@
             <div class="data" style="font-size: 9pt;">
                 Nombre:<strong> {{a.nombre}} </strong><br> Placa:
                 <strong> {{a.placa}} </strong><br>
-                <!-- <p class="elim" (click)="delProd(a.placa)" title="Eliminar producto | activo">
-                    <span class="icon-trash"></span>
-                </p> -->
-                <!-- <div class="tooltip animated fadeInLeft fast" id="pl-{{a.placa}}">
-                    <div class="titleTooltip" (click)="overProduct('pl-'+a.placa, 'none')">
-                        <span class="icon-database"> Datos Completos:</span>
-                        <div class="cer"><span class="icon-cancel"></span></div>
-                    </div>
-                    <br>
-                    <li class="lists">
-                        Placa: {{a.placa}}
-                    </li>
-                    <li class="lists">
-                        Nombre: {{a.nombre}}
-                    </li>
-                    <li class="lists">
-                        Ciudad: {{a.nomCiudad}}
-                    </li>
-                </div> -->
             </div>
         </div>
     </div>
     
-    <div class="dataQR" id="dataQR" *ngIf="conterA">
+    <div class="dataQR" id="dataQRB" *ngIf="conterA">
         
         <div class="b animated fadeIn" style="width: 100%;">
             <table class="table" style="font-size: 12pt;">

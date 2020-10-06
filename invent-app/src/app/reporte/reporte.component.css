@@ -7,6 +7,22 @@
     border-radius: 5px;
 }
 
+.inpts {
+    border: none;
+    border-bottom: solid 0.5px gray;
+    background-color: transparent;
+    font-size: 10pt;
+    padding: 10px;
+    color: steelblue;
+
+    outline:none !important;
+    outline-width: 0 !important;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+
 #infoCont {
     height: 590px;
     overflow-y: scroll;

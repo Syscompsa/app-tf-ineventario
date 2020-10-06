@@ -55,8 +55,7 @@ export class HistoryQRComponent implements OnInit {
     this.data.getDptoReporte(master).subscribe(x => {
       this.dataQRExtract = x;
       this.contadorProdAct = this.dataQRExtract.length;
-      console.log(this.dataQRExtract);
-      
+      console.log(this.dataQRExtract);      
     });
   }
   
@@ -258,10 +257,15 @@ export class HistoryQRComponent implements OnInit {
       // console.log(this.Marcas);
     });
   }
-
+  
   prints() {
-    // const a = document.getElementById('dataQR');
-    window.print();
+    var ficha = document.getElementById('dataQR');
+    let ventimp = window.open(' ', 'popimpr');
+    ventimp.document.write( ficha.innerHTML );
+    ventimp.document.close();
+    // ficha.style.fontFamily = 'Arial';
+    ventimp.print();
+    ventimp.close();
   }
 
   // Estafuncion cambia la altura de este div al momento de imprimir
