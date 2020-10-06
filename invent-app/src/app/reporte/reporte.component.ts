@@ -84,9 +84,16 @@ export class ReporteComponent implements OnInit {
 
   }
 
+
+
 prints() {
-  // const a = document.getElementById('const');
-  window.print();
+  var ficha = document.getElementById('tableReporte');
+  let ventimp = window.open(' ', 'popimpr');
+  ventimp.document.write( ficha.innerHTML );
+  ventimp.document.close();
+  ficha.style.fontFamily = 'Arial';
+  ventimp.print( );
+  ventimp.close();
 }
 
 }

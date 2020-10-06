@@ -17,13 +17,13 @@ export class HeaderComponent implements OnInit {
 
   public env = environment;
   public User;
-
   public app;
 
-
-  public report = 'Reporte de Inventario';
-  public actFijo = 'Activo Fijo';
-  public mActivos = 'Maestro de Activos';
+//Concilio 10:26 am Octubre 20 - 6
+//Aprobado por Jose Vera, Ing. Carrion, Cintia Carrion, Jose Carrion 
+  public report = 'Movimiento de Inventario';
+  public actFijo = 'Modificación de Activos';
+  public mActivos = 'Listado de Activos';
   public Site;
 
   ngOnInit() {

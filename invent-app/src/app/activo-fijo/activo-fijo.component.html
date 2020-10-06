@@ -123,11 +123,9 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <!--FECHA INPUT FIN-->
         </div>
-
         <div class="groupB ">
             <!--DATA INPUT INICIO-->
             <div class="inpData" *ngIf="Placa">
@@ -159,7 +157,7 @@
                         <button class="btn btn-outline-secondary dropdown-toggle" #btnClase style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
               <span class="icon-search"></span> Selecciona una opción</button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" id="{{d.codigo}}" (click)="getDataCall(d.codigo, d.nombre)" *ngFor="let d of modelArr" href="javascript: void(0)">
+                            <a class="dropdown-item" id="{{d.codigo}}" (click)="getDataCall(d.codigo_aux, d.nombre)" *ngFor="let d of modelArr" href="javascript: void(0)">
                 Codigo: {{d.codigo}}
                 | Nombre: {{d.nombre}}
                 </a>
@@ -275,7 +273,7 @@
                 <div class="dataDates">
                     <div class="d" id="clas" style="width: 100px;">
                         <label for="_actv" title="">Activo: </label>
-                        <input type="range" min="0" max="1" id="_actv" #actv [(ngModel)]="_actvClass" name="_actvClass" class="input-control">
+                        <input type="range" min="0" max="1" id="_actv" #actv [(ngModel)]="_actvClass" (change)="activChange()" name="_actvClass" class="input-control">
                         <div style="display: flex; justify-content: space-between"><p><strong>No</strong></p>
                             <p><strong>Si</strong></p></div>
                     </div>
@@ -521,14 +519,13 @@
     </form>
     <div class="btnSettings mt-4 ">
         <button class="btn btn-info " (click)="saveItem() ">
-            <span class="icon-floppy " style="color: white; "></span>Guardar
+            <span class="icon-floppy " style="color: white; "></span>Agregar
         </button>
-
         <button class="btn btn-warning " (click)="UpdateProduct() ">
-            <span class="icon-arrows-cw " style="color: rgb(47, 47, 47); "></span>Actualizar
+            <span class="icon- " style="color: rgb(47, 47, 47); "></span>Modificar
         </button>
-        <button class="btn btn-primary " (click)="cleanForm() ">
+        <!-- <button class="btn btn-primary " (click)="cleanForm() ">
             <span class="icon-feather " style="color: white; "></span>Limpiar
-        </button>
+        </button> -->
     </div>
 </div>

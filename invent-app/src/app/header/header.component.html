@@ -32,9 +32,9 @@
             <!-- <li class="nav-item active">
                 <a class="nav-link" [routerLink]="[ '/Conf' ]"><span class="icon-cog"></span>Configuración<span class="sr-only">(current)</span></a>
             </li> -->
-            <li class="nav-item" id="a">
-                <a class="nav-link" (mouseover)="active('a', report, 'b', 'c', '/Reporte')" (click)="active('a', report, 'b', 'c', '/Reporte')">
-                   {{report}}
+            <li class="nav-item" id="c">
+                <a class="nav-link" (mouseover)="active('c', mActivos, 'a', 'd', '/QRData')" (click)="active('c', report, 'a', 'd', '/QRData')">
+                   {{mActivos}}
                 </a>
             </li>
             <li class="nav-item" id="b">
@@ -42,11 +42,13 @@
                    {{actFijo}}
                 </a>
             </li>
-            <li class="nav-item" id="c">
-                <a class="nav-link" (mouseover)="active('c', mActivos, 'a', 'd', '/QRData')" (click)="active('c', report, 'a', 'd', '/QRData')">
-                   {{mActivos}}
+            <li class="nav-item" id="a">
+                <a class="nav-link" (mouseover)="active('a', report, 'b', 'c', '/Reporte')" (click)="active('a', report, 'b', 'c', '/Reporte')">
+                   {{report}}
                 </a>
             </li>
+            
+            
             <li class="nav-item" id="app" *ngIf="app">
                 <a class="btn btn-success" href="https://play.google.com/store/apps/details?id=com.gamma.scan" target="_BLANK">
                     <span class=" icon-mobile-2"></span> Toma de Inventario

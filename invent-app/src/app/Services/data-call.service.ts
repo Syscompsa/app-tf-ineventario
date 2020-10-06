@@ -28,6 +28,10 @@ export class DataCallService {
     return this.http.get(this.apiURL + 'api/ALPTABLA/Modelo/' + codigo);
   }
 
+  getDataClases(codigo) {
+    return this.http.get(this.apiURL + 'api/ALPTABLA/RealClases/' + codigo);
+  }
+
   getDataMarca(codigo) {
     return this.http.get(this.apiURL + 'api/ALPTABLA/MasterIA1/' + codigo);
   }

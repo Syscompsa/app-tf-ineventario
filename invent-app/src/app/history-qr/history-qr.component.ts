@@ -56,6 +56,7 @@ export class HistoryQRComponent implements OnInit {
       this.dataQRExtract = x;
       this.contadorProdAct = this.dataQRExtract.length;
       console.log(this.dataQRExtract);
+      
     });
   }
   
@@ -77,10 +78,10 @@ export class HistoryQRComponent implements OnInit {
     tooltip.style.display = disp;
   }
 
-  imprimirUnidad(id, placa, nombre) {
+  imprimirUnidad(id, placa, nombre, idPrint) {
     const ids = document.getElementById(`box-${id}`);
     const contenidoPrev = document.getElementById(`contenidoPrev`);
-    const modImp = document.getElementById('modalPrint');
+    const modImp = document.getElementById(idPrint);
     switch (this.ensi) {
       case true:
         this.ensi = false;
@@ -120,9 +121,11 @@ export class HistoryQRComponent implements OnInit {
     const createSects = document.createElement('section');
     node.style.width = '150px';
     node.style.height = '85px';
+    node.style.marginBottom = '15px';
     node.style.display = 'flex';
     node.style.justifyContent = 'center';
     node.style.alignItems = 'center';
+    
     const createDiv = document.createElement('div');
     createDiv.innerHTML = `<strong> Placa: ${placaText} \n Nombre:  ${nombre} </strong>`;
     createDiv.style.fontSize = '7pt';
@@ -244,7 +247,6 @@ export class HistoryQRComponent implements OnInit {
     this.data.getDataCustodio(this.filterPost).subscribe( x => {
       this.custodios = x;
       this.cantCust = this.custodios.length;
-      
       console.log(this.custodios);
     });
   }

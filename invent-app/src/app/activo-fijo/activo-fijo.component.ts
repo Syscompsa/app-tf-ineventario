@@ -470,7 +470,10 @@ public arr: any[] = [];
     this.getInterfaz();
     this.fechActual();
     this.data.getDataByPlaca().subscribe( x => {
+      
        this.placaServices = x; 
+       
+  
        const placaNow = this.placaServices[0].placa_Post;
        console.log(this.placaServices);
        this.data.getDataByPlacaId(placaNow)
@@ -520,14 +523,39 @@ public arr: any[] = [];
         this._FeDEP     = this.modelData[0][0].fechac.slice(0, 10);
         this._FeCOMP    = this.modelData[0][0].horafin.slice(0, 10);
         this._FeFINAL   = this.modelData[0][0].fecfin.slice(0, 10);
-        this._FeACT     = this.datenow;
+        this._FeACT     = null;
         this._FeFN      = this.modelData[0][0].fcustodio.slice(0, 10);
+
+        //Envia el reprte cuando carguen estos datos
+        
+     
+
       }, err => {
         this.cleanForm();
       }
       );
     });
   }
+
+  
+  sendReporte() {
+    this.reportArr = {
+      fechaInv: new Date(),
+      placaInv: this._PLAC,
+      descripInv: this._nProducto,
+      custodio: this._CustClass,
+      ciudad: this._ciudClass,
+      campoA: this._DP,
+      campoB: "--"
+    };
+    this.data.saveReport(this.reportArr).subscribe(x => {
+      
+      this.reportArr = x;
+      console.log('this.reportArr');
+      console.log(this.reportArr);
+    });
+  }
+
   getInterfaz() {
     this.conf.getConfig().subscribe(
       x => {
@@ -649,7 +677,7 @@ public arr: any[] = [];
     // console.log(this._Class);
 
     const promise = new Promise((resolve, reject) => {
-      this.data.getDataModel(this._Class).subscribe(x => {
+      this.data.getDataClases(this._Class).subscribe(x => {
         this.modelArr = x;
         let _ClassRead = {
           nombre: this.modelArr.nombre
@@ -956,6 +984,7 @@ public arr: any[] = [];
 
     //#region "Save function()"
     saveItem() {
+
       let formArr: any = {
         placa: this._PLAC,
         clase: this._Class,
@@ -965,7 +994,7 @@ public arr: any[] = [];
         ciudad: this._ciudClass,
         serie: this._SER,
         valor: this._VLR,
-        activo: this._actvClass,
+        activo: this.varAct,
         refer: this._REFE,
         feccrea: this._FeCREA,
         usucrea: this._UC,
@@ -1044,25 +1073,25 @@ public arr: any[] = [];
           );
         }
       });
-
-
     }
-
     }
     //#endregion
 
+    
+  
     //#region  "Update function()"
     UpdateProduct() {
+      this.sendReporte();
       let arr: Dp12a120 = {
         placa: this._PLAC,
         clase: this._Class,
         nombre: this._nProducto,
         custodio: this._CustClass,
-        dpto: this._DP,        
+        dpto: this._DP,
         ciudad: this._ciudClass,
         serie: this._SER,
         valor: this._VLR,
-        activo: this._actvClass,
+        activo: this.varAct,
         refer: this._REFE,
         feccrea: this._FeCREA,
         usucrea: this._UC,
@@ -1105,24 +1134,23 @@ public arr: any[] = [];
         console.log(arr);
         this.data.updateProduct(arr).subscribe(x => {
           arr = x;
-          console.log(arr);
-          // this.reportArr = {
-          //   fechaInv: new Date(),
-          //   placaInv: this._PLAC,
-          //   descripInv: this._nProducto,
-          //   custodio: this._CustRead,
-          //   ciudad: this._ciudRead,
-          //   campoA: this.DepRead,
-          //   campoB: '--'
-          // };
-          // this.data.saveReport(this.reportArr).subscribe(x => {
-          //   this.reportArr = x;
-          // });
+          console.log(arr);          
         }
         )
       }
     }
     //#endregion
+    public varAct;
+    activChange() {
+      if(this._actvClass == 1) {
+        this.varAct = 'S';
+        console.log(this.varAct)
+      }
+      else {
+        this.varAct = 'N';
+        console.log(this.varAct)
+      }
+    }
 
     prueb() {
       console.log('listo')
