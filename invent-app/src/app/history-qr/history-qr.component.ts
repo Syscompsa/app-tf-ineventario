@@ -78,10 +78,10 @@ export class HistoryQRComponent implements OnInit {
     tooltip.style.display = disp;
   }
 
-  imprimirUnidad(id, placa, nombre, idPrint) {
+  imprimirUnidad(id, placa, nombre) {
     const ids = document.getElementById(`box-${id}`);
     const contenidoPrev = document.getElementById(`contenidoPrev`);
-    const modImp = document.getElementById(idPrint);
+    const modImp = document.getElementById('modalPrint');
     switch (this.ensi) {
       case true:
         this.ensi = false;
