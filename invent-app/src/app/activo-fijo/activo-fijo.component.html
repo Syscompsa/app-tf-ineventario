@@ -8,8 +8,7 @@
                         Departemento:
                     </label>
                     <div class="d">
-                        <input type="text" id="_dep" #dep (keyup)="getDataDep(_DP, DepRead)"
-                         [(ngModel)]="_DP" name="_DP" class="input-control">
+                        <input type="text" id="_dep" #dep (keyup)="getDataDep(_DP, DepRead)" [(ngModel)]="_DP" name="_DP" class="input-control">
                     </div>
                 </div>
                 <div class="d" id="clase" id="clas" style="width: 100%;">
@@ -274,8 +273,10 @@
                     <div class="d" id="clas" style="width: 100px;">
                         <label for="_actv" title="">Activo: </label>
                         <input type="range" min="0" max="1" id="_actv" #actv [(ngModel)]="_actvClass" (change)="activChange()" name="_actvClass" class="input-control">
-                        <div style="display: flex; justify-content: space-between"><p><strong>No</strong></p>
-                            <p><strong>Si</strong></p></div>
+                        <div style="display: flex; justify-content: space-between">
+                            <p><strong>No</strong></p>
+                            <p><strong>Si</strong></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -518,9 +519,9 @@
 
     </form>
     <div class="btnSettings mt-4 ">
-        <!-- <button class="btn btn-info " (click)="saveItem() ">
+        <button class="btn btn-info " (click)="saveItem() ">
             <span class="icon-floppy " style="color: white; "></span>Agregar
-        </button> -->
+        </button>
         <button class="btn btn-warning " (click)="UpdateProduct() ">
             <span class="icon- " style="color: rgb(47, 47, 47); "></span>Modificar
         </button>
