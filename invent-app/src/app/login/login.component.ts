@@ -21,6 +21,9 @@ export class LoginComponent implements OnInit {
   // tslint:disable-next-line: variable-name
   public _Iuser: Iwebuser = { webUsu: '', webPass: '' };
   env = environment;
+  public arr: any = {
+    webUsu: '', webPass: '', tipoMu: ''
+  }
 
   constructor(  public userService: WebuserService,
                 public router: Router) { }
@@ -39,6 +42,12 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  getUser(user) {
+    this.userService.getUsByParam(user).subscribe(y => {
+        this.arr = y;
+        localStorage.setItem('Token', this.arr[0].tipoMu);
+    })
+  }
 
   logeo() {
     this.userService.login(this._Iuser)
@@ -46,15 +55,15 @@ export class LoginComponent implements OnInit {
         this.env.header = true;
         this.env.nameUser = x.webUsu;
         localStorage.setItem('User',x.webUsu);
-        localStorage.setItem('Token', x.tipoMu);
+        // localStorage.setItem('Token', x.tipoMu);
         this.verificacion ();
+        this.getUser(localStorage.getItem('User'));
         Swal.fire({
                     icon: 'success',
                     title: 'Bien...',
                     text: 'Has ingresado con exito!',
                     footer: ''
-      });   
-
+      });
       }, err => {
         Swal.fire({
                   icon:  'error',

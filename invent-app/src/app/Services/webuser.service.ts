@@ -18,6 +18,7 @@ export class WebuserService {
 
   logout() {
     localStorage.removeItem("User");
+    localStorage.removeItem("Token");
   }
 
   // estaLogueado(): boolean {
@@ -33,6 +34,10 @@ export class WebuserService {
   //   }
   // }
 
+
+  getUsByParam(user) {
+    return this.http.get(this.apiURL + "/UserLogin/getuser/" + user);
+  }
 
   verificacionLog(){
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null){

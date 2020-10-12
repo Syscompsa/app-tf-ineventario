@@ -2,6 +2,6 @@ export interface Iwebuser {
     id?: number;
     webUsu: string;
     webPass: string;
-    tipoMu: string;
+    // tipoMu: string;
   }
   

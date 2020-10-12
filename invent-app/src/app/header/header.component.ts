@@ -18,6 +18,9 @@ export class HeaderComponent implements OnInit {
   public env = environment;
   public User;
   public app;
+  public arr: any = {
+    webUsu: '', webPass: '', tipoMu: ''
+  }
 
 //Concilio 10:26 am Octubre 20 - 6
 //Aprobado por Jose Vera, Ing. Carrion, Cintia Carrion, Jose Carrion 
@@ -25,12 +28,12 @@ export class HeaderComponent implements OnInit {
   public actFijo = 'Modificación de Activos';
   public mActivos = 'Listado de Activos';
   public Site;
-  public conf = true;
+  public conf;
 
   ngOnInit() {
+    this.validateTypeUser();
     this.getuser();
     this.evaluoScreen();
-    this.validateTypeUser();
   }
 
   logOut() {
@@ -39,23 +42,27 @@ export class HeaderComponent implements OnInit {
     this.env.header = false;
   }
 
+
   validateTypeUser() {
-    let a = localStorage.getItem('Token');
-    switch (a) {
-      case 'A':
-        this.conf = true;
-        console.log('Es administrador');
-        break;
-        
-      case 'N':
-        this.conf = false;
-        console.log('Es un usuario Normal');
-        break;
-    
-      default:
-        break;
+    if(localStorage.getItem('Token') != 'A ') {
+      this.conf = false;
+    } else {
+      this.conf = true;
     }
-    console.log(a);
+    // switch (a) {
+    //   case 'A':
+    //     this.conf = true;
+    //     console.log('Es administrador');
+    //     break;
+        
+    //   case 'N':
+    //     this.conf = false;
+    //     console.log('Es un usuario Normal');
+    //     break;
+    //   default:
+    //     this.conf = true;
+    //     break;
+    // }
   }
 
   getuser() {
