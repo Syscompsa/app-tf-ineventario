@@ -74,7 +74,7 @@ export class DataCallService {
   }
 
   getReportByParam(param) {
-    return this.http.get(this.apiURL + 'api/Reporteria/GetReporteGenByParam/' + param);
+    return this.http.get(this.apiURL + 'api/Reporteria/getReporteByParam/' + param);
   }
 
   getDptoReporte(master) {

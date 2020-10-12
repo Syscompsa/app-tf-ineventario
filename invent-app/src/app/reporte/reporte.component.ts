@@ -15,7 +15,9 @@ export class ReporteComponent implements OnInit {
   public arrInv;
   public dataQRExtract;
   public cont;
+  public filter;
   public filterPost;
+  public prodInv;
   constructor( public dateCall: DataCallService, public us: WebuserService ) { }
 
   ngOnInit() {
@@ -25,12 +27,13 @@ export class ReporteComponent implements OnInit {
     this.fechActual();
     this.getInvent('f');
     // console.log(this.user);
-    this.getDep(this.filterPost);
+    this.getDep('s');
   }
 
   getDep(farm) {
     this.dateCall.getDataDep(farm).subscribe(x => {
       this.dataQRExtract = x;
+      this.filter = farm;
       this.cont = this.dataQRExtract.length;
       console.log(this.dataQRExtract);
     });
@@ -57,8 +60,9 @@ export class ReporteComponent implements OnInit {
   getInvent(param) {
       this.dateCall.getReportByParam(param).subscribe(x => {
       this.arrInv = x;
+      this.prodInv = this.arrInv.length;
       // console.log('arr');
-      // console.log(this.arrInv);
+      console.log(this.arrInv);
     });
   }
 

@@ -7,6 +7,12 @@
     border-radius: 5px;
 }
 
+.User {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .inpts {
     border: none;
     border-bottom: solid 0.5px gray;

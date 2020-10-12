@@ -25,16 +25,37 @@ export class HeaderComponent implements OnInit {
   public actFijo = 'Modificación de Activos';
   public mActivos = 'Listado de Activos';
   public Site;
+  public conf = true;
 
   ngOnInit() {
     this.getuser();
     this.evaluoScreen();
+    this.validateTypeUser();
   }
 
   logOut() {
     this.userService.logout();
     this.router.navigate(['\login']);
     this.env.header = false;
+  }
+
+  validateTypeUser() {
+    let a = localStorage.getItem('Token');
+    switch (a) {
+      case 'A':
+        this.conf = true;
+        console.log('Es administrador');
+        break;
+        
+      case 'N':
+        this.conf = false;
+        console.log('Es un usuario Normal');
+        break;
+    
+      default:
+        break;
+    }
+    console.log(a);
   }
 
   getuser() {

@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
         this.env.header = true;
         this.env.nameUser = x.webUsu;
         localStorage.setItem('User',x.webUsu);
+        localStorage.setItem('Token', x.tipoMu);
         this.verificacion ();
         Swal.fire({
                     icon: 'success',

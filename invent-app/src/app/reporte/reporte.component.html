@@ -14,21 +14,29 @@
         </div>
     </div>
     <div class="User" style="text-align: right;">
-        <strong>Usuario: </strong> {{user}}<br>
+        <p>
+            <strong>Usuario: </strong> {{user}}<br>
+            Filtrado por: <strong style="color: steelblue;"> {{filter}}
+            </strong>, Y tienes <strong style="color: steelblue;">
+            {{prodInv}}</strong> producto(s) inventariado
+        </p>
+        <button type="button" title="filtrar reporte"
+         style="border-bottom-left-radius: 0px !important; border-top-left-radius: 0px !important;"
+         class="btn btn-primary ml-3" data-toggle="modal" data-target="#exampleModal">
+            <span class=" icon-equalizer"></span>
+        </button>
     </div>
-    <!-- <button type="button" title="filtrar reporte" style="border-bottom-right-radius: 0px !important; border-top-right-radius: 0px !important;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-      <span class=" icon-equalizer"></span>
-    </button> -->
+    
     <!-- Modal -->
-    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel"><span class="icon-equalizer"></span> Filtrar por otros parámetros.
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body" id="filtros">
                     <div class="accordion" id="accordionExample">
@@ -38,9 +46,12 @@
                                     <div class="display d-flex">
                                         <label for="inpts"><span style="color: steelblue;" class="icon-search"></span></label>
                                         <input id="inpts" type="text" class="inpts" placeholder="Buscar por Farmacia..."
-                                         [(ngModel)]="filterPost" name="filterPost" (keyup)="getCustoRep()">
+                                         [(ngModel)]="filterPost" name="filterPost" (keyup)="getDep(filterPost)">
                                     </div>
-                                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                    <button class="btn btn-link btn-block text-left"
+                                     type="button" data-toggle="collapse"
+                                     data-target="#collapseOne" aria-expanded="false"
+                                     aria-controls="collapseOne">
                                       <strong>Por Local:</strong>
                                        Actualmente tiene(s), <strong>
                                             {{cont}}  </strong> Local(es), registrado en la base de datos.
@@ -50,7 +61,8 @@
 
                             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                                 <div class="card-body">
-                                    <a class="dropdown-item" href="javascript: void(0)" (click)="getInvent(c.nombre)" *ngFor="let c of dataQRExtract">
+                                    <a class="dropdown-item" href="javascript: void(0)" (click)="getInvent(c.nombre)"
+                                    *ngFor="let c of dataQRExtract">
                                         {{c.nombre}}
                                     </a>
                                 </div>
@@ -65,15 +77,16 @@
             </div>
         </div>
     </div>
-</div> -->
-<div class="container" id="tableReporte">
-    <table class="table">
+</div> 
+<div class="container" id="tableReporte" style="height: 410px; overflow-y: auto;">
+    <table class="table"  >
         <thead class="thead-dark">
             <tr>
                 <th scope="col">Cod. Placa</th>
                 <th scope="col">Descripción</th>
                 <th scope="col">Custodio</th>
                 <th scope="col">Departamento</th>
+                <th scope="col">Fecha de toma Inv.</th>
                 <th scope="col" title="Eliminar informe"><span class="icon-trash"></span></th>
             </tr>
         </thead>
@@ -81,9 +94,14 @@
             <tr *ngFor="let a of arrInv">
                 <td>{{a.placaInv}}</td>
                 <td>{{a.descripInv}}</td>
-                <td>{{a.custodio}}</td>
-                <td> {{a.ciudad}} / {{a.campoA}}</td>
-                <td (click)="delRepo(a.id)" title="Eliminar informe" class="erease"><span class="icon-trash"></span></td>
+                <td>{{a.apellido}} {{a.nombre}}</td>
+                <td title=" Cod. ciudad: Guayaquil = 001 | Duran = 002 ">
+                     {{a.ciudad}} / {{a.campoA}} / {{a.farmacia}}
+                </td>
+                <td> {{a.fechaInv | date: date: 'dd/MM/yyyy'}}</td>
+                <td (click)="delRepo(a.id)" title="Eliminar informe" class="erease">
+                    <span class="icon-trash"></span>
+                </td>
             </tr>
         </tbody>
     </table>

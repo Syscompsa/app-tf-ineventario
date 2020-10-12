@@ -80,7 +80,7 @@ label {
     flex-direction: column;
     padding: 10px;
     border-right: solid 1px gray;
-    width: 40%;
+    width: 100%;
 }
 
 .actFijo {
@@ -111,6 +111,13 @@ form {
     display: flex;
 }
 
+
+
+#fActivoFijo {
+    display: flex;
+    justify-content: space-around;
+}
+
 .formato {
     background-color: #b1b1b1;
     border: solid 1px rgb(143, 143, 143);
@@ -123,8 +130,8 @@ form {
 
 .groupA {
     display: flex;
-    width: 100%;
-    justify-content: space-between;
+    width: 49%;
+    flex-direction: column;
     flex-wrap: wrap;
     flex-shrink: initial;
 }
@@ -137,7 +144,7 @@ header {
 .groupB {
     margin-top: 125px;
     display: flex;
-    width: 100%;
+    width: 49%;
     justify-content: space-between;
     flex-wrap: wrap;
     flex-shrink: unset;
@@ -159,6 +166,14 @@ header {
 }
 
 @media screen and (max-width: 787px) {
+    .groupA {
+        width: 100%;
+    }
+
+    .groupB {
+        width: 100%;
+    }
+
     .inpDates {
         width: 100%;
         border: none;
@@ -179,5 +194,9 @@ header {
     .Clase {
         flex-direction: column;
         width: 100%;
+    }
+        
+    #fActivoFijo {
+        display: block;
     }
 }
