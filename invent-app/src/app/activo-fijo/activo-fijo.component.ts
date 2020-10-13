@@ -101,10 +101,10 @@ export class ActivoFijoComponent implements OnInit {
 
   @Input()
   set CLase(value: any) {
-    this._CLase = value;
+    this._CLasse = value;
   }
   get CLase(): any {
-    return this._CLase;
+    return this._CLasse;
   }
 
   @Input()
@@ -303,7 +303,7 @@ export class ActivoFijoComponent implements OnInit {
   private _FCompra: any;
   private _Imagen: any;
   private _Placa: any;
-  private _CLase: any;
+  private _CLasse: any;
   private _NProd: any;
   private _Custodio: any;
   private _Depart: any;
@@ -480,7 +480,7 @@ public arr: any[] = [];
        .subscribe(resp => {
         this.modelData[0] = resp;
         this._IMGE = this.modelData[0][0].imagenbit;        
-        console.log(this._IMGE)
+        console.log(this.modelData[0])
         this._nProducto = this.modelData[0][0].nombre;
         this._DP = this.modelData[0][0].dpto
         this._PLAC = this.modelData[0][0].placa;
@@ -488,44 +488,40 @@ public arr: any[] = [];
         this.pId = this.modelData[0][0].id; 
 
         this._actCont = this.modelData[0][0].af_control;
-        
-        this._Class      = this.modelData[0][0].clase;
-        console.log(this.modelData[0][0].clase);
         this._CustClass = this.modelData[0][0].custodio;
-        // this._DP        = this.modelData[0].dpto;
         // // console.log("Departamentos: " + this.modelData[0].dpto);
         this._SER       = this.modelData[0][0].serie;
         this._VLR       = this.modelData[0][0].vaL_NORMAL;
-        this._REFE      = this.modelData[0][0].refer;
-        this._UC        = this.modelData[0][0].usucrea;
+        // this._REFE      = this.modelData[0][0].refer;
+        // this._UC        = this.modelData[0][0].usucrea;
         this._actvClass = this.modelData[0][0].activo;
-        this._USMO      = this.modelData[0][0].usumodi;
-        this._USFI      = this.modelData[0][0].userfin;
+        // this._USMO      = this.modelData[0][0].usumodi;
+        // this._USFI      = this.modelData[0][0].userfin;
         this._GRPO      = this.modelData[0][0].grupo;
         this._MRCA      = this.modelData[0][0].marca;
         this._CLR       = this.modelData[0][0].color;
         this._PRVR      = this.modelData[0][0].proveedor;
         this._MDL       = this.modelData[0][0].modelo;
-        this._VUL       = this.modelData[0][0].vidautil;
-        this._VRE       = this.modelData[0][0].valoR_RESI;
-        this._CGT       = this.modelData[0][0].cgasto;
-        this._CD        = this.modelData[0][0].cdan;
-        this._CDN       = this.modelData[0][0].cdar;
-        this._VNO       = this.modelData[0][0].vaL_NORMAL;
-        this._VRVA      = this.modelData[0][0].vaL_REVAL;
-        this._VLR      = this.modelData[0][0].valor;
-        // this._IMGE      = this.modelData[0].imagenbit;        
+        // this._VUL       = this.modelData[0][0].vidautil;
+        // this._VRE       = this.modelData[0][0].valoR_RESI;
+        // this._CGT       = this.modelData[0][0].cgasto;
+        // this._CD        = this.modelData[0][0].cdan;
+        // this._CDN       = this.modelData[0][0].cdar;
+        // this._VNO       = this.modelData[0][0].vaL_NORMAL;
+        // this._VRVA      = this.modelData[0][0].vaL_REVAL;
+        // this._VLR      = this.modelData[0][0].valor;    
         this._ciudClass = this.modelData[0][0].ciudad;
-        // this._Class     = this.modelData[0].clase;
+        this._Class     = this.modelData[0][0].clase;
         // this._ActiveClass = '';
-        this._FeCREA    = this.modelData[0][0].feccrea.slice(0, 10);
-        this._FeMOD     = this.modelData[0][0].fecmodi.slice(0, 10);
-        this._FeDEP     = this.modelData[0][0].fechac.slice(0, 10);
-        this._FeCOMP    = this.modelData[0][0].horafin.slice(0, 10);
-        this._FeFINAL   = this.modelData[0][0].fecfin.slice(0, 10);
-        this._FeACT     = null;
-        this._FeFN      = this.modelData[0][0].fcustodio.slice(0, 10);
+        // this._FeCREA    = this.modelData[0][0].feccrea.slice(0, 10);
+        // this._FeMOD     = this.modelData[0][0].fecmodi.slice(0, 10);
+        // this._FeDEP     = this.modelData[0][0].fechac.slice(0, 10);
+        // this._FeCOMP    = this.modelData[0][0].horafin.slice(0, 10);
+        // this._FeFINAL   = this.modelData[0][0].fecfin.slice(0, 10);
+        // this._FeACT     = new Date();
+        // this._FeFN      = this.modelData[0][0].fcustodio.slice(0, 10);
 
+        
         //Envia el reprte cuando carguen estos datos
         
      
@@ -551,8 +547,8 @@ public arr: any[] = [];
     this.data.saveReport(this.reportArr).subscribe(x => {
       
       this.reportArr = x;
-      console.log('this.reportArr');
-      console.log(this.reportArr);
+      // console.log('this.reportArr');
+      // console.log(this.reportArr);
     });
   }
 
@@ -1082,7 +1078,7 @@ public arr: any[] = [];
     //#region  "Update function()"
     UpdateProduct() {
       this.sendReporte();
-      let arr: Dp12a120 = {
+      let arr: any = {
         placa: this._PLAC,
         clase: this._Class,
         nombre: this._nProducto,
@@ -1093,34 +1089,34 @@ public arr: any[] = [];
         valor: this._VLR,
         activo: this.varAct,
         refer: this._REFE,
-        feccrea: this._FeCREA,
+        // feccrea: this._FeCREA,
         usucrea: this._UC,
-        fecmodi: this._FeMOD,
+        // fecmodi: this._FeMOD,
         usumodi: this._USMO,
-        fecfin: this._FeFINAL,
-        horafin: this._FeCOMP,
+        // fecfin: this._FeFINAL,
+        // horafin: this._FeCOMP,
         userfin:  this._USFI,
-        barra: "",
+        // barra: "",
         grupo: this._GRPO,
         marca: this._MRCA,
         color: this._CLR,
-        fechac: this._FeACT,
+        // fechac: this._FeACT,
         proveedor: this._PRVR,
         modelo: this._MDL,
         vidautil:this._VUL,
-        fechaa: this._FeDEP,
-        fcustodio: this._FeFN,
+        // fechaa: this._FeDEP,
+        // fcustodio: this._FeFN,
         cgasto: this._CGT,
         cdan: this._CD,
         cdar: this._CDN,
-        vaL_NORMAL: this._VNO,
+        vaL_NORMAL: this._VLR,
         vaL_REVAL: this._VRVA,
-        imagen: "",
-        valoR_RESI: this._VRE,
-        valoR_RES2: 0.00,
-        placa_aux: "",
-        imagenbit: this._IMGE,
-        id: this.pId,
+        // imagen: "",
+         valoR_RESI: this._VRE,
+        // valoR_RES2: 0.00,
+        // placa_aux: "",
+         imagenbit: this._IMGE,
+         id: this.pId,
         af_control: this._actCont
       };
       // console.log(arr);
@@ -1132,9 +1128,16 @@ public arr: any[] = [];
         });
       } else {
         console.log(arr);
-        this.data.updateProduct(arr).subscribe(x => {
+        this.data.updateProduct(this.pId, arr).subscribe(x => {
           arr = x;
-          console.log(arr);          
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Tu producto ha sido editado con éxito, se ha generado movimiento de inventario.',
+            showConfirmButton: false,
+            timer: 1900
+          })
+          // console.log(arr);          
         }
         )
       }

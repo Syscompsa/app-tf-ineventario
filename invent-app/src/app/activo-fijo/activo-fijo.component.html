@@ -46,7 +46,7 @@
                 <input id="fileUp" type="file" (change)="encodeImageFileAsURL();" [(ngModel)]="_IMGE" name="_IMGE">
                 <div id="imgTest">
 
-                    <img [src]="_IMGE" style="width: 100% !important; height: auto !important;" alt="imagen en esepera...">
+                    <img [src]="_IMGE" style="width: 300px !important; height: auto !important;" alt="imagen en esepera...">
                 </div>
             </div>
 
@@ -170,7 +170,7 @@
                 <div class="Clase">
                     <div class="d" id="clas" style="width: 100px;">
                         <label for="_ciu" title="Código de ciudad">
-                    Cod. Ciudad:
+                    Ciudad:
                 </label>
                         <input type="text" id="_ciu" #ciud class="input-control" (keyup)="getDataCiudad(_ciudClass, _ciudRead)" [(ngModel)]="_ciudClass" name="_ciudClass">
                     </div>
@@ -519,11 +519,11 @@
 
     </form>
     <div class="btnSettings mt-4 ">
-        <button class="btn btn-info " (click)="saveItem() ">
+        <!-- <button class="btn btn-info " (click)="saveItem() ">
             <span class="icon-floppy " style="color: white; "></span>Agregar
-        </button>
-        <button class="btn btn-warning " (click)="UpdateProduct() ">
-            <span class="icon- " style="color: rgb(47, 47, 47); "></span>Modificar
+        </button> -->
+        <button class="btn btn-success " (click)="UpdateProduct() " title="Este paso generará un reporte de inventario">
+            <span class="icon-floppy " style="color: rgb(255, 255, 255); "></span>Modificar e Inventariar
         </button>
         <!-- <button class="btn btn-primary " (click)="cleanForm() ">
             <span class="icon-feather " style="color: white; "></span>Limpiar
