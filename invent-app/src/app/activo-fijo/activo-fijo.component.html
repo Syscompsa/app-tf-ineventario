@@ -1,8 +1,8 @@
 <div id="reactForms">
     <form id="fActivoFijo" class="actFijo">
-        
 
-        
+
+
         <div class="groupA">
             <div class="inpData" *ngIf="Depart" style="width: 100%;">
                 <div class="Clase">
@@ -38,7 +38,7 @@
             <div class="active">
                 <label class="title"><strong>Activo de control:</strong> </label>
                 <input type="checkbox" style="width: 25px;" (change)="actcon()" [(ngModel)]="_actCont" name="_actCont">
-    
+
                 <!-- <input type="checkbox" style="width: 25px;" (click)="actcon()"
                 [ngModel]="_actCont" name="_actCont"> -->
             </div>
@@ -131,7 +131,7 @@
                 <div class="dataDates">
                     <label for="fechacrea" title="Código Placa generado automáticamente no se puede modificar">Placa:</label>
                     <div class="d">
-                        <input type="text" disabled style="background-color: steelblue; color: white;" (keyup.enter)=" focus(clases)" #plac [(ngModel)]="_PLAC" name="_PLAC" id="placa" class="input-control">
+                        <input type="text" style="background-color: steelblue; color: white;" (keyup.enter)=" focus(clases)" #plac [(ngModel)]="_PLAC" name="_PLAC" id="placa" class="input-control">
                     </div>
                 </div>
             </div>
@@ -446,7 +446,7 @@
             </div>
             <hr>
 
-            <div class="container p-3 mt-2 " style="background-color: rgba(123, 126, 108, 0.208); " >
+            <div class="container p-3 mt-2 " style="background-color: rgba(123, 126, 108, 0.208); ">
                 <!-- <p class="text " style="font-size: 14pt; color: steelblue; "><strong>Asigne el Activo a sus cuentas.</strong></p>
                 <hr style="border-color: rgb(219, 219, 219); "> -->
                 <div class="inpData " *ngIf="CGAS ">
@@ -519,14 +519,14 @@
 
     </form>
     <div class="btnSettings mt-4 ">
-        <!-- <button class="btn btn-info " (click)="saveItem() ">
-            <span class="icon-floppy " style="color: white; "></span>Agregar
-        </button> -->
+        <button class="btn btn-primary " (click)="saveItem() ">
+            <span class="icon-doc-1 " style="color: white; "></span>Nuevo Producto
+        </button>
         <button class="btn btn-success " (click)="UpdateProduct() " title="Este paso generará un reporte de inventario">
             <span class="icon-floppy " style="color: rgb(255, 255, 255); "></span>Modificar e Inventariar
         </button>
-        <!-- <button class="btn btn-primary " (click)="cleanForm() ">
+        <button class="btn btn-secondary " (click)="cleanForm() ">
             <span class="icon-feather " style="color: white; "></span>Limpiar
-        </button> -->
+        </button>
     </div>
 </div>

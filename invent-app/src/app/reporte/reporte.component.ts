@@ -25,9 +25,9 @@ export class ReporteComponent implements OnInit {
     //   this.getInvent();
     // },300)
     this.fechActual();
-    this.getInvent('f');
     // console.log(this.user);
-    this.getDep('s');
+    this.getInvent('a');
+    this.getDep('a');
   }
 
   getDep(farm) {
@@ -78,7 +78,8 @@ export class ReporteComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.dateCall.delReport(id).subscribe(x => {
-          this.getInvent('f'); });
+          this.getInvent('a');
+         });
         Swal.fire(
           'Eliminado!',
           'Tu reporte se eliminó con éxito',
@@ -88,7 +89,7 @@ export class ReporteComponent implements OnInit {
     });
 
   }
-  
+
 prints() {
   var ficha = document.getElementById('tableReporte');
   let ventimp = window.open(' ', 'popimpr');
