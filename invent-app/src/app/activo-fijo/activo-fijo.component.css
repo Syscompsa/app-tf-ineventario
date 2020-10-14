@@ -80,7 +80,6 @@ label {
     flex-direction: column;
     padding: 10px;
     border-right: solid 1px gray;
-    width: 300px;
 }
 
 .actFijo {
