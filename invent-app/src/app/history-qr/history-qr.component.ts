@@ -44,7 +44,7 @@ export class HistoryQRComponent implements OnInit {
   public filterPost = '';
 
   ngOnInit() {
-    this.getDep(this.SearchDep);
+    this.getDep('admin');
     this.getCustoRep();
     this.getMarcRep();
     this.viewOptionsB();
@@ -167,6 +167,7 @@ export class HistoryQRComponent implements OnInit {
 
   getProductCustodio(custodio) {
     this.data.getCustodioReporte(custodio).subscribe(x => {
+      
       this.dataQRExtract = x;
       console.log(this.dataQRExtract);
       this.contadorProdAct = this.dataQRExtract.length;
