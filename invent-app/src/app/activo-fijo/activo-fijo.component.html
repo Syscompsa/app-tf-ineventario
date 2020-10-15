@@ -38,19 +38,19 @@
                 <div class="active">
                     <label class="title"><strong>Activo de control:</strong> </label>
                     <input type="checkbox" style="width: 25px;" (change)="actcon()" [(ngModel)]="_actCont" name="_actCont">
-    
+
                     <!-- <input type="checkbox" style="width: 25px;" (click)="actcon()"
                     [ngModel]="_actCont" name="_actCont"> -->
                 </div>
                 <div class="img" *ngIf="Imagen">
                     <input id="fileUp" type="file" (change)="encodeImageFileAsURL();" [(ngModel)]="_IMGE" name="_IMGE">
                     <div id="imgTest">
-    
+
                         <img [src]="_IMGE" style="width: 300px !important; height: auto !important;" alt="imagen en esepera...">
                     </div>
                 </div>
             </div>
-            
+
 
 
             <!--FECHA INPUT INICIO-->
@@ -267,7 +267,7 @@
                 </div>
             </div> -->
 
-            <div class="inpData" *ngIf="Activo">
+            <div class="inpData" *ngIf="false">
                 <!-- ESTE CAMPO TAMBIÉN ES
         DE RELLENO AUTOMATICO PERO
         ACTUALMENTE ESTA VACÍO -->
@@ -283,7 +283,7 @@
                 </div>
             </div>
 
-            <div class="inpData" *ngIf="Referido">
+            <div class="inpData" *ngIf="true">
                 <div class="dataDates">
                     <label for="_ref" title="">Referencia:</label>
                     <div class="d">

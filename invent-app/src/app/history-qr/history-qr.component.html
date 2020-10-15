@@ -2,12 +2,13 @@
 <div class="progress">
     <div class="progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
 </div>
-<div id="prevImprimir" style="width: 150px;" class="prevImprimir">
+<div id="prevImprimir" style="width: 180px; height: 100%;" class="prevImprimir">
     <div class="countss" style="height: 35px;">
         <div class="prev" id="printUnit" (click)="imprSelec()" style="width: 115px; height: 35px;">
             <span class="icon-print"></span>
-
-
+        </div>
+        <div class="close" style="height: 35px;" id="closeI" (click)="animhide()  ">
+            <span class="icon-left-open" id="spclo"></span>
         </div>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -42,16 +43,15 @@
 </div>
 <div class="cons container" id="const">
     <div class="filterfor" data-toggle="modal" data-target="#exampleModal">
-        <span class="filter icon-filter" data-toggle="modal" data-target="#exampleModal"
-         id="an" (mouseover)="retAnim('animFilter')" (mouseleave)="retAnim('')" title="El filtro está activado por, {{filtro}}"></span> Filtrado por:
+        <span class="filter icon-filter" data-toggle="modal" data-target="#exampleModal" id="an" (mouseover)="retAnim('animFilter')" (mouseleave)="retAnim('')" title="El filtro está activado por, {{filtro}}"></span> Filtrado por:
         <strong style="font-size: 14pt; color: steelblue;">
            {{filtro}} | Productos alcanzados: <strong> {{contadorProdAct}} <span class="icon-database"></span> </strong>
         </strong>
     </div>
     <div class="container-fluid display d-flex justify-content-between align-items-end">
-        <button type="button" id="prods" (mouseover)="changeHeight('auto')" (mouseleave)="changeHeight('410px')" (click)="prints()">
+        <!-- <button type="button" id="prods" (mouseover)="changeHeight('auto')" (mouseleave)="changeHeight('410px')" (click)="prints()">
           <span class="icon-print"></span>  Imprimir Productos
-        </button>
+        </button> -->
         <div class="botones">
             <div class="bn" title="Mostrar QR" id="bnA" (click)="viewOptionsA()">
                 <span class="icon-qrcode"></span> Mostrar etiquetas QR
@@ -85,15 +85,13 @@
                                         <div class="card">
                                             <div class="card-header" id="headingOne">
                                                 <h2 class="mb-0">
-                                                    <button class="btn btn-link btn-block text-left" [id]="ida" type="button"
-                                                     data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                                    <button class="btn btn-link btn-block text-left" [id]="ida" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                                                       <strong>Por custodio:</strong> Actualmente tiene(s), <strong> {{cantCust}}
                                                            </strong> custodio(s), registrado en la base de datos.
                                                     </button>
                                                     <div class="display d-flex">
                                                         <label for="inpts"><span style="color: steelblue;" class="icon-search"></span></label>
-                                                        <input id="inpts" type="text" class="inpts" placeholder="Buscar por custodio..."
-                                                         [(ngModel)]="filterPost" name="filterPost" (keyup)="getCustoRep()">
+                                                        <input id="inpts" type="text" class="inpts" placeholder="Buscar por custodio..." [(ngModel)]="filterPost" name="filterPost" (keyup)="getCustoRep()">
                                                     </div>
                                                 </h2>
                                             </div>
@@ -101,9 +99,9 @@
                                             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                                                 <div class="card-body" style="height: 300px !important; overflow-y: auto !important;">
                                                     <a class="dropdown-item" href="javascript: void(0)" (click)="getID(ida, cust.nombre)" *ngFor="let cust of custodios">
-                                                    <strong> Nombres: </strong> {{ cust.nombre | titlecase }}  {{ cust.apellido | titlecase }}  <br>
-                                                    <strong> Código: </strong>  {{cust.codigo}}  <br>
-                                                    <strong> Ciudad: </strong>  {{cust.nombre1 | titlecase}} / {{cust.dpto}} 
+                                                        <strong> Nombres: </strong> {{ cust.nombre | titlecase }} {{ cust.apellido | titlecase }} <br>
+                                                        <strong> Código: </strong> {{cust.codigo}} <br>
+                                                        <strong> Ciudad: </strong> {{cust.nombre1 | titlecase}} / {{cust.dpto}}
                                                     </a>
                                                     <hr>
                                                 </div>
@@ -137,12 +135,13 @@
                             </div>
                         </div>
                     </div>
-                    <input class="form-control" style="border-bottom-left-radius: 0px !important; border-top-left-radius: 0px !important;" (keyup)="getDep(SearchDep)" [(ngModel)]="SearchDep" name="SearchDep" type="text" placeholder="Search" aria-label="Search">
+                    <!-- <input class="form-control" style="border-bottom-left-radius: 0px !important; border-top-left-radius: 0px !important;"
+                    (keyup)="getDep(SearchDep)" [(ngModel)]="SearchDep" name="SearchDep" type="text" placeholder="Search" aria-label="Search"> -->
                 </div>
             </div>
         </div>
     </div>
-    
+
     <div class="dataQR mb-4 animated fadeIn" id="dataQR" *ngIf="conterB">
 
         <div class="box" style="cursor: pointer;" *ngFor="let a of dataQRExtract | paginate: {itemsPerPage: 12, currentPage: pageActual}" id="box-{{a.id}}" (click)="imprimirUnidad(a.id, a.placa, a.nombre)">
@@ -158,9 +157,9 @@
             </div>
         </div>
     </div>
-    
+
     <div class="dataQR" id="dataQRB" *ngIf="conterA">
-        
+
         <div class="b animated fadeIn" style="width: 100%;">
             <table class="table" style="font-size: 12pt;">
                 <thead class="thead-dark">
@@ -184,7 +183,7 @@
                     </tr>
                 </tbody>
             </table>
-            
+
         </div>
     </div>
 </div>

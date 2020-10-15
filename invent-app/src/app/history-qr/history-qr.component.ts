@@ -43,23 +43,24 @@ export class HistoryQRComponent implements OnInit {
   public tooltipView;
   public filterPost = '';
 
+  pageActual: number = 1;
+
+  public adnimBool = true;
+
   ngOnInit() {
     this.getDep('admin');
-    this.getCustoRep();
     this.getMarcRep();
     this.viewOptionsB();
-    
+    this.getCustoRep();
   }
 
   getDep(master) {
     this.data.getDptoReporte(master).subscribe(x => {
       this.dataQRExtract = x;
       this.contadorProdAct = this.dataQRExtract.length;
-      console.log(this.dataQRExtract);      
+      console.log(this.dataQRExtract);
     });
   }
-  
-  pageActual: number = 1;
 
   // page_size: number = 10;
   // page_number : number = 1;
@@ -84,17 +85,23 @@ export class HistoryQRComponent implements OnInit {
     switch (this.ensi) {
       case true:
         this.ensi = false;
-        console.log(this.ensi);
         contenidoPrev.appendChild(this.createLi(id, placa, nombre));
+        ids.style.border = 'dashed 2px green';
+        ids.style.borderRadius = '5px';
+        ids.style.boxShadow = '3px 3px 7px rgba(0,0,0,0.5)';
+        ids.style.transition = 'ease all 0.5s';
         // modImp.appendChild(this.createLi(id, placa));
 
         break;
       case false:
         this.ensi = true;
-        console.log(this.ensi);
         contenidoPrev.removeChild(document.getElementById(`li-${id}`));
+        ids.style.border = 'solid 1px gray';
+        ids.style.borderRadius = '0px';
+        ids.style.boxShadow = '3px 3px 7px rgba(0,0,0,0.0)';
+        ids.style.transition = 'ease all 0.5s';
         // modImp.removeChild(document.getElementById(`li-${id}`));
-        this.objectSelectStyle(ids, 'solid', 'rgba(0,0,0,0.2)', '1px');
+        // this.objectSelectStyle(ids, 'solid', 'rgba(0,0,0,0.2)', '1px');
         break;
     }
   }
@@ -109,6 +116,38 @@ export class HistoryQRComponent implements OnInit {
     document.getElementById(placa).innerHTML = qr.createSvgTag(1.9);
   }
 
+  animhide() {
+    let a = document.getElementById('prevImprimir');
+    let b = document.getElementById('spclo');
+    let c = document.getElementById('closeI');
+    switch (this.adnimBool) {
+      case true:
+        this.adnimBool = false;
+        a.style.animation = 'ease prevImprimirAnim 0.5s';
+        setTimeout(() => {
+          a.style.transform = 'translate(-120px)';
+          c.style.backgroundColor = 'orange';
+          c.style.color = 'black';
+          b.setAttribute('class', 'icon-right-open');
+        }, 500);
+        break;
+
+      case false:
+        this.adnimBool = true;
+        a.style.animation = 'ease prevImprimirAnimC 0.5s';
+        b.setAttribute('class', 'icon-left-open');
+        setTimeout(() => {
+          a.style.transform = 'translate(0px)';
+          c.style.backgroundColor = 'cornflowerblue';
+          c.style.color = 'rgb(52, 21, 102)';
+          b.setAttribute('class', 'icon-left-open');
+        }, 500);
+        break;
+      default:
+        break;
+    }
+  }
+
   createLi(idVar, placaText, nombre) {
     const node = document.createElement('li');
     // document.getElementById('modalPrint').innerText = placaText;
@@ -121,10 +160,11 @@ export class HistoryQRComponent implements OnInit {
     node.style.width = '150px';
     node.style.height = '85px';
     node.style.marginBottom = '15px';
+    node.style.marginTop = '15px';
     node.style.display = 'flex';
     node.style.justifyContent = 'center';
     node.style.alignItems = 'center';
-    
+
     const createDiv = document.createElement('div');
     createDiv.innerHTML = `<strong> Placa: ${placaText} \n Nombre:  ${nombre} </strong>`;
     createDiv.style.fontSize = '7pt';
@@ -167,7 +207,6 @@ export class HistoryQRComponent implements OnInit {
 
   getProductCustodio(custodio) {
     this.data.getCustodioReporte(custodio).subscribe(x => {
-      
       this.dataQRExtract = x;
       console.log(this.dataQRExtract);
       this.contadorProdAct = this.dataQRExtract.length;
@@ -247,7 +286,7 @@ export class HistoryQRComponent implements OnInit {
     this.data.getDataCustodio(this.filterPost).subscribe( x => {
       this.custodios = x;
       this.cantCust = this.custodios.length;
-      console.log(this.custodios);
+      // console.log(this.custodios);
     });
   }
 
@@ -258,7 +297,7 @@ export class HistoryQRComponent implements OnInit {
       // console.log(this.Marcas);
     });
   }
-  
+
   prints() {
     var ficha = document.getElementById('dataQR');
     let ventimp = window.open(' ', 'popimpr');

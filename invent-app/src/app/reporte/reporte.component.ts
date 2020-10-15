@@ -50,7 +50,7 @@ export class ReporteComponent implements OnInit {
    if (dia < 10) {
        dia = '0' + dia;
    }
-  // agrega cero si el menor de 10
+   // agrega cero si el menor de 10
    if (mes < 10) {
     mes = '0' + mes;
    } // agrega cero si el menor de 10
@@ -96,7 +96,7 @@ prints() {
   ventimp.document.write( ficha.innerHTML );
   ventimp.document.close();
   ficha.style.fontFamily = 'Arial';
-  ventimp.print( );
+  ventimp.print();
   ventimp.close();
 }
 

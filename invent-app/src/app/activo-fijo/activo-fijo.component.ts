@@ -470,29 +470,29 @@ public arr: any[] = [];
     this.getInterfaz();
     this.fechActual();
     this.data.getDataByPlaca().subscribe( x => {
-      
-       this.placaServices = x; 
-       
-  
+
+       this.placaServices = x;
+
+
        const placaNow = this.placaServices[0].placa_Post;
        console.log(this.placaServices);
        this.data.getDataByPlacaId(placaNow)
        .subscribe(resp => {
         this.modelData[0] = resp;
-        this._IMGE = this.modelData[0][0].imagenbit;        
+        this._IMGE = this.modelData[0][0].imagenbit;
         console.log(this.modelData[0])
         this._nProducto = this.modelData[0][0].nombre;
         this._DP = this.modelData[0][0].dpto
         this._PLAC = this.modelData[0][0].placa;
         // console.log(this._PLAC);
-        this.pId = this.modelData[0][0].id; 
+        this.pId = this.modelData[0][0].id;
 
         this._actCont = this.modelData[0][0].af_control;
         this._CustClass = this.modelData[0][0].custodio;
         // // console.log("Departamentos: " + this.modelData[0].dpto);
         this._SER       = this.modelData[0][0].serie;
         this._VLR       = this.modelData[0][0].vaL_NORMAL;
-        // this._REFE      = this.modelData[0][0].refer;
+        this._REFE      = this.modelData[0][0].refer;
         // this._UC        = this.modelData[0][0].usucrea;
         this._actvClass = this.modelData[0][0].activo;
         // this._USMO      = this.modelData[0][0].usumodi;
@@ -509,7 +509,7 @@ public arr: any[] = [];
         // this._CDN       = this.modelData[0][0].cdar;
         // this._VNO       = this.modelData[0][0].vaL_NORMAL;
         // this._VRVA      = this.modelData[0][0].vaL_REVAL;
-        // this._VLR      = this.modelData[0][0].valor;    
+        // this._VLR      = this.modelData[0][0].valor;
         this._ciudClass = this.modelData[0][0].ciudad;
         this._Class     = this.modelData[0][0].clase;
         // this._ActiveClass = '';
@@ -521,10 +521,10 @@ public arr: any[] = [];
         // this._FeACT     = new Date();
         // this._FeFN      = this.modelData[0][0].fcustodio.slice(0, 10);
 
-        
+
         //Envia el reprte cuando carguen estos datos
-        
-     
+
+
 
       }, err => {
         this.cleanForm();
@@ -533,7 +533,7 @@ public arr: any[] = [];
     });
   }
 
-  
+
   sendReporte() {
     this.reportArr = {
       fechaInv: new Date(),
@@ -545,7 +545,7 @@ public arr: any[] = [];
       campoB: "--"
     };
     this.data.saveReport(this.reportArr).subscribe(x => {
-      
+
       this.reportArr = x;
       // console.log('this.reportArr');
       // console.log(this.reportArr);
@@ -1073,8 +1073,8 @@ public arr: any[] = [];
     }
     //#endregion
 
-    
-  
+
+
     //#region  "Update function()"
     UpdateProduct() {
       this.sendReporte();
@@ -1137,7 +1137,7 @@ public arr: any[] = [];
             showConfirmButton: false,
             timer: 1900
           })
-          // console.log(arr);          
+          // console.log(arr);
         }
         )
       }

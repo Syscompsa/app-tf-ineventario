@@ -77,8 +77,8 @@ export class DataCallService {
     return this.http.get(this.apiURL + 'api/Reporteria/getReporteByParam/' + param);
   }
 
-  async getDptoReporte(master) {
-    return await this.http.get(this.apiURL + 'api/Reporteria/GetDptoReporte/' + master);
+   getDptoReporte(master) {
+    return this.http.get(this.apiURL + 'api/Reporteria/GetDptoReporte/' + master);
   }
 
   getMarcaReporte(master) {
