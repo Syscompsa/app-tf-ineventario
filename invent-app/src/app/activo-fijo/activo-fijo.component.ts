@@ -466,6 +466,9 @@ public arr: any[] = [];
     // tslint:disable-next-line: member-ordering
     public dataimg;
     public img64;
+
+    lista:string[]=["Bueno","Mal estado","Obsoleto"];
+    public optionSel;
   ngOnInit() {
     this.getInterfaz();
     this.fechActual();
@@ -1077,6 +1080,7 @@ public arr: any[] = [];
 
     //#region  "Update function()"
     UpdateProduct() {
+
       this.sendReporte();
       let arr: any = {
         placa: this._PLAC,
@@ -1088,7 +1092,7 @@ public arr: any[] = [];
         serie: this._SER,
         valor: this._VLR,
         activo: this.varAct,
-        refer: this._REFE,
+        refer: this._REFE + ' / ' + this.optionSel,
         // feccrea: this._FeCREA,
         usucrea: this._UC,
         // fecmodi: this._FeMOD,

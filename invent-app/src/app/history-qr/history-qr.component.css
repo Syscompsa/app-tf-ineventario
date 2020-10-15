@@ -49,6 +49,7 @@
     }
 }
 
+
 .box::after {
     border: solid 2px green;
 }

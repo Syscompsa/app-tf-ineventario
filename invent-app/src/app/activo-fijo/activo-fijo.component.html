@@ -288,6 +288,9 @@
                     <label for="_ref" title="">Referencia:</label>
                     <div class="d">
                         <input type="text" #refe [(ngModel)]="_REFE" name="_REFE" id="_ref" class="input-control">
+                        <select name="optionSel" [(ngModel)]="optionSel">
+                            <option [value]="item" *ngFor="let item of lista" >{{item}}</option>
+                        </select>
                     </div>
                 </div>
             </div>
