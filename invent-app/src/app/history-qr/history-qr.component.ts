@@ -48,7 +48,7 @@ export class HistoryQRComponent implements OnInit {
   public adnimBool = true;
 
   ngOnInit() {
-    this.getDep('admin');
+    this.getDep('NF037');
     this.getMarcRep();
     this.viewOptionsB();
     this.getCustoRep();
@@ -61,16 +61,6 @@ export class HistoryQRComponent implements OnInit {
       console.log(this.dataQRExtract);
     });
   }
-
-  // page_size: number = 10;
-  // page_number : number = 1;
-  // pageSizeOptions = [10, 20, 50, 100, 130 ];
-
-  // handlePage(e: PageEvent) {
-  //   this.page_size = e.pageSize;
-  //   this.page_number = e.pageIndex + 1;
-  // }
-
 
   overProduct(ids, disp) {
     const tooltip = document.getElementById(ids);
@@ -213,17 +203,30 @@ export class HistoryQRComponent implements OnInit {
     });
   }
 
+  getID(IDS, a) {
+    switch (IDS) {
+      case 1:
+        this.filter(a);
+        this.getProductCustodio(this.filtro);
+        break;
+      case 2:
+        this.filter(a);
+        this.getProductMarca(this.filtro);
+        break;
+    }
+    console.log(IDS);
+  }
+
   getProductMarca(marca) {
     this.data.getMarcaReporte(marca).subscribe( x => {
       this.dataQRExtract = x;
-      console.log(this.dataQRExtract);
+      // console.log(this.dataQRExtract);
       this.contadorProdAct = this.dataQRExtract.length;
     });
   }
 
   filter(a) {
     this.filtro = a;
-   // console.log(this.filtro);
   }
 
   viewOptionsA() {
@@ -268,19 +271,7 @@ export class HistoryQRComponent implements OnInit {
     a.style.backgroundColor = 'transparent';
   }
 
-  getID(IDS, a) {
-    switch (IDS) {
-      case 1:
-        this.filter(a);
-        this.getProductCustodio(this.filtro);
-        break;
-      case 2:
-        this.filter(a);
-        this.getProductMarca(this.filtro);
-        break;
-    }
-    console.log(IDS);
-  }
+
 
   getCustoRep() {
     this.data.getDataCustodio(this.filterPost).subscribe( x => {

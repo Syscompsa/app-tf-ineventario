@@ -98,7 +98,7 @@
 
                                             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                                                 <div class="card-body" style="height: 300px !important; overflow-y: auto !important;">
-                                                    <a class="dropdown-item" href="javascript: void(0)" (click)="getID(ida, cust.nombre)" *ngFor="let cust of custodios">
+                                                    <a class="dropdown-item" href="javascript: void(0)" (click)="getID(ida, cust.dpto)" *ngFor="let cust of custodios">
                                                         <strong> Nombres: </strong> {{ cust.nombre | titlecase }} {{ cust.apellido | titlecase }} <br>
                                                         <strong> Código: </strong> {{cust.codigo}} <br>
                                                         <strong> Ciudad: </strong> {{cust.nombre1 | titlecase}} / {{cust.dpto}}
