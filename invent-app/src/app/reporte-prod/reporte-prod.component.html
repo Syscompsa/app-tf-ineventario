@@ -1,0 +1,28 @@
+<div class="container p-4 display d-flex justify-content-center mt-3">
+    <p class="title h5"> <span class="icon-database"></span> Reporte de productos creados en la base de datos  </p>
+</div>
+<hr>
+<div class="container p-4">
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Placa</th>
+            <th scope="col">Local</th>
+            <th scope="col">Ciudad</th>
+            <th scope="col">Custodio</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">F. de Inventario</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let a of dataArr">
+            <th >{{a.placaInv}}</th>
+            <th >{{a.campoA}}</th>
+            <td>{{a.ciudad}}</td>
+            <td>{{a.custodio}}</td>
+            <td>{{a.descripInv | titlecase}}</td>
+            <td>{{a.fechaInv | date: 'mm-dd--yyyy'}}</td>
+          </tr>   
+        </tbody>
+      </table>
+</div>

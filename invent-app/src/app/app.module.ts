@@ -58,6 +58,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
+import { ReporteProdComponent } from './reporte-prod/reporte-prod.component';
 // import { FilterPipe } from './pipes/filter.pipe';
 
 //#endregion
@@ -73,6 +74,7 @@ import {OverlayModule} from '@angular/cdk/overlay';
     ReporteComponent,
     ConfigurationsComponent,
     ActivoFijoComponent,
+    ReporteProdComponent,
     // FilterPipe
   ],
   imports: [

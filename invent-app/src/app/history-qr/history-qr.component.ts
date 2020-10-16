@@ -145,15 +145,17 @@ export class HistoryQRComponent implements OnInit {
     node.setAttribute('class', 'liPrint animated fadeInLeft fast');
     node.style.listStyle = 'none';
     node.style.padding = '2px';
+
     // node.style.borderBottom = 'dashed 1px gray';
     const createSects = document.createElement('section');
     node.style.width = '165px';
-    node.style.height = '95px';
-    node.style.marginBottom = '10px';
-    node.style.marginTop = '16px';
+    node.style.height = '93px';
+    node.style.marginBottom = '17px';
+    node.style.marginTop = '17px';
     node.style.display = 'flex';
     node.style.justifyContent = 'center';
     node.style.alignItems = 'center';
+    node.style.backgroundColor = 'whitesmoke';
 
     const createDiv = document.createElement('div');
     createDiv.innerHTML = `<strong> Placa: ${placaText} \n Nombre:  ${nombre} </strong>`;

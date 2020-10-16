@@ -18,6 +18,7 @@ export class ReporteComponent implements OnInit {
   public filter;
   public filterPost;
   public prodInv;
+  public rep: boolean = false;
   constructor( public dateCall: DataCallService, public us: WebuserService ) { }
 
   ngOnInit() {
@@ -28,6 +29,10 @@ export class ReporteComponent implements OnInit {
     // console.log(this.user);
     this.getInvent('a');
     this.getDep('a');
+  }
+
+  showRep(va) {
+    this.rep = true;
   }
 
   getDep(farm) {
