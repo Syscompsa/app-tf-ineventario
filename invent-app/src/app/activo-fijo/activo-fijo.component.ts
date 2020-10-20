@@ -495,7 +495,7 @@ public arr: any[] = [];
         // // console.log("Departamentos: " + this.modelData[0].dpto);
         this._SER       = this.modelData[0][0].serie;
         this._VLR       = this.modelData[0][0].vaL_NORMAL;
-        this._REFE      = this.modelData[0][0].refer;
+        this._REFE      = localStorage.getItem('User');
         // this._UC        = this.modelData[0][0].usucrea;
         this._actvClass = this.modelData[0][0].activo;
         // this._USMO      = this.modelData[0][0].usumodi;
