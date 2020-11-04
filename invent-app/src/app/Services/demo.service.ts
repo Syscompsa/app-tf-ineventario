@@ -7,8 +7,11 @@ import { Demo } from '../Models/Demo';
 })
 export class DemoService {
 
-  private apiURL = 'https://syscapi-inv.azurewebsites.net/api';
+  // private apiURL = 'https://syscapi-inv.azurewebsites.net/api';
   // private apiURL = 'http://localhost:5000/api/';
+
+  private apiURL = 'https://localhost:5000/api';
+
 
   constructor(private http: HttpClient) { }
 

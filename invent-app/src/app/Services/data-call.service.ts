@@ -13,6 +13,9 @@ export class DataCallService {
   private apiURL = 'https://alp-cloud.com:8445/';
   private apiURLPOST = 'https://alp-cloud.com:8445/api/AR_INV-QRcodProdGet';
 
+  // private apiURL = 'https://localhost:5000/';
+  // private apiURLPOST = 'https://localhost:5000/api/AR_INV-QRcodProdGet';
+
   constructor(private http: HttpClient) { }
 
   updateProduct(id, content): Observable<any[]> {

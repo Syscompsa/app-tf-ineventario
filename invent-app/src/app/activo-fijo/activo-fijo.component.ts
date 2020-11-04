@@ -1146,6 +1146,7 @@ public arr: any[] = [];
         )
       }
     }
+    
     //#endregion
     public varAct;
     activChange() {

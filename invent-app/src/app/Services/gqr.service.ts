@@ -10,6 +10,9 @@ export class GQRService {
 
   private apiURL = 'https://alp-cloud.com:8445/api';
 
+  //Para testear local
+  // private apiURL = 'https://localhost:5000/api';
+
   constructor(private http: HttpClient) { }
 
   getQRGen(): Observable<QRDATA[]>{
