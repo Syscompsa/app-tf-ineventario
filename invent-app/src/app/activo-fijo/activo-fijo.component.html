@@ -1,536 +1,550 @@
-<div id="reactForms">
-    
-    <form id="fActivoFijo" class="actFijo">
-        <div class="groupA">
-            <div class="inpData" *ngIf="Depart" style="width: 100%;">
-                <div class="Clase">
-                    <div class="d" id="clas" style="width: 100px;">
-                        <label for="_DP" title="">
-                            Departemento:
-                        </label>
-                        <div class="d">
-                            <input type="text" id="_dep" #dep (keyup)="getDataDep(_DP, DepRead)" [(ngModel)]="_DP" name="_DP" class="input-control">
-                        </div>
-                    </div>
-                    <div class="d" id="clase" id="clas" style="width: 100%;">
-                        <label title="">
-                        <span class="icon-key-1"></span></label>
-                        <input type="text" class="_ClaseB" style="background-color: steelblue; color: white;" readonly disabled class="input-control" [value]="DepRead">
-                    </div>
-                </div>
-                <!-- SELECT MEDIANTE DROPDOWN -->
-                <div class="input-group mb-3" style="width: 100%;" *ngIf="optG">
-                    <div class="input-group-prepend" style="width: 100%;">
-                        <button class="btn btn-outline-secondary dropdown-toggle" #custOpt style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    <span class="icon-search"></span> Selecciona una opción</button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" style="font-size: 9pt;" id="{{depa.codigo}}" (click)="getDataDep(depa.codigo, depa.nombre)" *ngFor="let depa of DepArr" href="javascript: void(0)">
-                            | Nombre: {{depa.nombre}}
-                            | Código: {{depa.codigo}}
-                        </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- SELECT MEDIANTE DROPDOWN -->
-
-                <div class="active">
-                    <label class="title"><strong>Activo de control:</strong> </label>
-                    <input type="checkbox" style="width: 25px;" (change)="actcon()" [(ngModel)]="_actCont" name="_actCont">
-
-                    <!-- <input type="checkbox" style="width: 25px;" (click)="actcon()"
-                    [ngModel]="_actCont" name="_actCont"> -->
-                </div>
-                <div class="img" *ngIf="Imagen">
-                    <input id="fileUp" type="file" (change)="encodeImageFileAsURL();" [(ngModel)]="_IMGE" name="_IMGE">
-                    <div id="imgTest">
-
-                        <img [src]="_IMGE" style="width: 300px !important; height: auto !important;" alt="imagen en esepera...">
-                    </div>
-                </div>
+<div class=" contsGen ">
+    <div id="picture">
+        <div class="img" *ngIf="Imagen">
+            <label for="fileUp"
+             style="background-color: black;
+             margin: 0px !important; cursor: pointer;
+             color: white; padding: 8px; display: flex;
+             justify-content: center; align-items: center;">
+                <span class="icon-picture" style="font-size: 15pt;"></span>
+            </label>
+            <input style="width: 0px; height: 0px; opacity: 0;" id="fileUp" type="file"
+             (change)="encodeImageFileAsURL();"
+             [(ngModel)]="_IMGE" name="_IMGE">
+            <div id="imgTest" [ngStyle]="{'background-image': 'url(&quot;' + _IMGE + '&quot;)', 'margin-top': '-20px'}">
+                <!-- <img [src]="_IMGE" style="width: 100% !important; height: auto !important;" alt="imagen en esepera..."> -->
             </div>
-
-
-
-            <!--FECHA INPUT INICIO-->
-            <!-- <div class="inpDates">
-                <div class="dataDates" *ngIf="FCrea">
-                    <label for="fechacrea">Fecha Creación:</label>
-                    <div class="d">
-                        <input type="date" #fecrea id="fechacrea" [(ngModel)]="_FeCREA" name="_FeCREA" class="input-control">
-                        <div class="formato">
-                            <span class="icon-calendar"></span> (dd/mm/yyyy)
-                        </div>
-                    </div>
-                </div>
-                <div class="dataDates" *ngIf="FeInde">
-                    <label for="fecha Inicio de Depreciación">Fecha I. Depreciación:</label>
-                    <div class="d">
-                        <input type="date" #fedep [(ngModel)]="_FeDEP" name="_FeDEP" id="fechaCompra" class="input-control">
-                        <div class="formato">
-                            <span class="icon-calendar"></span> (dd/mm/yyyy)
-                        </div>
-                    </div>
-                </div>
-
-                <div class="dataDates" *ngIf="true">
-                    <label for="fechaCompra">Fecha Compra:</label>
-                    <div class="d">
-                        <input type="date" #fecomp id="fechaCompra" [(ngModel)]="_FeCOMP" name="_FeCOMP" class="input-control">
-                        <div class="formato">
-                            <span class="icon-calendar"></span> (dd/mm/yyyy)
-                        </div>
-                    </div>
-                </div>
-
-                <div class="dataDates" *ngIf="FMod">
-                    <label for="fechamod"> Fecha Modificación:</label>
-                    <div class="d">
-                        <input type="date" #femod [(ngModel)]="_FeMOD" name="_FeMOD" class="input-control">
-                        <div class="formato">
-                            <span class="icon-calendar"></span> (dd/mm/yyyy)
-                        </div>
-                    </div>
-                </div>
-
-                <div class="dataDates" *ngIf="FFin">
-                    <label for="fechafin">Fecha Final:</label>
-                    <div class="d">
-                        <input type="date" #fefin id="fechafin" [(ngModel)]="_FeFINAL" name="_FeFINAL" class="input-control">
-                        <div class="formato">
-                            <span class="icon-calendar"></span> (dd/mm/yyyy)
-                        </div>
-                    </div>
-                </div>
-
-                <div class="dataDates" *ngIf="Factual">
-                    <label for="fact">Fecha Actual:</label>
-                    <div class="d">
-                        <input type="date" [(ngModel)]="_FeACT" name="_FeACT" id="fact" class="input-control" #fact>
-                        <div class="formato">
-                            <span class="icon-calendar"></span> (dd/mm/yyyy)
-                        </div>
-                    </div>
-                </div>
-
-                <div class="dataDates" *ngIf="FCust">
-                    <label for="fechafin">Fecha Custodio:</label>
-                    <div class="d">
-                        <input type="date" id="fechafin" #fefn [(ngModel)]="_FeFN" name="_FeFN" class="input-control">
-                        <div class="formato">
-                            <span class="icon-calendar">
-                    </span> (dd/mm/yyyy)
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            <!--FECHA INPUT FIN-->
         </div>
-        <div class="groupB ">
-            
-            <!--DATA INPUT INICIO-->
-            <div class="inpData" *ngIf="Placa">
-                <div class="dataDates">
-                    <label for="fechacrea" title="Código Placa generado automáticamente no se puede modificar">Placa:</label>
-                    <div class="d">
-                        <input type="text" style="background-color: steelblue; color: white;" (keyup.enter)=" focus(clases)" #plac [(ngModel)]="_PLAC" name="_PLAC" id="placa" class="input-control">
-                    </div>
-                </div>
-            </div>
-
-            <div class="inpData" *ngIf="CLase">
-                <div class="Clase">
-                    <div class="d" id="clas" style="width: 100px;">
-                        <label for="_Clase" title="">Clase:</label>
-                        <input type="text" id="_Clase" (keyup)="getDataCall(_Class, _cRead)" [(ngModel)]="_Class" name="_Class" #clases class="input-control">
-                    </div>
-                    <div class="d" id="clase" id="clas">
-                        <label for="_Clase" title="">
-                    <span class="icon-key-1"></span></label>
-                        <input type="text" class="_ClaseB" style="background-color: steelblue; color: white;" readonly disabled class="input-control" [value]="_cRead">
-                    </div>
-
-                </div>
-
-                <!-- SELECT MEDIANTE DROPDOWN -->
-                <div class="input-group mb-3" style="width: 100%;" *ngIf="optB">
-                    <div class="input-group-prepend" style="width: 100%;">
-                        <button class="btn btn-outline-secondary dropdown-toggle" #btnClase style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              <span class="icon-search"></span> Selecciona una opción</button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" id="{{d.codigo}}" (click)="getDataCall(d.codigo_aux, d.nombre)" *ngFor="let d of modelArr" href="javascript: void(0)">
-                Codigo: {{d.codigo}}
-                | Nombre: {{d.nombre}}
-                </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- SELECT MEDIANTE DROPDOWN -->
-            </div>
-
-            <div class="inpData" *ngIf="CIUD">
-                <div class="Clase">
-                    <div class="d" id="clas" style="width: 100px;">
-                        <label for="_ciu" title="Código de ciudad">
-                    Ciudad:
-                </label>
-                        <input type="text" id="_ciu" #ciud class="input-control" (keyup)="getDataCiudad(_ciudClass, _ciudRead)" [(ngModel)]="_ciudClass" name="_ciudClass">
-                    </div>
-
-                    <div class="d" id="clas">
-                        <label for="_Clase" title="">
-                    <span class="icon-key-1"></span></label>
-                        <input type="text" class="_ClaseB" style="background-color: steelblue; color: white;" readonly disabled class="input-control" [value]="_ciudRead">
-                    </div>
-
-                </div>
-
-                <!-- SELECT MEDIANTE DROPDOWN -->
-                <div class="input-group mb-3" style="width: 100%;" *ngIf="optA">
-                    <div class="input-group-prepend" style="width: 100%;">
-                        <button class="btn btn-outline-secondary dropdown-toggle" #ciudOpt style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              <span class="icon-search"></span> Selecciona una opción</button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" id="{{c.codigo}}" (click)="getDataCiudad(c.codigo, c.nombre)" *ngFor="let c of ciudArr" href="javascript: void(0)">
-                Codigo: {{c.codigo}}
-                | Nombre: {{c.nombre}}
-                </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- SELECT MEDIANTE DROPDOWN -->
-
-            </div>
-
-            <div class="inpData" *ngIf="NProd" style="width: 100%;">
-                <div class="dataDates">
-                    <label for="_nProd" title="">Nombre Producto:</label>
-                    <div class="d">
-                        <input type="text" [(ngModel)]="_nProducto" name="_nProducto" id="_nProd" #nomProd (keyup.enter)="focus(custodio)" class="input-control">
-                    </div>
-
-                </div>
-            </div>
-            <!-- CUSTODIOS INICIO -->
-            <div class="inpData" *ngIf="Custodio" style="width: 50%;">
-                <div class="Clase">
-                    <div class="d" id="clas" style="width: 100px;">
-                        <label for="_cust" title="">
-                    Custodio:
-                </label>
-                        <div class="d">
-                            <input type="text" id="_cust" #custodio (keyup)="getDataCust(_CustClass, _CustRead)" [(ngModel)]="_CustClass" name="_CustClass" class="input-control">
-                        </div>
-                    </div>
-                    <div class="d" id="clase" id="clas" style="width: 100%;">
-                        <label for="_Clase" title="">
-                    <span class="icon-key-1"></span></label>
-                        <input type="text" class="_ClaseB" style="background-color: steelblue; color: white;" readonly disabled class="input-control" [value]="_CustRead">
-                    </div>
-
-                </div>
-
-
-                <!-- SELECT MEDIANTE DROPDOWN -->
-                <div class="input-group mb-3" style="width: 100%;" *ngIf="optC">
-                    <div class="input-group-prepend" style="width: 100%;">
-                        <button class="btn btn-outline-secondary dropdown-toggle" #custOpt style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-              <span class="icon-search"></span> Selecciona una opción</button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" style="font-size: 9pt;" id="{{custo.codigo}}" (click)="getDataCust(custo.codigo, custo.nombre)" *ngFor="let custo of custArr" href="javascript: void(0)">
-                    Codigo: {{custo.codigo}}
-                    | Nombre: {{custo.nombre}}
-                    | Apéllido: {{custo.apellido}}
-                </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- SELECT MEDIANTE DROPDOWN -->
-            </div>
-            <!-- CUSTODIOS FIN -->
-
-            <div class="inpData" *ngIf="true">
-                <div class="dataDates">
-                    <label for="_ser" title="">Serie:</label>
-                    <div class="d">
-                        <input type="text" #serie [(ngModel)]="_SER" name="_SER" id="_ser" class="input-control">
-                    </div>
-                </div>
-            </div>
-
-            <!-- <div class="inpData" *ngIf="Valor">
-                <div class="dataDates">
-                    <label for="_val" title="">Valor:</label>
-                    <div class="d">
-                        <input type="text" [(ngModel)]="_VLR" name="_VLR" #vlr id="_val" class="input-control">
-                    </div>
-                </div>
-            </div> -->
-
-            <div class="inpData" *ngIf="false">
-                <!-- ESTE CAMPO TAMBIÉN ES
-        DE RELLENO AUTOMATICO PERO
-        ACTUALMENTE ESTA VACÍO -->
-                <div class="dataDates">
-                    <div class="d" id="clas" style="width: 100px;">
-                        <label for="_actv" title="">Activo: </label>
-                        <input type="range" min="0" max="1" id="_actv" #actv [(ngModel)]="_actvClass" (change)="activChange()" name="_actvClass" class="input-control">
-                        <div style="display: flex; justify-content: space-between">
-                            <p><strong>No</strong></p>
-                            <p><strong>Si</strong></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="inpData" *ngIf="true">
-                <div class="dataDates">
-                    <label for="_ref" title="">Referencia:</label>
-                    <div class="d">
-                        <input type="text" #refe [(ngModel)]="_REFE" name="_REFE" id="_ref" class="input-control">
-                        <select name="optionSel" [(ngModel)]="optionSel">
-                            <option [value]="item" *ngFor="let item of lista" >{{item}}</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <div class="inpData" *ngIf="USC">
-                <div class="dataDates">
-                    <label for="_usc" title="">Usuario Creación:</label>
-                    <div class="d">
-                        <input type="text" #usercre [(ngModel)]="_UC" name="_UC" id="_usc" class="input-control" [value]="_UC">
-                    </div>
-                </div>
-            </div>
-
-            <div class="inpData" *ngIf="USM">
-                <div class="dataDates">
-                    <label for="_usm" title="">Usuario Modificación:</label>
-                    <div class="d">
-                        <input type="text" #usermo [ngModel]="_USMO" name="_USMO" (keyup.enter)="prueb()" id="_usm" class="input-control">
-                    </div>
-                </div>
-            </div>
-
-            <div class="inpData" *ngIf="USF">
-                <div class="dataDates">
-                    <label for="_usf" title="">Usuario Final:</label>
-                    <div class="d">
-                        <input type="text" #userfin id="_usf" [ngModel]="_USFI" name="_USFI" class="input-control">
-                    </div>
-                </div>
-            </div>
-
-            <div class="inpData" *ngIf="GRP" style="width: 50%;">
-                <div class="dataDates" style="display: flex;">
-                    <div class="d" id="clas" style="width: 100px;">
-                        <label for="_GRPO" title="Código de ciudad">
-                    Grupo Activo:
-                </label>
-                        <input type="text" id="_GRPO" #grupo class="input-control" (keyup)="getDataGrupo(_GRPO, _grupRead)" [(ngModel)]="_GRPO" name="_GRPO ">
-                    </div>
-
-                    <div class="d " id="clas " style="display: flex; flex-direction: column; width: 70%;">
-                        <label for="_Clase " title=" ">
-                    <span class="icon-key-1 "></span></label>
-                        <input type="text " class="_ClaseB" style="background-color: steelblue; color: white;" readonly disabled class="input-control" [value]="_grupRead">
-
-                        <!-- SELECT MEDIANTE DROPDOWN -->
-                        <div class="input-group mb-3" style="width: 100%;" *ngIf="optG">
-                            <div class="input-group-prepend" style="width: 100%;">
-                                <button class="btn btn-outline-secondary dropdown-toggle" #custOpt style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <span class="icon-search"></span>
-                                Selecciona una opción</button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" style="font-size: 9pt;" id="{{gr.grupo}}" (click)="getDataGrupo(gr.grupo, gr.nombre) " *ngFor="let gr of grupArr " href="javascript: void(0)">
-                                      Codigo: {{gr.grupo}} | Nombre: {{gr.nombre}}
-                                    </a>
-                                </div>
+    </div>
+    
+    <div id="inpData">
+        <form id="fActivoFijo" class="actFijo">
+            <div class="groupA">
+                <div class="inpData" *ngIf="Depart" style="width: 100%;">
+                    <div class="Clase">
+                        <div class="d" id="clas" style=" display: flex; flex-direction: column;">
+                            <label for="_DP" title="">
+                                Departemento:
+                            </label>
+                            <div class="d">                                
+                                <input type="text" id="_dep" #dep (keyup)="getDataDep(_DP, DepRead)" [(ngModel)]="_DP" name="_DP" class="input-control">
                             </div>
                         </div>
-                        <!-- SELECT MEDIANTE DROPDOWN -->
-                    </div>
-                </div>
-            </div>
-
-            <div class="inpData " *ngIf="MRC">
-                <div class="dataDates" style="display: flex;">
-                    <div class="d" id="clas" style="width: 100px;">
-                        <label for="_mar" title="Código de ciudad">
-                            Marca:
-                        </label>
-                        <input type="text" id="_mar" [(ngModel)]="_MRCA" name="_MRCA" #marca class="input-control" (keyup)="getDataMarca(_MRCA, _MarcRead)">
-                    </div>
-
-                    <div class="d " id="clas " style="display: flex; flex-direction: column; width: 70%;">
-                        <label for="_Clase " title=" ">
-                    <span class="icon-key-1 "></span></label>
-                        <input type="text " class="_ClaseB " style="background-color: steelblue; color: white; " readonly disabled class="input-control " [value]="_MarcRead ">
-
-                        <!-- SELECT MEDIANTE DROPDOWN -->
-                        <div class="input-group mb-3" style="width: 100%;" *ngIf="optH">
-                            <div class="input-group-prepend" style="width: 100%;">
-                                <button class="btn btn-outline-secondary dropdown-toggle" #custOpt style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <span class="icon-search"></span> Selecciona una opción</button>
-                                <div class="dropdown-menu" style=" height: 400px;
-                                overflow-y: auto;">
-                                    <a class="dropdown-item" style="font-size: 9pt;" id="{{mrc.grupo}}" (click)="getDataMarca(mrc.codigo, mrc.nombre)" *ngFor="let mrc of MarcArr " href="javascript: void(0)">
-                                      Codigo: {{mrc.codigo}} | Nombre: {{mrc.nombre}}
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- SELECT MEDIANTE DROPDOWN -->
-                    </div>
-                </div>
-            </div>
-
-            <div class="inpData " *ngIf="COLOR ">
-                <div class="dataDates ">
-                    <label for="_col " title=" ">Color:</label>
-                    <div class="d ">
-                        <input type="text " #color [(ngModel)]="_CLR " name="_CLR " id="_col " class="input-control ">
-                    </div>
-                </div>
-            </div>
-
-            <div class="inpData " *ngIf="PROV ">
-                <div class="dataDates ">
-                    <label for="_prov " title=" ">Proveedor:</label>
-                    <div class="d ">
-                        <input type="text " #prov [(ngModel)]="_PRVR " name="_PRVR " id="_prov " class="input-control ">
-                    </div>
-                </div>
-            </div>
-
-            <div class="inpData " *ngIf="MODL ">
-                <div class="dataDates ">
-                    <label for="_modl " title=" ">Modelo:</label>
-                    <div class="d ">
-                        <input type="text " #modelo [(ngModel)]="_MDL " name="_MDL " id="_modl " class="input-control ">
-                    </div>
-                </div>
-            </div>
-
-            <div class="inpData " *ngIf="VUTL ">
-                <div class="dataDates ">
-                    <label for="_vitl " title=" ">Vida Útil:</label>
-                    <div class="d ">
-                        <input type="number " #vidul [(ngModel)]="_VUL" name="_VUL " id="_vitl " class="input-control ">
-                    </div>
-                </div>
-            </div>
-
-            <div class="inpData " *ngIf="VRES ">
-                <div class="dataDates ">
-                    <label for="_vares " title=" ">Valor Residual:</label>
-                    <div class="d ">
-                        <input type="number " #vares [(ngModel)]="_VRE " name="_VRE " id="_vares " class="input-control ">
-                    </div>
-                </div>
-            </div>
-
-            <div class="inpData " *ngIf="VNOR ">
-                <div class="dataDates ">
-                    <label for="_vNor " title=" ">Valor Normal:</label>
-                    <div class="d ">
-                        <input type="number " #vnorm [(ngModel)]="_VNO " name="_VNO " id="_vNor " class="input-control ">
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="inpData " *ngIf="VREVAL ">
-                <div class="dataDates ">
-                    <label for="vReval " title=" ">Valor de Revaluo:</label>
-                    <div class="d ">
-                        <input type="number " #vreval id="vReval " [(ngModel)]="_VRVA " name="_VRVA " class="input-control ">
-                    </div>
-                </div>
-            </div>
-            <hr>
-
-            <div class="container p-3 mt-2 " style="background-color: rgba(123, 126, 108, 0.208); ">
-                <!-- <p class="text " style="font-size: 14pt; color: steelblue; "><strong>Asigne el Activo a sus cuentas.</strong></p>
-                <hr style="border-color: rgb(219, 219, 219); "> -->
-                <div class="inpData " *ngIf="CGAS ">
-                    <div class="dataDates ">
-                        <label for="_cGAS " title=" ">Cuenta de Gasto:</label>
-                        <div class="d ">
-                            <input type="text " #cgas [(ngModel)]="_CGT " (keyup)="getDataCuent(_CGT, _CuentRead) " [value]="_CuentRead " name="_CGT " id="_cGAS " class="input-control ">
+                        <div class="d" id="clase" id="clas" style="width: 100%;">
+                            <label title="">
+                            <span class="icon-key-1"></span></label>
+                            <input type="text" class="_ClaseB" style="background-color: steelblue; color: white;" readonly disabled class="input-control" [value]="DepRead">
                         </div>
                     </div>
                     <!-- SELECT MEDIANTE DROPDOWN -->
-                    <div class="input-group mb-3" style="width: 100%;" *ngIf="optD">
+                    <div class="input-group mb-3" style="width: 100%;" *ngIf="optG">
                         <div class="input-group-prepend" style="width: 100%;">
                             <button class="btn btn-outline-secondary dropdown-toggle" #custOpt style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         <span class="icon-search"></span> Selecciona una opción</button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" style="font-size: 9pt;" id="{{cuent.codigo}}" (click)="getDataCuent(cuent.codigo, cuent.nombre)" *ngFor="let cuent of cuentasArr " href="javascript: void(0)">
-                                    Codigo: {{cuent.codigo}} | Nombre: {{cuent.nombre}}
-                          </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- SELECT MEDIANTE DROPDOWN -->
-                </div>
-
-                <div class="inpData " *ngIf="CDAN ">
-                    <div class="dataDates ">
-                        <label for="_cDan " title=" ">Cuenta de Depreciación Acumulada:</label>
-                        <div class="d ">
-                            <input type="text " #cdan [(ngModel)]="_CD " (keyup)="getDataCuentB(_CD, _CuentReadB) " [value]="_CuentReadB " name="_CD " id="_cDan " class="input-control ">
-                        </div>
-                    </div>
-                    <!-- SELECT MEDIANTE DROPDOWN -->
-                    <div class="input-group mb-3" style="width: 100%;" *ngIf="optE">
-                        <div class="input-group-prepend" style="width: 100%;">
-                            <button class="btn btn-outline-secondary dropdown-toggle" #custOpt style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                      <span class="icon-search"></span> Selecciona una opción</button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" style="font-size: 9pt;" id="{{cuentB.codigo}}" (click)="getDataCuentB(cuentB.codigo, cuentB.nombre)" *ngFor="let cuentB of cuentasArrB" href="javascript: void(0)">
-                                  Codigo: {{cuentB.codigo}} | Nombre: {{cuentB.nombre}}
+                                <a class="dropdown-item" style="font-size: 9pt;" id="{{depa.codigo}}" (click)="getDataDep(depa.codigo, depa.nombre)" *ngFor="let depa of DepArr" href="javascript: void(0)">
+                                    | Nombre: {{depa.nombre}}
+                                    | Código: {{depa.codigo}}
                                 </a>
                             </div>
                         </div>
-                    </div>
-
+                    </div>                   
                 </div>
 
-                <div class="inpData " *ngIf="CDAR ">
-                    <div class="dataDates ">
-                        <label for="_cDar " title=" ">Cuenta de Depreciación:</label>
-                        <div class="d ">
-                            <input type="text " #cudpre [(ngModel)]="_CDN " (keyup)="getDataCuentC(_CDN, _CuentReadC)" [value]="_CuentReadC " name="_CDN " id="_cDan " class="input-control ">
+
+                <!--FECHA INPUT INICIO-->
+                <!-- <div class="inpDates">
+                    <div class="dataDates" *ngIf="FCrea">
+                        <label for="fechacrea">Fecha Creación:</label>
+                        <div class="d">
+                            <input type="date" #fecrea id="fechacrea" [(ngModel)]="_FeCREA" name="_FeCREA" class="input-control">
+                            <div class="formato">
+                                <span class="icon-calendar"></span> (dd/mm/yyyy)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dataDates" *ngIf="FeInde">
+                        <label for="fecha Inicio de Depreciación">Fecha I. Depreciación:</label>
+                        <div class="d">
+                            <input type="date" #fedep [(ngModel)]="_FeDEP" name="_FeDEP" id="fechaCompra" class="input-control">
+                            <div class="formato">
+                                <span class="icon-calendar"></span> (dd/mm/yyyy)
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="dataDates" *ngIf="true">
+                        <label for="fechaCompra">Fecha Compra:</label>
+                        <div class="d">
+                            <input type="date" #fecomp id="fechaCompra" [(ngModel)]="_FeCOMP" name="_FeCOMP" class="input-control">
+                            <div class="formato">
+                                <span class="icon-calendar"></span> (dd/mm/yyyy)
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="dataDates" *ngIf="FMod">
+                        <label for="fechamod"> Fecha Modificación:</label>
+                        <div class="d">
+                            <input type="date" #femod [(ngModel)]="_FeMOD" name="_FeMOD" class="input-control">
+                            <div class="formato">
+                                <span class="icon-calendar"></span> (dd/mm/yyyy)
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="dataDates" *ngIf="FFin">
+                        <label for="fechafin">Fecha Final:</label>
+                        <div class="d">
+                            <input type="date" #fefin id="fechafin" [(ngModel)]="_FeFINAL" name="_FeFINAL" class="input-control">
+                            <div class="formato">
+                                <span class="icon-calendar"></span> (dd/mm/yyyy)
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="dataDates" *ngIf="Factual">
+                        <label for="fact">Fecha Actual:</label>
+                        <div class="d">
+                            <input type="date" [(ngModel)]="_FeACT" name="_FeACT" id="fact" class="input-control" #fact>
+                            <div class="formato">
+                                <span class="icon-calendar"></span> (dd/mm/yyyy)
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="dataDates" *ngIf="FCust">
+                        <label for="fechafin">Fecha Custodio:</label>
+                        <div class="d">
+                            <input type="date" id="fechafin" #fefn [(ngModel)]="_FeFN" name="_FeFN" class="input-control">
+                            <div class="formato">
+                                <span class="icon-calendar">
+                        </span> (dd/mm/yyyy)
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <!--FECHA INPUT FIN-->
+            </div>
+            
+            <div class="groupB ">                
+                <!--DATA INPUT INICIO-->
+                <div class="inpData" *ngIf="Placa">
+                    <div class="dataDates">
+                        <label for="fechacrea"
+                         title="Código Placa generado automáticamente no se puede modificar">
+                            Placa:
+                        </label>
+                        <div class="d">
+                            <input type="text" style="background-color: steelblue; color: white;"
+                                   (keyup.enter)=" focus(clases)"
+                                   #plac [(ngModel)]="_PLAC"
+                                   name="_PLAC" id="placa"
+                                   class="input-control">
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="inpData" *ngIf="CLase" style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+                    <div class="Clase">
+                        <div class="d" id="clas">
+                            <label for="_Clase" title="">Clase:</label>
+                            <input type="text" id="_Clase" (keyup)="getDataCall(_Class, _cRead)"
+                             [(ngModel)]="_Class" name="_Class"
+                             #clases class="input-control">
+                        </div>
+                        <div class="d" id="clase" id="clas">
+                            <label for="_Clase" title="">
+                                <span class="icon-key-1"></span>
+                            </label>
+                            <input type="text" class="_ClaseB" style="background-color: steelblue; color: white;"
+                             readonly disabled class="input-control" [value]="_cRead">
+                             <div class="input-group mb-3" style="width: 100%; position: relative; word-wrap: break-word;" *ngIf="optB">
+                                <div class="input-group-prepend" style="width: 100%;">
+                                    <button class="btn btn-outline-secondary dropdown-toggle"
+                                     #btnClase style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span class="icon-search"></span> Selecciona una opción</button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" id="{{d.codigo}}" (click)="getDataCall(d.codigo_aux, d.nombre)"
+                                         *ngFor="let d of modelArr" href="javascript: void(0)">
+                                            Codigo: {{d.codigo}}
+                                            | Nombre: {{d.nombre}}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>                       
+                    </div>
+    
+                   
+                    
+                    <div class="Clase" style="width: 48%;">
+                        <div class="d" id="clas" style="width: 100px;">
+                            <label for="_ciu" title="Código de ciudad">
+                        Ciudad:
+                    </label>
+                            <input type="text" id="_ciu" #ciud class="input-control" (keyup)="getDataCiudad(_ciudClass, _ciudRead)" [(ngModel)]="_ciudClass" name="_ciudClass">
+                        </div>    
+                        <div class="d" id="clas" style="width: 100%;">
+                            <label for="_Clase" title="">
+                                <span class="icon-key-1"></span>
+                            </label>
+                            <input type="text" class="_ClaseB" style="background-color: steelblue; color: white;" readonly disabled class="input-control" [value]="_ciudRead">
+                        </div> 
+                         <!-- SELECT MEDIANTE DROPDOWN -->
+                    <div class="input-group mb-3" style="width: 100%;" *ngIf="optA">
+                        <div class="input-group-prepend" style="width: 100%;">
+                            <button class="btn btn-outline-secondary dropdown-toggle" #ciudOpt style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                  <span class="icon-search"></span> Selecciona una opción</button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" id="{{c.codigo}}" (click)="getDataCiudad(c.codigo, c.nombre)" *ngFor="let c of ciudArr" href="javascript: void(0)">
+                    Codigo: {{c.codigo}}
+                    | Nombre: {{c.nombre}}
+                    </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- SELECT MEDIANTE DROPDOWN -->       
+                    </div>
+    
+                             
+                </div>               
+    
+                <div class="inpData" *ngIf="NProd" style="width: 100%;">
+                    <div class="dataDates">
+                        <label for="_nProd" title="">Descripción o nombre del producto:</label>
+                        <div class="d">
+                            <input type="text" [(ngModel)]="_nProducto" name="_nProducto" id="_nProd" #nomProd (keyup.enter)="focus(custodio)" class="input-control">
+                        </div>    
+                    </div>
+                </div>
+                <!-- CUSTODIOS INICIO -->
+                <div style="width: 100%; display: flex; justify-content: space-between; flex-wrap: wrap;">
+                <div class="inpData" *ngIf="Custodio" style="width: 48%;">
+                    <div class="Clase">
+                        <div class="d" id="clas" style="width: 100px;">
+                            <label for="_cust" title="">
+                        Custodio:
+                    </label>
+                            <div class="d">
+                                <input type="text" id="_cust" #custodio (keyup)="getDataCust(_CustClass, _CustRead)" [(ngModel)]="_CustClass" name="_CustClass" class="input-control">
+                            </div>
+                        </div>
+                        <div class="d" id="clase" id="clas" style="width: 100%;">
+                            <label for="_Clase" title="">
+                        <span class="icon-key-1"></span></label>
+                            <input type="text" class="_ClaseB" style="background-color: steelblue; color: white;" readonly disabled class="input-control" [value]="_CustRead">
+                        </div>
+    
+                    </div>
+    
+    
+                    <!-- SELECT MEDIANTE DROPDOWN -->
+                    <div class="input-group mb-3" style="width: 100%; position: relative;" *ngIf="optC">
+                        <div class="input-group-prepend" style="width: 100%;">
+                            <button class="btn btn-outline-secondary dropdown-toggle" #custOpt style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                <span class="icon-search"></span>
+                                 Selecciona una opción
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" style="font-size: 9pt;" id="{{custo.codigo}}" (click)="getDataCust(custo.codigo, custo.nombre)" *ngFor="let custo of custArr" href="javascript: void(0)">
+                        Codigo: {{custo.codigo}}
+                        | Nombre: {{custo.nombre}}
+                        | Apéllido: {{custo.apellido}}
+                    </a>
+                            </div>
                         </div>
                     </div>
                     <!-- SELECT MEDIANTE DROPDOWN -->
-                    <div class="input-group mb-3" style="width: 100%;" *ngIf="optF">
-                        <div class="input-group-prepend" style="width: 100%;">
-                            <button class="btn btn-outline-secondary dropdown-toggle" #custOpt style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    <span class="icon-search"></span> Selecciona una opción</button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" style="font-size: 9pt;" id="{{cuentC.codigo}}" (click)="getDataCuentC(cuentC.nombre, cuentC.codigo)" *ngFor="let cuentC of cuentasArrC" href="javascript: void(0)">
-                                Codigo: {{cuentC.codigo}} | Nombre: {{cuentC.nombre}}
-                              </a>
+                </div>
+                <!-- CUSTODIOS FIN -->
+    
+                <div class="inpData" *ngIf="true" style="width: 48%;">
+                    <div class="dataDates">
+                        <label for="_ser" title="">Serie:</label>
+                        <div class="d">
+                            <input type="text" #serie [(ngModel)]="_SER" name="_SER" id="_ser" class="input-control">
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <!-- <div class="inpData" *ngIf="Valor">
+                    <div class="dataDates">
+                        <label for="_val" title="">Valor:</label>
+                        <div class="d">
+                            <input type="text" [(ngModel)]="_VLR" name="_VLR" #vlr id="_val" class="input-control">
+                        </div>
+                    </div>
+                </div> -->
+    
+                <div class="inpData" *ngIf="false" style="width: 48%;">
+                    <!-- ESTE CAMPO TAMBIÉN ES
+            DE RELLENO AUTOMATICO PERO
+            ACTUALMENTE ESTA VACÍO -->
+                    <div class="dataDates">
+                        <div class="d" id="clas" style="width: 100px;">
+                            <label for="_actv" title="">Activo: </label>
+                            <input type="range" min="0" max="1" id="_actv" #actv [(ngModel)]="_actvClass" (change)="activChange()" name="_actvClass" class="input-control">
+                            <div style="display: flex; justify-content: space-between">
+                                <p><strong>No</strong></p>
+                                <p><strong>Si</strong></p>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 100%; display: flex; justify-content: space-between; flex-wrap: wrap;">
+                <div class="inpData" *ngIf="true" style="width: 48%;">
+                    <div class="dataDates">
+                        <label for="_ref" title="">Referencia:</label>
+                        <div class="d">
+                            <input type="text" #refe [(ngModel)]="_REFE" name="_REFE" id="_ref" class="input-control">
+                            <select name="optionSel" [(ngModel)]="optionSel">
+                                <option [value]="item" *ngFor="let item of lista" >{{item}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="inpData" *ngIf="USF" style="width: 48%;">
+                    <div class="dataDates">
+                        <label for="_usf" title="">Usuario Final:</label>
+                        <div class="d">
+                            <input type="text" #userfin id="_usf" [ngModel]="_USFI" name="_USFI" class="input-control">
                         </div>
                     </div>
                 </div>
             </div>
-            <!--DATA INPUT FIN-->
+                <div class="inpData" *ngIf="USC">
+                    <div class="dataDates">
+                        <label for="_usc" title="">Usuario Creación:</label>
+                        <div class="d">
+                            <input type="text" #usercre [(ngModel)]="_UC" name="_UC" id="_usc" class="input-control" [value]="_UC">
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="inpData" *ngIf="USM">
+                    <div class="dataDates">
+                        <label for="_usm" title="">Usuario Modificación:</label>
+                        <div class="d">
+                            <input type="text" #usermo [ngModel]="_USMO" name="_USMO" (keyup.enter)="prueb()" id="_usm" class="input-control">
+                        </div>
+                    </div>
+                </div>               
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+                
+                <div class="inpData" *ngIf="GRP" style="width: 48%;">
+                    <div class="dataDates" style="display: flex;">
+                        <div class="d" id="clas" style="width: 100px;">
+                            <label for="_GRPO" title="Código de Marca">
+                        Grupo Activo:
+                    </label>
+                            <input type="text" id="_GRPO" #grupo class="input-control" (keyup)="getDataGrupo(_GRPO, _grupRead)" [(ngModel)]="_GRPO" name="_GRPO ">
+                        </div>
+    
+                        <div class="d " id="clas " style="display: flex; flex-direction: column; width: 70%;">
+                            <label for="_Clase " title=" ">
+                        <span class="icon-key-1 "></span></label>
+                            <input type="text " class="_ClaseB" style="background-color: steelblue; color: white;" readonly disabled class="input-control" [value]="_grupRead">
+    
+                            <!-- SELECT MEDIANTE DROPDOWN -->
+                            <div class="input-group mb-3" style="width: 100%;" *ngIf="optG">
+                                <div class="input-group-prepend" style="width: 100%;">
+                                    <button class="btn btn-outline-secondary dropdown-toggle" #custOpt style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span class="icon-search"></span>
+                                    Selecciona una opción</button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" style="font-size: 9pt;" id="{{gr.grupo}}" (click)="getDataGrupo(gr.grupo, gr.nombre) " *ngFor="let gr of grupArr " href="javascript: void(0)">
+                                          Codigo: {{gr.grupo}} | Nombre: {{gr.nombre}}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- SELECT MEDIANTE DROPDOWN -->
+                        </div>
+                    </div>
+               
+                </div>
+                
+                <div class="inpData " style="width: 48%;" *ngIf="MRC">
+                    <div class="dataDates" style="display: flex;">
+                        <div class="d" id="clas" style="width: 100px;">
+                            <label for="_mar" title="Código de Marca">
+                                Marca:
+                            </label>
+                            <input type="text" id="_mar" [(ngModel)]="_MRCA" name="_MRCA" #marca class="input-control" (keyup)="getDataMarca(_MRCA, _MarcRead)">
+                        </div>
+    
+                        <div class="d " id="clas " style="display: flex; flex-direction: column; width: 70%;">
+                            <label for="_Clase " title=" ">
+                        <span class="icon-key-1 "></span></label>
+                            <input type="text " class="_ClaseB " style="background-color: steelblue; color: white; " readonly disabled class="input-control " [value]="_MarcRead ">
+    
+                            <!-- SELECT MEDIANTE DROPDOWN -->
+                            <div class="input-group mb-3" style="width: 100%;" *ngIf="optH">
+                                <div class="input-group-prepend" style="width: 100%;">
+                                    <button class="btn btn-outline-secondary dropdown-toggle" #custOpt style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    <span class="icon-search"></span> Selecciona una opción</button>
+                                    <div class="dropdown-menu" style=" height: 400px;
+                                    overflow-y: auto;">
+                                        <a class="dropdown-item" style="font-size: 9pt;" id="{{mrc.grupo}}" (click)="getDataMarca(mrc.codigo, mrc.nombre)" *ngFor="let mrc of MarcArr " href="javascript: void(0)">
+                                          Codigo: {{mrc.codigo}} | Nombre: {{mrc.nombre}}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- SELECT MEDIANTE DROPDOWN -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div style="display: flex; justify-content: space-between;">
+                <div class="inpData " style="width: 48%;" *ngIf="COLOR ">
+                    <div class="dataDates ">
+                        <label for="_col " title=" ">Color:</label>
+                        <div class="d ">
+                            <input type="text " #color [(ngModel)]="_CLR " name="_CLR " id="_col " class="input-control ">
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="inpData " style="width: 48%;" *ngIf="PROV ">
+                    <div class="dataDates ">
+                        <label for="_prov " title=" ">Proveedor:</label>
+                        <div class="d ">
+                            <input type="text " #prov [(ngModel)]="_PRVR " name="_PRVR " id="_prov " class="input-control ">
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="inpData " style="width: 48%;" *ngIf="MODL ">
+                    <div class="dataDates ">
+                        <label for="_modl " title=" ">Modelo:</label>
+                        <div class="d ">
+                            <input type="text " #modelo [(ngModel)]="_MDL " name="_MDL " id="_modl " class="input-control ">
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="inpData " *ngIf="VUTL ">
+                    <div class="dataDates ">
+                        <label for="_vitl " title=" ">Vida Útil:</label>
+                        <div class="d ">
+                            <input type="number " #vidul [(ngModel)]="_VUL" name="_VUL " id="_vitl " class="input-control ">
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="inpData " *ngIf="VRES ">
+                    <div class="dataDates ">
+                        <label for="_vares " title=" ">Valor Residual:</label>
+                        <div class="d ">
+                            <input type="number " #vares [(ngModel)]="_VRE " name="_VRE " id="_vares " class="input-control ">
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="inpData " *ngIf="VNOR ">
+                    <div class="dataDates ">
+                        <label for="_vNor " title=" ">Valor Normal:</label>
+                        <div class="d ">
+                            <input type="number " #vnorm [(ngModel)]="_VNO " name="_VNO " id="_vNor " class="input-control ">
+                        </div>
+                    </div>
+                </div>
+    
+    
+                <div class="inpData " *ngIf="VREVAL ">
+                    <div class="dataDates ">
+                        <label for="vReval " title=" ">Valor de Revaluo:</label>
+                        <div class="d ">
+                            <input type="number " #vreval id="vReval " [(ngModel)]="_VRVA " name="_VRVA " class="input-control ">
+                        </div>
+                    </div>
+                </div>
+                <hr>
+    
+                <div class="container p-3 mt-2 " style="background-color: rgba(123, 126, 108, 0.208); ">
+                    <!-- <p class="text " style="font-size: 14pt; color: steelblue; "><strong>Asigne el Activo a sus cuentas.</strong></p>
+                    <hr style="border-color: rgb(219, 219, 219); "> -->
+                    <div class="inpData " *ngIf="CGAS ">
+                        <div class="dataDates ">
+                            <label for="_cGAS " title=" ">Cuenta de Gasto:</label>
+                            <div class="d ">
+                                <input type="text " #cgas [(ngModel)]="_CGT " (keyup)="getDataCuent(_CGT, _CuentRead) " [value]="_CuentRead " name="_CGT " id="_cGAS " class="input-control ">
+                            </div>
+                        </div>
+                        <!-- SELECT MEDIANTE DROPDOWN -->
+                        <div class="input-group mb-3" style="width: 100%;" *ngIf="optD">
+                            <div class="input-group-prepend" style="width: 100%;">
+                                <button class="btn btn-outline-secondary dropdown-toggle" #custOpt style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="icon-search"></span> Selecciona una opción</button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" style="font-size: 9pt;" id="{{cuent.codigo}}" (click)="getDataCuent(cuent.codigo, cuent.nombre)" *ngFor="let cuent of cuentasArr " href="javascript: void(0)">
+                                        Codigo: {{cuent.codigo}} | Nombre: {{cuent.nombre}}
+                              </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- SELECT MEDIANTE DROPDOWN -->
+                    </div>
+    
+                    <div class="inpData " *ngIf="CDAN ">
+                        <div class="dataDates ">
+                            <label for="_cDan " title=" ">Cuenta de Depreciación Acumulada:</label>
+                            <div class="d ">
+                                <input type="text " #cdan [(ngModel)]="_CD " (keyup)="getDataCuentB(_CD, _CuentReadB) " [value]="_CuentReadB " name="_CD " id="_cDan " class="input-control ">
+                            </div>
+                        </div>
+                        <!-- SELECT MEDIANTE DROPDOWN -->
+                        <div class="input-group mb-3" style="width: 100%;" *ngIf="optE">
+                            <div class="input-group-prepend" style="width: 100%;">
+                                <button class="btn btn-outline-secondary dropdown-toggle" #custOpt style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                          <span class="icon-search"></span> Selecciona una opción</button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" style="font-size: 9pt;" id="{{cuentB.codigo}}" (click)="getDataCuentB(cuentB.codigo, cuentB.nombre)" *ngFor="let cuentB of cuentasArrB" href="javascript: void(0)">
+                                      Codigo: {{cuentB.codigo}} | Nombre: {{cuentB.nombre}}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+    
+                    <div class="inpData " *ngIf="CDAR ">
+                        <div class="dataDates ">
+                            <label for="_cDar " title=" ">Cuenta de Depreciación:</label>
+                            <div class="d ">
+                                <input type="text " #cudpre [(ngModel)]="_CDN " (keyup)="getDataCuentC(_CDN, _CuentReadC)" [value]="_CuentReadC " name="_CDN " id="_cDan " class="input-control ">
+                            </div>
+                        </div>
+                        <!-- SELECT MEDIANTE DROPDOWN -->
+                        <div class="input-group mb-3" style="width: 100%;" *ngIf="optF">
+                            <div class="input-group-prepend" style="width: 100%;">
+                                <button class="btn btn-outline-secondary dropdown-toggle" #custOpt style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <span class="icon-search"></span> Selecciona una opción</button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" style="font-size: 9pt;" id="{{cuentC.codigo}}" (click)="getDataCuentC(cuentC.nombre, cuentC.codigo)" *ngFor="let cuentC of cuentasArrC" href="javascript: void(0)">
+                                    Codigo: {{cuentC.codigo}} | Nombre: {{cuentC.nombre}}
+                                  </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--DATA INPUT FIN-->
+            </div>
+    
+        </form>
+        <div class="btnSettings mt-4 ">
+            <button class="btn btn-primary " (click)="saveItem() ">
+                <span class="icon-doc-1 " style="color: white; "></span>Nuevo Producto
+            </button>
+            <button class="btn btn-success " (click)="UpdateProduct() " title="Este paso generará un reporte de inventario">
+                <span class="icon-floppy " style="color: rgb(255, 255, 255); "></span>Modificar e Inventariar
+            </button>
+            <button class="btn btn-secondary " (click)="cleanForm() ">
+                <span class="icon-feather " style="color: white; "></span>Limpiar
+            </button>
         </div>
-
-    </form>
-    <div class="btnSettings mt-4 ">
-        <button class="btn btn-primary " (click)="saveItem() ">
-            <span class="icon-doc-1 " style="color: white; "></span>Nuevo Producto
-        </button>
-        <button class="btn btn-success " (click)="UpdateProduct() " title="Este paso generará un reporte de inventario">
-            <span class="icon-floppy " style="color: rgb(255, 255, 255); "></span>Modificar e Inventariar
-        </button>
-        <button class="btn btn-secondary " (click)="cleanForm() ">
-            <span class="icon-feather " style="color: white; "></span>Limpiar
-        </button>
     </div>
 </div>

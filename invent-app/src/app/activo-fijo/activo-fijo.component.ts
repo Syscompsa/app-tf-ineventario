@@ -545,7 +545,7 @@ public arr: any[] = [];
       custodio: this._CustClass,
       ciudad: this._ciudClass,
       campoA: this._DP,
-      campoB: "--"
+      campoB: this._REFE
     };
     this.data.saveReport(this.reportArr).subscribe(x => {
 
@@ -1185,10 +1185,10 @@ public arr: any[] = [];
     encodeImageFileAsURL() {
       const filesSelected = document.getElementById('fileUp') as HTMLInputElement;
       const fileId = filesSelected.files;
-      const newImage = document.createElement('img');
-      newImage.setAttribute('id', 'img');
-      newImage.style.width = '100%';
-      newImage.style.height = 'auto';
+      // const newImage = document.createElement('img');
+      // newImage.setAttribute('id', 'img');
+      // newImage.style.width = '100%';
+      // newImage.style.height = 'auto';
       let base;
       if (fileId.length > 0) {
         const fileToLoad = filesSelected[0];
@@ -1197,8 +1197,9 @@ public arr: any[] = [];
         // tslint:disable-next-line: only-arrow-functions
         fileReader.onload = () => {
           base = fileReader.result;
-          newImage.src = base;
-          document.getElementById('imgTest').innerHTML = newImage.outerHTML;
+          // newImage.src = base;
+          // document.getElementById('imgTest').innerHTML = newImage.outerHTML;
+          document.getElementById('imgTest').style.backgroundImage = `url(${base})`;
           // console.log(base)
         };
         fileReader.onloadend = () => {

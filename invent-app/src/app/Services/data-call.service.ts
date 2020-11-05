@@ -69,7 +69,7 @@ export class DataCallService {
 
   // Servicios para Reporteria...
   saveReport(content) {
-    return this.http.post(this.apiURL + 'api/Reporteria/reportSave/', content);
+    return this.http.post(this.apiURL + 'api/Reporteria/reportSave/', content);        
   }
 
   getReport() {

@@ -149,13 +149,13 @@ export class HistoryQRComponent implements OnInit {
     // node.style.borderBottom = 'dashed 1px gray';
     const createSects = document.createElement('section');
     node.style.width = '165px';
-    node.style.height = '93px';
-    node.style.marginBottom = '17px';
-    node.style.marginTop = '17px';
+    node.style.height = '100px';
+    node.style.marginBottom = '12px';
+    node.style.marginTop = '12px';
     node.style.display = 'flex';
     node.style.justifyContent = 'center';
     node.style.alignItems = 'center';
-    node.style.backgroundColor = 'whitesmoke';
+    node.style.backgroundColor = 'whitesmoke';    
 
     const createDiv = document.createElement('div');
     createDiv.innerHTML = `<strong> Placa: ${placaText} \n Nombre:  ${nombre} </strong>`;
@@ -179,11 +179,12 @@ export class HistoryQRComponent implements OnInit {
   }
 
   imprSelec() {
-	  var ficha = document.getElementById('contenidoPrev');
+    var ficha = document.getElementById('contenidoPrev');
+    ficha.style.fontFamily = 'arial';
 	  let ventimp = window.open(' ', 'popimpr');
-	  ventimp.document.write( ficha.innerHTML );
+	  ventimp.document.write( ficha.innerHTML);
 	  ventimp.document.close();
-	  ventimp.print( );
+    ventimp.print();
 	  ventimp.close();
 	}
 

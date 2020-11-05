@@ -1,201 +1,98 @@
-#imgBut {
-    font-size: 15pt;
-    transition: ease all 1s;
-    margin-top: -295px;
-}
-
-#imgBut:hover {
-    cursor: pointer;
-    transition: ease all 0.5s;
-    color: steelblue;
-}
-
-#_cust {
-    width: 300px;
-}
-
-input {
-    background-color: transparent;
-    border: none;
-    border-bottom: solid 0.5px gray;
+.contsGen {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin: 0;
+    height: 100%;
+    /* border: solid 0.5px red; */
     width: 100%;
-    padding-bottom: 3px;
 }
 
-.options {
-    background-color: white;
-    color: rgb(44, 44, 44);
-    padding: 15px;
-    box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.5);
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    height: 200px;
-    overflow-y: auto;
+#picture {
+    width: 33%;
+    height: 100%;
+    border: solid 0.5px rgb(202, 202, 202);
+    padding: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
 }
 
-.opti {
-    padding: 5px;
+button {
+    background-color: #212121 !important;
+    transition: ease all 0.5s;
+    border: none;
+    border-radius: 0px;
+}
+
+button:hover {
+    background-color: steelblue !important;
     transition: ease all 0.5s;
 }
 
-.opti:hover {
-    background-color: steelblue;
-    cursor: pointer;
-    /* background-color: steelblue; */
-    transition: ease all 0.5s;
-    color: white;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
+#inpData {
+    width: 60%;
+    height: 100%;
+    border: solid 0.5px rgb(206, 206, 206);
+    padding: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
 }
-
-
-/* .opti { cursor: pointer; }
-:focus { outline: 1px dashed green; } */
 
 .Clase {
-    display: flex;
-}
-
-#clase {
-    width: 400px;
-}
-
-#clas {
-    display: flex;
-    flex-direction: column;
-}
-
-label {
-    margin-bottom: 0px;
-    margin-top: 10px;
-}
-
-#file {
-    width: 110px;
-    height: 25px;
-    opacity: 1;
-}
-
-.img {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-    border-right: solid 1px gray;
-}
-
-.actFijo {
-    width: 100%;
-    height: 530px;
-    overflow-y: auto;
-}
-
-.actFijo::-webkit-scrollbar {
-    background-color: rgb(153, 153, 153);
-    border-radius: 10px;
-    width: 10px;
-}
-
-.actFijo::-webkit-scrollbar-thumb {
-    background-color: steelblue;
-    border-radius: 10px;
-    box-shadow: 0px 0px 4px rgba(4, 26, 84, 0.8);
-    border: solid 1px rgb(34, 137, 255);
-    border-style: groove;
-}
-
-form {
-    width: 100%;
-}
-
-.d {
-    display: flex;
-}
-
-
-
-#fActivoFijo {
     display: flex;
     justify-content: space-around;
 }
 
-.formato {
-    background-color: #b1b1b1;
-    border: solid 1px rgb(143, 143, 143);
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-    padding: 10px;
-    width: 120px;
-    font-size: 9pt;
+#imgTest {
+    background-size: 100% auto;
+    /* background-position: -50px -20px; */
+    width: 100%;
+    height: 434px;
+    border: dashed 0.5px rgb(167, 167, 167);
+    transition: ease all 0.5s;
+    border-radius: 5px;
 }
 
-.groupA {
+#imgTest:hover {
+    transition: ease all 0.5s;
+    background-position: 0px -100px;
+}
+
+.btnSettings {
+    background-color: #212121;
+}
+
+.d {
     display: flex;
-    width: 49%;
     flex-direction: column;
-    flex-wrap: wrap;
-    flex-shrink: initial;
 }
 
-header {
-    background-color: steelblue;
-    color: white;
+input {
+    border-radius: 3px;
+    border: slategrey 0.5px solid;
 }
 
-.groupB {
-    margin-top: 125px;
-    display: flex;
-    width: 49%;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    flex-shrink: unset;
-}
-
-.inpDates {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    flex-shrink: initial;
-    padding: 10px;
-    width: 58%;
-}
-
-@media screen and (max-width: 1199px) {
-    .groupB {
-        margin-top: 25px;
+@media (max-width: 800px) {
+    #picture {
+        width: 100%;
     }
-}
-
-@media screen and (max-width: 787px) {
-    .groupA {
+    #inpData {
         width: 100%;
     }
 
-    .groupB {
-        width: 100%;
-    }
-
-    .inpDates {
-        width: 100%;
-        border: none;
-    }
-    .img {
-        width: 100%;
-        padding: 10px;
-    }
-    .d {
+    .Clase {
         width: 100% !important;
     }
-    .dataDates {
-        width: 100%;
-    }
+
     .inpData {
         width: 100% !important;
-    }
-    .Clase {
+        flex-wrap: wrap;
+        display: flex;
         flex-direction: column;
+    }
+    .d {
         width: 100%;
     }
-        
-    #fActivoFijo {
-        display: block;
-    }
+    /* .btnSettings {
+        z-index: 999999;
+    } */
 }
