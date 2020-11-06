@@ -14,7 +14,7 @@
     height: 100%;
     border: solid 0.5px rgb(202, 202, 202);
     padding: 10px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
 button {
@@ -34,7 +34,7 @@ button:hover {
     height: 100%;
     border: solid 0.5px rgb(206, 206, 206);
     padding: 10px;
-    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
 .Clase {
@@ -78,11 +78,9 @@ input {
     #inpData {
         width: 100%;
     }
-
     .Clase {
         width: 100% !important;
     }
-
     .inpData {
         width: 100% !important;
         flex-wrap: wrap;
@@ -91,6 +89,9 @@ input {
     }
     .d {
         width: 100%;
+    }
+    input {
+        width: 100% !important;
     }
     /* .btnSettings {
         z-index: 999999;
