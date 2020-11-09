@@ -94,7 +94,7 @@
                 <td title=" Cod. ciudad: Guayaquil = 001 | Duran = 002 ">
                     {{a.ciudad}} / {{a.campoA}} / {{a.farmacia}}
                 </td>
-                <td>r</td>
+                <td style="color: steelblue;">{{a.campoB}}</td>
                 <td> {{a.fechaInv | date: 'dd/MM/yyyy'}}</td>
                 <td (click)="delRepo(a.id)" title="Eliminar informe" class="erease">
                     <span class="icon-trash"></span>
@@ -107,5 +107,5 @@
         <span class="icon-print"></span>
         Imprimir Reporte
     </button>
-    <button class="btn btn-danger" (click)="showRep(true)">Reporte Ingreso de activos</button>
+    <!-- <button class="btn btn-danger" (click)="showRep(true)">Reporte Ingreso de activos</button> -->
 </div>

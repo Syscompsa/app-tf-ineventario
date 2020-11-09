@@ -469,6 +469,7 @@ public arr: any[] = [];
 
     lista:string[]=["Bueno","Mal estado","Obsoleto"];
     public optionSel;
+    
   ngOnInit() {
     this.getInterfaz();
     this.fechActual();
@@ -523,19 +524,13 @@ public arr: any[] = [];
         // this._FeFINAL   = this.modelData[0][0].fecfin.slice(0, 10);
         // this._FeACT     = new Date();
         // this._FeFN      = this.modelData[0][0].fcustodio.slice(0, 10);
-
-
         //Envia el reprte cuando carguen estos datos
-
-
-
       }, err => {
         this.cleanForm();
       }
       );
     });
   }
-
 
   sendReporte() {
     this.reportArr = {
