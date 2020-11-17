@@ -10,11 +10,11 @@ import { Dp12a120 } from '../Models/Dp12a120';
   providedIn: 'root'
 })
 export class DataCallService {
-  private apiURL = 'https://alp-cloud.com:8445/';
-  private apiURLPOST = 'https://alp-cloud.com:8445/api/AR_INV-QRcodProdGet';
+  // private apiURL = 'https://alp-cloud.com:8445/';
+  // private apiURLPOST = 'https://alp-cloud.com:8445/api/AR_INV-QRcodProdGet';
 
-  // private apiURL = 'https://localhost:5000/';
-  // private apiURLPOST = 'https://localhost:5000/api/AR_INV-QRcodProdGet';
+  private apiURL = 'http://localhost:5000/';
+  private apiURLPOST = 'http://localhost:5000/api/AR_INV-QRcodProdGet';
 
   constructor(private http: HttpClient) { }
 
@@ -69,7 +69,7 @@ export class DataCallService {
 
   // Servicios para Reporteria...
   saveReport(content) {
-    return this.http.post(this.apiURL + 'api/Reporteria/reportSave/', content);        
+    return this.http.post(this.apiURL + 'api/Reporteria/reportSave/', content);
   }
 
   getReport() {
