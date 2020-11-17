@@ -148,7 +148,7 @@ export class HistoryQRComponent implements OnInit {
 
     // node.style.borderBottom = 'dashed 1px gray';
     const createSects = document.createElement('section');
-    node.style.width = '165px';
+    node.style.width = '160px';
     node.style.height = '78px';
     node.style.marginBottom = '12px';
     node.style.marginTop = '12px';
@@ -167,7 +167,7 @@ export class HistoryQRComponent implements OnInit {
     const urlD =  `https://alp-cloud.com:8445/api/AR_INV-QRcodProdGet/getPlaca/${placaText}`;
     qr.addData(urlD);
     qr.make();
-    createSects.innerHTML = qr.createSvgTag(1.9);
+    createSects.innerHTML = qr.createSvgTag(1.6);
     return node;
   }
 
