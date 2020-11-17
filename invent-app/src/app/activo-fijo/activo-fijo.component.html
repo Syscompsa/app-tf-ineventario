@@ -1,6 +1,6 @@
 <div class=" contsGen ">
     <div id="picture">
-        <div class="img" *ngIf="Imagen">
+        <div class="img" *ngIf="true">
             <label for="fileUp" style="background-color: black;
              margin: 0px !important; cursor: pointer;
              color: white; padding: 8px; display: flex;
@@ -17,7 +17,7 @@
     <div id="inpData">
         <form id="fActivoFijo" class="actFijo">
             <div class="groupA">
-                <div class="inpData" *ngIf="Depart" style="width: 100%;">
+                <div class="inpData" *ngIf="true" style="width: 100%;">
                     <div class="Clase">
                         <div class="d" id="clas" style=" display: flex; flex-direction: column;">
                             <label for="_DP" title="">
@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <!-- SELECT MEDIANTE DROPDOWN -->
-                    <div class="input-group mb-3" style="width: 100%;" *ngIf="optG">
+                    <div class="input-group mb-3" style="width: 100%;" *ngIf="true">
                         <div class="input-group-prepend" style="width: 100%;">
                             <button class="btn btn-outline-secondary dropdown-toggle" #custOpt style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         <span class="icon-search"></span> Selecciona una opción</button>
@@ -124,7 +124,7 @@
 
             <div class="groupB ">
                 <!--DATA INPUT INICIO-->
-                <div class="inpData" *ngIf="Placa">
+                <div class="inpData" *ngIf="true">
                     <div class="dataDates">
                         <label for="fechacrea" title="Código Placa generado automáticamente no se puede modificar">
                             Placa:
@@ -135,7 +135,7 @@
                     </div>
                 </div>
 
-                <div class="inpData" *ngIf="CLase" style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+                <div class="inpData" *ngIf="true" style="display: flex; justify-content: space-between; flex-wrap: wrap;">
                     <div class="Clase">
                         <div class="d" id="clas">
                             <label for="_Clase" title="">Clase:</label>
@@ -195,7 +195,7 @@
 
                 </div>
 
-                <div class="inpData" *ngIf="NProd" style="width: 100%;">
+                <div class="inpData" *ngIf="true" style="width: 100%;">
                     <div class="dataDates">
                         <label for="_nProd" title="">Descripción o nombre del producto:</label>
                         <div class="d">
@@ -205,7 +205,7 @@
                 </div>
                 <!-- CUSTODIOS INICIO -->
                 <div style="width: 100%; display: flex; justify-content: space-between; flex-wrap: wrap;">
-                    <div class="inpData" *ngIf="Custodio" style="width: 48%;">
+                    <div class="inpData" *ngIf="true" style="width: 48%;">
                         <div class="Clase">
                             <div class="d" id="clas" style="width: 100px;">
                                 <label for="_cust" title="">
@@ -307,7 +307,7 @@
                     </div>
                 </div>
 
-                <div class="inpData" *ngIf="USM">
+                <div class="inpData" *ngIf="true">
                     <div class="dataDates">
                         <label for="_usm" title="">Usuario Modificación:</label>
                         <div class="d">
@@ -317,7 +317,7 @@
                 </div>
                 <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
 
-                    <div class="inpData" *ngIf="GRP" style="width: 48%;">
+                    <div class="inpData" *ngIf="true" style="width: 48%;">
                         <div class="dataDates" style="display: flex;">
                             <div class="d" id="clas" style="width: 100px;">
                                 <label for="_GRPO" title="Código de Marca">
@@ -350,7 +350,7 @@
 
                     </div>
 
-                    <div class="inpData " style="width: 48%;" *ngIf="MRC">
+                    <div class="inpData " style="width: 48%;" *ngIf="true">
                         <div class="dataDates" style="display: flex;">
                             <div class="d" id="clas" style="width: 100px;">
                                 <label for="_mar" title="Código de Marca">
@@ -383,7 +383,7 @@
                     </div>
                 </div>
                 <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
-                    <div class="inpData " style="width: 48%;" *ngIf="COLOR ">
+                    <div class="inpData " style="width: 48%;" *ngIf="true ">
                         <div class="dataDates ">
                             <label for="_col " title=" ">Color:</label>
                             <div class="d ">
@@ -392,7 +392,7 @@
                         </div>
                     </div>
 
-                    <div class="inpData " style="width: 48%;" *ngIf="PROV ">
+                    <div class="inpData " style="width: 48%;" *ngIf="true ">
                         <div class="dataDates ">
                             <label for="_prov " title=" ">Proveedor:</label>
                             <div class="d ">
@@ -401,7 +401,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="inpData " style="width: 48%;" *ngIf="MODL ">
+                <div class="inpData " style="width: 48%;" *ngIf="true ">
                     <div class="dataDates ">
                         <label for="_modl " title=" ">Modelo:</label>
                         <div class="d ">

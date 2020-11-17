@@ -10,14 +10,14 @@ export class DemoService {
   // private apiURL = 'https://syscapi-inv.azurewebsites.net/api';
   // private apiURL = 'http://localhost:5000/api/';
 
-  private apiURL = 'http://localhost:5000/api';
+  // private apiURL = 'http://localhost:5000/api';
 
 
   constructor(private http: HttpClient) { }
 
-  SaveDemo(content: Demo[]): Observable<Demo> {
-    return this.http.post<Demo>(this.apiURL + '/AR_INV-QRcodProdGet/InvSave', content);
-  }
+  // SaveDemo(content: Demo[]): Observable<Demo> {
+  //   return this.http.post<Demo>(this.apiURL + '/AR_INV-QRcodProdGet/InvSave', content);
+  // }
 
 
 
