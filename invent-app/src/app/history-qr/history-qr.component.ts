@@ -148,8 +148,8 @@ export class HistoryQRComponent implements OnInit {
 
     // node.style.borderBottom = 'dashed 1px gray';
     const createSects = document.createElement('section');
-    node.style.width = '180px';
-    node.style.height = '100px';
+    node.style.width = '165px';
+    node.style.height = '78px';
     node.style.marginBottom = '12px';
     node.style.marginTop = '12px';
     node.style.display = 'flex';
