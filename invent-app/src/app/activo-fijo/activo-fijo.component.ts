@@ -470,10 +470,10 @@ public arr: any[] = [];
 
     lista:string[]=["Bueno","Mal estado","Obsoleto"];
     public optionSel;
-    
+
   ngOnInit() {
     // this.getInterfaz();
-    this.fechActual();    
+    this.fechActual();
     this.data.getDataByPlaca().subscribe( x => {
        this.placaServices = x;
        const placaNow = this.placaServices[0].placa_Post;
@@ -1113,7 +1113,7 @@ public arr: any[] = [];
          id: this.pId,
          af_control: this._actCont
       };
-       //console.log(arr);
+       // console.log(arr);
       if (this.pId == '') {
         Swal.fire({
           icon: 'info',
@@ -1121,21 +1121,21 @@ public arr: any[] = [];
           text: 'Este producto es nuevo, no puedes actualizarlo!'
         });
       } else {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Tu producto ha sido editado con éxito, se ha generado movimiento de inventario.',
+          showConfirmButton: false,
+          timer: 1500
+        });
         this.data.updateProduct(this.pId, arr).subscribe(x => {
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Tu producto ha sido editado con éxito, se ha generado movimiento de inventario.',
-            showConfirmButton: false,
-            timer: 3000
-          })
           arr = x;
           console.log(arr);
         }
-        )
+        );
       }
     }
-    
+
     //#endregion
     public varAct;
     activChange() {
