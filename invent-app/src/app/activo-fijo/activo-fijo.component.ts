@@ -8,6 +8,7 @@ import { QRDATA } from '../Models/QRDATA';
 import Swal from 'sweetalert2';
 import { Dp12a120 } from '../Models/Dp12a120';
 import { WebuserService } from '../Services/webuser.service';
+import { data } from 'jquery';
 
 
 
@@ -471,20 +472,17 @@ public arr: any[] = [];
     public optionSel;
     
   ngOnInit() {
-    this.getInterfaz();
-    this.fechActual();
+    // this.getInterfaz();
+    this.fechActual();    
     this.data.getDataByPlaca().subscribe( x => {
-
        this.placaServices = x;
-
-
        const placaNow = this.placaServices[0].placa_Post;
-       console.log(this.placaServices);
+       // console.log(this.placaServices);
        this.data.getDataByPlacaId(placaNow)
        .subscribe(resp => {
         this.modelData[0] = resp;
         this._IMGE = this.modelData[0][0].imagenbit;
-        console.log(this.modelData[0])
+        // console.log(this.modelData[0])
         this._nProducto = this.modelData[0][0].nombre;
         this._DP = this.modelData[0][0].dpto
         this._PLAC = this.modelData[0][0].placa;
@@ -550,116 +548,116 @@ public arr: any[] = [];
     });
   }
 
-  getInterfaz() {
-    this.conf.getConfig().subscribe(
-      x => {
-        this.arr = [
-          this.Placa      = x[0].placa_i,       // 1
-          this.CLase      = x[0].clase_i,       // 2
-          this.NProd      = x[0].nombre_i,      // 3
-          this.Custodio   = x[0].custodio_i,    // 4
-          this.Depart     = x[0].dpto_i,        // 5
-          this.CIUD       = x[0].ciudad_i,      // 6
-          this.Serie      = x[0].serie_i,       // 7
-          this.Valor      = x[0].valor_i,       // 8
-          this.Activo     = x[0].activo_i,      // 9
-          this.Referido   = x[0].refer_i,       // 10
-          this.FCrea      = x[0].feccrea_i,     // 11
-          this.USC        = x[0].usucrea_i,     // 12
-          this.FMod       = x[0].fecmodi_i,     // 13
-          this.USM        = x[0].usumodi_i,     // 14
-          this.FFin       = x[0].fecfin_i,      // 15
-          this.USF        = x[0].userfin_i,     // 16
-          this.GRP        = x[0].grupo_i,       // 17
-          this.MRC        = x[0].marca_i,       // 18
-          this.COLOR      = x[0].color_i,       // 19
-          this.FCrea      = x[0].fechac_i,      // 20
-          this.FeInde     = x[0].fechac_i,      // 21
-          this.PROV       = x[0].proveedor_i,   // 22
-          this.MODL       = x[0].modelo_i,      // 23
-          this.VUTL       = x[0].vidautil_i,    // 24
-          this.VRES       = x[0].valres_i,      // 25
-          this.Factual    = x[0].fechaa_i,      // 26
-          this.FCust      = x[0].fcustodio,     // 27
-          this.CGAS       = x[0].cgasto_i,      // 28
-          this.CDAN       = x[0].cdan_i,        // 29
-          this.CDAR       = x[0].cdar_i,        // 30
-          this.VNOR       = x[0].val_normal_i,  // 32
-          this.VREVAL     = x[0].val_reval_i,   // 33
-          this.Imagen     = x[0].imagen         // 34
-        ];
+  // getInterfaz() {
+  //   this.conf.getConfig().subscribe(
+  //     x => {
+  //       this.arr = [
+  //         this.Placa      = x[0].placa_i,       // 1
+  //         this.CLase      = x[0].clase_i,       // 2
+  //         this.NProd      = x[0].nombre_i,      // 3
+  //         this.Custodio   = x[0].custodio_i,    // 4
+  //         this.Depart     = x[0].dpto_i,        // 5
+  //         this.CIUD       = x[0].ciudad_i,      // 6
+  //         this.Serie      = x[0].serie_i,       // 7
+  //         this.Valor      = x[0].valor_i,       // 8
+  //         this.Activo     = x[0].activo_i,      // 9
+  //         this.Referido   = x[0].refer_i,       // 10
+  //         this.FCrea      = x[0].feccrea_i,     // 11
+  //         this.USC        = x[0].usucrea_i,     // 12
+  //         this.FMod       = x[0].fecmodi_i,     // 13
+  //         this.USM        = x[0].usumodi_i,     // 14
+  //         this.FFin       = x[0].fecfin_i,      // 15
+  //         this.USF        = x[0].userfin_i,     // 16
+  //         this.GRP        = x[0].grupo_i,       // 17
+  //         this.MRC        = x[0].marca_i,       // 18
+  //         this.COLOR      = x[0].color_i,       // 19
+  //         this.FCrea      = x[0].fechac_i,      // 20
+  //         this.FeInde     = x[0].fechac_i,      // 21
+  //         this.PROV       = x[0].proveedor_i,   // 22
+  //         this.MODL       = x[0].modelo_i,      // 23
+  //         this.VUTL       = x[0].vidautil_i,    // 24
+  //         this.VRES       = x[0].valres_i,      // 25
+  //         this.Factual    = x[0].fechaa_i,      // 26
+  //         this.FCust      = x[0].fcustodio,     // 27
+  //         this.CGAS       = x[0].cgasto_i,      // 28
+  //         this.CDAN       = x[0].cdan_i,        // 29
+  //         this.CDAR       = x[0].cdar_i,        // 30
+  //         this.VNOR       = x[0].val_normal_i,  // 32
+  //         this.VREVAL     = x[0].val_reval_i,   // 33
+  //         this.Imagen     = x[0].imagen         // 34
+  //       ];
 
-        if (this.arr[0] == '0') { this.arr.push([ this.Placa = false ]); } else { this.arr.push([ this.Placa = true ]); }
+  //       if (this.arr[0] == '0') { this.arr.push([ this.Placa = false ]); } else { this.arr.push([ this.Placa = true ]); }
 
-        if (this.arr[1] == '0') { this.arr.push([ this.CLase = false ]); } else { this.arr.push([ this.CLase = true ]); }
+  //       if (this.arr[1] == '0') { this.arr.push([ this.CLase = false ]); } else { this.arr.push([ this.CLase = true ]); }
 
-        if (this.arr[2] == '0') { this.arr.push([ this.NProd = false ]); } else { this.arr.push([ this.NProd = true ]); }
+  //       if (this.arr[2] == '0') { this.arr.push([ this.NProd = false ]); } else { this.arr.push([ this.NProd = true ]); }
 
-        if (this.arr[3] == '0') { this.arr.push([ this.Custodio = false ]); } else { this.arr.push([ this.Custodio = true ]); }
+  //       if (this.arr[3] == '0') { this.arr.push([ this.Custodio = false ]); } else { this.arr.push([ this.Custodio = true ]); }
 
-        if (this.arr[4] == '0') { this.arr.push([ this.Depart = false ]); } else { this.arr.push([ this.Depart = true ]); }
+  //       if (this.arr[4] == '0') { this.arr.push([ this.Depart = false ]); } else { this.arr.push([ this.Depart = true ]); }
 
-        if (this.arr[5] == '0') { this.arr.push([ this.Depart = false ]); } else { this.arr.push([ this.Depart = true ]); }
+  //       if (this.arr[5] == '0') { this.arr.push([ this.Depart = false ]); } else { this.arr.push([ this.Depart = true ]); }
 
-        if (this.arr[6] == '0') { this.arr.push([ this.CIUD = false ]); } else { this.arr.push([ this.CIUD = true ]); }
+  //       if (this.arr[6] == '0') { this.arr.push([ this.CIUD = false ]); } else { this.arr.push([ this.CIUD = true ]); }
 
-        if (this.arr[7] == '0') { this.arr.push([ this.Serie = false ]); } else { this.arr.push([ this.Serie = true ]); }
+  //       if (this.arr[7] == '0') { this.arr.push([ this.Serie = false ]); } else { this.arr.push([ this.Serie = true ]); }
 
-        if (this.arr[8] == '0') { this.arr.push([ this.Valor = false ]); } else { this.arr.push([ this.Valor = true ]); }
+  //       if (this.arr[8] == '0') { this.arr.push([ this.Valor = false ]); } else { this.arr.push([ this.Valor = true ]); }
 
-        if (this.arr[9] == '0') { this.arr.push([ this.Activo = false ]); } else { this.arr.push([ this.Activo = true ]); }
+  //       if (this.arr[9] == '0') { this.arr.push([ this.Activo = false ]); } else { this.arr.push([ this.Activo = true ]); }
 
-        if (this.arr[10] == '0') { this.arr.push([ this.Referido = false ]); } else { this.arr.push([ this.Referido = true ]); }
+  //       if (this.arr[10] == '0') { this.arr.push([ this.Referido = false ]); } else { this.arr.push([ this.Referido = true ]); }
 
-        if (this.arr[11] == '0') { this.arr.push([ this.FCrea = false ]); } else { this.arr.push([ this.FCrea = true ]); }
+  //       if (this.arr[11] == '0') { this.arr.push([ this.FCrea = false ]); } else { this.arr.push([ this.FCrea = true ]); }
 
-        if (this.arr[12] == '0') { this.arr.push([ this.USC = false ]); } else { this.arr.push([ this.USC = true ]); }
+  //       if (this.arr[12] == '0') { this.arr.push([ this.USC = false ]); } else { this.arr.push([ this.USC = true ]); }
 
-        if (this.arr[13] == '0') { this.arr.push([ this.FMod = false ]); } else { this.arr.push([ this.FMod = true ]); }
+  //       if (this.arr[13] == '0') { this.arr.push([ this.FMod = false ]); } else { this.arr.push([ this.FMod = true ]); }
 
-        if (this.arr[14] == '0') { this.arr.push([ this.USM = false ]); } else { this.arr.push([ this.USM = true ]); }
+  //       if (this.arr[14] == '0') { this.arr.push([ this.USM = false ]); } else { this.arr.push([ this.USM = true ]); }
 
-        if (this.arr[15] == '0') { this.arr.push([ this.FFin = false ]); } else { this.arr.push([ this.FFin = true ]); }
+  //       if (this.arr[15] == '0') { this.arr.push([ this.FFin = false ]); } else { this.arr.push([ this.FFin = true ]); }
 
-        if (this.arr[16] == '0') { this.arr.push([ this.USF = false ]); } else { this.arr.push([ this.USF = true ]); }
+  //       if (this.arr[16] == '0') { this.arr.push([ this.USF = false ]); } else { this.arr.push([ this.USF = true ]); }
 
-        if (this.arr[17] == '0') { this.arr.push([ this.GRP = false ]); } else { this.arr.push([ this.GRP = true ]); }
+  //       if (this.arr[17] == '0') { this.arr.push([ this.GRP = false ]); } else { this.arr.push([ this.GRP = true ]); }
 
-        if (this.arr[18] == '0') { this.arr.push([ this.MRC = false ]); } else { this.arr.push([ this.MRC = true ]); }
+  //       if (this.arr[18] == '0') { this.arr.push([ this.MRC = false ]); } else { this.arr.push([ this.MRC = true ]); }
 
-        if (this.arr[19] == '0') { this.arr.push([ this.COLOR = false ]); } else { this.arr.push([ this.COLOR = true ]); }
+  //       if (this.arr[19] == '0') { this.arr.push([ this.COLOR = false ]); } else { this.arr.push([ this.COLOR = true ]); }
 
-        if (this.arr[20] == '0') { this.arr.push([ this.FCrea = false ]); } else { this.arr.push([ this.FCrea = true ]); }
+  //       if (this.arr[20] == '0') { this.arr.push([ this.FCrea = false ]); } else { this.arr.push([ this.FCrea = true ]); }
 
-        if (this.arr[21] == '0') { this.arr.push([ this.FeInde = false ]); } else { this.arr.push([ this.FeInde = true ]); }
+  //       if (this.arr[21] == '0') { this.arr.push([ this.FeInde = false ]); } else { this.arr.push([ this.FeInde = true ]); }
 
-        if (this.arr[22] == '0') { this.arr.push([ this.PROV = false ]); } else { this.arr.push([ this.PROV = true ]); }
+  //       if (this.arr[22] == '0') { this.arr.push([ this.PROV = false ]); } else { this.arr.push([ this.PROV = true ]); }
 
-        if (this.arr[23] == '0') { this.arr.push([ this.MODL = false ]); } else { this.arr.push([ this.MODL = true ]); }
+  //       if (this.arr[23] == '0') { this.arr.push([ this.MODL = false ]); } else { this.arr.push([ this.MODL = true ]); }
 
-        if (this.arr[24] == '0') { this.arr.push([ this.VUTL = false ]); } else { this.arr.push([ this.VUTL = true ]); }
+  //       if (this.arr[24] == '0') { this.arr.push([ this.VUTL = false ]); } else { this.arr.push([ this.VUTL = true ]); }
 
-        if (this.arr[24] == '0') { this.arr.push([ this.VRES = false ]); } else { this.arr.push([ this.VRES = true ]); }
+  //       if (this.arr[24] == '0') { this.arr.push([ this.VRES = false ]); } else { this.arr.push([ this.VRES = true ]); }
 
-        if (this.arr[25] == '0') { this.arr.push([ this.Factual = false ]); } else { this.arr.push([ this.Factual = true ]); }
+  //       if (this.arr[25] == '0') { this.arr.push([ this.Factual = false ]); } else { this.arr.push([ this.Factual = true ]); }
 
-        if (this.arr[26] == '0') { this.arr.push([ this.FCust = false ]); } else { this.arr.push([ this.FCust = true ]); }
+  //       if (this.arr[26] == '0') { this.arr.push([ this.FCust = false ]); } else { this.arr.push([ this.FCust = true ]); }
 
-        if (this.arr[27] == '0') { this.arr.push([ this.CGAS = false ]); } else { this.arr.push([ this.CGAS = true ]); }
+  //       if (this.arr[27] == '0') { this.arr.push([ this.CGAS = false ]); } else { this.arr.push([ this.CGAS = true ]); }
 
-        if (this.arr[28] == '0') { this.arr.push([ this.CDAN = false ]); } else { this.arr.push([ this.CDAN = true ]); }
+  //       if (this.arr[28] == '0') { this.arr.push([ this.CDAN = false ]); } else { this.arr.push([ this.CDAN = true ]); }
 
-        if (this.arr[29] == '0') { this.arr.push([ this.CDAR = false ]); } else { this.arr.push([ this.CDAR = true ]); }
+  //       if (this.arr[29] == '0') { this.arr.push([ this.CDAR = false ]); } else { this.arr.push([ this.CDAR = true ]); }
 
-        if (this.arr[30] == '0') { this.arr.push([ this.VNOR = false ]); } else { this.arr.push([ this.VNOR = true ]); }
+  //       if (this.arr[30] == '0') { this.arr.push([ this.VNOR = false ]); } else { this.arr.push([ this.VNOR = true ]); }
 
-        if (this.arr[31] == '0') { this.arr.push([ this.VREVAL = false ]); } else { this.arr.push([ this.VREVAL = true ]); }
+  //       if (this.arr[31] == '0') { this.arr.push([ this.VREVAL = false ]); } else { this.arr.push([ this.VREVAL = true ]); }
 
-        if (this.arr[32] == '0') { this.arr.push([ this.Imagen = false ]); } else { this.arr.push([ this.Imagen = true ]); }
+  //       if (this.arr[32] == '0') { this.arr.push([ this.Imagen = false ]); } else { this.arr.push([ this.Imagen = true ]); }
 
-      }
-    );
-  }
+  //     }
+  //   );
+  // }
   //#endregion
 
     focus(inputs) {
@@ -683,6 +681,7 @@ public arr: any[] = [];
           this._Class  = w,
           this._cRead  = y
         ];
+
      });
     }).then( res => {
         // console.log('Este es mi valo obtenido: ' +  res);
@@ -691,9 +690,6 @@ public arr: any[] = [];
     }
 
     getDataCiudad(w, y) {
-    // console.log(this._ciudClass);
-
-
     const promise = new Promise((resolve, reject) => {
       this.data.getDataCiud(this._ciudClass ).subscribe(x => {
         this.ciudArr = x;
@@ -1075,7 +1071,6 @@ public arr: any[] = [];
 
     //#region  "Update function()"
     UpdateProduct() {
-
       this.sendReporte();
       let arr: any = {
         placa: this._PLAC,
@@ -1111,14 +1106,14 @@ public arr: any[] = [];
         vaL_NORMAL: this._VLR,
         vaL_REVAL: this._VRVA,
         // imagen: "",
-         valoR_RESI: this._VRE,
+        valoR_RESI: this._VRE,
         // valoR_RES2: 0.00,
         // placa_aux: "",
          imagenbit: this._IMGE,
          id: this.pId,
-        af_control: this._actCont
+         af_control: this._actCont
       };
-      // console.log(arr);
+       //console.log(arr);
       if (this.pId == '') {
         Swal.fire({
           icon: 'info',
@@ -1126,17 +1121,16 @@ public arr: any[] = [];
           text: 'Este producto es nuevo, no puedes actualizarlo!'
         });
       } else {
-        console.log(arr);
         this.data.updateProduct(this.pId, arr).subscribe(x => {
-          arr = x;
           Swal.fire({
             position: 'center',
             icon: 'success',
             title: 'Tu producto ha sido editado con éxito, se ha generado movimiento de inventario.',
             showConfirmButton: false,
-            timer: 1900
+            timer: 3000
           })
-          // console.log(arr);
+          arr = x;
+          console.log(arr);
         }
         )
       }
@@ -1212,7 +1206,6 @@ public arr: any[] = [];
 
     }
 
-
     //#region "SaveReport()"
    saveReport(finv, plainv, desinv, custinv, ciudinv) {
       let arrReport: any = {
@@ -1227,4 +1220,11 @@ public arr: any[] = [];
       });
     }
     //#endregion
+
+    gImgData() {
+      this.data.getDataImg('0101080056').subscribe( a => {
+        console.log(a);
+      })
+    }
+
 }

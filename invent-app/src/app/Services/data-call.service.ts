@@ -19,7 +19,7 @@ export class DataCallService {
   constructor(private http: HttpClient) { }
 
   updateProduct(id, content): Observable<any[]> {
-    return this.http.put<any[]>(this.apiURL + 'api/AR_INV-QRcodProdGet/productUpdate/' + id, content)
+    return this.http.put<any[]>(this.apiURL + 'api/AR_INV-QRcodProdGet/productUpdate/' + id, content);
   }
 
   delProduct(placa) {
@@ -106,6 +106,10 @@ export class DataCallService {
 
   getDataByPlacaId(placa) {
     return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/getPlacaProduct/' + placa);
+  }
+
+  getDataImg(placa) {
+    return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/getDataImg/' + placa);
   }
 
 }

@@ -24,7 +24,10 @@
                                 Departemento:
                             </label>
                             <div class="d">
-                                <input type="text" id="_dep" #dep (keyup)="getDataDep(_DP, DepRead)" [(ngModel)]="_DP" name="_DP" class="input-control">
+                                <input type="text" id="_dep" #dep
+                                       (keyup)="getDataDep(_DP, DepRead)"
+                                       [(ngModel)]="_DP" name="_DP"
+                                       class="input-control">
                             </div>
                         </div>
                         <div class="d" id="clase" id="clas" style="width: 100%;">
@@ -151,7 +154,10 @@
                                     <button class="btn btn-outline-secondary dropdown-toggle" #btnClase style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                     <span class="icon-search"></span> Selecciona una opción</button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" id="{{d.codigo}}" (click)="getDataCall(d.codigo_aux, d.nombre)" *ngFor="let d of modelArr" href="javascript: void(0)">
+                                        <a class="dropdown-item" id="{{d.codigo}}"
+                                            (click)="getDataCall(d.codigo_aux, d.nombre)"
+                                            *ngFor="let d of modelArr"
+                                            href="javascript: void(0)">
                                             Codigo: {{d.codigo}}
                                             | Nombre: {{d.nombre}}
                                         </a>
