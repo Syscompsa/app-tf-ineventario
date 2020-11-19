@@ -8,10 +8,10 @@ import { Placa_Post_Url } from '../Models/Placa_Post_Url';
 })
 export class GQRService {
 
-  private apiURL = 'https://alp-cloud.com:8445/api';
+  // private apiURL = 'https://alp-cloud.com:8445/api';
 
   //Para testear local
-  // private apiURL = 'http://localhost:5000/api';
+  private apiURL = 'http://localhost:5000/api';
 
   constructor(private http: HttpClient) { }
 

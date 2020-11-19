@@ -23,18 +23,7 @@ export class WebuserService {
     localStorage.removeItem("Token");
   }
 
-  // estaLogueado(): boolean {
-
-  //   var exp = this.obtenerExistenciaToken();
-
-  //   if (!exp) {
-  //     // el token no existe
-  //     return false;
-  //   }
-  //    else {
-  //     return true;
-  //   }
-  // }
+   
 
 
   getUsByParam(user) {
@@ -50,6 +39,5 @@ export class WebuserService {
   obtenerExistenciaToken(): string {
     return localStorage.getItem("User");
   }
-
 
 }

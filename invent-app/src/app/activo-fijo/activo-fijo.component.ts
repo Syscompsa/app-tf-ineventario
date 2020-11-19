@@ -19,6 +19,11 @@ import { data } from 'jquery';
   styleUrls: ['./activo-fijo.component.css']
 })
 export class ActivoFijoComponent implements OnInit {
+
+  public min = 0;
+  public max = 100;
+  public value = 10;
+
   constructor(public conf: ConfigService,
               public data: DataCallService,
               public router: Router,
@@ -478,17 +483,15 @@ public arr: any[] = [];
        this.placaServices = x;
        const placaNow = this.placaServices[0].placa_Post;
        // console.log(this.placaServices);
-       this.data.getDataByPlacaId(placaNow)
-       .subscribe(resp => {
+       this.data.getDataByPlacaId(placaNow).subscribe(resp => {
         this.modelData[0] = resp;
         this._IMGE = this.modelData[0][0].imagenbit;
-        // console.log(this.modelData[0])
+        // console.log(this.modelData[0]);
         this._nProducto = this.modelData[0][0].nombre;
-        this._DP = this.modelData[0][0].dpto
+        this._DP = this.modelData[0][0].dpto;
         this._PLAC = this.modelData[0][0].placa;
         // console.log(this._PLAC);
         this.pId = this.modelData[0][0].id;
-
         this._actCont = this.modelData[0][0].af_control;
         this._CustClass = this.modelData[0][0].custodio;
         // // console.log("Departamentos: " + this.modelData[0].dpto);
@@ -1223,8 +1226,10 @@ public arr: any[] = [];
 
     gImgData() {
       this.data.getDataImg('0101080056').subscribe( a => {
+        console.log("------------ GET DATA IMG -------------")
         console.log(a);
       })
     }
+
 
 }
