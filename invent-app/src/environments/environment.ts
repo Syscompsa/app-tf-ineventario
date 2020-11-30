@@ -6,7 +6,10 @@ export const environment = {
   production: false,
   header: false,
   nameUser: "",
-  
+  cargaA: 0,
+  cargaB: 0,
+  cargaC: 0,
+  cargaD: 0
 
 };
 

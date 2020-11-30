@@ -1,4 +1,3 @@
-
 <div class="progress" title="Departamento que estas trabajando">
     <div class="progress-bar"
          role="progressbar"
@@ -11,7 +10,10 @@
 
 <div class=" contsGen ">
     <div id="picture">
-        <div class="img" *ngIf="true">
+        <div class="btn-min" (click)="minWin()">
+            <div class="boxMin" id="minBox"></div>
+        </div>
+        <div class="img" id="imgs" *ngIf="true">
             <label for="fileUp" style="background-color: black;
              margin: 0px !important; cursor: pointer;
              color: white; padding: 8px; display: flex;
@@ -25,7 +27,15 @@
         </div>
     </div>
 
-    <div id="inpData">
+    <div id="inpData" >
+        <div class="semaf">
+            <div class="color"
+                 id="red">
+            </div>
+            <div class="color"
+                 id="green">
+            </div>
+        </div>
         <form id="fActivoFijo" class="actFijo">
             <div class="groupA">
                 <div class="inpData" *ngIf="true" style="width: 100%;">

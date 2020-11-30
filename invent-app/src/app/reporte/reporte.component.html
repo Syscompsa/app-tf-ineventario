@@ -1,6 +1,8 @@
 <div id="reporteProdss" *ngIf="false">
     <app-reporte-prod></app-reporte-prod>
 </div>
+
+
 <app-header></app-header>
 <div class="container mt-4 " style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
 
@@ -10,19 +12,25 @@
         <div class="d">
             <input type="date" id="fechaInit" class="input-control" value="{{ datenow }}">
             <div class="formato">
-                <span class="icon-calendar"></span> (dd/mm/yyyy)
+                <span class="icon-calendar"></span>(dd/mm/yyyy)
             </div>
         </div>
     </div>
     <div class="User" style="text-align: right;">
+        
         <p>
             <strong>Usuario: </strong> {{user}}<br> Filtrado por: <strong style="color: steelblue;"> {{filter}}
             </strong>, Y tienes <strong style="color: steelblue;">
             {{prodInv}}</strong> producto(s) inventariado
         </p>
-        <button type="button" title="filtrar reporte" style="border-bottom-left-radius: 0px !important; border-top-left-radius: 0px !important;" class="btn btn-primary ml-3" data-toggle="modal" data-target="#exampleModal">
-            <span class=" icon-equalizer"></span>
-        </button>
+        <div style="display: flex; justify-content: flex-start;">
+            <button type="button" title="filtrar reporte"
+                    style="border-bottom-left-radius: 0px !important; border-top-left-radius: 0px !important;"
+                    class="btn btn-primary ml-3" data-toggle="modal" data-target="#exampleModal">
+                    <span class=" icon-equalizer"></span>
+            </button>
+            
+        </div>
     </div>
 
     <!-- Modal -->
@@ -72,9 +80,52 @@
     </div>
 </div>
 <div class="container" id="tableReporte" style="height: 380px; overflow-y: auto;">
+    
+    <div class="btns" style="display: flex; justify-content: flex-start;">
+
+        <div id="actv">
+
+            <div class="filterImg">
+                <input type="text" id="ints" class="inpts" [(ngModel)]="depts" name="depts">
+            </div>
+
+            <select name="optionSel" [(ngModel)]="optionSel" (change)="changeParam(optionSel)">
+                <option [value]="item" *ngFor="let item of lista"  > {{item}} </option>
+            </select>
+
+            <div class="btnSearch" (click)="optionSelFunc(optionSel, depts)"
+                 (keyup.enter)="optionSelFunc(optionSel, depts)"
+                 style="width: 70px;">
+                 <span class="icon-search" style="color: white;"></span>
+            </div>
+            
+        </div>
+
+        <label class="label ml-4">
+            {{ProdFilter}} Item(s) / {{especificData}}  
+            <span class="icon-right-dir"
+                  id="rightDir"
+                  data-toggle="modal"
+                  data-target="#exampleModal2"
+                  (click)="fgetDataShowReport()" ></span>
+        </label>
+
+    </div>
+    <div class="progress" id="prg" style="height: 10px; border-radius: 0px;">
+       
+            <div class= "progress-bar"
+                 role=  "progressbar"
+                 id  =  "bProg"
+                 [ngStyle]  =   "{'height': '10px' }"
+                 aria-valuemin = "0"
+                 aria-valuemax = "100" >
+            </div>
+         
+    </div>
     <table class="table">
         <thead class="thead-dark">
             <tr>
+                <!-- <th scope="col" id="semm"><span class="icon-picture"></span></th> -->
                 <th scope="col">Cod. Placa</th>
                 <th scope="col">Descripción</th>
                 <th scope="col">Custodio</th>
@@ -88,17 +139,21 @@
         </thead>
         <tbody>
             <tr *ngFor="let a of arrInv">
-                <td>{{a.placaInv}}</td>
+                <!-- <td><div class="sem" [ngStyle]="{'background-color': actColor}"></div></td>  (click)="getPlacaReport(a.placaInv)" -->
+                <td id="plInv" >{{a.placaInv}}</td>
                 <td>{{a.descripInv}}</td>
-                <td>{{a.apellido}} {{a.nombre}}</td>
+                <td>{{a.apellido}} {{a.nombre}}
+                </td>
                 <td title=" Cod. ciudad: Guayaquil = 001 | Duran = 002 ">
                     {{a.ciudad}} / {{a.campoA}} / {{a.farmacia}}
                 </td>
-                <td style="color: steelblue;">{{a.campoB}}</td>
-                <td> {{a.fechaInv | date: 'dd/MM/yyyy'}}</td>
-                <td (click)="delRepo(a.id)" title="Eliminar informe" class="erease">
-                    <span class="icon-trash"></span>
+                <td style="color: steelblue;">
+                    {{a.campoB}}
                 </td>
+                <td>
+                    {{a.fechaInv | date: 'dd/MM/yyyy'}}
+                </td>
+                <td (click)="delRepo(a.id)" title="Eliminar informe" class="erease"><span class="icon-trash"></span></td>
             </tr>
         </tbody>
     </table>
@@ -109,3 +164,208 @@
     </button>
     <!-- <button class="btn btn-danger" (click)="showRep(true)">Reporte Ingreso de activos</button> -->
 </div>
+
+
+<div class="modal animated fadeInRight fast" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div style="width: 100%; display: flex !important; justify-content: space-between !important; align-items: center !important;">            
+          <h5 class="modal-title" id="exampleModalLabel"><span class="icon-equalizer"></span>Items a editar</h5>
+          <div>
+            <label for="text">Placa a filtrar:</label>
+            <div class="search" style="display: flex;">
+                <input class="inpts" [(ngModel)]="placCodec" (keyup.enter)="searchByPlaca(placCodec)" name="placCodec" style="padding: 3px !important;" id="text" type="text">
+                <div class="btnSearch" (click)="searchByPlaca(placCodec)"><span class="icon-search"></span></div>
+            </div>            
+          </div>
+        </div>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <table class="table table-primary" >
+                <thead>
+                  <tr>
+                    <th scope="col">Edit.       </th>
+                    <th scope="col">Dep.        </th>
+                    <th scope="col">Placa       </th>
+                    <th scope="col">Clase       </th>
+                    <th scope="col">Ciudad      </th>
+                    <th scope="col">Descrip.    </th>
+                    <th scope="col">Cust.       </th>
+                    <th scope="col">Serie       </th>
+                    <th scope="col">Refer.      </th>
+                    <th scope="col">User. Mod   </th>
+                    <th scope="col">Gr. Activo. </th>
+                    <th scope="col">Marca.      </th>
+                    <th scope="col">Color.      </th>
+                    <!-- <th scope="col">Proveedor.  </th> -->
+                    <!-- <th scope="col">Modelo.     </th> -->
+                  </tr>
+                </thead>
+                <tbody >
+                  <tr *ngFor="let dataRep of fgdSReport ">
+                    <td title="Editar"
+                        class="edi"
+                        data-toggle="modal"
+                        data-target="#exampleModal3"
+                        (click)="activateEditTask(
+                                 dataRep.controlImg,
+                                 dataRep.placa     ,
+                                 dataRep.dpto      ,
+                                 dataRep.clase     ,
+                                 dataRep.nameciud  ,
+                                 dataRep.nombre    ,
+                                 dataRep.custodio  ,
+                                 dataRep.serie     ,
+                                 dataRep.refer     ,
+                                 dataRep.usumodi   ,
+                                 dataRep.grupo     ,
+                                 dataRep.marca     ,
+                                 dataRep.color)">
+                        <span class="icon-edit"></span>
+                    </td>
+                    <td title="{{dataRep.deptname}}">{{dataRep.dpto}}</td>
+                    <td id="placaByCodec" >{{dataRep.placa}}</td>
+                    <td title="{{dataRep.nameclass}}">{{dataRep.clase}}</td>
+                    <td> {{dataRep.nameciud}} </td>
+                    <td title="{{dataRep.nombre}}" class="edi" > Show..... </td>
+                    <td title="{{dataRep.nombreCustodio}}"> {{dataRep.custodio}} </td>
+                    <td> {{dataRep.serie}} </td>
+                    <td> {{dataRep.refer}} </td>
+                    <td> {{dataRep.usumodi}} </td>
+                    <td title="{{dataRep.namegrupo}}">{{dataRep.grupo}}</td>
+                    <td title="{{dataRep.namemarca}}">{{dataRep.marca}}</td>
+                    <td> {{dataRep.color}} </td>
+                    <!-- <td> {{dataRep.proveedor}} </td> -->
+                    <!-- <td>  </td> -->
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content" style="box-shadow: 0px 0px 15px rgba(0,0,0,0.4);">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"> Placa: {{Dplaca}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                      <th scope="col">Img.        </th>
+                      <th scope="col">Dep.        </th>
+                      <th scope="col">Clase       </th>
+                      <th scope="col">Ciudad      </th>
+                      <th scope="col">Descrip.    </th>
+                      <th scope="col">Cust.       </th>
+                      <th scope="col">Serie       </th>
+                      <th scope="col">Refer.      </th>
+                      <th scope="col">User. Mod   </th>
+                      <th scope="col">Gr. Activo. </th>
+                      <th scope="col">Marca.      </th>
+                      <th scope="col">Color.      </th>
+                      <!-- <th scope="col">Proveedor.  </th> -->
+                      <!-- <th scope="col">Modelo.     </th> -->
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <input type="text" id="Dimg"
+                               [(ngModel)]="Dimg"
+                               name="Dimg"
+                               class="inp input-control">
+                      </td>
+                      <td>
+                        <input type="text" id="Ddepa"
+                               [(ngModel)]="Ddepa"
+                               name="Ddepa"
+                               class="inp input-control">
+                      </td>
+                      <td>
+                        <input type="text" id="Dclase"
+                               [(ngModel)]="Dclase"
+                               name="Dclase"
+                               class="inp input-control">
+                      </td>
+                      <td>
+                        <input type="text" id="Dciudad"
+                               [(ngModel)]="Dciudad"
+                               name="Dciudad"
+                               class="inp input-control">
+                      </td>                      
+                      <td>
+                        <input type="text" id="Ddescrip"
+                               [(ngModel)]="Ddescrip"
+                               name="Ddescrip"
+                               class="inp input-control">
+                      </td>
+                      <td>
+                        <input type="text" id="Dcust"
+                               [(ngModel)]="Dcust"
+                               name="Dcust"
+                               class="inp input-control">
+                      </td>
+                      <td>
+                        <input type="text" id="Dserie"
+                               [(ngModel)]="Dserie"
+                               name="Dserie"
+                               class="inp input-control">
+                      </td>
+                      <td>                          
+                        <input type="text" id="Drefer"
+                               [(ngModel)]="Drefer"
+                               name="Drefer"
+                               class="inp input-control">
+                      </td>
+                      <td>
+                        <input type="text" id="Dusmod"
+                               [(ngModel)]="Dusmod"
+                               name="Dusmod"
+                               class="inp input-control">
+                      </td>
+                      <td>
+                        <input type="text" id="Dgractv"
+                               [(ngModel)]="Dgractv"
+                               name="Dgractv"
+                               class="inp input-control">
+                      </td>
+                      <td>
+                        <input type="text" id="Dmarca"
+                               [(ngModel)]="Dmarca"
+                               name="Dmarca"
+                               class="inp input-control">
+                      </td>
+                      <td>
+                        <input type="text" id="Dcolor"
+                               [(ngModel)]="Dcolor"
+                               name="Dcolor"
+                               class="inp input-control">
+                      </td>
+                      <!-- <td> {{dataRep.proveedor}} </td> -->
+                      <!-- <td>  </td> -->
+                    </tr>
+                  </tbody>
+              </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>

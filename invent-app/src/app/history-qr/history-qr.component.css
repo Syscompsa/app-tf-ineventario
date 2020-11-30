@@ -206,6 +206,15 @@ label {
     align-items: center;
 }
 
+th {
+    font-size: 9pt;
+    font-weight: normal;
+}
+
+td {
+    font-size: 9pt;
+}
+
 .paginador {
     width: 500px;
     height: auto;

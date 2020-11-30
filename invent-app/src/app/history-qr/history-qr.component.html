@@ -2,7 +2,9 @@
 <div id="prevImprimir" style="width: 220px; height: 100%;" media="print" class="prevImprimir">
     <div class="countss" style="height: 35px;">
 
-        <div class="prev" id="printUnit" (click)="imprSelec()" style="width: 155px; height: 35px;">
+        <div class="prev" id="printUnit"
+             (click)="imprSelec()"
+             style="width: 155px; height: 35px;">
             <span class="icon-print"></span>
         </div>
 
@@ -146,22 +148,22 @@
             <table class="table" style="font-size: 12pt;">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">Placa</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Marca</th>
-                        <th scope="col">Custodio</th>
-                        <th scope="col">Local</th>
-                        <th scope="col">Ciudad</th>
+                        <th scope="col">    Placa       </th>
+                        <th scope="col">    Nombre      </th>
+                        <th scope="col">    Marca       </th>
+                        <th scope="col">    Custodio    </th>
+                        <th scope="col">    Local       </th>
+                        <th scope="col">    Ciudad      </th>
                     </tr>
                 </thead>
                 <tbody style="height: 485px; overflow: auto; border: solid 0.5px gray;">
                     <tr *ngFor="let b of dataQRExtract | paginate: {itemsPerPage: 15, currentPage: pageActual}">
-                        <th scope="row">{{b.placa}}</th>
-                        <td>{{b.nombre}}</td>
-                        <td>{{b.nomMarca}}</td>
-                        <td>{{b.nombreCustodio}}</td>
-                        <td>{{b.nomDpto}}</td>
-                        <td>{{b.nomCiudad}}</td>
+                        <th scope="row">{{b.placa}}     </th>
+                        <td>{{b.nombre}}                </td>
+                        <td>{{b.nomMarca}}              </td>
+                        <td>{{b.nombreCustodio}}        </td>
+                        <td>{{b.nomDpto}}               </td>
+                        <td>{{b.nomCiudad}}             </td>
                     </tr>
                 </tbody>
             </table>

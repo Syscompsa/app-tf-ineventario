@@ -13,6 +13,81 @@
     align-items: center;
 }
 
+
+input {
+    border-radius: 3px;
+    border: slategrey 0.5px solid;
+
+}
+
+.btnSearch {
+    width: 25px;
+    height: 25px;
+    background-color: #444444;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+    transition: ease all 0.5s;
+}
+
+.btnSearch:hover {
+    transition: ease all 0.5s;
+    background-color: steelblue;
+}
+
+#actv {
+    background-color: steelblue;
+    color: white;
+    width: 220px;
+    height: 25px;
+    border-top-left-radius: 5px;
+    transition: ease all 0.5s;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+}
+
+#ints {
+    padding: 0px !important;
+    color: white;
+    padding-left: 10px !important;
+    border-bottom: solid 1px white;
+}
+
+#actv:hover {
+    background-color: rgb(94, 19, 216);
+    color: #444444;    
+    transition: ease all 0.5s;
+}
+
+.sem {
+    width: 15px;
+    height: 15px;
+    border: solid 0.5px rgb(181, 181, 181);
+    border-radius: 100%;
+}
+
+.sem:hover {
+    transition: ease all 0.5s;
+    box-shadow: 0px 0px 5px #444444;
+}
+
+#plInv {
+    transition: ease all 0.5s;
+}
+
+#plInv:hover {
+    transition: ease all 0.5s;
+    color: steelblue;
+    font-size: 10pt;
+    font-weight: bold;
+    cursor: pointer;
+}
+
 #reporteProdss {
     width: 100%;
     height: 100%;
@@ -38,14 +113,14 @@
 
 
 #infoCont {
-    height: 590px;
-    overflow-y: scroll;
+    height: auto;
+    overflow-y: auto;
     scrollbar-color: rgb(92, 92, 92) #b3b3b3;
     scrollbar-width: 7px;
 }
 
 .input-control {
-    color: green;
+    color: white;
 }
 
 
@@ -103,6 +178,53 @@
     cursor: pointer;
 }
 
+#rightDir {
+    cursor: pointer;
+    transition: ease all 0.5s;
+    height: 25px;
+    width: 25px;
+}
+
+
+.edi {
+    transition: ease all 0.5s;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: underline;
+}
+
+.edi:hover {
+    transition: ease all 0.5s;
+    background-color: purple;
+    color: white;
+}
+
+.modal-lg {
+    max-width: 95% !important;
+}
+
+#placaByCodec {
+    transition: ease all 0.5s;
+    cursor: pointer;
+}
+
+
+#placaByCodec:hover {
+    transition: ease all 0.5s;
+    color: purple;
+    text-decoration: underline;
+}
+
+#rightDir:hover {
+    transition: ease all 0.5s;
+    font-size: 12pt;
+    background-color: steelblue;
+    color: wheat;
+    border-radius: 100%;
+}
+
 input {
     border: none;
     border-bottom: solid 0.5px gray;
@@ -115,7 +237,7 @@ input {
     border: solid 1px rgb(143, 143, 143);
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
-    padding: 10px;
+    /* padding: 10px; */
     width: 156px;
     font-size: 9pt;
 }

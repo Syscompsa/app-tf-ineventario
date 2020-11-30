@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { claseGen } from '../Models/AuthMod';
 import { QRDATA } from '../Models/QRDATA';
 import { Content } from '@angular/compiler/src/render3/r3_ast';
 import { Dp12a120 } from '../Models/Dp12a120';
+import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +17,12 @@ export class DataCallService {
 
   private apiURL = 'http://localhost:5000/';
   private apiURLPOST = 'http://localhost:5000/api/AR_INV-QRcodProdGet';
+
+  public ValueInit;
+  public ValueFini;
+  public ValuePerc;
+
+  public env = environment;
 
   constructor(private http: HttpClient) { }
 
@@ -80,7 +88,19 @@ export class DataCallService {
     return this.http.get(this.apiURL + 'api/Reporteria/getReporteByParam/' + param);
   }
 
-   getDptoReporte(master) {
+  fgetDataReportIng(param) {
+    return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/getDataReportIng/' + param);
+  }
+  
+  getImgByPlaca(plac) {
+    return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/getImgByPlaca/' + plac);
+  }
+
+  getFilterImg(a, b, dep) {
+    return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/getDataImgFilter/' + a + '/' + b + '/' + dep);
+  }
+
+  getDptoReporte(master) {
     return this.http.get(this.apiURL + 'api/Reporteria/GetDptoReporte/' + master);
   }
 
@@ -95,7 +115,8 @@ export class DataCallService {
   delReport(id) {
     return this.http.get(this.apiURL + 'api/Reporteria/DeleteReporte/' + id);
   }
-// https://alp-cloud.com:8445/api/Reporteria/GetRepByCiud/a/a
+
+  // https://alp-cloud.com:8445/api/Reporteria/GetRepByCiud/a/a
   getInfoByCiudad(farm, ciud) {
     return this.http.get(this.apiURL + 'api/Reporteria/GetRepByCiud/' + farm + "/" + ciud);
   }
@@ -110,6 +131,10 @@ export class DataCallService {
 
   getDataImg(placa) {
     return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/getDataImg/' + placa);
+  }
+
+  getDataShowReport(cod, cim) {
+    return this.http.get(this.apiURL + 'api/ALPTABLA/GetInfoQuest/' + cod + "/" + cim)
   }
 
 }

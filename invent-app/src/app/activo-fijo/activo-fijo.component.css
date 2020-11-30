@@ -42,6 +42,35 @@ button:hover {
     justify-content: space-around;
 }
 
+.semaf {
+    display: flex;
+    justify-content: flex-end;
+    
+}
+
+.color {
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    border: solid 0.5px rgb(179, 179, 179);
+}
+
+.btn-min {
+    width: 15px;
+    height: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 0.5px gray;
+    cursor: pointer;
+}
+
+.boxMin {
+    width: 8px;
+    height: 8px;
+    background-color: #212121;
+}
+
 #imgTest {
     background-size: 100% auto;
     /* background-position: -50px -20px; */

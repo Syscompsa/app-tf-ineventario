@@ -42,9 +42,7 @@ export class HistoryQRComponent implements OnInit {
   public contador = 0;
   public tooltipView;
   public filterPost = '';
-
-  pageActual: number = 1;
-
+  public pageActual: number = 1;
   public adnimBool = true;
 
   ngOnInit() {
@@ -96,6 +94,7 @@ export class HistoryQRComponent implements OnInit {
     }
   }
 
+
   createQRO(placa) {
     const qr = qrcode(4, 'L');
     const url = `https://alp-cloud.com:8445/api/AR_INV-QRcodProdGet/getPlaca/${placa}`;
@@ -105,6 +104,7 @@ export class HistoryQRComponent implements OnInit {
     // qr.addData('Esto es un Activo', 'Alphanumeric');
     document.getElementById(placa).innerHTML = qr.createSvgTag(1.9);
   }
+
 
   animhide() {
     let a = document.getElementById('prevImprimir');
@@ -137,6 +137,7 @@ export class HistoryQRComponent implements OnInit {
         break;
     }
   }
+
 
   createLi(idVar, placaText, nombre) {
     const node = document.createElement('li');
@@ -199,8 +200,9 @@ export class HistoryQRComponent implements OnInit {
   }
 
   getProductCustodio(custodio) {
-    this.data.getCustodioReporte(custodio).subscribe(x => {
+    this.data.getCustodioReporte(custodio).subscribe( x => {
       this.dataQRExtract = x;
+      console.log('Estos son lo datos de la tabla que genera QR');
       console.log(this.dataQRExtract);
       this.contadorProdAct = this.dataQRExtract.length;
     });
@@ -220,6 +222,7 @@ export class HistoryQRComponent implements OnInit {
     console.log(IDS);
   }
 
+
   getProductMarca(marca) {
     this.data.getMarcaReporte(marca).subscribe( x => {
       this.dataQRExtract = x;
@@ -228,9 +231,11 @@ export class HistoryQRComponent implements OnInit {
     });
   }
 
+
   filter(a) {
     this.filtro = a;
   }
+
 
   viewOptionsA() {
     this.conterA = false;
@@ -252,6 +257,7 @@ export class HistoryQRComponent implements OnInit {
     b.style.backgroundColor = 'transparent';
     b.style.color = 'gray';
   }
+
 
   viewOptionsB() {
     this.conterB = false;
@@ -275,7 +281,6 @@ export class HistoryQRComponent implements OnInit {
   }
 
 
-
   getCustoRep() {
     this.data.getDataCustodio(this.filterPost).subscribe( x => {
       this.custodios = x;
@@ -284,6 +289,7 @@ export class HistoryQRComponent implements OnInit {
     });
   }
 
+
   getMarcRep() {
     this.data.getDataMarca('0').subscribe( z => {
       this.Marcas = z;
@@ -291,6 +297,7 @@ export class HistoryQRComponent implements OnInit {
       // console.log(this.Marcas);
     });
   }
+
 
   prints() {
     var ficha = document.getElementById('dataQR');
@@ -302,11 +309,13 @@ export class HistoryQRComponent implements OnInit {
     ventimp.close();
   }
 
+
   // Estafuncion cambia la altura de este div al momento de imprimir
   changeHeight(h) {
     const dataQR = document.getElementById('dataQR');
     dataQR.style.height = h;
   }
+
 
   delProd(a) {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -316,6 +325,7 @@ export class HistoryQRComponent implements OnInit {
       },
       buttonsStyling: false
     });
+
 
     swalWithBootstrapButtons.fire({
       title: 'Estás seguro?',

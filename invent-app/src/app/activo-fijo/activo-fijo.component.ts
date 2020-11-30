@@ -439,19 +439,20 @@ public arr: any[] = [];
   public optH: boolean;
   public optI: boolean;
 
-    public modelArr;
+  public modelArr;
+  public ciudArr;
 
-    public ciudArr;
     // tslint:disable-next-line: member-ordering
-    public grupArr;
-    public _grupRead;
+  public grupArr;
+  public _grupRead;
 
-    public MarcArr;
-    public _MarcRead;
+  public MarcArr;
+  public _MarcRead;
 
     // variables  [(ngModel)] INICIO
-    public _CustClass: any;
-    public _CustRead: string;
+  public _CustClass: any;
+  public _CustRead: string;
+
     // variables  [(ngModel)] FIN
     public custArr;
 
@@ -475,10 +476,13 @@ public arr: any[] = [];
 
     lista:string[]=["Bueno","Mal estado","Obsoleto"];
     public optionSel;
+
+    public val = 0;
     
   ngOnInit() {
+    
     // this.getInterfaz();
-    this.fechActual();    
+    this.fechActual();
     this.data.getDataByPlaca().subscribe( x => {
        this.placaServices = x;
        const placaNow = this.placaServices[0].placa_Post;
@@ -532,6 +536,48 @@ public arr: any[] = [];
       );
     });
   }
+
+  minWin() {
+    const a = document.getElementById('minBox');
+    const b = document.getElementById('picture');
+    const dashB = document.getElementById('inpData');
+    const imgs = document.getElementById('imgs');
+
+    switch(this.val) {
+      case 0:
+        this.val = 1;    
+        b.style.width = '0px';
+        b.style.height = '0px';
+        b.style.padding = '0px';
+        b.style.border = 'none';
+        a.style.transition = 'ease all 0.1s';
+        b.style.transition = 'ease all 0.1s';
+        dashB.style.width = '90%';
+        imgs.style.display = 'none';
+        a.style.borderRadius = '100%';
+        console.log(this.val);
+        break;
+
+      case 1:
+        b.style.width = '33%';
+        b.style.height = '100%';
+        b.style.padding = '10px';
+        b.style.border = 'solid 0.5px rgb(202, 202, 202)';
+        a.style.transition = 'ease all 0.6s';
+        b.style.transition = 'ease all 0.6s';
+        dashB.style.width = '60%';
+        imgs.style.display = '';
+        a.style.borderRadius = '0';
+        this.val = 0;
+        console.log(this.val);
+        break;
+    }
+
+
+    
+
+  }
+
 
   sendReporte() {
     this.reportArr = {
@@ -882,19 +928,25 @@ public arr: any[] = [];
         this.data.getDataCuentas(this._CDN)
         .subscribe(
           x => {
+          
           this.cuentasArrC = x;
+          
           console.log(this._CDN);
           console.log(this.cuentasArrC);
+          
           let _ClassRead = {
             codigo: this.cuentasArrB.codigo
           };
+          
           resolve(this._CuentReadC = _ClassRead.codigo);
+          
           const a: string[]  = [
             this._CuentClassC = w,
             this._CuentReadC  = y
           ];
-
+          
           console.log(a);
+
           });
       }).then( res => {
           this._CDN = this._CuentReadC;
@@ -1070,11 +1122,20 @@ public arr: any[] = [];
     }
     //#endregion
 
-
-
+    public valu: number;
     //#region  "Update function()"
     UpdateProduct() {
+      
       this.sendReporte();
+      if(this._IMGE != '' || this._IMGE != null) {
+        // console.log('no esta vacio');
+        this.valu = 1;
+        console.log(this.val);
+      }
+      else {
+        this.valu = 0;
+        console.log(this.valu);
+      }
       let arr: any = {
         placa: this._PLAC,
         clase: this._Class,
@@ -1114,8 +1175,10 @@ public arr: any[] = [];
         // placa_aux: "",
          imagenbit: this._IMGE,
          id: this.pId,
-         af_control: this._actCont
+         af_control: this._actCont,
+         controlImg: this.valu
       };
+
        //console.log(arr);
       if (this.pId == '') {
         Swal.fire({
@@ -1124,16 +1187,18 @@ public arr: any[] = [];
           text: 'Este producto es nuevo, no puedes actualizarlo!'
         });
       } else {
-        this.data.updateProduct(this.pId, arr).subscribe(x => {
+        this.data.updateProduct(this.pId, arr).subscribe(x => {          
+          arr = x;
           Swal.fire({
             position: 'center',
             icon: 'success',
             title: 'Tu producto ha sido editado con éxito, se ha generado movimiento de inventario.',
             showConfirmButton: false,
-            timer: 3000
+            timer: 2500
           })
-          arr = x;
+
           console.log(arr);
+          
         }
         )
       }
