@@ -14,16 +14,29 @@
             <div class="boxMin" id="minBox"></div>
         </div>
         <div class="img" id="imgs" *ngIf="true">
-            <label for="fileUp" style="background-color: black;
-             margin: 0px !important; cursor: pointer;
-             color: white; padding: 8px; display: flex;
-             justify-content: center; align-items: center;">
-                <span class="icon-picture" style="font-size: 15pt;"></span>
+
+            <label for="fileUp"
+                   style="background-color: black;
+                   margin: 0px !important; cursor: pointer;
+                   color: white; padding: 8px; display: flex;
+                   justify-content: center; align-items: center;">
+                   <span class="icon-picture" style="font-size: 15pt;"></span>
             </label>
-            <input style="width: 0px; height: 0px; opacity: 0;" id="fileUp" type="file" (change)="encodeImageFileAsURL();" [(ngModel)]="_IMGE" name="_IMGE">
-            <div id="imgTest" [ngStyle]="{'background-image': 'url(&quot;' + _IMGE + '&quot;)', 'margin-top': '-20px'}">
-                <!-- <img [src]="_IMGE" style="width: 100% !important; height: auto !important;" alt="imagen en esepera..."> -->
+
+            <input style="width: 0px; height: 0px; opacity: 0;" id="fileUp"
+                   type="file"
+                   (change)="encodeImageFileAsURL();"
+                   [(ngModel)]="_IMGE"
+                   name="_IMGE" >
+            
+            <div id="imgTest"
+                 [ngStyle]="{'background-image': 'url(&quot;' + _IMGE + '&quot;)',
+                             'margin-top': '-20px'}">
+                <!-- <img [src]="_IMGE" style="width:
+                     100% !important; height: auto !important;"
+                     alt="imagen en esepera..."> -->
             </div>
+
         </div>
     </div>
 

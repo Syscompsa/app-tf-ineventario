@@ -7,7 +7,6 @@
 <div class="container mt-4 " style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
 
     <div class="dataDates mt-3 mb-4 ">
-
         <label for="fechaInit">Fecha Inventario:</label>
         <div class="d">
             <input type="date" id="fechaInit" class="input-control" value="{{ datenow }}">
@@ -216,7 +215,7 @@
                                  dataRep.placa     ,
                                  dataRep.dpto      ,
                                  dataRep.clase     ,
-                                 dataRep.nameciud  ,
+                                 dataRep.ciudad  ,
                                  dataRep.nombre    ,
                                  dataRep.custodio  ,
                                  dataRep.serie     ,
@@ -230,7 +229,7 @@
                     <td title="{{dataRep.deptname}}">{{dataRep.dpto}}</td>
                     <td id="placaByCodec" >{{dataRep.placa}}</td>
                     <td title="{{dataRep.nameclass}}">{{dataRep.clase}}</td>
-                    <td> {{dataRep.nameciud}} </td>
+                    <td title="{{dataRep.nameciud}}"> {{dataRep.ciudad}} </td>
                     <td title="{{dataRep.nombre}}" class="edi" > Show..... </td>
                     <td title="{{dataRep.nombreCustodio}}"> {{dataRep.custodio}} </td>
                     <td> {{dataRep.serie}} </td>
@@ -284,73 +283,105 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td>
-                        <input type="text" id="Dimg"
-                               [(ngModel)]="Dimg"
-                               name="Dimg"
-                               class="inp input-control">
+                      <td  id="Dimg" class="tdDiv">
+                        <div class="file-field">
+                            <!-- <a class="btn-floating purple-gradient mt-0 float-left">
+                              <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
+                              <input type="file" 
+                                     [(ngModel)]="Dimg"
+                                     name="Dimg">
+                            </a> -->
+                            <label for="fileUp" style="background-color: black;
+                                      margin: 0px !important; cursor: pointer;
+                                      color: white; padding: 5px; display: flex;
+                                      justify-content: center; align-items: center;">
+                                <span class="icon-picture" style="font-size: 7pt;"></span>
+                            </label>
+                           
+                            <input style="width: 0px;
+                                          height: 0px;
+                                          opacity: 0; "
+                                   id="fileUp" type="file"
+                                   (change)="encodeImageFileAsURL();"
+                                   [(ngModel)]="Dimg" name="Dimg">
+
+                            <div   id="imgTest" *ngIf="viewImg"
+                                   [ngStyle]="{'background-image': 'url(&quot;' + Dimg + '&quot;)',
+                                               'background-size': 'auto 100%',
+                                               'margin-top': '-20px'}">
+                                <!-- <img [src]="_IMGE" style="width: 100% !important;
+                                     height: auto !important;" alt="imagen en esepera..."> -->
+                            </div>
+
+                        </div>                        
                       </td>
-                      <td>
+                      <td class="tdDiv">
                         <input type="text" id="Ddepa"
                                [(ngModel)]="Ddepa"
+                               (keyup.enter)="getDepts('Ddepa')"
                                name="Ddepa"
                                class="inp input-control">
                       </td>
-                      <td>
+                      <td class="tdDiv">
                         <input type="text" id="Dclase"
+                               (keyup.enter)="getClase('Dclase')"
                                [(ngModel)]="Dclase"
                                name="Dclase"
                                class="inp input-control">
                       </td>
-                      <td>
+                      <td class="tdDiv">
                         <input type="text" id="Dciudad"
                                [(ngModel)]="Dciudad"
-                               name="Dciudad"
+                               name="Dciudad"                               
+                               (keyup.enter)="getCiudad('Dciudad')"
                                class="inp input-control">
                       </td>                      
-                      <td>
+                      <td class="tdDiv">
                         <input type="text" id="Ddescrip"
                                [(ngModel)]="Ddescrip"
-                               name="Ddescrip"
+                               name="Ddescrip"                               
                                class="inp input-control">
                       </td>
-                      <td>
+                      <td class="tdDiv">
                         <input type="text" id="Dcust"
                                [(ngModel)]="Dcust"
+                               (keyup.enter)="getCusto('Dcust')"
                                name="Dcust"
                                class="inp input-control">
                       </td>
-                      <td>
+                      <td class="tdDiv">
                         <input type="text" id="Dserie"
                                [(ngModel)]="Dserie"
                                name="Dserie"
                                class="inp input-control">
                       </td>
-                      <td>                          
+                      <td class="tdDiv">                          
                         <input type="text" id="Drefer"
                                [(ngModel)]="Drefer"
                                name="Drefer"
                                class="inp input-control">
                       </td>
-                      <td>
+                      <td class="tdDiv">
                         <input type="text" id="Dusmod"
                                [(ngModel)]="Dusmod"
                                name="Dusmod"
                                class="inp input-control">
                       </td>
-                      <td>
+                      <td class="tdDiv">
                         <input type="text" id="Dgractv"
                                [(ngModel)]="Dgractv"
+                               (keyup.enter)="getGrpActivo('Dgractv')"
                                name="Dgractv"
                                class="inp input-control">
                       </td>
-                      <td>
+                      <td class="tdDiv">
                         <input type="text" id="Dmarca"
                                [(ngModel)]="Dmarca"
+                               (keyup.enter)="getMarca('Dmarca')" 
                                name="Dmarca"
                                class="inp input-control">
                       </td>
-                      <td>
+                      <td class="tdDiv">
                         <input type="text" id="Dcolor"
                                [(ngModel)]="Dcolor"
                                name="Dcolor"
@@ -363,9 +394,42 @@
               </table>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-success">
+                    <span class="icon-ok"></span> Guardar cambios
+            </button>
         </div>
       </div>
     </div>
   </div>
+
+  <div class="boxOptions animated bounceIn fast " *ngIf="showInf">
+            <div id="cancel" (click)="closeMods(false)">
+                <span class="icon-cancel"></span>
+            </div>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Código:</th>
+                <th scope="col">Nombre:</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr *ngFor = "let dataMods of arrData">
+                <td (click) = "takeOption(dataMods.codigo)"
+                    (dblclick) = "takeOption(dataMods.codigo) 
+                                  || takeOption(dataMods.grupo)
+                                  &&  closeMods(false) "
+                    class = "teds">
+                    {{dataMods.codigo}} {{dataMods.grupo}}
+                </td>
+                <td>{{dataMods.nombre}}</td>
+            </tr>
+
+        </tbody>        
+      </table>
+      <p class="note">Tienes, {{arrDataCant}} elemento(s) </p>
+    </div>

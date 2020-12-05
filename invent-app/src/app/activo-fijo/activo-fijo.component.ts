@@ -752,13 +752,16 @@ public arr: any[] = [];
           this._ciudClass = w,
           this._ciudRead  = y
         ];
-
       });
-    }).then( res => {
+    })
+    .then( res => {
         console.log('Este es mi valo obtenido: ' +  res);
     });
+
     this.funcClose(true, false, false, false, false, false, false, false);
+    
     }
+
     getDataGrupo(w, y) {
      // console.log(this._GRPO);
       this.data.getDataGrup(this._GRPO).subscribe(x => {
@@ -774,7 +777,8 @@ public arr: any[] = [];
           ];
         });
       this.funcClose(false, false, false, false, false, false, true, false);
-      }
+    }
+
     getDataMarca(w, y) {
       console.log(this._MRCA);
       const promise = new Promise((resolve, reject) => {

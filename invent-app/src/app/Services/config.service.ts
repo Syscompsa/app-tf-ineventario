@@ -13,14 +13,14 @@ export class ConfigService {
 
   //Obtener Configuraciones
   getConfig(): Observable<configPresets> {
-    return this.http.get<configPresets>(this.apiURL + '/AR_2-Interface/GetInterfaceConfig');
+    return this.http.get<configPresets>
+    (this.apiURL + '/AR_2-Interface/GetInterfaceConfig');
   }
 
   //update Config
   updateConfig(Content: configPresets): Observable<configPresets> {
-    return this.http.put<configPresets>(this.apiURL + '/AR_2-Interface/UpdateInterfaceConfig/' + Content.id, Content);
+    return this.http.put<configPresets>
+    (this.apiURL + '/AR_2-Interface/UpdateInterfaceConfig/' + Content.id, Content);
   }
-
-  
   
 }

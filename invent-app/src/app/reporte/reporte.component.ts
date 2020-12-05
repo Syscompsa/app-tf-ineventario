@@ -114,7 +114,8 @@ export class ReporteComponent implements OnInit {
       // console.log(a);
 
       let apiURL = 'http://localhost:5000/';
-      this.http.get(apiURL + 'api/AR_INV-QRcodProdGet/getDataImgFilter/' + a + '/' + b + '/' + d,
+      this.http.get(apiURL + 'api/AR_INV-QRcodProdGet/getDataImgFilter/'
+                    + a + '/' + b + '/' + d,
                     {observe: 'events', reportProgress: true}).subscribe( event => {
 
         if (event.type === HttpEventType.DownloadProgress) {
@@ -331,17 +332,166 @@ activateEditTask(m, a, b, c ,d, e, f, g, h, i, j, k, l) {
     // this.createInputImg(DimgHTML);
     DimgHTML.style.backgroundColor = 'orange';
   }
+
   else {
     DimgHTML.style.backgroundColor = 'green';
   }
 
 }
 
-createInputImg(b) {
-  let a = document.createElement('input');
-      a.setAttribute('type', 'text');
-      a.setAttribute('class', 'input-control');
-      a.appendChild(b);
+public IdValue: string;
+
+public arrData;
+public arrDataCant;
+public showInf;
+getCiudad(a) {
+  this.closeMods(true);
+  // console.log(mods);
+  this.dateCall.getDataCiud('0')
+               .subscribe( city => {
+    this.arrData = city;
+    this.arrDataCant = this.arrData.length;
+    console.log(this.arrData);   
+  })
+
+  this.IdValue = a;
+  //console.log(this.IdValue);
+  return this.IdValue;
+
+}
+
+
+getDepts(a) {
+  this.closeMods(true);
+  this.dateCall.getDataDep('0')
+               .subscribe(dep => {
+    this.arrData = dep;
+    this.arrDataCant = this.arrData.length;
+  })
+
+  this.IdValue = a;
+  //console.log(this.IdValue);
+  return this.IdValue;
+
+}
+
+
+getClase(a) {
+  this.closeMods(true);
+  this.dateCall.getDataClases('0')
+               .subscribe(clase => {
+    this.arrData = clase;
+    this.arrDataCant = this.arrData.length;
+  })
+
+  this.IdValue = a;
+  //console.log(this.IdValue);
+  return this.IdValue;
+
+}
+
+
+getCusto(a) {
+  this.closeMods(true);
+  this.dateCall.getDataCustodio('0')
+               .subscribe(cust => {
+    this.arrData = cust;
+    this.arrDataCant = this.arrData.length;
+  })
+
+  this.IdValue = a;
+  //console.log(this.IdValue);
+  return this.IdValue;
+
+}
+
+getGrpActivo(a) {
+  this.closeMods(true);
+  this.dateCall.getDataGrup('0')
+               .subscribe(gactv => {
+    this.arrData = gactv;
+    this.arrDataCant = this.arrData.length;
+    console.log(this.arrData);
+  })
+
+  this.IdValue = a;
+  return this.IdValue;
+
+}
+
+public marcaCodec;
+getMarca(a) {
+  this.closeMods(true);
+  this.dateCall.getDataMarca('0')
+               .subscribe(marca => {
+    this.arrData = marca;
+    this.arrDataCant = this.arrData.length;
+    console.log(this.arrData);
+  })
+
+  this.IdValue = a;
+  return this.IdValue;
+
+}
+
+closeMods(a) {
+  this.showInf = a;
+}
+
+takeOption(a) {
+  let values = <HTMLInputElement> document.getElementById(this.IdValue);
+  values.value = a;
+  // console.log(values);
+  // console.log(a);
+}
+
+
+
+// createInputImg(b) {
+//   let a = document.createElement('input');
+//       a.setAttribute('type', 'text');
+//       a.setAttribute('class', 'input-control');
+//       a.appendChild(b);
+// }
+
+public viewImg: boolean;
+
+encodeImageFileAsURL() {
+  this.viewImg = true;
+  const filesSelected = document.getElementById('fileUp') as HTMLInputElement;
+  const fileId = filesSelected.files;
+  // const newImage = document.createElement('img');
+  // newImage.setAttribute('id', 'img');
+  // newImage.style.width = '100%';
+  // newImage.style.height = 'auto';
+  let base;
+  if (fileId.length > 0) {
+    const fileToLoad = filesSelected[0];
+    const fileReader = new FileReader();
+
+    // tslint:disable-next-line: only-arrow-functions
+    fileReader.onload = () => {
+      base = fileReader.result;
+      // newImage.src = base;
+      // document.getElementById('imgTest').innerHTML = newImage.outerHTML;
+      document.getElementById('imgTest').style.backgroundImage = `url(${base})`;
+      // console.log(base)
+    };
+    fileReader.onloadend = () => {
+
+      this.Dimg = fileReader.result;
+      console.log(this.Dimg);
+      
+    };
+
+    const a = fileReader.readAsDataURL(fileId[0]);
+    // console.log(a)
+    // // tslint:disable-next-line: prefer-for-of
+    // for (let i = 0; i < fileId.length; i++) {
+    // }
+
+  }
+
 }
 
 }
