@@ -23,11 +23,10 @@
 </div>
 
 <div class="cons container" id="const">
-    <div class="paginador">
-        <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
-    </div>
+    <div class="paginador"><pagination-controls (pageChange)="pageActual = $event"></pagination-controls></div>
     <div class="filterfor" data-toggle="modal" data-target="#exampleModal">
-        <span class="filter icon-filter" data-toggle="modal" data-target="#exampleModal" id="an" (mouseover)="retAnim('animFilter')" (mouseleave)="retAnim('')" title="El filtro está activado por, {{filtro}}"></span> Filtrado por:
+        <span class="filter icon-filter" data-toggle="modal" data-target="#exampleModal" id="an"
+              (mouseover)="retAnim('animFilter')" (mouseleave)="retAnim('')" title="El filtro está activado por, {{filtro}}"></span> Filtrado por:
         <strong style="font-size: 14pt; color: steelblue;">
            {{filtro}} | Productos alcanzados: <strong> {{contadorProdAct}} <span class="icon-database"></span> </strong>
         </strong>
@@ -69,13 +68,22 @@
                                         <div class="card">
                                             <div class="card-header" id="headingOne">
                                                 <h2 class="mb-0">
-                                                    <button class="btn btn-link btn-block text-left" [id]="ida" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                                    <button class="btn btn-link btn-block text-left" [id]="ida"
+                                                            type="button" data-toggle="collapse"
+                                                            data-target="#collapseOne"
+                                                            aria-expanded="false" aria-controls="collapseOne">
                                                       <strong>Por custodio:</strong> Actualmente tiene(s), <strong> {{cantCust}}
                                                            </strong> custodio(s), registrado en la base de datos.
                                                     </button>
                                                     <div class="display d-flex">
-                                                        <label for="inpts"><span style="color: steelblue;" class="icon-search"></span></label>
-                                                        <input id="inpts" type="text" class="inpts" placeholder="Buscar por custodio..." [(ngModel)]="filterPost" name="filterPost" (keyup)="getCustoRep()">
+                                                        <label for="inpts">
+                                                            <span style="color: steelblue;" class="icon-search"></span>
+                                                        </label>
+                                                        <input id="inpts" type="text" class="inpts" placeholder="Buscar por Departamento..."
+                                                               [(ngModel)]="filterPost" name="filterPost" (keyup)="getCustoRep()" >
+                                                        
+                                                        <input id="inpts" type="text" class="inpts" placeholder="Buscar por Custodio..."
+                                                               [(ngModel)]="fPost" name="fPost" (keyup)="getQRbyCustName(fPost)" >
                                                     </div>
                                                 </h2>
                                             </div>
@@ -128,7 +136,8 @@
 
     <div class="dataQR mb-4 animated fadeIn" id="dataQR" *ngIf="conterB">
 
-        <div class="box" style="cursor: pointer;" *ngFor="let a of dataQRExtract | paginate: {itemsPerPage: 12, currentPage: pageActual}" id="box-{{a.id}}" (click)="imprimirUnidad(a.id, a.placa, a.nombre)">
+        <div class="box" style="cursor: pointer;" *ngFor="let a of dataQRExtract | paginate: {itemsPerPage: 12, currentPage: pageActual}"
+             id="box-{{a.id}}" (click)="imprimirUnidad(a.id, a.placa, a.nombre)">
             <div class="info" data-title="Nombre: {{a.nombre}}&#10;Placa: {{a.placa}}&#10;Ciudad: {{a.nomCiudad}}&#10;Custodio: {{a.nombreCustodio}}&#10;Marca: {{a.nomMarca}}&#10;Departamento: {{a.nomDpto}}">
                 <span class="icon-info"></span>
             </div>

@@ -42,6 +42,7 @@ export class HistoryQRComponent implements OnInit {
   public contador = 0;
   public tooltipView;
   public filterPost = '';
+  public filterPostCust = '';
   public pageActual: number = 1;
   public adnimBool = true;
 
@@ -223,6 +224,7 @@ export class HistoryQRComponent implements OnInit {
   }
 
 
+  public fPost;
   getProductMarca(marca) {
     this.data.getMarcaReporte(marca).subscribe( x => {
       this.dataQRExtract = x;
@@ -231,6 +233,14 @@ export class HistoryQRComponent implements OnInit {
     });
   }
 
+  getQRbyCustName(CustName) {
+    // console.log(CustName);
+    this.QRData.getDataQRByCustName(CustName).subscribe(QRDATA => {
+      this.dataQRExtract = QRDATA;
+      console.log(QRDATA);      
+      this.contadorProdAct = this.dataQRExtract.length;
+    })
+  }
 
   filter(a) {
     this.filtro = a;

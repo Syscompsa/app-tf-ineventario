@@ -19,11 +19,11 @@ export class GQRService {
     return this.http.get<QRDATA[]>(this.apiURL + '/AR_INV-QRcodProdGet/getQRGen');
   }
 
-  getQRGenById(Placa): Observable<QRDATA[]>{
+  getQRGenById(Placa): Observable<QRDATA[]> {
     return this.http.get<QRDATA[]>(this.apiURL + '/AR_INV-QRcodProdGet/getPlaca/' + Placa);
   }
 
-  getQRGenByPlaca(Placa): Observable<Placa_Post_Url[]>{
+  getQRGenByPlaca(Placa): Observable<Placa_Post_Url[]>  {
     return this.http.get<Placa_Post_Url[]>(this.apiURL + '/AR_INV-QRcodProdGet/getPlaca/' + Placa);
   }
 
@@ -31,8 +31,12 @@ export class GQRService {
     return this.http.get<Placa_Post_Url[]>(this.apiURL + '/AR_INV-QRcodProdGet/GetProduct');
   }
 
-  getProductByPlaca(GetPlaca): Observable<QRDATA[]>{
+  getProductByPlaca(GetPlaca): Observable<QRDATA[]> {
     return this.http.get<QRDATA[]>(this.apiURL + '/AR_INV-QRcodProdGet/getPlacaProduct/' + GetPlaca);
+  }
+  
+  getDataQRByCustName(CustName) {
+    return this.http.get(this.apiURL + '/ALPTABLA/GetUserByCod/' + CustName);
   }
 
 
