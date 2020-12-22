@@ -12,11 +12,11 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class DataCallService {
-  // private apiURL = 'https://alp-cloud.com:8445/';
-  // private apiURLPOST = 'https://alp-cloud.com:8445/api/AR_INV-QRcodProdGet';
+  private apiURL = 'https://alp-cloud.com:8445/';
+  private apiURLPOST = 'https://alp-cloud.com:8445/api/AR_INV-QRcodProdGet';
 
-  private apiURL = 'http://localhost:5000/';
-  private apiURLPOST = 'http://localhost:5000/api/AR_INV-QRcodProdGet';
+  // private apiURL = 'http://localhost:5000/';
+  // private apiURLPOST = 'http://localhost:5000/api/AR_INV-QRcodProdGet';
 
   public ValueInit;
   public ValueFini;
