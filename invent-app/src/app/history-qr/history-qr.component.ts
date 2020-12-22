@@ -239,7 +239,7 @@ export class HistoryQRComponent implements OnInit {
       this.dataQRExtract = QRDATA;
       console.log(QRDATA);      
       this.contadorProdAct = this.dataQRExtract.length;
-    })
+    });
   }
 
   filter(a) {
@@ -267,7 +267,6 @@ export class HistoryQRComponent implements OnInit {
     b.style.backgroundColor = 'transparent';
     b.style.color = 'gray';
   }
-
 
   viewOptionsB() {
     this.conterB = false;
