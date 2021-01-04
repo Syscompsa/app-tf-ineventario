@@ -8,7 +8,7 @@ import { Placa_Post_Url } from '../Models/Placa_Post_Url';
 })
 export class GQRService {
 
-  private apiURL = 'https://alp-cloud.com:8445/api';
+  private apiURL = 'https://alp-cloud.com:8446/api';
 
   //Para testear local
   // private apiURL = 'http://localhost:5000/api';
@@ -34,7 +34,7 @@ export class GQRService {
   getProductByPlaca(GetPlaca): Observable<QRDATA[]> {
     return this.http.get<QRDATA[]>(this.apiURL + '/AR_INV-QRcodProdGet/getPlacaProduct/' + GetPlaca);
   }
-  
+
   getDataQRByCustName(CustName) {
     return this.http.get(this.apiURL + '/ALPTABLA/GetUserByCod/' + CustName);
   }

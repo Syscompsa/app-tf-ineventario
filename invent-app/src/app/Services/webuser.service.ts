@@ -8,12 +8,12 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class WebuserService {
-  private apiURL = 'https://alp-cloud.com:8445/api';
+  private apiURL = 'https://alp-cloud.com:8446/api';
   //private apiURL = 'https://localhost:5000/api';
 
 
   constructor(private http: HttpClient, public router: Router) { }
-    
+
   login(user: Iwebuser): Observable<Iwebuser> {
     return this.http.post<Iwebuser>(this.apiURL + "/UserLogin/login", user);
   }
@@ -23,14 +23,11 @@ export class WebuserService {
     localStorage.removeItem("Token");
   }
 
-   
-
-
   getUsByParam(user) {
     return this.http.get(this.apiURL + "/UserLogin/getuser/" + user);
   }
 
-  verificacionLog(){
+  verificacionLog() {
     if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null){
       this.router.navigate(['/login']);
     }

@@ -7,7 +7,7 @@ import { configPresets } from '../Models/configPresets';
   providedIn: 'root'
 })
 export class ConfigService {
-  private apiURL = 'https://alp-cloud.com:8445/api';
+  private apiURL = 'https://alp-cloud.com:8446/api';
 
   constructor(private http: HttpClient) { }
 
@@ -22,5 +22,5 @@ export class ConfigService {
     return this.http.put<configPresets>
     (this.apiURL + '/AR_2-Interface/UpdateInterfaceConfig/' + Content.id, Content);
   }
-  
+
 }

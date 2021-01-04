@@ -47,7 +47,7 @@ export class HistoryQRComponent implements OnInit {
   public adnimBool = true;
 
   ngOnInit() {
-    this.getDep('NF037');
+    this.getDep('');
     this.getMarcRep();
     this.viewOptionsB();
     this.getCustoRep();
@@ -108,10 +108,12 @@ export class HistoryQRComponent implements OnInit {
 
 
   animhide() {
+
     let a = document.getElementById('prevImprimir');
     let b = document.getElementById('spclo');
     let c = document.getElementById('closeI');
     switch (this.adnimBool) {
+
       case true:
         this.adnimBool = false;
         a.style.animation = 'ease prevImprimirAnim 0.5s';
@@ -134,9 +136,12 @@ export class HistoryQRComponent implements OnInit {
           b.setAttribute('class', 'icon-left-open');
         }, 500);
         break;
+
       default:
         break;
+
     }
+
   }
 
 
@@ -157,7 +162,7 @@ export class HistoryQRComponent implements OnInit {
     node.style.display = 'flex';
     node.style.justifyContent = 'center';
     node.style.alignItems = 'center';
-    node.style.backgroundColor = 'whitesmoke';    
+    node.style.backgroundColor = 'whitesmoke';
 
     const createDiv = document.createElement('div');
     createDiv.innerHTML = `<strong> Placa: ${placaText} \n Nombre:  ${nombre} </strong>`;
@@ -181,35 +186,44 @@ export class HistoryQRComponent implements OnInit {
   }
 
   imprSelec() {
+
     var ficha = document.getElementById('contenidoPrev');
     ficha.style.fontFamily = 'arial';
 	  let ventimp = window.open(' ', 'popimpr');
 	  ventimp.document.write( ficha.innerHTML);
 	  ventimp.document.close();
     ventimp.print();
-	  ventimp.close();
+    ventimp.close();
+
 	}
 
   objectSelectStyle(obj, color, styleBorder, tam) {
+
     obj.style.border = `${styleBorder} ${tam} ${color}`;
     obj.style.transition = `ease all 0.5s`;
+
   }
 
   retAnim(param) {
+
    const an = document.getElementById('an');
    an.style.animationName = param;
+
   }
 
   getProductCustodio(custodio) {
+
     this.data.getCustodioReporte(custodio).subscribe( x => {
       this.dataQRExtract = x;
       console.log('Estos son lo datos de la tabla que genera QR');
       console.log(this.dataQRExtract);
       this.contadorProdAct = this.dataQRExtract.length;
     });
+
   }
 
   getID(IDS, a) {
+
     switch (IDS) {
       case 1:
         this.filter(a);
@@ -221,25 +235,30 @@ export class HistoryQRComponent implements OnInit {
         break;
     }
     console.log(IDS);
+
   }
 
 
   public fPost;
   getProductMarca(marca) {
+
     this.data.getMarcaReporte(marca).subscribe( x => {
       this.dataQRExtract = x;
       // console.log(this.dataQRExtract);
       this.contadorProdAct = this.dataQRExtract.length;
     });
+
   }
 
   getQRbyCustName(CustName) {
+
     // console.log(CustName);
     this.QRData.getDataQRByCustName(CustName).subscribe(QRDATA => {
       this.dataQRExtract = QRDATA;
-      console.log(QRDATA);      
+      console.log(QRDATA);
       this.contadorProdAct = this.dataQRExtract.length;
     });
+
   }
 
   filter(a) {

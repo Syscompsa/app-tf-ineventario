@@ -12,8 +12,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class DataCallService {
-  private apiURL = 'https://alp-cloud.com:8445/';
-  private apiURLPOST = 'https://alp-cloud.com:8445/api/AR_INV-QRcodProdGet';
+  private apiURL = 'https://alp-cloud.com:8446/';
+  private apiURLPOST = 'https://alp-cloud.com:8446/api/AR_INV-QRcodProdGet';
 
   // private apiURL = 'http://localhost:5000/';
   // private apiURLPOST = 'http://localhost:5000/api/AR_INV-QRcodProdGet';
@@ -93,7 +93,7 @@ export class DataCallService {
   fgetDataReportIng(param) {
     return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/getDataReportIng/' + param);
   }
-  
+
   getImgByPlaca(plac) {
     return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/getImgByPlaca/' + plac);
   }
