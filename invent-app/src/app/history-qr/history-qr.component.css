@@ -25,6 +25,22 @@
     overflow-y: auto;
 }
 
+.boxChangeNumb {
+    background-color: steelblue;
+    color: white;
+    font-size: 12pt;
+    padding: 15px;
+    height: 130px;
+    border-radius: 10px;
+    box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.3);
+    position: absolute;
+}
+
+#sCant {
+    background-color: transparent;
+    color: white;
+}
+
 @keyframes prevImprimirAnim {
     0% {
         transform: translate(0px);
@@ -48,7 +64,6 @@
         transform: translate(0px);
     }
 }
-
 
 .box::after {
     border: solid 2px green;

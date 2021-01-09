@@ -67,14 +67,14 @@ export class HistoryQRComponent implements OnInit {
     tooltip.style.display = disp;
   }
 
-  imprimirUnidad(id, placa, nombre) {
-    const ids = document.getElementById(`box-${id}`);
+  imprimirUnidad(placa, nombre) {
+    const ids = document.getElementById(`box-${placa}`);
     const contenidoPrev = document.getElementById(`contenidoPrev`);
     const modImp = document.getElementById('modalPrint');
     switch (this.ensi) {
       case true:
         this.ensi = false;
-        contenidoPrev.appendChild(this.createLi(id, placa, nombre));
+        contenidoPrev.appendChild(this.createLi(placa, placa, nombre));
         ids.style.border = 'dashed 2px green';
         ids.style.borderRadius = '5px';
         ids.style.boxShadow = '3px 3px 7px rgba(0,0,0,0.5)';
@@ -84,7 +84,7 @@ export class HistoryQRComponent implements OnInit {
         break;
       case false:
         this.ensi = true;
-        contenidoPrev.removeChild(document.getElementById(`li-${id}`));
+        contenidoPrev.removeChild(document.getElementById(`li-${placa}`));
         ids.style.border = 'solid 1px gray';
         ids.style.borderRadius = '0px';
         ids.style.boxShadow = '3px 3px 7px rgba(0,0,0,0.0)';
@@ -118,7 +118,7 @@ export class HistoryQRComponent implements OnInit {
         this.adnimBool = false;
         a.style.animation = 'ease prevImprimirAnim 0.5s';
         setTimeout(() => {
-          a.style.transform = 'translate(-120px)';
+          a.style.transform = 'translate(-185px)';
           c.style.backgroundColor = 'orange';
           c.style.color = 'black';
           b.setAttribute('class', 'icon-right-open');
@@ -144,10 +144,17 @@ export class HistoryQRComponent implements OnInit {
 
   }
 
+  public contEt: number;
+  public contEtiquetas: boolean;
+  showContEtiq(a) {
+   this.contEtiquetas = a;
+   return this.contEt;
+  }
+
 
   createLi(idVar, placaText, nombre) {
     const node = document.createElement('li');
-    // document.getElementById('modalPrint').innerText = placaText;
+    const logo = document.createElement('img');
     node.setAttribute('id', `li-${idVar}`);
     node.setAttribute('class', 'liPrint animated fadeInLeft fast');
     node.style.listStyle = 'none';
@@ -169,9 +176,10 @@ export class HistoryQRComponent implements OnInit {
     createDiv.style.fontSize = '7pt';
     node.appendChild(createSects);
     node.appendChild(createDiv);
+    node.appendChild(logo);
     // console.log(placaText);
     const qr = qrcode(4, 'L');
-    const urlD =  `https://alp-cloud.com:8445/api/AR_INV-QRcodProdGet/getPlaca/${placaText}`;
+    const urlD =  `https://alp-cloud.com:8446/api/AR_INV-QRcodProdGet/getPlaca/${placaText}`;
     qr.addData(urlD);
     qr.make();
     createSects.innerHTML = qr.createSvgTag(1.6);
@@ -265,7 +273,6 @@ export class HistoryQRComponent implements OnInit {
     this.filtro = a;
   }
 
-
   viewOptionsA() {
     this.conterA = false;
     this.conterB = true;
@@ -326,7 +333,6 @@ export class HistoryQRComponent implements OnInit {
     });
   }
 
-
   prints() {
     var ficha = document.getElementById('dataQR');
     let ventimp = window.open(' ', 'popimpr');
@@ -337,13 +343,11 @@ export class HistoryQRComponent implements OnInit {
     ventimp.close();
   }
 
-
   // Estafuncion cambia la altura de este div al momento de imprimir
   changeHeight(h) {
     const dataQR = document.getElementById('dataQR');
     dataQR.style.height = h;
   }
-
 
   delProd(a) {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -353,7 +357,6 @@ export class HistoryQRComponent implements OnInit {
       },
       buttonsStyling: false
     });
-
 
     swalWithBootstrapButtons.fire({
       title: 'Estás seguro?',

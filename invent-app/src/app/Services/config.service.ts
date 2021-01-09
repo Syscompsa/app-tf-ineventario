@@ -7,7 +7,8 @@ import { configPresets } from '../Models/configPresets';
   providedIn: 'root'
 })
 export class ConfigService {
-  private apiURL = 'https://alp-cloud.com:8446/api';
+  // private apiURL = 'https://alp-cloud.com:8446/api';
+  private apiURL = 'http://localhost:5000/api';
 
   constructor(private http: HttpClient) { }
 
@@ -24,3 +25,6 @@ export class ConfigService {
   }
 
 }
+
+
+

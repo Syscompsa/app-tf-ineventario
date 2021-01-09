@@ -15,60 +15,58 @@
         </div>
         <div class="img" id="imgs" *ngIf="true">
 
-            <label for="fileUp"
-                   style="background-color: black;
+            <label for="fileUp" style="background-color: black;
                    margin: 0px !important; cursor: pointer;
                    color: white; padding: 8px; display: flex;
                    justify-content: center; align-items: center;">
                    <span class="icon-picture" style="font-size: 15pt;"></span>
             </label>
 
-            <input style="width: 0px; height: 0px; opacity: 0;" id="fileUp"
-                   type="file"
-                   (change)="encodeImageFileAsURL();"
-                   [(ngModel)]="_IMGE"
-                   name="_IMGE" >
-            
-            <div id="imgTest"
-                 [ngStyle]="{'background-image': 'url(&quot;' + _IMGE + '&quot;)',
+            <input style="width: 0px; height: 0px; opacity: 0;" id="fileUp" type="file" (change)="encodeImageFileAsURL();" [(ngModel)]="_IMGE" name="_IMGE">
+
+            <div id="imgTest" [ngStyle]="{'background-image': 'url(&quot;' + _IMGE + '&quot;)',
                              'margin-top': '-20px'}">
                 <!-- <img [src]="_IMGE" style="width:
                      100% !important; height: auto !important;"
                      alt="imagen en esepera..."> -->
+
             </div>
 
         </div>
     </div>
 
-    <div id="inpData" >
+    <div id="inpData">
         <div class="semaf">
-            <div class="color"
-                 id="red">
+            <div class="color" id="red">
             </div>
-            <div class="color"
-                 id="green">
+            <div class="color" id="green">
             </div>
         </div>
         <form id="fActivoFijo" class="actFijo">
             <div class="groupA">
                 <div class="inpData" *ngIf="true" style="width: 100%;">
                     <div class="Clase">
+
+                        <div class="d" style="background-color: black; border-top-left-radius: 5px; width: 200px; display: flex; color: white; cursor: pointer;">
+                            <label for="_actCont" title="Activo de Control" style="text-align: center; padding: 10px;">A. C.:
+                              <input type="checkbox" [(ngModel)]="_actCont" name="_actCont" id="_actCont" class="input-control"></label>
+                        </div>
+
                         <div class="d" id="clas" style=" display: flex; flex-direction: column;">
                             <label for="_DP" title="">
                                 Departemento:
                             </label>
                             <div class="d">
-                                <input type="text" id="_dep" #dep
-                                       (keyup)="getDataDep(_DP, DepRead)"
-                                       [(ngModel)]="_DP" name="_DP"
-                                       class="input-control">
+                                <input type="text" id="_dep" #dep (keyup)="getDataDep(_DP, DepRead)" [(ngModel)]="_DP" name="_DP" class="input-control">
                             </div>
                         </div>
+
                         <div class="d" id="clase" id="clas" style="width: 100%;">
                             <label title="">
                             <span class="icon-key-1"></span></label>
                             <input type="text" class="_ClaseB" style="background-color: steelblue; color: white;" readonly disabled class="input-control" [value]="DepRead">
                         </div>
+
                     </div>
                     <!-- SELECT MEDIANTE DROPDOWN -->
                     <div class="input-group mb-3" style="width: 100%;" *ngIf="true">
@@ -85,22 +83,22 @@
                     </div>
                 </div>
                 <!--FECHA INPUT INICIO-->
-                <!-- <div class="inpDates">
-                    <div class="dataDates" *ngIf="FCrea">
+                <div class="inpDates" style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+                    <div class="dataDates" *ngIf="true">
                         <label for="fechacrea">Fecha Creación:</label>
                         <div class="d">
-                            <input type="date" #fecrea id="fechacrea" [(ngModel)]="_FeCREA" name="_FeCREA" class="input-control">
+                            <input type="date" #fecrea id="fecrea" [(ngModel)]="_FeCREA" name="_FeCREA" class="input-control">
                             <div class="formato">
-                                <span class="icon-calendar"></span> (dd/mm/yyyy)
+                                <span class="icon-calendar"></span> (mm/dd/yyyy)
                             </div>
                         </div>
                     </div>
-                    <div class="dataDates" *ngIf="FeInde">
+                    <div class="dataDates" *ngIf="true">
                         <label for="fecha Inicio de Depreciación">Fecha I. Depreciación:</label>
                         <div class="d">
-                            <input type="date" #fedep [(ngModel)]="_FeDEP" name="_FeDEP" id="fechaCompra" class="input-control">
+                            <input type="date" #fedep [(ngModel)]="_FeDEP" name="_FeDEP" id="fedep" class="input-control">
                             <div class="formato">
-                                <span class="icon-calendar"></span> (dd/mm/yyyy)
+                                <span class="icon-calendar"></span> (mm/dd/yyyy)
                             </div>
                         </div>
                     </div>
@@ -108,72 +106,73 @@
                     <div class="dataDates" *ngIf="true">
                         <label for="fechaCompra">Fecha Compra:</label>
                         <div class="d">
-                            <input type="date" #fecomp id="fechaCompra" [(ngModel)]="_FeCOMP" name="_FeCOMP" class="input-control">
+                            <input type="date" #fecomp id="fecomp" [(ngModel)]="_FeCOMP" name="_FeCOMP" class="input-control">
                             <div class="formato">
-                                <span class="icon-calendar"></span> (dd/mm/yyyy)
+                                <span class="icon-calendar"></span> (mm/dd/yyyy)
                             </div>
                         </div>
                     </div>
 
-                    <div class="dataDates" *ngIf="FMod">
+                    <div class="dataDates" *ngIf="true">
                         <label for="fechamod"> Fecha Modificación:</label>
                         <div class="d">
                             <input type="date" #femod [(ngModel)]="_FeMOD" name="_FeMOD" class="input-control">
                             <div class="formato">
-                                <span class="icon-calendar"></span> (dd/mm/yyyy)
+                                <span class="icon-calendar"></span> (mm/dd/yyyy)
                             </div>
                         </div>
                     </div>
 
-                    <div class="dataDates" *ngIf="FFin">
+                    <div class="dataDates" *ngIf="true">
                         <label for="fechafin">Fecha Final:</label>
                         <div class="d">
-                            <input type="date" #fefin id="fechafin" [(ngModel)]="_FeFINAL" name="_FeFINAL" class="input-control">
+                            <input type="date" #fefin id="fefin" [(ngModel)]="_FeFINAL" name="_FeFINAL" class="input-control">
                             <div class="formato">
-                                <span class="icon-calendar"></span> (dd/mm/yyyy)
+                                <span class="icon-calendar"></span> (mm/dd/yyyy)
                             </div>
                         </div>
                     </div>
 
-                    <div class="dataDates" *ngIf="Factual">
+                    <div class="dataDates" *ngIf="true">
                         <label for="fact">Fecha Actual:</label>
                         <div class="d">
                             <input type="date" [(ngModel)]="_FeACT" name="_FeACT" id="fact" class="input-control" #fact>
                             <div class="formato">
-                                <span class="icon-calendar"></span> (dd/mm/yyyy)
+                                <span class="icon-calendar"></span> (mm/dd/yyyy)
                             </div>
                         </div>
                     </div>
 
-                    <div class="dataDates" *ngIf="FCust">
+                    <div class="dataDates" *ngIf="true">
                         <label for="fechafin">Fecha Custodio:</label>
                         <div class="d">
-                            <input type="date" id="fechafin" #fefn [(ngModel)]="_FeFN" name="_FeFN" class="input-control">
+                            <input type="date" id="fefn" #fefn [(ngModel)]="_FeFN" name="_FeFN" class="input-control">
                             <div class="formato">
-                                <span class="icon-calendar">
-                        </span> (dd/mm/yyyy)
+                                <span class="icon-calendar"></span>(mm/dd/yyyy)
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
                 <!--FECHA INPUT FIN-->
             </div>
 
             <div class="groupB ">
                 <!--DATA INPUT INICIO-->
-                <div class="inpData" *ngIf="true">
+                <!-- <div class="inpData" *ngIf="true">
+
+                </div> -->
+
+                <div class="inpData" *ngIf="true" style="display: flex; justify-content: space-between; flex-wrap: wrap; width: 100%;">
                     <div class="dataDates">
                         <label for="fechacrea" title="Código Placa generado automáticamente no se puede modificar">
-                            Placa:
-                        </label>
+                        Placa:
+                    </label>
                         <div class="d">
                             <input type="text" style="background-color: steelblue; color: white;" (keyup.enter)=" focus(clases)" #plac [(ngModel)]="_PLAC" name="_PLAC" id="placa" class="input-control">
                         </div>
                     </div>
-                </div>
 
-                <div class="inpData" *ngIf="true" style="display: flex; justify-content: space-between; flex-wrap: wrap;">
-                    <div class="Clase">
+                    <div class="Clase" style="width: 29%;">
                         <div class="d" id="clas">
                             <label for="_Clase" title="">Clase:</label>
                             <input type="text" id="_Clase" (keyup)="getDataCall(_Class, _cRead)" [(ngModel)]="_Class" name="_Class" #clases class="input-control">
@@ -188,10 +187,7 @@
                                     <button class="btn btn-outline-secondary dropdown-toggle" #btnClase style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                     <span class="icon-search"></span> Selecciona una opción</button>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" id="{{d.codigo}}"
-                                            (click)="getDataCall(d.codigo_aux, d.nombre)"
-                                            *ngFor="let d of modelArr"
-                                            href="javascript: void(0)">
+                                        <a class="dropdown-item" id="{{d.codigo}}" (click)="getDataCall(d.codigo_aux, d.nombre)" *ngFor="let d of modelArr" href="javascript: void(0)">
                                             Codigo: {{d.codigo}}
                                             | Nombre: {{d.nombre}}
                                         </a>
@@ -203,10 +199,8 @@
 
 
 
-                    <div class="Clase" style="width: 48%;">
-                        <div class="d" id="clas" style="width: 100px;">
-                            <label for="_ciu" title="Código de ciudad">
-                        Ciudad:
+                    <div class="Clase" style="width: 29%;">
+                        <div class="d" id="clas" style="width: 100px;"><label for="_ciu" title="Código de ciudad">Ciudad:
                     </label>
                             <input type="text" id="_ciu" #ciud class="input-control" (keyup)="getDataCiudad(_ciudClass, _ciudRead)" [(ngModel)]="_ciudClass" name="_ciudClass">
                         </div>
@@ -249,10 +243,10 @@
                         <div class="Clase">
                             <div class="d" id="clas" style="width: 100px;">
                                 <label for="_cust" title="">
-                        Custodio:
-                    </label>
+                                    Custodio:
+                                </label>
                                 <div class="d">
-                                    <input type="text" id="_cust" #custodio (keyup)="getDataCust(_CustClass, _CustRead)" [(ngModel)]="_CustClass" name="_CustClass" class="input-control">
+                                    <input type="text" id="custodio" #custodio (keyup)="getDataCust(_CustClass, _CustRead)" [(ngModel)]="_CustClass" name="_CustClass" class="input-control">
                                 </div>
                             </div>
                             <div class="d" id="clase" id="clas" style="width: 100%;">
@@ -268,15 +262,15 @@
                         <div class="input-group mb-3" style="width: 100%; position: relative;" *ngIf="optC">
                             <div class="input-group-prepend" style="width: 100%;">
                                 <button class="btn btn-outline-secondary dropdown-toggle" #custOpt style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                <span class="icon-search"></span>
-                                 Selecciona una opción
-                            </button>
+                                  <span class="icon-search"></span>
+                                  Selecciona una opción
+                                </button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" style="font-size: 9pt;" id="{{custo.codigo}}" (click)="getDataCust(custo.codigo, custo.nombre)" *ngFor="let custo of custArr" href="javascript: void(0)">
-                        Codigo: {{custo.codigo}}
-                        | Nombre: {{custo.nombre}}
-                        | Apéllido: {{custo.apellido}}
-                    </a>
+                                        Codigo: {{custo.codigo}}
+                                        | Nombre: {{custo.nombre}}
+                                        | Apéllido: {{custo.apellido}}
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -288,7 +282,7 @@
                         <div class="dataDates">
                             <label for="_ser" title="">Serie:</label>
                             <div class="d">
-                                <input type="text" #serie [(ngModel)]="_SER" name="_SER" id="_ser" class="input-control">
+                                <input type="text" #serie [(ngModel)]="_SER" name="_SER" id="serie" class="input-control">
                             </div>
                         </div>
                     </div>
@@ -329,7 +323,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="inpData" *ngIf="USF" style="width: 48%;">
+                    <div class="inpData" *ngIf="true" style="width: 48%;">
                         <div class="dataDates">
                             <label for="_usf" title="">Usuario Final:</label>
                             <div class="d">
@@ -338,16 +332,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="inpData" *ngIf="USC">
+                <div class="inpData" *ngIf="true" style="display: flex; justify-content: space-between; width: 100%;">
                     <div class="dataDates">
                         <label for="_usc" title="">Usuario Creación:</label>
                         <div class="d">
                             <input type="text" #usercre [(ngModel)]="_UC" name="_UC" id="_usc" class="input-control" [value]="_UC">
                         </div>
                     </div>
-                </div>
-
-                <div class="inpData" *ngIf="true">
                     <div class="dataDates">
                         <label for="_usm" title="">Usuario Modificación:</label>
                         <div class="d">
@@ -355,6 +346,96 @@
                         </div>
                     </div>
                 </div>
+                <div id="accordion">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Datos especiales: </button>
+                            </h5>
+                        </div>
+
+                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                            <div class="card-body">
+                                <div class="inpData" id="datEspec" *ngIf="true">
+                                    <div class="dataDates">
+                                        <label for="_ANO" title="">Año:</label>
+                                        <div class="d">
+                                            <input type="text" [(ngModel)]="_ANO" name="_ANO" id="_ANO" class="input-control" [value]="_ANO">
+                                        </div>
+                                    </div>
+                                    <div class="dataDates">
+                                        <label for="_MOT" title="">Motor:</label>
+                                        <div class="d">
+                                            <input type="text" [(ngModel)]="_MOT" name="_MOT" id="_MOT" class="input-control" [value]="_MOT">
+                                        </div>
+                                    </div>
+                                    <div class="dataDates">
+                                        <label for="_PVEHI" title="">Placa Vehículo:</label>
+                                        <div class="d">
+                                            <input type="text" [(ngModel)]="_PVEHI" name="_PVEHI" id="_PVEHI" class="input-control" [value]="_PVEHI">
+                                        </div>
+                                    </div>
+                                    <div class="dataDates">
+                                        <label for="_CHAS" title="">Chasis:</label>
+                                        <div class="d">
+                                            <input type="text" [(ngModel)]="_CHAS" name="_CHAS" id="_PVEHI" class="input-control" [value]="_CHAS">
+                                        </div>
+                                    </div>
+                                    <div class="dataDates">
+                                        <label for="_CPD" title="">Cod. Padre:</label>
+                                        <div class="d">
+                                            <input type="text" [(ngModel)]="_CPD" name="_CPD" id="_CPD" class="input-control" [value]="_CPD">
+                                        </div>
+                                    </div>
+                                    <div class="dataDates">
+                                        <label for="_CMS" title="">Cod. Matriz STD:</label>
+                                        <div class="d">
+                                            <input type="text" [(ngModel)]="_CMS" name="_CMS" id="_CMS" class="input-control" [value]="_CMS">
+                                        </div>
+                                    </div>
+                                    <div class="dataDates">
+                                        <label for="_EPER" title="">Edi periodo:</label>
+                                        <div class="d">
+                                            <input type="text" [(ngModel)]="_EPER" name="_EPER" id="_EPER" class="input-control" [value]="_EPER">
+                                        </div>
+                                    </div>
+                                    <div class="dataDates">
+                                        <label for="_EDIR" title="">Edi Dirección:</label>
+                                        <div class="d">
+                                            <input type="text" [(ngModel)]="_EDIR" name="_EDIR" id="_EDIR" class="input-control" [value]="_EDIR">
+                                        </div>
+                                    </div>
+                                    <div class="dataDates">
+                                        <label for="_TDIM" title="">Tierra Dimensión:</label>
+                                        <div class="d">
+                                            <input type="text" [(ngModel)]="_TDIM" name="_TDIM" id="_TDIM" class="input-control" [value]="_TDIM">
+                                        </div>
+                                    </div>
+                                    <div class="dataDates">
+                                        <label for="_TLIN" title="">Tierra Linder:</label>
+                                        <div class="d">
+                                            <input type="text" [(ngModel)]="_TLIN" name="_TLIN" id="_TLIN" class="input-control" [value]="_TLIN">
+                                        </div>
+                                    </div>
+                                    <div class="dataDates" style="width: 100%;">
+                                        <label for="_CART" title="">Característica:</label>
+                                        <div class="d">
+                                            <input type="text" [(ngModel)]="_CART" name="_CART" id="_CART" class="input-control" [value]="_CART">
+                                        </div>
+                                    </div>
+                                    <div class="dataDates" style="width: 100%;">
+                                        <label for="_MDPRE" title="">Método Depreciación:</label>
+                                        <div class="d">
+                                            <input type="text" [(ngModel)]="_MDPRE" name="_MDPRE" id="_MDPRE" class="input-control" [value]="_MDPRE">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
                 <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
 
                     <div class="inpData" *ngIf="true" style="width: 48%;">
@@ -449,53 +530,71 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="inpData " *ngIf="VUTL ">
-                    <div class="dataDates ">
-                        <label for="_vitl " title=" ">Vida Útil:</label>
-                        <div class="d ">
-                            <input type="number " #vidul [(ngModel)]="_VUL" name="_VUL " id="_vitl " class="input-control ">
+                <div class="valContainer">
+                    <div class="inpData " *ngIf="VUTL ">
+                        <div class="dataDates ">
+                            <label for="_vitl " title=" ">Vida Útil:</label>
+                            <div class="d ">
+                                <input type="number " #vidul [(ngModel)]="_VUL" name="_VUL " id="_vitl " class="input-control ">
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="inpData " *ngIf="VRES ">
-                    <div class="dataDates ">
-                        <label for="_vares " title=" ">Valor Residual:</label>
-                        <div class="d ">
-                            <input type="number " #vares [(ngModel)]="_VRE " name="_VRE " id="_vares " class="input-control ">
+                    <div class="inpData " *ngIf="true ">
+                        <div class="dataDates ">
+                            <label for="_vares " title=" ">Valor Residual:</label>
+                            <div class="d ">
+                                <input type="number " #vares [(ngModel)]="_VRE " name="_VRE " id="_vares " class="input-control ">
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="inpData " *ngIf="VNOR ">
-                    <div class="dataDates ">
-                        <label for="_vNor " title=" ">Valor Normal:</label>
-                        <div class="d ">
-                            <input type="number " #vnorm [(ngModel)]="_VNO " name="_VNO " id="_vNor " class="input-control ">
+                    <!-- <div class="inpData " *ngIf="true ">
+                      <div class="dataDates ">
+                          <label for="_vares " title=" ">% Valor Residual:</label>
+                          <div class="d ">
+                              <input type="number " #vares [(ngModel)]="_VRE " name="_VRE " id="_vares " class="input-control ">
+                          </div>
+                      </div>
+                  </div> -->
+
+                    <div class="inpData " *ngIf="true ">
+                        <div class="dataDates ">
+                            <label for="_vNor " class="titleLab" title=" ">Valor Normal:</label>
+                            <div class="d ">
+                                <input type="number " #vnorm [(ngModel)]="_VNO " name="_VNO " id="_vNor " class="input-control ">
+                            </div>
                         </div>
                     </div>
-                </div>
 
-
-                <div class="inpData " *ngIf="VREVAL ">
-                    <div class="dataDates ">
-                        <label for="vReval " title=" ">Valor de Revaluo:</label>
-                        <div class="d ">
-                            <input type="number " #vreval id="vReval " [(ngModel)]="_VRVA " name="_VRVA " class="input-control ">
+                    <div class="inpData " *ngIf="true ">
+                        <div class="dataDates ">
+                            <label for="vReval " title=" ">Valor de Revaluo:</label>
+                            <div class="d ">
+                                <input type="number " #vreval id="vReval " [(ngModel)]="_VRVA " name="_VRVA " class="input-control ">
+                            </div>
                         </div>
                     </div>
+
                 </div>
+
+
+
+
                 <hr>
 
-                <div class="container p-3 mt-2 " style="background-color: rgba(123, 126, 108, 0.208); ">
-                    <!-- <p class="text " style="font-size: 14pt; color: steelblue; "><strong>Asigne el Activo a sus cuentas.</strong></p>
+                <div class="container p-3 mt-2 " style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap;  background-color: rgba(123, 126, 108, 0.208); ">
+
+                    <!-- <p class="text " style="font-size: 14pt; color: steelblue; ">
+                            <strong>Asigne el Activo a sus cuentas.</strong>
+                         </p>
                     <hr style="border-color: rgb(219, 219, 219); "> -->
-                    <div class="inpData " *ngIf="CGAS ">
-                        <div class="dataDates ">
-                            <label for="_cGAS " title=" ">Cuenta de Gasto:</label>
-                            <div class="d ">
-                                <input type="text " #cgas [(ngModel)]="_CGT " (keyup)="getDataCuent(_CGT, _CuentRead) " [value]="_CuentRead " name="_CGT " id="_cGAS " class="input-control ">
+
+                    <div class="inpData " *ngIf="true">
+                        <div class="dataDates">
+                            <label for="_cGAS" class="titleLab">Cuenta de Gasto:</label>
+                            <div class="d">
+                                <input type="text" #cgas [(ngModel)]="_CGT" (keyup)="getDataCuent(_CGT, _CuentRead)" [value]="_CuentRead" name="_CGT " id="_cGAS " class="input-control ">
                             </div>
                         </div>
                         <!-- SELECT MEDIANTE DROPDOWN -->
@@ -506,16 +605,16 @@
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" style="font-size: 9pt;" id="{{cuent.codigo}}" (click)="getDataCuent(cuent.codigo, cuent.nombre)" *ngFor="let cuent of cuentasArr " href="javascript: void(0)">
                                         Codigo: {{cuent.codigo}} | Nombre: {{cuent.nombre}}
-                              </a>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                         <!-- SELECT MEDIANTE DROPDOWN -->
                     </div>
 
-                    <div class="inpData " *ngIf="CDAN ">
+                    <div class="inpData " *ngIf="true ">
                         <div class="dataDates ">
-                            <label for="_cDan " title=" ">Cuenta de Depreciación Acumulada:</label>
+                            <label for="_cDan " class="titleLab" title="Cuenta de Depreciación Acumulada de revalor ">CDAR:</label>
                             <div class="d ">
                                 <input type="text " #cdan [(ngModel)]="_CD " (keyup)="getDataCuentB(_CD, _CuentReadB) " [value]="_CuentReadB " name="_CD " id="_cDan " class="input-control ">
                             </div>
@@ -524,10 +623,10 @@
                         <div class="input-group mb-3" style="width: 100%;" *ngIf="optE">
                             <div class="input-group-prepend" style="width: 100%;">
                                 <button class="btn btn-outline-secondary dropdown-toggle" #custOpt style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                          <span class="icon-search"></span> Selecciona una opción</button>
+                                <span class="icon-search"></span> Selecciona una opción</button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" style="font-size: 9pt;" id="{{cuentB.codigo}}" (click)="getDataCuentB(cuentB.codigo, cuentB.nombre)" *ngFor="let cuentB of cuentasArrB" href="javascript: void(0)">
-                                      Codigo: {{cuentB.codigo}} | Nombre: {{cuentB.nombre}}
+                                      Codigo: {{ cuentB.codigo }} | Nombre: {{ cuentB.nombre }}
                                     </a>
                                 </div>
                             </div>
@@ -535,9 +634,9 @@
 
                     </div>
 
-                    <div class="inpData " *ngIf="CDAR ">
+                    <div class="inpData " *ngIf="true ">
                         <div class="dataDates ">
-                            <label for="_cDar " title=" ">Cuenta de Depreciación:</label>
+                            <label for="_cDar " title="Cuenta de Depreciación acumulada normal ">CDAN:</label>
                             <div class="d ">
                                 <input type="text " #cudpre [(ngModel)]="_CDN " (keyup)="getDataCuentC(_CDN, _CuentReadC)" [value]="_CuentReadC " name="_CDN " id="_cDan " class="input-control ">
                             </div>
@@ -561,9 +660,9 @@
 
         </form>
         <div class="btnSettings mt-4 ">
-            <button class="btn btn-primary " (click)="saveItem() ">
+            <!-- <button class="btn btn-primary " (click)="saveItem() ">
                 <span class="icon-doc-1 " style="color: white; "></span>Nuevo Producto
-            </button>
+            </button> -->
             <button class="btn btn-success " (click)="UpdateProduct() " title="Este paso generará un reporte de inventario">
                 <span class="icon-floppy " style="color: rgb(255, 255, 255); "></span>Modificar e Inventariar
             </button>

@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class WebuserService {
   private apiURL = 'https://alp-cloud.com:8446/api';
-  //private apiURL = 'https://localhost:5000/api';
+  // private apiURL = 'https://localhost:5000/api';
 
 
   constructor(private http: HttpClient, public router: Router) { }
@@ -28,7 +28,7 @@ export class WebuserService {
   }
 
   verificacionLog() {
-    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null){
+    if(localStorage.getItem('user') == '' || localStorage.getItem('user') == null) {
       this.router.navigate(['/login']);
     }
   }

@@ -3,14 +3,16 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { QRDATA } from '../Models/QRDATA';
 import { Placa_Post_Url } from '../Models/Placa_Post_Url';
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class GQRService {
 
+  // Para testear local
   private apiURL = 'https://alp-cloud.com:8446/api';
 
-  //Para testear local
   // private apiURL = 'http://localhost:5000/api';
 
   constructor(private http: HttpClient) { }

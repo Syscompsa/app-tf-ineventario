@@ -26,8 +26,8 @@ export class DataCallService {
 
   constructor(private http: HttpClient) { }
 
-  updateProduct(id, content): Observable<any[]> {
-    return this.http.put<any[]>(this.apiURL + 'api/AR_INV-QRcodProdGet/productUpdate/' + id, content);
+  updateProduct(id, content) {
+    return this.http.put(this.apiURL + 'api/AR_INV-QRcodProdGet/productUpdate/' + id, content);
   }
 
 

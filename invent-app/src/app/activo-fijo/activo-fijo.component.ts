@@ -334,12 +334,12 @@ export class ActivoFijoComponent implements OnInit {
   private _COLOR: any;
   private _CIUD: any;
   //#endregion
-public placaServices: any = [];
-public modelData: any[] = [];
-public pId;
-public DepArr;
-public DepRead;
-public reportArr;
+  public placaServices: any = [];
+  public modelData: any[] = [];
+  public pId;
+  public DepArr;
+  public DepRead;
+  public reportArr;
 
   //#region "Obtener la interfaz del componente Configuración de formulario"
 public arr: any[] = [];
@@ -478,9 +478,10 @@ public arr: any[] = [];
     public optionSel;
 
     public val = 0;
-    
+
   ngOnInit() {
-    
+    this.controlDate();
+
     // this.getInterfaz();
     this.fechActual();
     this.data.getDataByPlaca().subscribe( x => {
@@ -537,6 +538,46 @@ public arr: any[] = [];
     });
   }
 
+
+  controlDate() {
+
+    if (this._FeCREA == null || this._FeCREA == undefined || this._FeCREA == '') {
+      this._FeCREA = this.fechActual();
+      console.log('Fecha de creacion: ' + this._FeCREA);
+    }
+
+    if (this._FeDEP == null || this._FeDEP == undefined || this._FeDEP == '') {
+      this._FeDEP = this.fechActual();
+      console.log('Fecha de depre: ' + this._FeDEP);
+    }
+
+    if (this._FeCOMP == null || this._FeCOMP == undefined || this._FeCOMP == '') {
+      this._FeCOMP = this.fechActual();
+      console.log('Fecha de compra: ' + this._FeCOMP);
+    }
+
+    if (this._FeMOD == null || this._FeMOD == undefined || this._FeMOD == '') {
+      this._FeMOD = this.fechActual();
+      console.log('Fecha de Mod: ' + this._FeMOD);
+    }
+
+    if (this._FeFINAL == null || this._FeFINAL == undefined || this._FeFINAL == '') {
+      this._FeFINAL = this.fechActual();
+      console.log('Fecha de Final: ' + this._FeFINAL);
+    }
+
+    if (this._FeACT == null || this._FeACT == undefined || this._FeACT == '') {
+      this._FeACT = this.fechActual();
+      console.log('Fecha de Final: ' + this._FeACT);
+    }
+
+    if (this._FeFN == null || this._FeFN == undefined || this._FeFN == '') {
+      this._FeFN = this.fechActual();
+      console.log('Fecha de Final: ' + this._FeFN);
+    }
+
+  }
+
   minWin() {
     const a = document.getElementById('minBox');
     const b = document.getElementById('picture');
@@ -545,7 +586,7 @@ public arr: any[] = [];
 
     switch(this.val) {
       case 0:
-        this.val = 1;    
+        this.val = 1;
         b.style.width = '0px';
         b.style.height = '0px';
         b.style.padding = '0px';
@@ -574,7 +615,7 @@ public arr: any[] = [];
     }
 
 
-    
+
 
   }
 
@@ -596,118 +637,135 @@ public arr: any[] = [];
       // console.log(this.reportArr);
     });
   }
+    //#region
+    // getInterfaz() {
+    //   this.conf.getConfig().subscribe(
+    //     x => {
+    //       this.arr = [
+    //         this.Placa      = x[0].placa_i,       // 1
+    //         this.CLase      = x[0].clase_i,       // 2
+    //         this.NProd      = x[0].nombre_i,      // 3
+    //         this.Custodio   = x[0].custodio_i,    // 4
+    //         this.Depart     = x[0].dpto_i,        // 5
+    //         this.CIUD       = x[0].ciudad_i,      // 6
+    //         this.Serie      = x[0].serie_i,       // 7
+    //         this.Valor      = x[0].valor_i,       // 8
+    //         this.Activo     = x[0].activo_i,      // 9
+    //         this.Referido   = x[0].refer_i,       // 10
+    //         this.FCrea      = x[0].feccrea_i,     // 11
+    //         this.USC        = x[0].usucrea_i,     // 12
+    //         this.FMod       = x[0].fecmodi_i,     // 13
+    //         this.USM        = x[0].usumodi_i,     // 14
+    //         this.FFin       = x[0].fecfin_i,      // 15
+    //         this.USF        = x[0].userfin_i,     // 16
+    //         this.GRP        = x[0].grupo_i,       // 17
+    //         this.MRC        = x[0].marca_i,       // 18
+    //         this.COLOR      = x[0].color_i,       // 19
+    //         this.FCrea      = x[0].fechac_i,      // 20
+    //         this.FeInde     = x[0].fechac_i,      // 21
+    //         this.PROV       = x[0].proveedor_i,   // 22
+    //         this.MODL       = x[0].modelo_i,      // 23
+    //         this.VUTL       = x[0].vidautil_i,    // 24
+    //         this.VRES       = x[0].valres_i,      // 25
+    //         this.Factual    = x[0].fechaa_i,      // 26
+    //         this.FCust      = x[0].fcustodio,     // 27
+    //         this.CGAS       = x[0].cgasto_i,      // 28
+    //         this.CDAN       = x[0].cdan_i,        // 29
+    //         this.CDAR       = x[0].cdar_i,        // 30
+    //         this.VNOR       = x[0].val_normal_i,  // 32
+    //         this.VREVAL     = x[0].val_reval_i,   // 33
+    //         this.Imagen     = x[0].imagen         // 34
+    //       ];
 
-  // getInterfaz() {
-  //   this.conf.getConfig().subscribe(
-  //     x => {
-  //       this.arr = [
-  //         this.Placa      = x[0].placa_i,       // 1
-  //         this.CLase      = x[0].clase_i,       // 2
-  //         this.NProd      = x[0].nombre_i,      // 3
-  //         this.Custodio   = x[0].custodio_i,    // 4
-  //         this.Depart     = x[0].dpto_i,        // 5
-  //         this.CIUD       = x[0].ciudad_i,      // 6
-  //         this.Serie      = x[0].serie_i,       // 7
-  //         this.Valor      = x[0].valor_i,       // 8
-  //         this.Activo     = x[0].activo_i,      // 9
-  //         this.Referido   = x[0].refer_i,       // 10
-  //         this.FCrea      = x[0].feccrea_i,     // 11
-  //         this.USC        = x[0].usucrea_i,     // 12
-  //         this.FMod       = x[0].fecmodi_i,     // 13
-  //         this.USM        = x[0].usumodi_i,     // 14
-  //         this.FFin       = x[0].fecfin_i,      // 15
-  //         this.USF        = x[0].userfin_i,     // 16
-  //         this.GRP        = x[0].grupo_i,       // 17
-  //         this.MRC        = x[0].marca_i,       // 18
-  //         this.COLOR      = x[0].color_i,       // 19
-  //         this.FCrea      = x[0].fechac_i,      // 20
-  //         this.FeInde     = x[0].fechac_i,      // 21
-  //         this.PROV       = x[0].proveedor_i,   // 22
-  //         this.MODL       = x[0].modelo_i,      // 23
-  //         this.VUTL       = x[0].vidautil_i,    // 24
-  //         this.VRES       = x[0].valres_i,      // 25
-  //         this.Factual    = x[0].fechaa_i,      // 26
-  //         this.FCust      = x[0].fcustodio,     // 27
-  //         this.CGAS       = x[0].cgasto_i,      // 28
-  //         this.CDAN       = x[0].cdan_i,        // 29
-  //         this.CDAR       = x[0].cdar_i,        // 30
-  //         this.VNOR       = x[0].val_normal_i,  // 32
-  //         this.VREVAL     = x[0].val_reval_i,   // 33
-  //         this.Imagen     = x[0].imagen         // 34
-  //       ];
+    //       if (this.arr[0] == '0') { this.arr.push([ this.Placa = false ]); } else { this.arr.push([ this.Placa = true ]); }
 
-  //       if (this.arr[0] == '0') { this.arr.push([ this.Placa = false ]); } else { this.arr.push([ this.Placa = true ]); }
+    //       if (this.arr[1] == '0') { this.arr.push([ this.CLase = false ]); } else { this.arr.push([ this.CLase = true ]); }
 
-  //       if (this.arr[1] == '0') { this.arr.push([ this.CLase = false ]); } else { this.arr.push([ this.CLase = true ]); }
+    //       if (this.arr[2] == '0') { this.arr.push([ this.NProd = false ]); } else { this.arr.push([ this.NProd = true ]); }
 
-  //       if (this.arr[2] == '0') { this.arr.push([ this.NProd = false ]); } else { this.arr.push([ this.NProd = true ]); }
+    //       if (this.arr[3] == '0') { this.arr.push([ this.Custodio = false ]); } else { this.arr.push([ this.Custodio = true ]); }
 
-  //       if (this.arr[3] == '0') { this.arr.push([ this.Custodio = false ]); } else { this.arr.push([ this.Custodio = true ]); }
+    //       if (this.arr[4] == '0') { this.arr.push([ this.Depart = false ]); } else { this.arr.push([ this.Depart = true ]); }
 
-  //       if (this.arr[4] == '0') { this.arr.push([ this.Depart = false ]); } else { this.arr.push([ this.Depart = true ]); }
+    //       if (this.arr[5] == '0') { this.arr.push([ this.Depart = false ]); } else { this.arr.push([ this.Depart = true ]); }
 
-  //       if (this.arr[5] == '0') { this.arr.push([ this.Depart = false ]); } else { this.arr.push([ this.Depart = true ]); }
+    //       if (this.arr[6] == '0') { this.arr.push([ this.CIUD = false ]); } else { this.arr.push([ this.CIUD = true ]); }
 
-  //       if (this.arr[6] == '0') { this.arr.push([ this.CIUD = false ]); } else { this.arr.push([ this.CIUD = true ]); }
+    //       if (this.arr[7] == '0') { this.arr.push([ this.Serie = false ]); } else { this.arr.push([ this.Serie = true ]); }
 
-  //       if (this.arr[7] == '0') { this.arr.push([ this.Serie = false ]); } else { this.arr.push([ this.Serie = true ]); }
+    //       if (this.arr[8] == '0') { this.arr.push([ this.Valor = false ]); } else { this.arr.push([ this.Valor = true ]); }
 
-  //       if (this.arr[8] == '0') { this.arr.push([ this.Valor = false ]); } else { this.arr.push([ this.Valor = true ]); }
+    //       if (this.arr[9] == '0') { this.arr.push([ this.Activo = false ]); } else { this.arr.push([ this.Activo = true ]); }
 
-  //       if (this.arr[9] == '0') { this.arr.push([ this.Activo = false ]); } else { this.arr.push([ this.Activo = true ]); }
+    //       if (this.arr[10] == '0') { this.arr.push([ this.Referido = false ]); } else { this.arr.push([ this.Referido = true ]); }
 
-  //       if (this.arr[10] == '0') { this.arr.push([ this.Referido = false ]); } else { this.arr.push([ this.Referido = true ]); }
+    //       if (this.arr[11] == '0') { this.arr.push([ this.FCrea = false ]); } else { this.arr.push([ this.FCrea = true ]); }
 
-  //       if (this.arr[11] == '0') { this.arr.push([ this.FCrea = false ]); } else { this.arr.push([ this.FCrea = true ]); }
+    //       if (this.arr[12] == '0') { this.arr.push([ this.USC = false ]); } else { this.arr.push([ this.USC = true ]); }
 
-  //       if (this.arr[12] == '0') { this.arr.push([ this.USC = false ]); } else { this.arr.push([ this.USC = true ]); }
+    //       if (this.arr[13] == '0') { this.arr.push([ this.FMod = false ]); } else { this.arr.push([ this.FMod = true ]); }
 
-  //       if (this.arr[13] == '0') { this.arr.push([ this.FMod = false ]); } else { this.arr.push([ this.FMod = true ]); }
+    //       if (this.arr[14] == '0') { this.arr.push([ this.USM = false ]); } else { this.arr.push([ this.USM = true ]); }
 
-  //       if (this.arr[14] == '0') { this.arr.push([ this.USM = false ]); } else { this.arr.push([ this.USM = true ]); }
+    //       if (this.arr[15] == '0') { this.arr.push([ this.FFin = false ]); } else { this.arr.push([ this.FFin = true ]); }
 
-  //       if (this.arr[15] == '0') { this.arr.push([ this.FFin = false ]); } else { this.arr.push([ this.FFin = true ]); }
+    //       if (this.arr[16] == '0') { this.arr.push([ this.USF = false ]); } else { this.arr.push([ this.USF = true ]); }
 
-  //       if (this.arr[16] == '0') { this.arr.push([ this.USF = false ]); } else { this.arr.push([ this.USF = true ]); }
+    //       if (this.arr[17] == '0') { this.arr.push([ this.GRP = false ]); } else { this.arr.push([ this.GRP = true ]); }
 
-  //       if (this.arr[17] == '0') { this.arr.push([ this.GRP = false ]); } else { this.arr.push([ this.GRP = true ]); }
+    //       if (this.arr[18] == '0') { this.arr.push([ this.MRC = false ]); } else { this.arr.push([ this.MRC = true ]); }
 
-  //       if (this.arr[18] == '0') { this.arr.push([ this.MRC = false ]); } else { this.arr.push([ this.MRC = true ]); }
+    //       if (this.arr[19] == '0') { this.arr.push([ this.COLOR = false ]); } else { this.arr.push([ this.COLOR = true ]); }
 
-  //       if (this.arr[19] == '0') { this.arr.push([ this.COLOR = false ]); } else { this.arr.push([ this.COLOR = true ]); }
+    //       if (this.arr[20] == '0') { this.arr.push([ this.FCrea = false ]); } else { this.arr.push([ this.FCrea = true ]); }
 
-  //       if (this.arr[20] == '0') { this.arr.push([ this.FCrea = false ]); } else { this.arr.push([ this.FCrea = true ]); }
+    //       if (this.arr[21] == '0') { this.arr.push([ this.FeInde = false ]); } else { this.arr.push([ this.FeInde = true ]); }
 
-  //       if (this.arr[21] == '0') { this.arr.push([ this.FeInde = false ]); } else { this.arr.push([ this.FeInde = true ]); }
+    //       if (this.arr[22] == '0') { this.arr.push([ this.PROV = false ]); } else { this.arr.push([ this.PROV = true ]); }
 
-  //       if (this.arr[22] == '0') { this.arr.push([ this.PROV = false ]); } else { this.arr.push([ this.PROV = true ]); }
+    //       if (this.arr[23] == '0') { this.arr.push([ this.MODL = false ]); } else { this.arr.push([ this.MODL = true ]); }
 
-  //       if (this.arr[23] == '0') { this.arr.push([ this.MODL = false ]); } else { this.arr.push([ this.MODL = true ]); }
+    //       if (this.arr[24] == '0') { this.arr.push([ this.VUTL = false ]); } else { this.arr.push([ this.VUTL = true ]); }
 
-  //       if (this.arr[24] == '0') { this.arr.push([ this.VUTL = false ]); } else { this.arr.push([ this.VUTL = true ]); }
+    //       if (this.arr[24] == '0') { this.arr.push([ this.VRES = false ]); } else { this.arr.push([ this.VRES = true ]); }
 
-  //       if (this.arr[24] == '0') { this.arr.push([ this.VRES = false ]); } else { this.arr.push([ this.VRES = true ]); }
+    //       if (this.arr[25] == '0') { this.arr.push([ this.Factual = false ]); } else { this.arr.push([ this.Factual = true ]); }
 
-  //       if (this.arr[25] == '0') { this.arr.push([ this.Factual = false ]); } else { this.arr.push([ this.Factual = true ]); }
+    //       if (this.arr[26] == '0') { this.arr.push([ this.FCust = false ]); } else { this.arr.push([ this.FCust = true ]); }
 
-  //       if (this.arr[26] == '0') { this.arr.push([ this.FCust = false ]); } else { this.arr.push([ this.FCust = true ]); }
+    //       if (this.arr[27] == '0') { this.arr.push([ this.CGAS = false ]); } else { this.arr.push([ this.CGAS = true ]); }
 
-  //       if (this.arr[27] == '0') { this.arr.push([ this.CGAS = false ]); } else { this.arr.push([ this.CGAS = true ]); }
+    //       if (this.arr[28] == '0') { this.arr.push([ this.CDAN = false ]); } else { this.arr.push([ this.CDAN = true ]); }
 
-  //       if (this.arr[28] == '0') { this.arr.push([ this.CDAN = false ]); } else { this.arr.push([ this.CDAN = true ]); }
+    //       if (this.arr[29] == '0') { this.arr.push([ this.CDAR = false ]); } else { this.arr.push([ this.CDAR = true ]); }
 
-  //       if (this.arr[29] == '0') { this.arr.push([ this.CDAR = false ]); } else { this.arr.push([ this.CDAR = true ]); }
+    //       if (this.arr[30] == '0') { this.arr.push([ this.VNOR = false ]); } else { this.arr.push([ this.VNOR = true ]); }
 
-  //       if (this.arr[30] == '0') { this.arr.push([ this.VNOR = false ]); } else { this.arr.push([ this.VNOR = true ]); }
+    //       if (this.arr[31] == '0') { this.arr.push([ this.VREVAL = false ]); } else { this.arr.push([ this.VREVAL = true ]); }
 
-  //       if (this.arr[31] == '0') { this.arr.push([ this.VREVAL = false ]); } else { this.arr.push([ this.VREVAL = true ]); }
+    //       if (this.arr[32] == '0') { this.arr.push([ this.Imagen = false ]); } else { this.arr.push([ this.Imagen = true ]); }
 
-  //       if (this.arr[32] == '0') { this.arr.push([ this.Imagen = false ]); } else { this.arr.push([ this.Imagen = true ]); }
+    //     }
+    //   );
+    // }
+    //#endregion
 
-  //     }
-  //   );
-  // }
-  //#endregion
+
+    //#region newNGMODEL
+    public _ANO;
+    public _MOT;
+    public _PVEHI;
+    public _CPD;
+    public _CMS;
+    public _EPER;
+    public _EDIN;
+    public _EDIR;
+    public _CANT;
+    public _TDIM;
+    public _TLIN;
+    public _CART;
+    public _MDPRE;
+    //#endregion
 
     focus(inputs) {
     // console.log('Estamos en Focus')
@@ -759,7 +817,7 @@ public arr: any[] = [];
     });
 
     this.funcClose(true, false, false, false, false, false, false, false);
-    
+
     }
 
     getDataGrupo(w, y) {
@@ -875,6 +933,7 @@ public arr: any[] = [];
       });
       this.funcClose(false, false, false, false, false, false, true, false);
     }
+
     getDataCuent(w, y) {
       const promise = new Promise((resolve, reject) => {
         this.data.getDataCuentas(this._CGT)
@@ -899,6 +958,7 @@ public arr: any[] = [];
 
       this.funcClose(false, false, false, true, false, false, false, false);
     }
+
     getDataCuentB(w, y) {
 
       // this.data.getDataCuentas(this._CGT).subscribe(x => {
@@ -932,23 +992,23 @@ public arr: any[] = [];
         this.data.getDataCuentas(this._CDN)
         .subscribe(
           x => {
-          
+
           this.cuentasArrC = x;
-          
+
           console.log(this._CDN);
           console.log(this.cuentasArrC);
-          
+
           let _ClassRead = {
             codigo: this.cuentasArrB.codigo
           };
-          
+
           resolve(this._CuentReadC = _ClassRead.codigo);
-          
+
           const a: string[]  = [
             this._CuentClassC = w,
             this._CuentReadC  = y
           ];
-          
+
           console.log(a);
 
           });
@@ -1125,11 +1185,12 @@ public arr: any[] = [];
     }
     }
     //#endregion
+    public _CHAS;
 
     public valu: number;
     //#region  "Update function()"
     UpdateProduct() {
-      
+
       this.sendReporte();
       if(this._IMGE != '' || this._IMGE != null) {
         // console.log('no esta vacio');
@@ -1140,6 +1201,7 @@ public arr: any[] = [];
         this.valu = 0;
         console.log(this.valu);
       }
+
       let arr: any = {
         placa: this._PLAC,
         clase: this._Class,
@@ -1148,66 +1210,68 @@ public arr: any[] = [];
         dpto: this._DP,
         ciudad: this._ciudClass,
         serie: this._SER,
-        valor: this._VLR,
-        activo: this.varAct,
-        refer: this._REFE + ' / ' + this.optionSel,
-        // feccrea: this._FeCREA,
-        usucrea: this._UC,
-        // fecmodi: this._FeMOD,
-        usumodi: this._USMO,
-        // fecfin: this._FeFINAL,
-        // horafin: this._FeCOMP,
-        userfin:  this._USFI,
-        // barra: "",
+        valor: this._VNO,
+        activo: "S",
+        refer: this._REFE,
+        feccrea: this._FeCREA,
+        usucrea: localStorage.getItem('User'),
+        fecmodi: this._FeMOD,
+        usumodi: localStorage.getItem('User'),
+        fecfin: this._FeFINAL,
+        horafin: '',
+        userfin: localStorage.getItem('User'),
+        barra: "009371",
         grupo: this._GRPO,
         marca: this._MRCA,
         color: this._CLR,
-        // fechac: this._FeACT,
+        fechac: this._FeACT,
         proveedor: this._PRVR,
         modelo: this._MDL,
-        vidautil:this._VUL,
-        // fechaa: this._FeDEP,
-        // fcustodio: this._FeFN,
+        vidautil: this._VUL,
+        valres: this._VRE,
+        valoR2: 0.00,
+        fechaa: this._FeDEP,
+        fcustodio: this._FeFN,
         cgasto: this._CGT,
-        cdan: this._CD,
-        cdar: this._CDN,
-        vaL_NORMAL: this._VLR,
+        cdan: this._CDN,
+        cdar: this._CD,
+        vaL_NORMAL: this._VNO,
         vaL_REVAL: this._VRVA,
-        // imagen: "",
-        valoR_RESI: this._VRE,
-        // valoR_RES2: 0.00,
-        // placa_aux: "",
-         imagenbit: this._IMGE,
-         id: this.pId,
-         af_control: this._actCont,
-         controlImg: this.valu
+        imagen: this._IMGE,
+        valoR_RESI: 0.00,
+        valoR_RES2: 0.00,
+        af_control: this._actCont,
+        periodo: this._ANO,
+        motor: this._MOT,
+        chasis: this._CHAS,
+        cpadre: this._CPD,
+        cmatriz_nomstd: this._CMS,
+        edi_periodo: this._EPER,
+        edi_direccion: this._EDIR,
+        caracteristica: this._TDIM,
+        terre_dimension: this._TDIM,
+        terre_linder: this._TLIN,
+        met_depreciacion: this._MDPRE,
+        placa_aux: this._PVEHI
       };
 
-       //console.log(arr);
-      if (this.pId == '') {
+      this.data.updateProduct(this._PLAC, arr).subscribe(x => {
+        arr = x;
         Swal.fire({
-          icon: 'info',
-          title: 'Oops...',
-          text: 'Este producto es nuevo, no puedes actualizarlo!'
-        });
-      } else {
-        this.data.updateProduct(this.pId, arr).subscribe(x => {          
-          arr = x;
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Tu producto ha sido editado con éxito, se ha generado movimiento de inventario.',
-            showConfirmButton: false,
-            timer: 2500
-          })
+          position: 'center',
+          icon:     'success',
+          title:    'Tu producto ha sido editado con éxito, se ha generado movimiento de inventario.',
+          showConfirmButton: false,
+          timer:             2500
+        })
 
-          console.log(arr);
-          
-        }
-        )
+        console.log(arr);
+
       }
+      )
+
     }
-    
+
     //#endregion
     public varAct;
     activChange() {
@@ -1241,6 +1305,7 @@ public arr: any[] = [];
       // Lo ordenas a gusto.
      // console.log('Fecha');
       this.datenow = y + '-' + m + '-' + d;
+      return this.datenow;
     }
 
     encodeImageFileAsURL() {

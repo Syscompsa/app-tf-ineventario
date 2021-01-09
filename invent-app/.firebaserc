@@ -1,7 +1,6 @@
 {
   "projects": {
-    "default": "inventory-bb9fa"
+    "default": "tc-app-inv",
+    "TC": "tc-inv"
   }
 }
-
-
