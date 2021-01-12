@@ -18,7 +18,7 @@ export class HistoryQRComponent implements OnInit {
   constructor(public QRData: GQRService, public data: DataCallService) { }
 
   public dataQRExtract: any;
-  public https = 'https://alp-cloud.com:8445/api/AR_INV-QRcodProdGet/getPlaca/';
+  public https = 'https://alp-cloud.com:8446/api/AR_INV-QRcodProdGet/getPlaca/';
   public conterA = true;
   public conterB = false;
   public departemento;
@@ -67,23 +67,40 @@ export class HistoryQRComponent implements OnInit {
     tooltip.style.display = disp;
   }
 
+  public CountLIs: boolean;
+  showContLi(a) {
+    return this.CountLIs = a;
+  }
+
+  controlLi(a, placa, nombre) {
+    for (let i = 0; i <= a; i++) {
+      console.log(i);
+      this.imprimirUnidad(placa, nombre);
+    }
+  }
+
   imprimirUnidad(placa, nombre) {
+
     const ids = document.getElementById(`box-${placa}`);
     const contenidoPrev = document.getElementById(`contenidoPrev`);
     const modImp = document.getElementById('modalPrint');
+
     switch (this.ensi) {
+
       case true:
         this.ensi = false;
-        contenidoPrev.appendChild(this.createLi(placa, placa, nombre));
+        this.showContLi(true);
+        contenidoPrev.appendChild(this.createLi(placa, placa, nombre, 1, 10));
         ids.style.border = 'dashed 2px green';
         ids.style.borderRadius = '5px';
         ids.style.boxShadow = '3px 3px 7px rgba(0,0,0,0.5)';
         ids.style.transition = 'ease all 0.5s';
         // modImp.appendChild(this.createLi(id, placa));
-
         break;
+
       case false:
         this.ensi = true;
+        this.showContLi(false);
         contenidoPrev.removeChild(document.getElementById(`li-${placa}`));
         ids.style.border = 'solid 1px gray';
         ids.style.borderRadius = '0px';
@@ -92,13 +109,15 @@ export class HistoryQRComponent implements OnInit {
         // modImp.removeChild(document.getElementById(`li-${id}`));
         // this.objectSelectStyle(ids, 'solid', 'rgba(0,0,0,0.2)', '1px');
         break;
+
     }
+    
   }
 
 
   createQRO(placa) {
     const qr = qrcode(4, 'L');
-    const url = `https://alp-cloud.com:8445/api/AR_INV-QRcodProdGet/getPlaca/${placa}`;
+    const url = `https://alp-cloud.com:8446/api/AR_INV-QRcodProdGet/getPlaca/${placa}`;
     qr.addData(url);
     qr.make();
     // qr.isDark(2, 2);
@@ -151,8 +170,10 @@ export class HistoryQRComponent implements OnInit {
    return this.contEt;
   }
 
+  public LogoTC: string = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAYAAAAe2bNZAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAw5JREFUeNrsWOtt2zAQtgsNwA3KThBlgnqDqhOEmSDuBNEGgidgN5A7Ad0J5E4gewLZE7hScWd8+UBKctDkVw44SKb4uMd3D3q5eHta9Zz3bCLfdj3vez4NP5aRCUYWD5t87tnCWIoOwvp+7Pmu52KmwINQ33HA9dz0fHlDbkbOaNQyVc/riMQnMePA5wnt1IrqmoNo/Euep4QLn9SCS9mghcM37Mv/RIwb3X8QKAwDGfn1HnyvG9gJvLDvdynNifZy3gvy4rMOAFy/Ag8daG5F27H5QeauYey6KIA2cw5vhfU9B2t2JGQFIc5UojF0YQWWKYWdbLKiKEi5zZAgnnCSw35GuEVj6MJyAg8lhGeKfGQ/I+PdhKVLFMaBm5x8DBCuNbmziFiU8ZDPEEIVNJlEjxXpfURbC3MG+i3Pr/I8gxJKG8hfBqJnA9GqoT6MbxekYYpVCLZgIHeUGBW0BvdJUiZSfRGhjOSJBzn0JJrkVIcWN+QeBPerKCTwEdM6Zhm1QhvBRoB04OcI2RI4S9iAc1EdGSvBeu0M8I6STlwnIslRUmMlOnJjAdFZyztm+dVYM8STmoSlYmkBhXQTTdcLS2aJUMZihmA9yvOO1jxLIAzgfwQseFFgGP9Da57mgLck8+cjlmoi2NE14YYiW7wmkkwEU57AaEkoxUcAZlDnU8JUiWTGljKRVtLPSHIdB0A2MrkQPz/AWEWHHCQx3lPr6oT3gpcj4M9IKVErb8ckdjP9HBKtpb+xKbNzQNyNdHRTmdOKleqRpNcwcJcTQlmQfLf4oPchB7kpUBF+d2qg8P5LDdkNiy3Umq2EtKPSkUM4Own9LTThPPcnROF+MdFcO+pla7gvd6DdhUpEA+HvoFx08K4FNqcke5Xa0iUsh9aghW8NXNoCZN0LHabzAl1LasgxBdanFV3KOliE3ysqB1WkDdA8VMD7BfqZC1izpXJjPoE1DnQT2JPVzlAm9LcHDHyT9x9gUQPP58g5hTwf9U8GDx2Ypx51RVr6yI2Rr7yx5kstGcvC19LyV4ABAAUt9oG/LdAKAAAAAElFTkSuQmCC';
 
-  createLi(idVar, placaText, nombre) {
+  createLi(idVar, placaText, nombre, n, numeracion) {
+
     const node = document.createElement('li');
     const logo = document.createElement('img');
     node.setAttribute('id', `li-${idVar}`);
@@ -172,7 +193,13 @@ export class HistoryQRComponent implements OnInit {
     node.style.backgroundColor = 'whitesmoke';
 
     const createDiv = document.createElement('div');
-    createDiv.innerHTML = `<strong> Placa: ${placaText} \n Nombre:  ${nombre} </strong>`;
+    createDiv.innerHTML = ` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <img src='${this.LogoTC}' width='15px' height='auto'><br>
+                            <strong> Placa: ${placaText} <br>
+                            Nombre:  ${nombre} </strong> <p> ${n}/${numeracion} </p>`;
+
     createDiv.style.fontSize = '7pt';
     node.appendChild(createSects);
     node.appendChild(createDiv);
@@ -184,6 +211,7 @@ export class HistoryQRComponent implements OnInit {
     qr.make();
     createSects.innerHTML = qr.createSvgTag(1.6);
     return node;
+
   }
 
   limpiarLi() {
@@ -259,8 +287,6 @@ export class HistoryQRComponent implements OnInit {
   }
 
   getQRbyCustName(CustName) {
-
-    // console.log(CustName);
     this.QRData.getDataQRByCustName(CustName).subscribe(QRDATA => {
       this.dataQRExtract = QRDATA;
       console.log(QRDATA);
@@ -369,8 +395,7 @@ export class HistoryQRComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         this.data.delProduct(a).subscribe(x => {
-          // this.QRDataFunc();
-         this.getDep(this.SearchDep);
+          this.getDep(this.SearchDep);
         });
         swalWithBootstrapButtons.fire(
           'Eliminado!',

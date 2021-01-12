@@ -22,7 +22,7 @@
 </div>
 
 <div class="cons container" id="const">
-    <div class="paginador">
+    <div class="paginador"> 
         <pagination-controls (pageChange)="pageActual = $event">
         </pagination-controls>
     </div>
@@ -133,13 +133,15 @@
     </div>
 
     <div class="dataQR mb-4 animated fadeIn" id="dataQR" *ngIf="conterB">
-        <div class="boxChangeNumb animated fadeInDownBig fast" title="Cantidad de etquetas a crear" *ngIf="true">
-            <label for="sCant">Cantidad: </label>
-            <input id="sCant" type="number" [(ngModel)]="contEt" name="contEt" class="form-control">
-            <button class="btn btn-danger m-2" style="float: right;"><span class="icon-ok"></span>Ok</button>
-        </div>
-        <div class="box" style="cursor: pointer;" *ngFor="let a of dataQRExtract | paginate: {itemsPerPage: 12, currentPage: pageActual}" id="box-{{a.id}}" (click)="imprimirUnidad(a.placa, a.nombre)">
-            <div class="info" data-title="Nombre: {{a.nombre}}&#10;Placa: {{a.placa}}&#10;Ciudad: {{a.nomCiudad}}&#10;Custodio: {{a.nombreCustodio}}&#10;Marca: {{a.nomMarca}}&#10;Departamento: {{a.nomDpto}}">
+        
+        <!-- imprimirUnidad(a.placa, a.nombre) -->
+        <div class="box" style="cursor: pointer;" *ngFor="let a of dataQRExtract | paginate: {itemsPerPage: 12, currentPage: pageActual}" id="box-{{a.id}}" (click)="showContLi(true)">
+            <div class="info" data-title="  Nombre: {{a.nombre}}&#10;
+                                            Placa: {{a.placa}}&#10;
+                                            Ciudad: {{a.nomCiudad}}&#10;
+                                            Custodio: {{a.nombreCustodio}}&#10;
+                                            Marca: {{a.nomMarca}}&#10;
+                                            Departamento: {{a.nomDpto}}" >
                 <span class="icon-info"></span>
             </div>
             <div class="QR" [id]="a.placa">
@@ -149,7 +151,22 @@
                 Nombre:<strong> {{a.nombre}} </strong><br> Placa:
                 <strong> {{a.placa}} </strong><br>
             </div>
+
+
+            <div class="boxChangeNumb animated fadeInDownBig fast" title="Cantidad de etquetas a crear" *ngIf="CountLIs">
+                <label for="sCant">Cantidad: </label>
+                <input id="sCant" type="number" [(ngModel)]="contEt" name="contEt" class="form-control">                
+                <button class="btn btn-warning m-2"  style="float: right;">
+                    <span class="icon-ok"></span>Ok
+                </button>    
+                <button class="btn btn-danger m-2" (click)="showContLi(false)" style="float: right;">
+                    <span class="icon-cancel"></span>Cancel
+                </button>
+            </div>
+
         </div>
+
+
     </div>
 
     <div class="dataQR" id="dataQRB" *ngIf="conterA">
