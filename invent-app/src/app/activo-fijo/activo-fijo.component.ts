@@ -429,6 +429,24 @@ public arr: any[] = [];
   // Variables para desplazarse con focus elementNative FIN
   //#endregion
 
+
+
+    //#region newNGMODEL
+    public _ANO;
+    public _MOT;
+    public _PVEHI;
+    public _CPD;
+    public _CMS;
+    public _EPER;
+    public _EDIN;
+    public _EDIR;
+    public _CANT;
+    public _TDIM;
+    public _TLIN;
+    public _CART;
+    public _MDPRE;
+    //#endregion
+
   //#region "ng IF dropdown"
   public optA: boolean;
   public optB: boolean;
@@ -489,29 +507,33 @@ public arr: any[] = [];
        const placaNow = this.placaServices[0].placa_Post;
        // console.log(this.placaServices);
        this.data.getDataByPlacaId(placaNow).subscribe(resp => {
+
         this.modelData[0] = resp;
-        this._IMGE = this.modelData[0][0].imagenbit;
+        console.log('-------------------------------------');
+        console.log(this.modelData[0]);
+        console.log('-------------------------------------');
+        // this._IMGE = localStorage.getItem('ProductImage');
         // console.log(this.modelData[0]);
-        this._nProducto = this.modelData[0][0].nombre;
-        this._DP = this.modelData[0][0].dpto;
-        this._PLAC = this.modelData[0][0].placa;
+        // this._nProducto = this.modelData[0][0].nombre;
+        // this._DP = this.modelData[0][0].dpto;
+        // this._PLAC = this.modelData[0][0].placa;
         // console.log(this._PLAC);
-        this.pId = this.modelData[0][0].id;
-        this._actCont = this.modelData[0][0].af_control;
-        this._CustClass = this.modelData[0][0].custodio;
+        // this.pId = this.modelData[0][0].id;
+        // this._actCont = this.modelData[0][0].af_control;
+        // this._CustClass = this.modelData[0][0].custodio;
         // // console.log("Departamentos: " + this.modelData[0].dpto);
-        this._SER       = this.modelData[0][0].serie;
-        this._VLR       = this.modelData[0][0].vaL_NORMAL;
-        this._REFE      = localStorage.getItem('User');
+        // this._SER       = this.modelData[0][0].serie;
+        // this._VLR       = this.modelData[0][0].vaL_NORMAL;
+        // this._REFE      = localStorage.getItem('User');
         // this._UC        = this.modelData[0][0].usucrea;
-        this._actvClass = this.modelData[0][0].activo;
+        // this._actvClass = this.modelData[0][0].activo;
         // this._USMO      = this.modelData[0][0].usumodi;
         // this._USFI      = this.modelData[0][0].userfin;
-        this._GRPO      = this.modelData[0][0].grupo;
-        this._MRCA      = this.modelData[0][0].marca;
-        this._CLR       = this.modelData[0][0].color;
-        this._PRVR      = this.modelData[0][0].proveedor;
-        this._MDL       = this.modelData[0][0].modelo;
+        // this._GRPO      = this.modelData[0][0].grupo;
+        // this._MRCA      = this.modelData[0][0].marca;
+        // this._CLR       = this.modelData[0][0].color;
+        // this._PRVR      = this.modelData[0][0].proveedor;
+        // this._MDL       = this.modelData[0][0].modelo;
         // this._VUL       = this.modelData[0][0].vidautil;
         // this._VRE       = this.modelData[0][0].valoR_RESI;
         // this._CGT       = this.modelData[0][0].cgasto;
@@ -520,8 +542,8 @@ public arr: any[] = [];
         // this._VNO       = this.modelData[0][0].vaL_NORMAL;
         // this._VRVA      = this.modelData[0][0].vaL_REVAL;
         // this._VLR      = this.modelData[0][0].valor;
-        this._ciudClass = this.modelData[0][0].ciudad;
-        this._Class     = this.modelData[0][0].clase;
+        // this._ciudClass = this.modelData[0][0].ciudad;
+        // this._Class     = this.modelData[0][0].clase;
         // this._ActiveClass = '';
         // this._FeCREA    = this.modelData[0][0].feccrea.slice(0, 10);
         // this._FeMOD     = this.modelData[0][0].fecmodi.slice(0, 10);
@@ -531,11 +553,15 @@ public arr: any[] = [];
         // this._FeACT     = new Date();
         // this._FeFN      = this.modelData[0][0].fcustodio.slice(0, 10);
         //Envia el reprte cuando carguen estos datos
+
       }, err => {
         this.cleanForm();
       }
       );
     });
+
+    console.log(this._IMGE);
+
   }
 
 
@@ -748,23 +774,6 @@ public arr: any[] = [];
     //     }
     //   );
     // }
-    //#endregion
-
-
-    //#region newNGMODEL
-    public _ANO;
-    public _MOT;
-    public _PVEHI;
-    public _CPD;
-    public _CMS;
-    public _EPER;
-    public _EDIN;
-    public _EDIR;
-    public _CANT;
-    public _TDIM;
-    public _TLIN;
-    public _CART;
-    public _MDPRE;
     //#endregion
 
     focus(inputs) {
@@ -1037,7 +1046,6 @@ public arr: any[] = [];
 //#region funcion para limpiar el formulario
     cleanForm() {
       this.pId = '';
-      this._IMGE = '';
       this._FeCREA    = new Date();
       this._FeMOD     = new Date();
       this._nProducto = '';
@@ -1255,8 +1263,60 @@ public arr: any[] = [];
         placa_aux: this._PVEHI
       };
 
+
       this.data.updateProduct(this._PLAC, arr).subscribe(x => {
+
         arr = x;
+
+        //#region ASIGNACION DE VARIABLES A LOCALSTORAGE INICIO
+        localStorage.setItem('ProductImage', this._IMGE);
+        localStorage.setItem('PLACA', this._PLAC);
+        localStorage.setItem('CLASE', this._Class);
+        localStorage.setItem('NOMBRE', this._nProducto);
+        localStorage.setItem('CUSTODIO', this._CustClass);
+        localStorage.setItem('DPTO', this._DP);
+        localStorage.setItem('CIUDAD', this._ciudClass);
+        localStorage.setItem('SERIE', this._SER);
+        localStorage.setItem('VALOR', this._VNO);
+        localStorage.setItem('REFER', this._REFE);
+        localStorage.setItem('FECREA', this._FeCREA);
+        localStorage.setItem('FECMODI', this._FeMOD);
+        localStorage.setItem('FECFIN', this._FeFINAL);
+        localStorage.setItem('GRUPO', this._GRPO );
+        localStorage.setItem('MARCA', this._MRCA);
+        localStorage.setItem('COLOR', this._CLR);
+        localStorage.setItem('FECHAC', this._FeACT);
+        localStorage.setItem('PROVEEDOR', this._PRVR);
+        localStorage.setItem('MODELO', this._MDL);
+        localStorage.setItem('VIDA_UTIL', this._VUL);
+        localStorage.setItem('VALOR_RESIDUAL', this._VRE);
+        localStorage.setItem('FECHA I.DEPRE', this._FeDEP);
+        localStorage.setItem('FECHA CUSTO.', this._FeFN);
+        localStorage.setItem('CGASTO', this._CGT);
+        localStorage.setItem('CDN', this._CDN);
+        localStorage.setItem('CD', this._CD);
+        localStorage.setItem('VAL_NORMAL', this._VNO);
+        localStorage.setItem('VAL_REVAL', this._VRVA);
+        localStorage.setItem('AF_CONTROL', this._actCont);
+        localStorage.setItem('PERIODO', this._ANO);
+        localStorage.setItem('MOTOR', this._MOT);
+        localStorage.setItem('CHASIS', this._CHAS);
+        localStorage.setItem('CPADRE', this._CPD);
+        localStorage.setItem('CMATRIZ_NOMSTD', this._CMS);
+        localStorage.setItem('EDI_PERIODO', this._EPER);
+        localStorage.setItem('EDI_DIRECCION', this._EDIR);
+        localStorage.setItem('CARACTERISTICA', this._TDIM);
+        localStorage.setItem('TERRE_DIMENSION', this._TDIM);
+        localStorage.setItem('TERRE_LINDER', this._TLIN);
+        localStorage.setItem('met_depreciacion', this._MDPRE);
+        localStorage.setItem('PLACA_AUX', this._PVEHI);
+        //#endregion
+
+        // valres: this._VRE,
+
+        //#region ASIGNACION DE VARIABLES A LOCALSTORAGE FIN
+
+
         Swal.fire({
           position: 'center',
           icon:     'success',

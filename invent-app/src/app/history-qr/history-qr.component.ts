@@ -45,12 +45,11 @@ export class HistoryQRComponent implements OnInit {
   public filterPostCust = '';
   public pageActual: number = 1;
   public adnimBool = true;
+  public QRCOUNT = 0;
 
   ngOnInit() {
-    this.getDep('');
     this.getMarcRep();
     this.viewOptionsB();
-    this.getCustoRep();
   }
 
   getDep(master) {
@@ -67,30 +66,32 @@ export class HistoryQRComponent implements OnInit {
     tooltip.style.display = disp;
   }
 
-  public CountLIs: boolean;
-  showContLi(a) {
-    return this.CountLIs = a;
-  }
+  // public CountLIs: boolean;
+  // showContLi(a) {
+  //   return this.CountLIs = a;
+  // }
 
-  controlLi(a, placa, nombre) {
-    for (let i = 0; i <= a; i++) {
-      console.log(i);
-      this.imprimirUnidad(placa, nombre);
-    }
-  }
+  // controlLi(a, placa, nombre) {
+  //   for (let i = 0; i <= a; i++) {
+  //     console.log(i);
+  //     this.imprimirUnidad(placa, nombre);
+  //   }
+  // }
 
   imprimirUnidad(placa, nombre) {
 
     const ids = document.getElementById(`box-${placa}`);
     const contenidoPrev = document.getElementById(`contenidoPrev`);
     const modImp = document.getElementById('modalPrint');
-
+    let counLi = document.getElementsByTagName('li');
     switch (this.ensi) {
 
       case true:
         this.ensi = false;
-        this.showContLi(true);
-        contenidoPrev.appendChild(this.createLi(placa, placa, nombre, 1, 10));
+        // this.showContLi(true);
+        contenidoPrev.appendChild(this.createLi(placa, placa, nombre));
+        this.QRCOUNT = counLi.length - (8);
+
         ids.style.border = 'dashed 2px green';
         ids.style.borderRadius = '5px';
         ids.style.boxShadow = '3px 3px 7px rgba(0,0,0,0.5)';
@@ -100,8 +101,10 @@ export class HistoryQRComponent implements OnInit {
 
       case false:
         this.ensi = true;
-        this.showContLi(false);
+        // this.showContLi(false);
         contenidoPrev.removeChild(document.getElementById(`li-${placa}`));
+        this.QRCOUNT = counLi.length - (8);
+
         ids.style.border = 'solid 1px gray';
         ids.style.borderRadius = '0px';
         ids.style.boxShadow = '3px 3px 7px rgba(0,0,0,0.0)';
@@ -111,7 +114,7 @@ export class HistoryQRComponent implements OnInit {
         break;
 
     }
-    
+
   }
 
 
@@ -172,7 +175,7 @@ export class HistoryQRComponent implements OnInit {
 
   public LogoTC: string = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAYAAAAe2bNZAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAw5JREFUeNrsWOtt2zAQtgsNwA3KThBlgnqDqhOEmSDuBNEGgidgN5A7Ad0J5E4gewLZE7hScWd8+UBKctDkVw44SKb4uMd3D3q5eHta9Zz3bCLfdj3vez4NP5aRCUYWD5t87tnCWIoOwvp+7Pmu52KmwINQ33HA9dz0fHlDbkbOaNQyVc/riMQnMePA5wnt1IrqmoNo/Euep4QLn9SCS9mghcM37Mv/RIwb3X8QKAwDGfn1HnyvG9gJvLDvdynNifZy3gvy4rMOAFy/Ag8daG5F27H5QeauYey6KIA2cw5vhfU9B2t2JGQFIc5UojF0YQWWKYWdbLKiKEi5zZAgnnCSw35GuEVj6MJyAg8lhGeKfGQ/I+PdhKVLFMaBm5x8DBCuNbmziFiU8ZDPEEIVNJlEjxXpfURbC3MG+i3Pr/I8gxJKG8hfBqJnA9GqoT6MbxekYYpVCLZgIHeUGBW0BvdJUiZSfRGhjOSJBzn0JJrkVIcWN+QeBPerKCTwEdM6Zhm1QhvBRoB04OcI2RI4S9iAc1EdGSvBeu0M8I6STlwnIslRUmMlOnJjAdFZyztm+dVYM8STmoSlYmkBhXQTTdcLS2aJUMZihmA9yvOO1jxLIAzgfwQseFFgGP9Da57mgLck8+cjlmoi2NE14YYiW7wmkkwEU57AaEkoxUcAZlDnU8JUiWTGljKRVtLPSHIdB0A2MrkQPz/AWEWHHCQx3lPr6oT3gpcj4M9IKVErb8ckdjP9HBKtpb+xKbNzQNyNdHRTmdOKleqRpNcwcJcTQlmQfLf4oPchB7kpUBF+d2qg8P5LDdkNiy3Umq2EtKPSkUM4Own9LTThPPcnROF+MdFcO+pla7gvd6DdhUpEA+HvoFx08K4FNqcke5Xa0iUsh9aghW8NXNoCZN0LHabzAl1LasgxBdanFV3KOliE3ysqB1WkDdA8VMD7BfqZC1izpXJjPoE1DnQT2JPVzlAm9LcHDHyT9x9gUQPP58g5hTwf9U8GDx2Ypx51RVr6yI2Rr7yx5kstGcvC19LyV4ABAAUt9oG/LdAKAAAAAElFTkSuQmCC';
 
-  createLi(idVar, placaText, nombre, n, numeracion) {
+  createLi(idVar, placaText, nombre) {
 
     const node = document.createElement('li');
     const logo = document.createElement('img');
@@ -198,7 +201,7 @@ export class HistoryQRComponent implements OnInit {
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <img src='${this.LogoTC}' width='15px' height='auto'><br>
                             <strong> Placa: ${placaText} <br>
-                            Nombre:  ${nombre} </strong> <p> ${n}/${numeracion} </p>`;
+                            Nombre:  ${nombre} </strong>`;
 
     createDiv.style.fontSize = '7pt';
     node.appendChild(createSects);
@@ -215,10 +218,13 @@ export class HistoryQRComponent implements OnInit {
   }
 
   limpiarLi() {
-    console.log('Se esta limpiando');
+    // console.log('Se esta limpiando');
+
     const lis = document.getElementsByTagName('li');
     const contenidoPrev = document.getElementById(`contenidoPrev`);
     contenidoPrev.removeChild(lis[3]);
+
+    this.QRCOUNT = lis.length - (8);
   }
 
   imprSelec() {
@@ -286,14 +292,14 @@ export class HistoryQRComponent implements OnInit {
 
   }
 
-  getQRbyCustName(CustName) {
-    this.QRData.getDataQRByCustName(CustName).subscribe(QRDATA => {
-      this.dataQRExtract = QRDATA;
-      console.log(QRDATA);
-      this.contadorProdAct = this.dataQRExtract.length;
-    });
+  // getQRbyCustName(CustName) {
+  //   this.QRData.getDataQRByCustName(CustName).subscribe(QRDATA => {
+  //     this.dataQRExtract = QRDATA;
+  //     console.log(QRDATA);
+  //     this.contadorProdAct = this.dataQRExtract.length;
+  //   });
 
-  }
+  // }
 
   filter(a) {
     this.filtro = a;

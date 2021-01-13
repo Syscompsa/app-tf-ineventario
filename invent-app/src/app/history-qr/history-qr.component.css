@@ -25,6 +25,10 @@
     overflow-y: auto;
 }
 
+#QRCODECOUNT {
+    width: 85px;
+}
+
 .boxChangeNumb {
     background-color: steelblue;
     color: white;
