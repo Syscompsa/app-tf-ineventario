@@ -445,6 +445,10 @@ public arr: any[] = [];
     public _TLIN;
     public _CART;
     public _MDPRE;
+    public _CHAS;
+    public _VIHI;
+    public _BARRACOD;
+    public _CODBARRASEARCH;
     //#endregion
 
   //#region "ng IF dropdown"
@@ -512,46 +516,104 @@ public arr: any[] = [];
         console.log('-------------------------------------');
         console.log(this.modelData[0]);
         console.log('-------------------------------------');
-        // this._IMGE = localStorage.getItem('ProductImage');
-        // console.log(this.modelData[0]);
-        // this._nProducto = this.modelData[0][0].nombre;
-        // this._DP = this.modelData[0][0].dpto;
-        // this._PLAC = this.modelData[0][0].placa;
-        // console.log(this._PLAC);
-        // this.pId = this.modelData[0][0].id;
-        // this._actCont = this.modelData[0][0].af_control;
-        // this._CustClass = this.modelData[0][0].custodio;
-        // // console.log("Departamentos: " + this.modelData[0].dpto);
-        // this._SER       = this.modelData[0][0].serie;
-        // this._VLR       = this.modelData[0][0].vaL_NORMAL;
-        // this._REFE      = localStorage.getItem('User');
-        // this._UC        = this.modelData[0][0].usucrea;
-        // this._actvClass = this.modelData[0][0].activo;
-        // this._USMO      = this.modelData[0][0].usumodi;
-        // this._USFI      = this.modelData[0][0].userfin;
-        // this._GRPO      = this.modelData[0][0].grupo;
-        // this._MRCA      = this.modelData[0][0].marca;
-        // this._CLR       = this.modelData[0][0].color;
-        // this._PRVR      = this.modelData[0][0].proveedor;
-        // this._MDL       = this.modelData[0][0].modelo;
-        // this._VUL       = this.modelData[0][0].vidautil;
-        // this._VRE       = this.modelData[0][0].valoR_RESI;
-        // this._CGT       = this.modelData[0][0].cgasto;
-        // this._CD        = this.modelData[0][0].cdan;
-        // this._CDN       = this.modelData[0][0].cdar;
-        // this._VNO       = this.modelData[0][0].vaL_NORMAL;
-        // this._VRVA      = this.modelData[0][0].vaL_REVAL;
-        // this._VLR      = this.modelData[0][0].valor;
-        // this._ciudClass = this.modelData[0][0].ciudad;
-        // this._Class     = this.modelData[0][0].clase;
-        // this._ActiveClass = '';
-        // this._FeCREA    = this.modelData[0][0].feccrea.slice(0, 10);
-        // this._FeMOD     = this.modelData[0][0].fecmodi.slice(0, 10);
-        // this._FeDEP     = this.modelData[0][0].fechac.slice(0, 10);
-        // this._FeCOMP    = this.modelData[0][0].horafin.slice(0, 10);
-        // this._FeFINAL   = this.modelData[0][0].fecfin.slice(0, 10);
-        // this._FeACT     = new Date();
-        // this._FeFN      = this.modelData[0][0].fcustodio.slice(0, 10);
+
+        // Control vehicular variables INICIO
+        this._ANO = this.modelData[0][0].periodo;
+        this._MOT = this.modelData[0][0].motor;
+        this._PVEHI = this.modelData[0][0].placa_aux;
+        this._CHAS = this.modelData[0][0].chasis;
+        this._CPD =   this.modelData[0][0].cpadre;
+        this._CMS = this.modelData[0][0].cmatriz_nomstd;
+        this._EPER = this.modelData[0][0].edi_periodo;
+        this._EDIR = this.modelData[0][0].edi_direccion;
+        this._TDIM = this.modelData[0][0].terre_dimension;
+        this._TLIN = this.modelData[0][0].terre_linder;
+        this._CART = this.modelData[0][0].caracteristica;
+        this._MDPRE = this.modelData[0][0].met_depreciacion;
+        this._BARRACOD = this.modelData[0][0].barra;
+        // Control vehicular variables FIN
+
+        this._IMGE = localStorage.getItem('ProductImage');
+        this._nProducto = this.modelData[0][0].nombre;
+        this._DP = this.modelData[0][0].dpto;
+        this._PLAC = this.modelData[0][0].placa;
+        this._VIHI = this.modelData[0][0].placa;
+        console.log(this._PLAC);
+        this.pId = this.modelData[0][0].id;
+
+        if( this.modelData[0][0].af_control == null || this.modelData[0][0].af_control == '') {
+          this._actCont = false;
+        }
+
+        this._CustClass = this.modelData[0][0].custodio;
+        // console.log("Departamentos: " + this.modelData[0].dpto);
+        this._SER       = this.modelData[0][0].serie;
+        this._VLR       = this.modelData[0][0].vaL_NORMAL;
+        this._REFE      = localStorage.getItem('User');
+        this._UC        = this.modelData[0][0].usucrea;
+        this._actvClass = this.modelData[0][0].activo;
+        this._USMO      = this.modelData[0][0].usumodi;
+        this._USFI      = this.modelData[0][0].userfin;
+        this._GRPO      = this.modelData[0][0].grupo;
+        this._MRCA      = this.modelData[0][0].marca;
+        this._CLR       = this.modelData[0][0].color;
+        this._PRVR      = this.modelData[0][0].proveedor;
+        this._MDL       = this.modelData[0][0].modelo;
+        this._VUL       = this.modelData[0][0].vidautil;
+        if( this._VRE == null || this._VRE == '' ) {
+          this._VRE       = 0;
+        }
+        else {
+          this._VRE = this.modelData[0][0].valoR_RESI;
+        }
+        this._CGT       = this.modelData[0][0].cgasto;
+        this._CD        = this.modelData[0][0].cdan;
+        this._CDN       = this.modelData[0][0].cdar;
+        this._VNO       = this.modelData[0][0].vaL_NORMAL;
+        this._VRVA      = this.modelData[0][0].vaL_REVAL;
+        this._VLR      = this.modelData[0][0].valor;
+        this._ciudClass = this.modelData[0][0].ciudad;
+        this._Class     = this.modelData[0][0].clase;
+        this._ActiveClass = '';
+        if (this.modelData[0][0].feccrea == null ||  this.modelData[0][0].feccrea == '') {
+          this._FeCREA    = new Date();
+        }
+        else {
+          this._FeCREA    = this.modelData[0][0].feccrea.slice(0, 10)
+        }
+
+        if (this.modelData[0][0].fecmodi == null ||  this.modelData[0][0].fecmodi == '') {
+          this._FeMOD    = new Date();
+        }
+        else {
+          this._FeMOD    = this.modelData[0][0].fecmodi.slice(0, 10)
+        }
+
+        if (this.modelData[0][0].fechac == null ||  this.modelData[0][0].fechac == '') {
+          this._FeDEP    = new Date();
+        }
+        else {
+          this._FeDEP    = this.modelData[0][0].fechac.slice(0, 10)
+        }
+
+        if (this.modelData[0][0].horafin == null ||  this.modelData[0][0].horafin == '') {
+          this._FeCOMP    = new Date();
+        }
+        else {
+          this._FeCOMP    = this.modelData[0][0].horafin.slice(0, 10)
+        }
+
+        if (this.modelData[0][0].fecfin == null ||  this.modelData[0][0].fecfin == '') {
+          this._FeFINAL    = new Date();
+        }
+        else {
+          this._FeFINAL    = this.modelData[0][0].fecfin.slice(0, 10)
+        }
+
+
+
+        this._FeACT     = new Date();
+        this._FeFN      = new Date();
         //Envia el reprte cuando carguen estos datos
 
       }, err => {
@@ -564,6 +626,123 @@ public arr: any[] = [];
 
   }
 
+public _cBarra:any = [];
+public countBARRASMASTER: number;
+  getCodBarra(BARRA) {
+    this.data.getDataBARRA(BARRA).subscribe( CBARRA => {
+      this._cBarra = CBARRA;
+      this.countBARRASMASTER = this._cBarra.length;
+      // console.log(this._cBarra);
+    } )
+  }
+
+  public _cProdBarCode: any = [];
+  getProdBARCODE(COD) {
+    this.data.getDataProductFilter(COD).subscribe( PROD => {
+      this._cProdBarCode = PROD;
+      console.log(this._cProdBarCode);
+      // console.log(COD)
+
+      // Control vehicular variables INICIO
+      this._ANO = this._cProdBarCode[0].periodo;
+      this._MOT = this._cProdBarCode[0].motor;
+      this._PVEHI = this._cProdBarCode[0].placa_aux;
+      this._CHAS = this._cProdBarCode[0].chasis;
+      this._CPD =   this._cProdBarCode[0].cpadre;
+      this._CMS = this._cProdBarCode[0].cmatriz_nomstd;
+      this._EPER = this._cProdBarCode[0].edi_periodo;
+      this._EDIR = this._cProdBarCode[0].edi_direccion;
+      this._TDIM = this._cProdBarCode[0].terre_dimension;
+      this._TLIN = this._cProdBarCode[0].terre_linder;
+      this._CART = this._cProdBarCode[0].caracteristica;
+      this._MDPRE = this._cProdBarCode[0].met_depreciacion;
+      this._BARRACOD = this._cProdBarCode[0].barra;
+      // Control vehicular variables FIN
+
+      this._IMGE = localStorage.getItem('ProductImage');
+      this._nProducto = this._cProdBarCode[0].nombre;
+      this._DP = this._cProdBarCode[0].dpto;
+      this._PLAC = this._cProdBarCode[0].placa;
+      this._VIHI = this._cProdBarCode[0].placa;
+      console.log(this._PLAC);
+      // this.pId = this._cProdBarCode[0][0].id;
+
+      if( this._cProdBarCode[0].af_control == null || this._cProdBarCode[0].af_control == '') {
+        this._actCont = false;
+      }
+
+      this._CustClass = this._cProdBarCode[0].custodio;
+      // console.log("Departamentos: " + this.modelData[0].dpto);
+      this._SER       = this._cProdBarCode[0].serie;
+      this._VLR       = this._cProdBarCode[0].vaL_NORMAL;
+      this._REFE      = localStorage.getItem('User');
+      this._UC        = this._cProdBarCode[0].usucrea;
+      this._actvClass = this._cProdBarCode[0].activo;
+      this._USMO      = this._cProdBarCode[0].usumodi;
+      this._USFI      = this._cProdBarCode[0].userfin;
+      this._GRPO      = this._cProdBarCode[0].grupo;
+      this._MRCA      = this._cProdBarCode[0].marca;
+      this._CLR       = this._cProdBarCode[0].color;
+      this._PRVR      = this._cProdBarCode[0].proveedor;
+      this._MDL       = this._cProdBarCode[0].modelo;
+      this._VUL       = this._cProdBarCode[0].vidautil;
+      if( this._VRE == null || this._VRE == '' ) {
+        this._VRE       = 0;
+      }
+      else {
+        this._VRE = this._cProdBarCode[0].valoR_RESI;
+      }
+      this._CGT       = this._cProdBarCode[0].cgasto;
+      this._CD        = this._cProdBarCode[0].cdan;
+      this._CDN       = this._cProdBarCode[0].cdar;
+      this._VNO       = this._cProdBarCode[0].vaL_NORMAL;
+      this._VRVA      = this._cProdBarCode[0].vaL_REVAL;
+      this._VLR      = this._cProdBarCode[0].valor;
+      this._ciudClass = this._cProdBarCode[0].ciudad;
+      this._Class     = this._cProdBarCode[0].clase;
+      this._ActiveClass = '';
+      if (this._cProdBarCode[0].feccrea == null ||  this._cProdBarCode[0].feccrea == '') {
+        this._FeCREA    = new Date();
+      }
+      else {
+        this._FeCREA    = this._cProdBarCode[0].feccrea.slice(0, 10)
+      }
+
+      if (this._cProdBarCode[0].fecmodi == null ||  this._cProdBarCode[0].fecmodi == '') {
+        this._FeMOD    = new Date();
+      }
+      else {
+        this._FeMOD    = this._cProdBarCode[0].fecmodi.slice(0, 10)
+      }
+
+      if (this._cProdBarCode[0].fechac == null ||  this._cProdBarCode[0].fechac == '') {
+        this._FeDEP    = new Date();
+      }
+      else {
+        this._FeDEP    = this._cProdBarCode[0].fechac.slice(0, 10)
+      }
+
+      if (this._cProdBarCode[0].horafin == null ||  this._cProdBarCode[0].horafin == '') {
+        this._FeCOMP    = new Date();
+      }
+      else {
+        this._FeCOMP    = this._cProdBarCode[0].horafin.slice(0, 10)
+      }
+
+      if (this._cProdBarCode[0].fecfin == null ||  this._cProdBarCode[0].fecfin == '') {
+        this._FeFINAL    = new Date();
+      }
+      else {
+        this._FeFINAL    = this._cProdBarCode[0].fecfin.slice(0, 10)
+      }
+
+
+
+      this._FeACT     = new Date();
+      this._FeFN      = new Date();
+
+    } )
+  }
 
   controlDate() {
 
@@ -1120,7 +1299,7 @@ public arr: any[] = [];
         fecfin: this._FeFINAL,
         horafin: this._FeCOMP,
         userfin: this._USFI,
-        barra: '',
+
         grupo: this._GRPO,
         marca: this._MRCA,
         color: this._CLR,
@@ -1144,6 +1323,7 @@ public arr: any[] = [];
         imagenbit: this._IMGE,
         af_control: this._actCont
       };
+
       if (this._PLAC == '' || this._PLAC == null || this._PLAC == undefined) {
       Swal.fire({
         icon: 'error',
@@ -1193,7 +1373,6 @@ public arr: any[] = [];
     }
     }
     //#endregion
-    public _CHAS;
 
     public valu: number;
     //#region  "Update function()"
@@ -1223,12 +1402,12 @@ public arr: any[] = [];
         refer: this._REFE,
         feccrea: this._FeCREA,
         usucrea: localStorage.getItem('User'),
-        fecmodi: this._FeMOD,
+        fecmodi: new Date(),
         usumodi: localStorage.getItem('User'),
         fecfin: this._FeFINAL,
         horafin: '',
         userfin: localStorage.getItem('User'),
-        barra: "009371",
+
         grupo: this._GRPO,
         marca: this._MRCA,
         color: this._CLR,
@@ -1252,7 +1431,7 @@ public arr: any[] = [];
         periodo: this._ANO,
         motor: this._MOT,
         chasis: this._CHAS,
-        cpadre: this._CPD,
+        cpadre: this._VIHI,
         cmatriz_nomstd: this._CMS,
         edi_periodo: this._EPER,
         edi_direccion: this._EDIR,
@@ -1262,12 +1441,13 @@ public arr: any[] = [];
         met_depreciacion: this._MDPRE,
         placa_aux: this._PVEHI
       };
-
+      console.log(arr)
 
       this.data.updateProduct(this._PLAC, arr).subscribe(x => {
 
         arr = x;
 
+        console.log(arr)
         //#region ASIGNACION DE VARIABLES A LOCALSTORAGE INICIO
         localStorage.setItem('ProductImage', this._IMGE);
         localStorage.setItem('PLACA', this._PLAC);
@@ -1310,7 +1490,7 @@ public arr: any[] = [];
         localStorage.setItem('TERRE_LINDER', this._TLIN);
         localStorage.setItem('met_depreciacion', this._MDPRE);
         localStorage.setItem('PLACA_AUX', this._PVEHI);
-        //#endregion
+      //#endregion
 
         // valres: this._VRE,
 

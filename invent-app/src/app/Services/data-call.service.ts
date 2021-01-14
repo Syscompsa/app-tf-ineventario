@@ -30,7 +30,14 @@ export class DataCallService {
     return this.http.put(this.apiURL + 'api/AR_INV-QRcodProdGet/productUpdate/' + id, content);
   }
 
+  getDataProductFilter(COD) {
+    return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/apiGETPROD12a120/' + COD);
+  }
 
+
+  getDataBARRA(COD) {
+    return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/apiGETPROD12a120/' + COD);
+  }
 
   delProduct(placa) {
     return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/DeletProduct/' + placa);

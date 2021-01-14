@@ -84,6 +84,7 @@ export class HistoryQRComponent implements OnInit {
     const contenidoPrev = document.getElementById(`contenidoPrev`);
     const modImp = document.getElementById('modalPrint');
     let counLi = document.getElementsByTagName('li');
+
     switch (this.ensi) {
 
       case true:
@@ -91,7 +92,6 @@ export class HistoryQRComponent implements OnInit {
         // this.showContLi(true);
         contenidoPrev.appendChild(this.createLi(placa, placa, nombre));
         this.QRCOUNT = counLi.length - (8);
-
         ids.style.border = 'dashed 2px green';
         ids.style.borderRadius = '5px';
         ids.style.boxShadow = '3px 3px 7px rgba(0,0,0,0.5)';
@@ -104,13 +104,10 @@ export class HistoryQRComponent implements OnInit {
         // this.showContLi(false);
         contenidoPrev.removeChild(document.getElementById(`li-${placa}`));
         this.QRCOUNT = counLi.length - (8);
-
         ids.style.border = 'solid 1px gray';
         ids.style.borderRadius = '0px';
         ids.style.boxShadow = '3px 3px 7px rgba(0,0,0,0.0)';
         ids.style.transition = 'ease all 0.5s';
-        // modImp.removeChild(document.getElementById(`li-${id}`));
-        // this.objectSelectStyle(ids, 'solid', 'rgba(0,0,0,0.2)', '1px');
         break;
 
     }
@@ -173,8 +170,7 @@ export class HistoryQRComponent implements OnInit {
    return this.contEt;
   }
 
-  public LogoTC: string = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAYAAAAe2bNZAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAw5JREFUeNrsWOtt2zAQtgsNwA3KThBlgnqDqhOEmSDuBNEGgidgN5A7Ad0J5E4gewLZE7hScWd8+UBKctDkVw44SKb4uMd3D3q5eHta9Zz3bCLfdj3vez4NP5aRCUYWD5t87tnCWIoOwvp+7Pmu52KmwINQ33HA9dz0fHlDbkbOaNQyVc/riMQnMePA5wnt1IrqmoNo/Euep4QLn9SCS9mghcM37Mv/RIwb3X8QKAwDGfn1HnyvG9gJvLDvdynNifZy3gvy4rMOAFy/Ag8daG5F27H5QeauYey6KIA2cw5vhfU9B2t2JGQFIc5UojF0YQWWKYWdbLKiKEi5zZAgnnCSw35GuEVj6MJyAg8lhGeKfGQ/I+PdhKVLFMaBm5x8DBCuNbmziFiU8ZDPEEIVNJlEjxXpfURbC3MG+i3Pr/I8gxJKG8hfBqJnA9GqoT6MbxekYYpVCLZgIHeUGBW0BvdJUiZSfRGhjOSJBzn0JJrkVIcWN+QeBPerKCTwEdM6Zhm1QhvBRoB04OcI2RI4S9iAc1EdGSvBeu0M8I6STlwnIslRUmMlOnJjAdFZyztm+dVYM8STmoSlYmkBhXQTTdcLS2aJUMZihmA9yvOO1jxLIAzgfwQseFFgGP9Da57mgLck8+cjlmoi2NE14YYiW7wmkkwEU57AaEkoxUcAZlDnU8JUiWTGljKRVtLPSHIdB0A2MrkQPz/AWEWHHCQx3lPr6oT3gpcj4M9IKVErb8ckdjP9HBKtpb+xKbNzQNyNdHRTmdOKleqRpNcwcJcTQlmQfLf4oPchB7kpUBF+d2qg8P5LDdkNiy3Umq2EtKPSkUM4Own9LTThPPcnROF+MdFcO+pla7gvd6DdhUpEA+HvoFx08K4FNqcke5Xa0iUsh9aghW8NXNoCZN0LHabzAl1LasgxBdanFV3KOliE3ysqB1WkDdA8VMD7BfqZC1izpXJjPoE1DnQT2JPVzlAm9LcHDHyT9x9gUQPP58g5hTwf9U8GDx2Ypx51RVr6yI2Rr7yx5kstGcvC19LyV4ABAAUt9oG/LdAKAAAAAElFTkSuQmCC';
-
+  public LogoTC: string = 'data:image/png;base64,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'
   createLi(idVar, placaText, nombre) {
 
     const node = document.createElement('li');
@@ -184,6 +180,7 @@ export class HistoryQRComponent implements OnInit {
     node.style.listStyle = 'none';
     node.style.padding = '2px';
 
+    //#region estilos
     // node.style.borderBottom = 'dashed 1px gray';
     const createSects = document.createElement('section');
     node.style.width = '160px';
@@ -194,20 +191,19 @@ export class HistoryQRComponent implements OnInit {
     node.style.justifyContent = 'center';
     node.style.alignItems = 'center';
     node.style.backgroundColor = 'whitesmoke';
-
+//#endregion
     const createDiv = document.createElement('div');
     createDiv.innerHTML = ` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <img src='${this.LogoTC}' width='15px' height='auto'><br>
-                            <strong> Placa: ${placaText} <br>
-                            Nombre:  ${nombre} </strong>`;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <img src='${this.LogoTC}' width='50px' height='auto'>`
+                            // <strong style="font-family: arial;"> Placa: ${placaText} <br>
+                            // ${nombre} </strong>;
 
     createDiv.style.fontSize = '7pt';
     node.appendChild(createSects);
     node.appendChild(createDiv);
     node.appendChild(logo);
-    // console.log(placaText);
     const qr = qrcode(4, 'L');
     const urlD =  `https://alp-cloud.com:8446/api/AR_INV-QRcodProdGet/getPlaca/${placaText}`;
     qr.addData(urlD);
@@ -218,17 +214,15 @@ export class HistoryQRComponent implements OnInit {
   }
 
   limpiarLi() {
-    // console.log('Se esta limpiando');
 
     const lis = document.getElementsByTagName('li');
     const contenidoPrev = document.getElementById(`contenidoPrev`);
     contenidoPrev.removeChild(lis[3]);
-
     this.QRCOUNT = lis.length - (8);
+
   }
 
   imprSelec() {
-
     var ficha = document.getElementById('contenidoPrev');
     ficha.style.fontFamily = 'arial';
 	  let ventimp = window.open(' ', 'popimpr');
@@ -236,32 +230,25 @@ export class HistoryQRComponent implements OnInit {
 	  ventimp.document.close();
     ventimp.print();
     ventimp.close();
-
 	}
 
   objectSelectStyle(obj, color, styleBorder, tam) {
-
     obj.style.border = `${styleBorder} ${tam} ${color}`;
     obj.style.transition = `ease all 0.5s`;
-
   }
 
   retAnim(param) {
-
    const an = document.getElementById('an');
    an.style.animationName = param;
-
   }
 
   getProductCustodio(custodio) {
-
     this.data.getCustodioReporte(custodio).subscribe( x => {
       this.dataQRExtract = x;
       console.log('Estos son lo datos de la tabla que genera QR');
       console.log(this.dataQRExtract);
       this.contadorProdAct = this.dataQRExtract.length;
     });
-
   }
 
   getID(IDS, a) {
@@ -283,13 +270,11 @@ export class HistoryQRComponent implements OnInit {
 
   public fPost;
   getProductMarca(marca) {
-
     this.data.getMarcaReporte(marca).subscribe( x => {
       this.dataQRExtract = x;
       // console.log(this.dataQRExtract);
       this.contadorProdAct = this.dataQRExtract.length;
     });
-
   }
 
   // getQRbyCustName(CustName) {
@@ -298,7 +283,6 @@ export class HistoryQRComponent implements OnInit {
   //     console.log(QRDATA);
   //     this.contadorProdAct = this.dataQRExtract.length;
   //   });
-
   // }
 
   filter(a) {

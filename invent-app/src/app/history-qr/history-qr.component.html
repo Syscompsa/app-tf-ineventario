@@ -42,9 +42,9 @@
             <div class="bn" title="Mostrar QR" id="bnA" (click)="viewOptionsA()">
                 <span class="icon-qrcode"></span> Mostrar etiquetas QR
             </div>
-            <div class="bn" title="Mostrar QR" id="bnB" (click)="viewOptionsB()">
+            <!-- <div class="bn" title="Mostrar QR" id="bnB" (click)="viewOptionsB()">
                 <span class="icon-list-alt"></span> Mostrar tabla de Productos
-            </div>
+            </div> -->
         </div>
 
         <div class="prods">
@@ -53,11 +53,11 @@
                   <span class="icon-info"></span> Filtrar por Local:
                 </label> -->
                 <div class="btnFilter">
-                    <button type="button" style="border-bottom-right-radius: 0px !important; border-top-right-radius: 0px !important;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                    <span class="icon-equalizer"></span>
-                  </button>
+                    <!-- <button type="button" style="border-bottom-right-radius: 0px !important; border-top-right-radius: 0px !important;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                      <span class="icon-equalizer"></span>
+                    </button> -->
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -81,9 +81,7 @@
                                                             <span style="color: steelblue;" class="icon-search"></span>
                                                         </label>
                                                         <input id="inpts" type="text" class="inpts" placeholder="Buscar por Departamento..." [(ngModel)]="filterPost" name="filterPost" (keyup)="getCustoRep()">
-                                                        <!--
-                                                        <input id="inpts" type="text" class="inpts" placeholder="Buscar por Custodio..." [(ngModel)]="fPost" name="fPost" (keyup)="getQRbyCustName(fPost)">
-                                                     -->
+
                                                     </div>
                                                 </h2>
                                             </div>
@@ -122,11 +120,11 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- <input class="form-control" style="border-bottom-left-radius: 0px !important; border-top-left-radius: 0px !important;"
                     (keyup)="getDep(SearchDep)" [(ngModel)]="SearchDep" name="SearchDep" type="text" placeholder="Search" aria-label="Search"> -->
                 </div>

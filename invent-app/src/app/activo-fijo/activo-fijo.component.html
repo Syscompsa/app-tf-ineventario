@@ -14,6 +14,48 @@
             <div class="boxMin" id="minBox"></div>
         </div>
         <div class="img" id="imgs" *ngIf="true">
+            <!-- COD. BARRA: {{_BARRACOD}} -->
+
+            <span class="icon-search" data-toggle="modal" data-target="#exampleModalCODEBAR" style="cursor: pointer;"></span>
+
+
+            <div class="modal fade" id="exampleModalCODEBAR" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Codigo de barras a vincular:</h5>
+                            <div id="codBarra">
+                                <label>Busque por cod. barra:</label>
+                                <input type="text" [(ngModel)]="_CODBARRASEARCH" (keyup.enter)="getCodBarra(_CODBARRASEARCH)" name="_CODBARRASEARCH">
+                            </div>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                        </div>
+                        <div class="modal-body" style="overflow-y: auto; height: 500px !important;">
+                            Codigos encontrados: {{countBARRASMASTER}}
+                            <table style="font-size: 9pt; overflow-y: auto; " class="table table-dark">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Cod. Barra:</th>
+                                        <th scope="col">Nombre</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let cod of _cBarra" style="cursor: pointer;" (click)="getProdBARCODE(cod.barra)">
+                                        <th scope="row"> {{cod.nombre}} </th>
+                                        <td> {{cod.barra}} </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <label for="fileUp" style="background-color: black;
                    margin: 0px !important; cursor: pointer;
@@ -83,7 +125,7 @@
                     </div>
                 </div>
                 <!--FECHA INPUT INICIO-->
-                <div class="inpDates" style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+                <!-- <div class="inpDates" style="display: flex; flex-wrap: wrap; justify-content: space-between;">
                     <div class="dataDates" *ngIf="true">
                         <label for="fechacrea">Fecha Creación:</label>
                         <div class="d">
@@ -152,7 +194,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!--FECHA INPUT FIN-->
             </div>
 
@@ -331,6 +373,14 @@
                             </div>
                         </div>
                     </div>
+                    <div class="inpData" *ngIf="true" style="width: 48%;">
+                        <div class="dataDates">
+                            <label for="_VIHI" title="">Cod. Vinculación:</label>
+                            <div class="d">
+                                <input type="text" #userfin id="_VIHI" [ngModel]="_VIHI" name="_VIHI" class="input-control">
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="inpData" *ngIf="true" style="display: flex; justify-content: space-between; width: 100%;">
                     <div class="dataDates">
@@ -381,12 +431,12 @@
                                             <input type="text" [(ngModel)]="_CHAS" name="_CHAS" id="_PVEHI" class="input-control" [value]="_CHAS">
                                         </div>
                                     </div>
-                                    <div class="dataDates">
+                                    <!-- <div class="dataDates">
                                         <label for="_CPD" title="">Cod. Padre:</label>
                                         <div class="d">
                                             <input type="text" [(ngModel)]="_CPD" name="_CPD" id="_CPD" class="input-control" [value]="_CPD">
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="dataDates">
                                         <label for="_CMS" title="">Cod. Matriz STD:</label>
                                         <div class="d">
