@@ -9,6 +9,7 @@
 </div> -->
 
 <div class=" contsGen ">
+
     <div id="picture">
         <div class="btn-min" (click)="minWin()">
             <div class="boxMin" id="minBox"></div>
@@ -16,7 +17,6 @@
         <div class="img" id="imgs" *ngIf="true">
             <!-- COD. BARRA: {{_BARRACOD}} -->
 
-            <span class="icon-search" data-toggle="modal" data-target="#exampleModalCODEBAR" style="cursor: pointer;"></span>
 
 
             <div class="modal fade" id="exampleModalCODEBAR" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -42,7 +42,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let cod of _cBarra" style="cursor: pointer;" (click)="getProdBARCODE(cod.barra)">
+                                    <tr *ngFor="let cod of _cBarra" style="cursor: pointer;" class="trS" (click)="getProdBARCODE(cod.barra)">
                                         <th scope="row"> {{cod.nombre}} </th>
                                         <td> {{cod.barra}} </td>
                                     </tr>
@@ -79,13 +79,18 @@
 
     <div id="inpData">
         <div class="semaf">
-            <div class="color" id="red">
+
+            <div class="btnLink">
+                <span class=" icon-attach-2" data-toggle="modal" data-target="#exampleModalCODEBAR" style="cursor: pointer;"></span>
+            </div>
+            <!-- <div class="color" id="red">
             </div>
             <div class="color" id="green">
-            </div>
+            </div> -->
         </div>
         <form id="fActivoFijo" class="actFijo">
             <div class="groupA">
+
                 <div class="inpData" *ngIf="true" style="width: 100%;">
                     <div class="Clase">
 
@@ -102,7 +107,7 @@
                                 <input type="text" id="_dep" #dep (keyup)="getDataDep(_DP, DepRead)" [(ngModel)]="_DP" name="_DP" class="input-control">
                             </div>
                         </div>
-
+                        ng
                         <div class="d" id="clase" id="clas" style="width: 100%;">
                             <label title="">
                             <span class="icon-key-1"></span></label>
@@ -111,15 +116,23 @@
 
                     </div>
                     <!-- SELECT MEDIANTE DROPDOWN -->
-                    <div class="input-group mb-3" style="width: 100%;" *ngIf="true">
+                    <div class="input-group" style="width: 100%;" *ngIf="true">
                         <div class="input-group-prepend" style="width: 100%;">
                             <button class="btn btn-outline-secondary dropdown-toggle" #custOpt style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         <span class="icon-search"></span> Selecciona una opción</button>
-                            <div class="dropdown-menu">
+                            <div class="dropdown-menu" style="font-size: 9pt; height: 400px; overflow: auto;">
                                 <a class="dropdown-item" style="font-size: 9pt;" id="{{depa.codigo}}" (click)="getDataDep(depa.codigo, depa.nombre)" *ngFor="let depa of DepArr" href="javascript: void(0)">
                                     | Nombre: {{depa.nombre}}
                                     | Código: {{depa.codigo}}
                                 </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inpData" *ngIf="true" id="vincul" style="width: 48%;">
+                        <div class="dataDates" id="vincul">
+                            <label for="_VIHI" title=""> <span class=" icon-flow-cascade"></span> Cod. Vinculación:</label>
+                            <div class="d">
+                                <input type="text" #userfin id="_VIHI" [ngModel]="_VIHI" name="_VIHI" class="input-control">
                             </div>
                         </div>
                     </div>
@@ -228,7 +241,7 @@
                                 <div class="input-group-prepend" style="width: 100%;">
                                     <button class="btn btn-outline-secondary dropdown-toggle" #btnClase style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                                     <span class="icon-search"></span> Selecciona una opción</button>
-                                    <div class="dropdown-menu">
+                                    <div class="dropdown-menu" style="height: 400px; overflow: auto; text-align: right;">
                                         <a class="dropdown-item" id="{{d.codigo}}" (click)="getDataCall(d.codigo_aux, d.nombre)" *ngFor="let d of modelArr" href="javascript: void(0)">
                                             Codigo: {{d.codigo}}
                                             | Nombre: {{d.nombre}}
@@ -257,7 +270,7 @@
                             <div class="input-group-prepend" style="width: 100%;">
                                 <button class="btn btn-outline-secondary dropdown-toggle" #ciudOpt style="width: 100%;" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                   <span class="icon-search"></span> Selecciona una opción</button>
-                                <div class="dropdown-menu">
+                                <div class="dropdown-menu" style="height: 400px; overflow: auto;">
                                     <a class="dropdown-item" id="{{c.codigo}}" (click)="getDataCiudad(c.codigo, c.nombre)" *ngFor="let c of ciudArr" href="javascript: void(0)">
                     Codigo: {{c.codigo}}
                     | Nombre: {{c.nombre}}
@@ -307,8 +320,8 @@
                                   <span class="icon-search"></span>
                                   Selecciona una opción
                                 </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" style="font-size: 9pt;" id="{{custo.codigo}}" (click)="getDataCust(custo.codigo, custo.nombre)" *ngFor="let custo of custArr" href="javascript: void(0)">
+                                <div class="dropdown-menu" style="font-size: 9pt; height: 400px; overflow: auto;">
+                                    <a class="dropdown-item" id="{{custo.codigo}}" (click)="getDataCust(custo.codigo, custo.nombre)" *ngFor="let custo of custArr" href="javascript: void(0)">
                                         Codigo: {{custo.codigo}}
                                         | Nombre: {{custo.nombre}}
                                         | Apéllido: {{custo.apellido}}
@@ -373,14 +386,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="inpData" *ngIf="true" style="width: 48%;">
-                        <div class="dataDates">
-                            <label for="_VIHI" title="">Cod. Vinculación:</label>
-                            <div class="d">
-                                <input type="text" #userfin id="_VIHI" [ngModel]="_VIHI" name="_VIHI" class="input-control">
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="inpData" *ngIf="true" style="display: flex; justify-content: space-between; width: 100%;">
                     <div class="dataDates">
@@ -431,12 +436,18 @@
                                             <input type="text" [(ngModel)]="_CHAS" name="_CHAS" id="_PVEHI" class="input-control" [value]="_CHAS">
                                         </div>
                                     </div>
-                                    <!-- <div class="dataDates">
+                                    <div class="dataDates">
                                         <label for="_CPD" title="">Cod. Padre:</label>
                                         <div class="d">
                                             <input type="text" [(ngModel)]="_CPD" name="_CPD" id="_CPD" class="input-control" [value]="_CPD">
                                         </div>
-                                    </div> -->
+                                    </div>
+                                    <div class="dataDates">
+                                        <label for="_BARRACOD" title="">Cod. Barra:</label>
+                                        <div class="d">
+                                            <input type="text" [(ngModel)]="_BARRACOD" name="_BARRACOD" id="_BARRACOD" class="input-control" [value]="_BARRACOD">
+                                        </div>
+                                    </div>
                                     <div class="dataDates">
                                         <label for="_CMS" title="">Cod. Matriz STD:</label>
                                         <div class="d">

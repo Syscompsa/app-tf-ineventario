@@ -9,12 +9,45 @@
     width: 100%;
 }
 
+#vincul {
+    background-color: blueviolet;
+    color: white;
+    padding: 5px;
+    border-radius: 0px 0px 10px 0px;
+}
+
+.btnLink {
+    background-color: purple;
+    color: white;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: ease all 0.5s;
+}
+
+.btnLink:hover {
+    transition: ease all 0.5s;
+    cursor: pointer;
+    background-color: orange;
+}
+
 #picture {
     width: 33%;
     height: 100%;
     border: solid 0.5px rgb(202, 202, 202);
     padding: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.trS {
+    cursor: pointer;
+}
+
+.trS:hover {
+    background-color: steelblue;
+    transition: ease all 0.5s;
 }
 
 button {

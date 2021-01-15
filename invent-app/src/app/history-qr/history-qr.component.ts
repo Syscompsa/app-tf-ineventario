@@ -49,6 +49,7 @@ export class HistoryQRComponent implements OnInit {
 
   ngOnInit() {
     this.getMarcRep();
+    this.getQR_F();
     this.viewOptionsB();
   }
 
@@ -66,19 +67,17 @@ export class HistoryQRComponent implements OnInit {
     tooltip.style.display = disp;
   }
 
-  // public CountLIs: boolean;
-  // showContLi(a) {
-  //   return this.CountLIs = a;
-  // }
+  getQR_F() {
+    this.QRData.getQR_F().subscribe( QR => {
+      this.dataQRExtract = QR;
+      this.contadorProdAct = this.dataQRExtract.length;
+      console.log(QR);
+    });
+  }
 
-  // controlLi(a, placa, nombre) {
-  //   for (let i = 0; i <= a; i++) {
-  //     console.log(i);
-  //     this.imprimirUnidad(placa, nombre);
-  //   }
-  // }
+  public LogoTC: string = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGsAAABKCAYAAAC8T6qfAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABuJJREFUeNrsXe1x2zgQRTz+H14FZiowOhBUgXkVmK7gdBWEqUBJBVIqkF0BmQooV0C6AikV+MSZ5QjHI4BdfBDyiTuDUWJTJIi3i337ANKMzTbbbLPNNtvHsE/zEFgbP7VE8btqBmt6S09NwOcCwOGE7x9PbQ+fr/DvrrUfDawU2nAAFprvCGkAVIPzOuLhuu/I1vUlgz5kmshxta4/z6f2A9mvScBKJe+8k/6fRnSSVvLsbqB+S04iIvSnA+0JAJwMLA7tHj4Fmw1rndMsMYC5Rs761JpTe5+bU6tDRVYH0ubKo2eviASXaf7vU/vuE6wcoim5IlAqIC4tkZYL6fMzfHJDPv3iC6wOpJXnRC8zuHaE1o558Jj3DuueBbImUjG1FwDGdx4xzUpLlUN8IkbUxqJzFQDwJt38PmKkiBEAF9CnXwDUFFYrouzbqRUuJ+5u6oBIkg1EX04sHq/RCsUYKoG6JUSVbhrZUgu82eiGBetBM78vrwSkRKof7wY5c5gT+5zzAo58nBIsoaGa+4AD45NS25KBTnZ6JPZHZoEP4NBDW2j6bw0W10TV1lLpSCQ6yx3BoRCdJWGwH2H690VosObkaLkiEZYIrxSQMHfAfmKpAw2SunO4L9/XHzPKsaTaisJakkA3bNsOiKhNNPfp2krF9chguUyDreLnuwuToZ4MeZVDn1OHa4zVji3UbVvCmFauN6uqrwQxvGO0wnKK10VJwc4Lkr5Ty86VlVHD9VKAWnsCqgGJzacWWlg6l5HJqPIANRLHlgRKQn6rgUb7sBwJUh5oat4prpm75KyEWgtAjniE7/aaoDwfq4TZnSE/+lqcyxAa5xZqyFCLgYLIA5zCdRPgBlKNl+cer2GKfOq1elVj2FSOvtFcO/GhYAztLQBYLUTdWHT5UsJN63BPiEK/31AjkIV8xc57PR4033FWXlSRlQWaHkpifvSRfzERlcBYhNy+kIcYvPeAdZSNUuJ6LybmmLHwe0zqkDcYAqyUOJC5NIgN9DW1yIc6KaqYSGFJQ4KVGaabFQxyOeKVO40Hj11rRSgRqJKZzvFWbJodTWgB20Qw9oqb2YA3tOy8VzBFXlgQZa294hwJQa0WmuRfKY5fI8dwuEX6np1XERLNd364FsFYb/ctbOoKxRRZ1JYWqkpukd9ktcE0fSUSlS/gekF1U9/JVVWj1QRZqyDkNkGsazhzV/GD2A1StfZpb4RpUKVCj62y/taQC0pdYypLou01wYBVeQasIuSrliCDtRZgYR1Btu8skt0gj9uCNofRro5Mvy7TEgaUEoWtpwhPDITrGAusW2JEfIFpgo8MVCvdDNcUeq0jEwydLxLL310UWLJO92x5w6qIu/cQhb4GsjUU15sAedzrNGijw1FyUOohsqgRR94KNlBO8pF+p+y/6vvF70zeMNpKKEUv2xFlqUwjMzEL6q46l4nur1ncJz69aIqcWDyXxON1dRa3kKdc2+rSwHonqBGZhyg0LaXYqO0bFm9/yGSWMtomm4IgBaWGQeBEdeRgICYFw+8poTay7HQTCKypmaCJ2PzUMMivBrC6cuUbc9wfMWJfLyGyVJESShPELL+Yni/DejmHPpQKUtGvq23YeYnonZgWPhwTbBwSf2oBtIs4mxjA5hpHyWKDFYMJYvfg1yyOmk59XmCynEUpiFVR8Muh8P1LQRqOTP8mlx7Mgl2J+WKCK8Vg+tjjzhEMr1cofEhYunxZxgRLMD+rw4JY3FIpOQaw/jw7cB6bKTI3XIcE1m3EKZCqCaZEb+6Izp+a8y/hGG44TzYgAv3KgvySrt4+S+fDMMyoz2L7YIIHS9puI+0kgZUK10eS/ndM0ETnc+SMEONlYVF1QkrtkxN1s1ojMZmiDlvP5BODJmIBFZIJMsS5S+ZvL7mA6fEQGKxoK8/C07RGmTJrgqRkq3ZzcKCNRmYa3i92DeziNEHVADUEbxNILRBDyesJph8McSE/43YzAYhvRNp+JJQEryNU+AkRKb3YGkpI7dWSVnPMS0yw7gm1hGrwK8XP7wjAPjPcI609mdgFFFR1G4uqmNPgmkAYVsSk21iwKU5kdgeINp/A1SzAKxRC5qyhmm3KK/ILRExzv4lNJRpJC/vOi8xSalp5KCX+Zb5fFV4jwp7yClRmOB/2xVn9E/qu122ZecU4NeTCbnr+g12ATVlQ5sS+9c8FH1g8eSm6xISh2FM944UFbRVJXmrYhb21u2DhH+30dcPZhEJutOe6XJKr6367EJ6ZsPPbtRsW+dnhWFqhD32tZtNvPU7Z+Y8NlJYA9guXua9OTfUnmeRXrZqsX9zDMK8YDmhymtjvrZ9tttlmm2226PaPAAMACYuhQ5/MLIEAAAAASUVORK5CYII='
 
-  imprimirUnidad(placa, nombre) {
+  imprimirUnidad(placa) {
 
     const ids = document.getElementById(`box-${placa}`);
     const contenidoPrev = document.getElementById(`contenidoPrev`);
@@ -90,7 +89,7 @@ export class HistoryQRComponent implements OnInit {
       case true:
         this.ensi = false;
         // this.showContLi(true);
-        contenidoPrev.appendChild(this.createLi(placa, placa, nombre));
+        contenidoPrev.appendChild(this.createLi(placa));
         this.QRCOUNT = counLi.length - (8);
         ids.style.border = 'dashed 2px green';
         ids.style.borderRadius = '5px';
@@ -114,17 +113,14 @@ export class HistoryQRComponent implements OnInit {
 
   }
 
-
   createQRO(placa) {
     const qr = qrcode(4, 'L');
     const url = `https://alp-cloud.com:8446/api/AR_INV-QRcodProdGet/getPlaca/${placa}`;
     qr.addData(url);
     qr.make();
-    // qr.isDark(2, 2);
-    // qr.addData('Esto es un Activo', 'Alphanumeric');
-    document.getElementById(placa).innerHTML = qr.createSvgTag(1.9);
+    document.getElementById(placa).innerHTML = `<div style="mergin-top: 15px;" id="${placa}">${qr.createSvgTag(2.0)}</div>
+                                                <br><img src="${this.LogoTC}" style="width: 40px; height: 35px; margin-top: 25px;">`;
   }
-
 
   animhide() {
 
@@ -170,12 +166,11 @@ export class HistoryQRComponent implements OnInit {
    return this.contEt;
   }
 
-  public LogoTC: string = 'data:image/png;base64,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'
-  createLi(idVar, placaText, nombre) {
+  createLi(placaText) {
 
     const node = document.createElement('li');
     const logo = document.createElement('img');
-    node.setAttribute('id', `li-${idVar}`);
+    node.setAttribute('id', `li-${placaText}`);
     node.setAttribute('class', 'liPrint animated fadeInLeft fast');
     node.style.listStyle = 'none';
     node.style.padding = '2px';
@@ -222,8 +217,8 @@ export class HistoryQRComponent implements OnInit {
 
   }
 
-  imprSelec() {
-    var ficha = document.getElementById('contenidoPrev');
+  imprSelec(a) {
+    var ficha = document.getElementById(a);
     ficha.style.fontFamily = 'arial';
 	  let ventimp = window.open(' ', 'popimpr');
 	  ventimp.document.write( ficha.innerHTML);

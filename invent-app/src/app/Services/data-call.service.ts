@@ -36,8 +36,12 @@ export class DataCallService {
 
 
   getDataBARRA(COD) {
-    return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/apiGETPROD12a120/' + COD);
+    return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/GetMasterBarra/' + COD);
   }
+
+  // GetMasterBarra(CODBARRA) {
+  //   return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/GetMasterBarra/' + CODBARRA);
+  // }
 
   delProduct(placa) {
     return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/DeletProduct/' + placa);
@@ -135,7 +139,7 @@ export class DataCallService {
   }
 
   getDataByPlacaId(placa) {
-    return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/getPlacaProduct/' + placa);
+    return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/GetPlacaProduct/' + placa);
   }
 
   getDataImg(placa) {
@@ -146,5 +150,5 @@ export class DataCallService {
     return this.http.get(this.apiURL + 'api/ALPTABLA/GetInfoQuest/' + cod + "/" + cim)
   }
 
-}
 
+}

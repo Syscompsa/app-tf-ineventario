@@ -41,6 +41,9 @@ export class GQRService {
     return this.http.get(this.apiURL + '/ALPTABLA/GetUserByCod/' + CustName);
   }
 
+  getQR_F() {
+    return this.http.get(this.apiURL + '/AR_INV-QRcodProdGet/getQRGen');
+  }
 
 
 }

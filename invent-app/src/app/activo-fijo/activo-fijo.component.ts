@@ -333,6 +333,7 @@ export class ActivoFijoComponent implements OnInit {
   private _VREVAL: any;
   private _COLOR: any;
   private _CIUD: any;
+  public CBARRA;
   //#endregion
   public placaServices: any = [];
   public modelData: any[] = [];
@@ -538,8 +539,8 @@ public arr: any[] = [];
         this._DP = this.modelData[0][0].dpto;
         this._PLAC = this.modelData[0][0].placa;
         this._VIHI = this.modelData[0][0].placa;
-        console.log(this._PLAC);
-        this.pId = this.modelData[0][0].id;
+        // console.log(this._PLAC);
+        // this.pId = this.modelData[0][0].id;
 
         if( this.modelData[0][0].af_control == null || this.modelData[0][0].af_control == '') {
           this._actCont = false;
@@ -633,11 +634,20 @@ public countBARRASMASTER: number;
       this._cBarra = CBARRA;
       this.countBARRASMASTER = this._cBarra.length;
       // console.log(this._cBarra);
-    } )
+    });
   }
 
   public _cProdBarCode: any = [];
   getProdBARCODE(COD) {
+
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: `Se asigno el codigo ${COD}, a un producto`,
+      showConfirmButton: false,
+      timer: 2500
+    })
+
     this.data.getDataProductFilter(COD).subscribe( PROD => {
       this._cProdBarCode = PROD;
       console.log(this._cProdBarCode);
@@ -692,6 +702,7 @@ public countBARRASMASTER: number;
       else {
         this._VRE = this._cProdBarCode[0].valoR_RESI;
       }
+
       this._CGT       = this._cProdBarCode[0].cgasto;
       this._CD        = this._cProdBarCode[0].cdan;
       this._CDN       = this._cProdBarCode[0].cdar;
@@ -735,8 +746,6 @@ public countBARRASMASTER: number;
       else {
         this._FeFINAL    = this._cProdBarCode[0].fecfin.slice(0, 10)
       }
-
-
 
       this._FeACT     = new Date();
       this._FeFN      = new Date();
@@ -1299,7 +1308,7 @@ public countBARRASMASTER: number;
         fecfin: this._FeFINAL,
         horafin: this._FeCOMP,
         userfin: this._USFI,
-
+        barra:   this._BARRACOD,
         grupo: this._GRPO,
         marca: this._MRCA,
         color: this._CLR,
@@ -1431,7 +1440,7 @@ public countBARRASMASTER: number;
         periodo: this._ANO,
         motor: this._MOT,
         chasis: this._CHAS,
-        cpadre: this._VIHI,
+        cpadre: this._CPD,
         cmatriz_nomstd: this._CMS,
         edi_periodo: this._EPER,
         edi_direccion: this._EDIR,

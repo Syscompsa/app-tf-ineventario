@@ -3,7 +3,7 @@
 <div id="prevImprimir" style="width: 220px; height: 100%;" media="print" class="prevImprimir">
     <div class="countss" style="height: 35px;">
 
-        <div class="prev" id="printUnit" (click)="imprSelec()" style="width: 120px; height: 35px;">
+        <div class="prev" id="printUnit" (click)="imprSelec('contenidoPrev')" style="width: 120px; height: 35px;">
             <span class="icon-print"></span>
         </div>
 
@@ -24,8 +24,7 @@
 
 <div class="cons container" id="const">
     <div class="paginador">
-        <pagination-controls (pageChange)="pageActual = $event">
-        </pagination-controls>
+        <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
     </div>
     <div class="filterfor" data-toggle="modal" data-target="#exampleModal">
         <span class="filter icon-filter" data-toggle="modal" data-target="#exampleModal" id="an" (mouseover)="retAnim('animFilter')" (mouseleave)="retAnim('')" title="El filtro está activado por, {{filtro}}"></span> Filtrado por:
@@ -42,9 +41,9 @@
             <div class="bn" title="Mostrar QR" id="bnA" (click)="viewOptionsA()">
                 <span class="icon-qrcode"></span> Mostrar etiquetas QR
             </div>
-            <!-- <div class="bn" title="Mostrar QR" id="bnB" (click)="viewOptionsB()">
-                <span class="icon-list-alt"></span> Mostrar tabla de Productos
-            </div> -->
+            <div class="bn" (click)="imprSelec('dataQR')">
+                <span class="icon-print"></span> Imprimir por página
+            </div>
         </div>
 
         <div class="prods">
@@ -132,64 +131,19 @@
         </div>
     </div>
 
-    <div class="dataQR mb-4 animated fadeIn" id="dataQR" *ngIf="conterB">
+    <div class="dataQR mb-4 animated fadeIn" id="dataQR" *ngIf="true">
 
-        <!-- imprimirUnidad(a.placa, a.nombre) -->
-        <div class="box" style="cursor: pointer;" *ngFor="let a of dataQRExtract | paginate: {itemsPerPage: 12, currentPage: pageActual}" id="box-{{a.placa}}" (click)="imprimirUnidad(a.placa, a.nombre)">
-            <div class="info" data-title="  Nombre: {{a.nombre}}&#10;
-                                            Placa: {{a.placa}}&#10;
-                                            Ciudad: {{a.nomCiudad}}&#10;
-                                            Custodio: {{a.nombreCustodio}}&#10;
-                                            Marca: {{a.nomMarca}}&#10;
-                                            Departamento: {{a.nomDpto}}">
-                <span class="icon-info"></span>
-            </div>
-            <div class="QR" [id]="a.placa">
-                {{createQRO(a.placa)}}<br>
-            </div>
-            <div class="data" style="font-size: 9pt;">
-                Nombre:<strong> {{a.nombre}} </strong><br> Placa:
-                <strong> {{a.placa}} </strong><br>
-            </div>
+        <div class="box" style="cursor: pointer; margin: 10px;" *ngFor="let a of dataQRExtract | paginate: {itemsPerPage: 16, currentPage: pageActual}" id="box-{{a.placa}}" (click)="imprimirUnidad(a.placa)">
 
 
-            <!-- <div class="boxChangeNumb animated fadeInDownBig fast" title="Cantidad de etquetas a crear" *ngIf="CountLIs">
-                <label for="sCant">Cantidad: </label>
-                <input id="sCant" type="number" [(ngModel)]="contEt" name="contEt" class="form-control">
-                <button class="btn btn-warning m-2" style="float: right;">
-                    <span class="icon-ok"></span>Ok
-                </button>
-                <button class="btn btn-danger m-2" (click)="showContLi(false)" style="float: right;">
-                    <span class="icon-cancel"></span>Cancel
-                </button>
+            <!-- <div class="data" style="font-size: 9pt; padding: 5px;" width="20%">
+                <img [src]="LogoTC" width="25px" height="auto">
             </div> -->
+
+            <div class="QR" [id]="a.placa" width="100%" style="display: flex; justify-content: center;">{{ createQRO(a.placa) }}</div>
+
         </div>
+
     </div>
 
-    <div class="dataQR" id="dataQRB" *ngIf="conterA">
-        <div class="b animated fadeIn" style="width: 100%;">
-            <table class="table" style="font-size: 12pt;">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col"> Placa </th>
-                        <th scope="col"> Nombre </th>
-                        <th scope="col"> Marca </th>
-                        <th scope="col"> Custodio </th>
-                        <th scope="col"> Local </th>
-                        <th scope="col"> Ciudad </th>
-                    </tr>
-                </thead>
-                <tbody style="height: 485px; overflow: auto; border: solid 0.5px gray;">
-                    <tr *ngFor="let b of dataQRExtract | paginate: {itemsPerPage: 15, currentPage: pageActual}">
-                        <th scope="row">{{b.placa}} </th>
-                        <td>{{b.nombre}} </td>
-                        <td>{{b.nomMarca}} </td>
-                        <td>{{b.nombreCustodio}} </td>
-                        <td>{{b.nomDpto}} </td>
-                        <td>{{b.nomCiudad}} </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
 </div>
