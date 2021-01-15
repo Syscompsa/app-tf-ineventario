@@ -534,7 +534,7 @@ public arr: any[] = [];
         this._BARRACOD = this.modelData[0][0].barra;
         // Control vehicular variables FIN
 
-        this._IMGE = localStorage.getItem('ProductImage');
+        this._IMGE = this.modelData[0][0].imagen;
         this._nProducto = this.modelData[0][0].nombre;
         this._DP = this.modelData[0][0].dpto;
         this._PLAC = this.modelData[0][0].placa;
@@ -550,7 +550,7 @@ public arr: any[] = [];
         // console.log("Departamentos: " + this.modelData[0].dpto);
         this._SER       = this.modelData[0][0].serie;
         this._VLR       = this.modelData[0][0].vaL_NORMAL;
-        this._REFE      = localStorage.getItem('User');
+        this._REFE      = this.modelData[0][0].refer;
         this._UC        = this.modelData[0][0].usucrea;
         this._actvClass = this.modelData[0][0].activo;
         this._USMO      = this.modelData[0][0].usumodi;
@@ -627,8 +627,8 @@ public arr: any[] = [];
 
   }
 
-public _cBarra:any = [];
-public countBARRASMASTER: number;
+  public _cBarra:any = [];
+  public countBARRASMASTER: number;
   getCodBarra(BARRA) {
     this.data.getDataBARRA(BARRA).subscribe( CBARRA => {
       this._cBarra = CBARRA;
@@ -669,7 +669,7 @@ public countBARRASMASTER: number;
       this._BARRACOD = this._cProdBarCode[0].barra;
       // Control vehicular variables FIN
 
-      this._IMGE = localStorage.getItem('ProductImage');
+      this._IMGE = this._cProdBarCode[0].IMAGEN;
       this._nProducto = this._cProdBarCode[0].nombre;
       this._DP = this._cProdBarCode[0].dpto;
       this._PLAC = this._cProdBarCode[0].placa;
@@ -685,7 +685,7 @@ public countBARRASMASTER: number;
       // console.log("Departamentos: " + this.modelData[0].dpto);
       this._SER       = this._cProdBarCode[0].serie;
       this._VLR       = this._cProdBarCode[0].vaL_NORMAL;
-      this._REFE      = localStorage.getItem('User');
+      this._REFE      = this._cProdBarCode[0].refer;
       this._UC        = this._cProdBarCode[0].usucrea;
       this._actvClass = this._cProdBarCode[0].activo;
       this._USMO      = this._cProdBarCode[0].usumodi;
