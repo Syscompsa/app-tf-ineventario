@@ -504,8 +504,6 @@ public arr: any[] = [];
 
   ngOnInit() {
     this.controlDate();
-
-    // this.getInterfaz();
     this.fechActual();
     this.data.getDataByPlaca().subscribe( x => {
        this.placaServices = x;
