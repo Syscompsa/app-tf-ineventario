@@ -59,6 +59,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
 import { ReporteProdComponent } from './reporte-prod/reporte-prod.component';
+import { AvaluoComponent } from './avaluo/avaluo.component';
 // import { FilterPipe } from './pipes/filter.pipe';
 
 //#endregion
@@ -75,6 +76,7 @@ import { ReporteProdComponent } from './reporte-prod/reporte-prod.component';
     ConfigurationsComponent,
     ActivoFijoComponent,
     ReporteProdComponent,
+    AvaluoComponent,
     // FilterPipe
   ],
   imports: [
@@ -135,6 +137,7 @@ import { ReporteProdComponent } from './reporte-prod/reporte-prod.component';
       { path: 'HomeView', component: HomeViewComponent },
       { path: 'Reporte', component: ReporteComponent },
       { path: 'QRData', component: HistoryQRComponent },
+      { path: 'avaluo', component: AvaluoComponent },
       { path: 'Login', component: LoginComponent, pathMatch: 'full' },
       { path: '**', pathMatch: 'full', redirectTo: 'Login'  }
     ]),

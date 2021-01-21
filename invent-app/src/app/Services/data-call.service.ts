@@ -26,6 +26,19 @@ export class DataCallService {
 
   constructor(private http: HttpClient) { }
 
+
+  geIMGDp12a120F(COD) {
+    return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/GetImage_a120F/' + COD);
+  }
+
+  getDp12a120F(INV) {
+    return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/Get_data_120F/' + INV);
+  }
+
+  Get_Inventariadores() {
+    return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/Get_Inventariadores')
+  }
+
   updateProduct(id, content) {
     return this.http.put(this.apiURL + 'api/AR_INV-QRcodProdGet/productUpdate/' + id, content);
   }
@@ -34,14 +47,9 @@ export class DataCallService {
     return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/apiGETPROD12a120/' + COD);
   }
 
-
   getDataBARRA(COD) {
     return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/GetMasterBarra/' + COD);
   }
-
-  // GetMasterBarra(CODBARRA) {
-  //   return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/GetMasterBarra/' + CODBARRA);
-  // }
 
   delProduct(placa) {
     return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/DeletProduct/' + placa);

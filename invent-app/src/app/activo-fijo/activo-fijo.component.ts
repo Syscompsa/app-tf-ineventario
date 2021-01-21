@@ -31,7 +31,7 @@ export class ActivoFijoComponent implements OnInit {
               ) { }
     //#endregion
 
-    //#region "@Input()"
+//#region "@Input()"
 
   @Input()
   set Factual(value: any) {
@@ -295,8 +295,10 @@ export class ActivoFijoComponent implements OnInit {
   get CIUD(): any {
     return this._CIUD;
   }
-              // @Inject('BASE_URL') private baseUrl: string
-              public datenow: any;
+
+  //#endregion
+//@Inject('BASE_URL') private baseUrl: string
+  public datenow: any;
 
   //#region "@INPUTS VALUES"
   // estas son variables para los values de los inputs
@@ -452,29 +454,29 @@ public arr: any[] = [];
     public _CODBARRASEARCH;
     //#endregion
 
-  //#region "ng IF dropdown"
-  public optA: boolean;
-  public optB: boolean;
-  public optC: boolean;
-  public optE: boolean;
-  public optF: boolean;
-  public optG: boolean;
-  public optH: boolean;
-  public optI: boolean;
+    //#region "ng IF dropdown"
+    public optA: boolean;
+    public optB: boolean;
+    public optC: boolean;
+    public optE: boolean;
+    public optF: boolean;
+    public optG: boolean;
+    public optH: boolean;
+    public optI: boolean;
 
-  public modelArr;
-  public ciudArr;
+    public modelArr;
+    public ciudArr;
 
     // tslint:disable-next-line: member-ordering
-  public grupArr;
-  public _grupRead;
+    public grupArr;
+    public _grupRead;
 
-  public MarcArr;
-  public _MarcRead;
+    public MarcArr;
+    public _MarcRead;
 
     // variables  [(ngModel)] INICIO
-  public _CustClass: any;
-  public _CustRead: string;
+    public _CustClass: any;
+    public _CustRead: string;
 
     // variables  [(ngModel)] FIN
     public custArr;
@@ -825,12 +827,7 @@ public arr: any[] = [];
         console.log(this.val);
         break;
     }
-
-
-
-
   }
-
 
   sendReporte() {
     this.reportArr = {
@@ -842,6 +839,7 @@ public arr: any[] = [];
       campoA: this._DP,
       campoB: this._REFE
     };
+
     this.data.saveReport(this.reportArr).subscribe(x => {
 
       this.reportArr = x;
@@ -849,6 +847,7 @@ public arr: any[] = [];
       // console.log(this.reportArr);
     });
   }
+  
     //#region
     // getInterfaz() {
     //   this.conf.getConfig().subscribe(
@@ -1182,6 +1181,7 @@ public arr: any[] = [];
 
       this.funcClose(false, false, false, false, true, false, false, false);
     }
+
     getDataCuentC(w, y) {
       const promise = new Promise((resolve, reject) => {
         this.data.getDataCuentas(this._CDN)
@@ -1331,6 +1331,9 @@ public arr: any[] = [];
         af_control: this._actCont
       };
 
+      console.log( formArr)
+      console.log( 'Codigo de barra: ' + this._BARRACOD)
+
       if (this._PLAC == '' || this._PLAC == null || this._PLAC == undefined) {
       Swal.fire({
         icon: 'error',
@@ -1399,14 +1402,14 @@ public arr: any[] = [];
       let arr: any = {
         placa: this._PLAC,
         clase: this._Class,
-        nombre: this._nProducto,
+        nombre: this._nProducto,       
         custodio: this._CustClass,
         dpto: this._DP,
         ciudad: this._ciudClass,
         serie: this._SER,
         valor: this._VNO,
         activo: "S",
-        refer: this._REFE,
+        refer: this._REFE + " / " + this.optionSel,
         feccrea: this._FeCREA,
         usucrea: localStorage.getItem('User'),
         fecmodi: new Date(),
@@ -1414,7 +1417,7 @@ public arr: any[] = [];
         fecfin: this._FeFINAL,
         horafin: '',
         userfin: localStorage.getItem('User'),
-
+        barra: this._BARRACOD,
         grupo: this._GRPO,
         marca: this._MRCA,
         color: this._CLR,
@@ -1448,13 +1451,15 @@ public arr: any[] = [];
         met_depreciacion: this._MDPRE,
         placa_aux: this._PVEHI
       };
-      console.log(arr)
+
+      console.log(this._BARRACOD);
+      console.log(this.optionSel);
 
       this.data.updateProduct(this._PLAC, arr).subscribe(x => {
 
         arr = x;
 
-        console.log(arr)
+        //console.log(arr)
         //#region ASIGNACION DE VARIABLES A LOCALSTORAGE INICIO
         localStorage.setItem('ProductImage', this._IMGE);
         localStorage.setItem('PLACA', this._PLAC);

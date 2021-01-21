@@ -27,6 +27,7 @@ export class HeaderComponent implements OnInit {
   public report = 'Movimiento de Inventario';
   public actFijo = 'Modificación de Activos';
   public mActivos = 'Listado de Activos';
+  public evaluo = 'Evaluo';
   public Site;
   public conf;
 
@@ -69,10 +70,11 @@ export class HeaderComponent implements OnInit {
    this.User = localStorage.getItem('User');
   }
 
-  active(id, text, hideA, hideB, Rooute) {
+  active(id, text, hideA, hideB, hideC, Rooute) {
     const a = document.getElementById(id);
     const b = document.getElementById(hideA);
     const c = document.getElementById(hideB);
+    const d = document.getElementById(hideC);
     this.Site = text;
     this.router.navigate([Rooute]);
     a.style.borderBottom = 'solid 2px steelblue';
@@ -80,10 +82,16 @@ export class HeaderComponent implements OnInit {
     b.style.color = 'gray';
     c.style.backgroundColor = 'transparent';
     c.style.color = 'gray';
+    d.style.backgroundColor = 'transparent';
+    d.style.color = 'gray';
   }
 
   fechActual() {
     return new Date();
+  }
+
+  especialPage(Router) {
+    this.router.navigate([Router]);
   }
 
   evaluoScreen() {
