@@ -672,7 +672,7 @@ public arr: any[] = [];
       this._IMGE = this._cProdBarCode[0].IMAGEN;
       this._nProducto = this._cProdBarCode[0].nombre;
       this._DP = this._cProdBarCode[0].dpto;
-      this._PLAC = this._cProdBarCode[0].placa;
+      // this._PLAC = this._cProdBarCode[0].placa;
       this._VIHI = this._cProdBarCode[0].placa;
       console.log(this._PLAC);
       // this.pId = this._cProdBarCode[0][0].id;

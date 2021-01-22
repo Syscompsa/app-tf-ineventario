@@ -16,9 +16,6 @@
         </div>
         <div class="img" id="imgs" *ngIf="true">
             <!-- COD. BARRA: {{_BARRACOD}} -->
-
-
-
             <div class="modal fade" id="exampleModalCODEBAR" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -107,7 +104,7 @@
                                 <input type="text" id="_dep" #dep (keyup)="getDataDep(_DP, DepRead)" [(ngModel)]="_DP" name="_DP" class="input-control">
                             </div>
                         </div>
-                        ng
+                        
                         <div class="d" id="clase" id="clas" style="width: 100%;">
                             <label title="">
                             <span class="icon-key-1"></span></label>
@@ -128,14 +125,14 @@
                             </div>
                         </div>
                     </div>
-                    <div class="inpData" *ngIf="true" id="vincul" style="width: 48%;">
+                    <!-- <div class="inpData" *ngIf="true" id="vincul" style="width: 48%;">
                         <div class="dataDates" id="vincul">
                             <label for="_VIHI" title=""> <span class=" icon-flow-cascade"></span> Cod. Vinculación:</label>
                             <div class="d">
                                 <input type="text" #userfin id="_VIHI" [ngModel]="_VIHI" name="_VIHI" class="input-control">
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <!--FECHA INPUT INICIO-->
                 <!-- <div class="inpDates" style="display: flex; flex-wrap: wrap; justify-content: space-between;">
@@ -371,9 +368,12 @@
                         <div class="dataDates">
                             <label for="_ref" title="">Referencia:</label>
                             <div class="d">
-                                <input type="text" #refe [(ngModel)]="_REFE" name="_REFE" id="_ref" class="input-control">
+                                <input type="text" #refe [(ngModel)]="_REFE" name="_REFE"
+                                       id="_ref" class="input-control">
                                 <select name="optionSel" [(ngModel)]="optionSel">
-                                <option [value]="item" *ngFor="let item of lista" >{{item}}</option>
+                                <option [value]="item" *ngFor="let item of lista" >
+                                    {{item}}
+                                </option>
                             </select>
                             </div>
                         </div>

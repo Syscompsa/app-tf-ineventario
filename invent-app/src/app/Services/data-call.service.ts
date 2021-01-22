@@ -21,7 +21,6 @@ export class DataCallService {
   public ValueInit;
   public ValueFini;
   public ValuePerc;
-
   public env = environment;
 
   constructor(private http: HttpClient) { }
