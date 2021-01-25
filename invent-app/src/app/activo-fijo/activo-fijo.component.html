@@ -93,7 +93,7 @@
 
                         <div class="d" style="background-color: black; border-top-left-radius: 5px; width: 200px; display: flex; color: white; cursor: pointer;">
                             <label for="_actCont" title="Activo de Control" style="text-align: center; padding: 10px;">A. C.:
-                              <input type="checkbox" [(ngModel)]="_actCont" name="_actCont" id="_actCont" class="input-control"></label>
+                            <input type="checkbox" [(ngModel)]="_actCont" name="_actCont" id="_actCont" class="input-control"></label>
                         </div>
 
                         <div class="d" id="clas" style=" display: flex; flex-direction: column;">
@@ -104,7 +104,7 @@
                                 <input type="text" id="_dep" #dep (keyup)="getDataDep(_DP, DepRead)" [(ngModel)]="_DP" name="_DP" class="input-control">
                             </div>
                         </div>
-                        
+
                         <div class="d" id="clase" id="clas" style="width: 100%;">
                             <label title="">
                             <span class="icon-key-1"></span></label>
@@ -368,8 +368,7 @@
                         <div class="dataDates">
                             <label for="_ref" title="">Referencia:</label>
                             <div class="d">
-                                <input type="text" #refe [(ngModel)]="_REFE" name="_REFE"
-                                       id="_ref" class="input-control">
+                                <input type="text" #refe [(ngModel)]="_REFE" name="_REFE" id="_ref" class="input-control">
                                 <select name="optionSel" [(ngModel)]="optionSel">
                                 <option [value]="item" *ngFor="let item of lista" >
                                     {{item}}

@@ -57,6 +57,8 @@ export class AvaluoComponent implements OnInit {
 
 //#endregion
 
+  public editCards: boolean = false;
+
   public controlUpdate: boolean;
 
   async screen() {
@@ -95,12 +97,37 @@ export class AvaluoComponent implements OnInit {
   invChoice = (a) => this.invName = a;
 
   getDep12a120F(inv) {
+
     this.data.getDp12a120F(inv).subscribe( data => {
       this.arrData = data;
       this.invProd = this.arrData.length;
       this.invChoice(inv);
-      console.log(data);
+      console.log(this.arrData);
     })
+
+  }
+
+  public a: boolean = false;
+  editTableCodBar(x) {
+    // console.log('activado');
+    x.style.backgroundColor = 'yellowgreen';
+    switch (this.a) {
+      case true:
+        this.a = false;
+        this.editCards = this.a;
+        console.log(this.editCards);
+        break;
+
+      case false:
+        this.a = true;
+        console.log(this.editCards);
+        this.editCards = this.a;
+        break;
+
+      default:
+        break;
+    }
+
   }
 
   insertanexo(placa, codBarra) {
@@ -166,7 +193,7 @@ export class AvaluoComponent implements OnInit {
   }
 
   updateAnexo(id, placa, codBarra, vidautil, avcomer, metodtec, observaciones) {
-    
+
     let arr: any = {
       Id: id,
       placa: placa,
@@ -188,7 +215,7 @@ export class AvaluoComponent implements OnInit {
         showConfirmButton: false,
         timer: 2000
       })
-                    
+
     })
   }
 

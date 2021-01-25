@@ -4,50 +4,54 @@
         {{invCount}} <span class="icon-users"></span> Inventariadores
     </div>
     <div class="paginador" style="float: right; display: flex; align-items: center; flex-wrap: wrap;">
-        Número de Items: 
+        Número de Items:
         <input type="number" style="width: 50px; height: 25px; border: none; border-bottom: solid 0.5px gray; text-align: center;" [(ngModel)]="_nPag" name="_nPag">
         <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
         <div class="invName"> <strong class="esData"> {{invName}} </strong> Productos Inventariados, <strong class="esData">{{invProd}}</strong></div>
     </div>
 </div>
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Inventariadores (<span class="icon-users"></span>{{invCount}} )</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Inventariadores (<span class="icon-users"></span>{{invCount}} )</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
-        </div>
-        
-        <div class="modal-body">
-            
-            <table class="table table-primary">
-                <thead>
-                  <tr>
-                    <th scope="col">Código</th>
-                    <th scope="col">Nombre</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor=" let inv of arrDataInv " (click)="getDep12a120F(inv.nombre)">
-                    <th scope="row">{{ inv.codigo }}</th>
-                    <td class="trPointer"> {{ inv.nombre }} </td>
-                  </tr>
-                </tbody>
-              </table>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
-        </div>
-      </div>
-    </div>
-  </div>
+            </div>
 
-  <div class="tableData animated fadeIn fast">
-    <table class="table table-dark">
+            <div class="modal-body">
+
+                <table class="table table-primary">
+                    <thead>
+                        <tr>
+                            <th scope="col">Código</th>
+                            <th scope="col">Nombre</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor=" let inv of arrDataInv " (click)="getDep12a120F(inv.nombre)">
+                            <th scope="row">{{ inv.codigo }}</th>
+                            <td class="trPointer"> {{ inv.nombre }} </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="Edit">
+    <button class="btn btn-dark" style="border-radius: 0px; font-size: 9pt;" [ngStyle]="{'background-color': _bColor}" (click)="editTableCodBar('edBtn')"> <span class="icon-edit-2"></span> Editar </button>
+    <button class="btn btn-dark" style="border-radius: 0px; font-size: 9pt;"> <span class=" icon-chart-line-1"></span> Productividad </button>
+    <button class="btn btn-dark" style="border-radius: 0px; font-size: 9pt;"> <span class=" icon-briefcase-1"></span> Reportería </button>
+</div>
+<div class="tableData animated fadeIn fast">
+    <table class="table table-dark" style="font-size: 9pt;">
         <thead>
             <tr>
                 <th scope="col">Placa</th>
@@ -56,6 +60,8 @@
                 </th>
                 <th scope="col">Inventeriador</th>
                 <th scope="col">Descripción</th>
+                <th scope="col" class="cmsEdit animated fadeInLeft fast" style="background-color: rgb(255, 119, 0);" *ngIf="editCards">Cod. Barra</th>
+                <th scope="col" class="cmsEdit animated fadeInRight fast" style="background-color: rgb(255, 119, 0);" *ngIf="editCards">Cod. Padre</th>
                 <th scope="col">Marca</th>
                 <th scope="col">Modelo</th>
                 <th scope="col">Referencia</th>
@@ -74,14 +80,16 @@
                 <th scope="row" (click)="getImgByPlaca(a.placa)" class="thPlaca">
                     <span class="icon-picture"></span> {{ a.placa }}
                 </th>
-                <th scope="col" (click)="controlDataAnexo(a.placa)" class="thPlaca">
-                    <span class="icon-contacts"></span>
-                </th>
+                <th scope="col" (click)="controlDataAnexo(a.placa)" class="thPlaca"><span class="icon-contacts"></span></th>
                 <td>{{a.usucrea}}</td>
-                <td>{{a.nombre}}</td>
-                <td>{{a.marca}}</td>
-                <td>{{a.modelo}}</td>
-                <td>{{a.refer}}</td>
+                <td>{{a.nombre}} </td>
+                <td class="animated fadeInLeft fast" style="background-color: rgb(75, 51, 31);" *ngIf="editCards">
+                    <input type="text"> {{a.barra}}
+                </td>
+                <td class="animated fadeInRight fast" style="background-color: rgb(116, 72, 37);" *ngIf="editCards">{{a.cpadre}} </td>
+                <td>{{a.marca}} </td>
+                <td>{{a.modelo}} </td>
+                <td>{{a.refer}} </td>
                 <td>{{a.costo_historico}}</td>
                 <td>{{a.valor_normal}}</td>
                 <td>{{a.valor_revaluo}}</td>
@@ -93,56 +101,55 @@
             </tr>
         </tbody>
     </table>
+
     <div class="messageAnexo animated fadeInLeft fast container p-4" *ngIf="controlTextAnexos">
         <button class="btnClose btn btn-dark" (click)="closeInfAnexo()"><span class="icon-cancel"></span></button>
-        <div style="height: 595px; overflow-y: auto;"   >
+        <div style="height: 595px; overflow-y: auto;">
             <div class="boxAnexos m-3" *ngFor=" let anexosText of controlArr" (mouseover)="cotrolUp(true)" (mouseleave)="cotrolUp(false)">
 
                 <ul class="list-group">
                     <li class="list-group-item"><strong>Placa-Anexo:</strong> {{ anexosText.placa }} </li>
                     <li class="list-group-item"><strong>Cod. Barra: </strong> {{ anexosText.codBarra }}</li>
-                    <li class="list-group-item"><strong>Vida útil:  </strong> {{ anexosText.vidutil }} <br> 
-                         <input type="number" [(ngModel)]="_editVidUtil" name="_editVidUtil">
+                    <li class="list-group-item"><strong>Vida útil:  </strong> {{ anexosText.vidutil }} <br>
+                        <input type="number" [(ngModel)]="_editVidUtil" name="_editVidUtil">
                     </li>
                     <li class="list-group-item"><strong>Avaluo comercial: </strong>{{ anexosText.avcomer }}<br>
-                         <input type="number" [(ngModel)]="_avComer" name="_avComer">
+                        <input type="number" [(ngModel)]="_avComer" name="_avComer">
                     </li>
-                    <li class="list-group-item"><strong>M. Técnica: </strong>  {{ anexosText.metodtec }}<br>
-                         <input type="text"   [(ngModel)]="_mTecnica" name="_mTecnica">
+                    <li class="list-group-item"><strong>M. Técnica: </strong> {{ anexosText.metodtec }}<br>
+                        <input type="text" [(ngModel)]="_mTecnica" name="_mTecnica">
                     </li>
-                    <li class="list-group-item"><strong>Observaciones: </strong>  {{ anexosText.observaciones }} <br>
-                         <textarea rows="3"
-                                   class="lg-textarea form-control"
-                                   [(ngModel)]="_observac"
-                                   name="_observac">
+                    <li class="list-group-item"><strong>Observaciones: </strong> {{ anexosText.observaciones }} <br>
+                        <textarea rows="3" class="lg-textarea form-control" [(ngModel)]="_observac" name="_observac">
                          </textarea>
                     </li>
-                    <div style="display: flex; justify-content: stretch;"
-                         class="animated fadeInRight fast" *ngIf="controlUpdate">
-                        <button class="btn btn-info" (click)="updateAnexo(anexosText.id,                                                              
+                    <div style="display: flex; justify-content: stretch;" class="animated fadeInRight fast" *ngIf="controlUpdate">
+                        <button class="btn btn-info" (click)="updateAnexo(anexosText.id,
                                                               anexosText.placa,
                                                               anexosText.codBarra,
                                                               _editVidUtil,
                                                               _avComer,
                                                               _mTecnica,
-                                                              _observac)" >
+                                                              _observac)">
                             <span class="icon-edit"></span>
                         </button>
                         <button class="btn btn-danger" (click)="deleteAnexo(anexosText.id, anexosText.placa)">
                             <span class="icon-trash"></span>
                         </button>
                     </div>
-                </ul>                
+                </ul>
             </div>
         </div>
     </div>
+
     <div class="contImg animated fadeInLeft fast" *ngIf="ImgCont">
         <div class="headMod">Cod. Placa : <strong>{{plInv}}</strong>
             <span class="cancel icon-cancel" (click)="close()"></span>
         </div>
         <img [src]="_img" id="imgS" width="100%" height="auto">
-    </div> 
-    <div class="contsNewData animated fadeIn fast" id="contsNewData"  *ngIf="cMods" >
+    </div>
+
+    <div class="contsNewData animated fadeIn fast" id="contsNewData" *ngIf="cMods">
         <div class="inputsEval animated fadeInRight slow">
             <div id="headTitle"> <span class="icon-pencil-alt"></span> Datos para avaluo:
                 <div id="headTitleDataAnexo">
@@ -175,5 +182,3 @@
     </div>
 
 </div>
-
-
