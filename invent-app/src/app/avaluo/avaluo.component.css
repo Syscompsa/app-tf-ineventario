@@ -97,6 +97,46 @@
     flex-wrap: wrap;
 }
 
+.cmsEdit {
+    width: 375px;;
+}
+
+.firma {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+}
+
+.saveCod {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    cursor: pointer;
+    transition: ease all 0.5s;
+    float: right;
+}
+
+.saveCod:hover {
+    background-color: royalblue;
+    transition: ease all 0.5s;
+}
+
+
+
+input {
+    width: 140px;
+    background-color: #351a0e;
+    color: white;
+    border: none;
+    border-bottom: solid 0.5px rgb(231, 184, 158)
+}
+/* 
+
+th{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
 .btnClose {
     width: 25px;
     height: 25px;

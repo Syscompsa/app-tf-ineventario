@@ -1,5 +1,5 @@
 <!-- Button trigger modal -->
-<div class="contsHeader">
+<div class="contsHeader" *ngIf="_showOtherHead">
     <div class="invName" id="invHead" style="cursor: pointer; width: 150px;" data-toggle="modal" data-target="#exampleModal">
         {{invCount}} <span class="icon-users"></span> Inventariadores
     </div>
@@ -23,7 +23,7 @@
 
             <div class="modal-body">
 
-                <table class="table table-primary">
+                <table class="table table-hover table-primary">
                     <thead>
                         <tr>
                             <th scope="col">Código</th>
@@ -46,11 +46,12 @@
     </div>
 </div>
 <div class="Edit">
-    <button class="btn btn-dark" style="border-radius: 0px; font-size: 9pt;" [ngStyle]="{'background-color': _bColor}" (click)="editTableCodBar('edBtn')"> <span class="icon-edit-2"></span> Editar </button>
-    <button class="btn btn-dark" style="border-radius: 0px; font-size: 9pt;"> <span class=" icon-chart-line-1"></span> Productividad </button>
-    <button class="btn btn-dark" style="border-radius: 0px; font-size: 9pt;"> <span class=" icon-briefcase-1"></span> Reportería </button>
+    <button class="btn btn-dark" style="border-radius: 0px; font-size: 9pt;" [ngStyle]="{'background-color': _bColor}" (click)="editTableCodBar()"> <span class="icon-edit-2"></span> Editar </button>
+    <!-- <button class="btn btn-dark" style="border-radius: 0px; font-size: 9pt;"> <span class=" icon-chart-line-1"></span> Productividad </button> -->
+    <button class="btn btn-dark" style="border-radius: 0px; font-size: 9pt;" [ngStyle]="{'background-color': _bColorA}" (click)="ShowReport()"> <span class=" icon-briefcase-1"></span> Reportería </button>
+    <button class="btn btn-dark" style="border-radius: 0px; font-size: 9pt;" (click)="expandTable()" [ngStyle]="{'background-color': _bColorExpand}"> <span class=" icon-right-3" id="expand"></span> </button>
 </div>
-<div class="tableData animated fadeIn fast">
+<div class="tableData animated fadeIn fast" *ngIf="_showOtherHead">
     <table class="table table-dark" style="font-size: 9pt;">
         <thead>
             <tr>
@@ -60,44 +61,71 @@
                 </th>
                 <th scope="col">Inventeriador</th>
                 <th scope="col">Descripción</th>
-                <th scope="col" class="cmsEdit animated fadeInLeft fast" style="background-color: rgb(255, 119, 0);" *ngIf="editCards">Cod. Barra</th>
-                <th scope="col" class="cmsEdit animated fadeInRight fast" style="background-color: rgb(255, 119, 0);" *ngIf="editCards">Cod. Padre</th>
+                <th scope="col" class="cmsEdit animated fadeInLeft fast"
+                    style="background-color: rgb(255, 119, 0);"
+                    *ngIf="editCards"  >
+                    Cod. Barra <span class="icon-edit"></span>
+                </th>
+                <th scope="col" class="cmsEdit animated fadeInRight fast" style="background-color: rgb(255, 119, 0);" *ngIf="editCards">
+                    Cod. Padre <span class="icon-edit"></span>
+                </th>
+                <th scope="col" class="cmsEdit animated fadeInRight fast" style="background-color: rgb(255, 119, 0);" *ngIf="editCards">
+                    Referencia <span class="icon-edit"></span>
+                </th>                
+                <th scope="col">C. Barra</th>
+                <th scope="col">C. Padre</th>
+                <th scope="col">Referencia</th>
                 <th scope="col">Marca</th>
                 <th scope="col">Modelo</th>
-                <th scope="col">Referencia</th>
-                <th scope="col">Costo Historico</th>
-                <th scope="col">Valor Normal</th>
-                <th scope="col">Valor Revaluo</th>
-                <th scope="col">Dep. Acum. Ini.</th>
-                <th scope="col">Dep. Reval. Ini.</th>
-                <th scope="col">Sum D.A.I.</th>
-                <th scope="col">Sum D.R.I.</th>
+                <th scope="col" *ngIf="_contsCostos">Costo Historico</th>
+                <th scope="col" *ngIf="_contsCostos">Valor Normal</th>
+                <th scope="col" *ngIf="_contsCostos">Valor Revaluo</th>
+                <th scope="col" *ngIf="_contsCostos">Dep. Acum. Ini.</th>
+                <th scope="col" *ngIf="_contsCostos">Dep. Reval. Ini.</th>
+                <th scope="col" *ngIf="_contsCostos">Sum D.A.I.</th>
+                <th scope="col" *ngIf="_contsCostos">Sum D.R.I.</th>
                 <th scope="col" title="Evaluo"> <span class="icon-doc-text-1"></span> </th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let a of arrData | paginate: {itemsPerPage: _nPag, currentPage: pageActual}">
+            <tr *ngFor="let a of arrData | paginate: {itemsPerPage: _nPag, currentPage: pageActual  };">
                 <th scope="row" (click)="getImgByPlaca(a.placa)" class="thPlaca">
                     <span class="icon-picture"></span> {{ a.placa }}
                 </th>
                 <th scope="col" (click)="controlDataAnexo(a.placa)" class="thPlaca"><span class="icon-contacts"></span></th>
                 <td>{{a.usucrea}}</td>
                 <td>{{a.nombre}} </td>
-                <td class="animated fadeInLeft fast" style="background-color: rgb(75, 51, 31);" *ngIf="editCards">
-                    <input type="text"> {{a.barra}}
+                <td class="cmsEdit animated fadeInLeft fast"
+                    style="background-color: rgb(75, 51, 31);" *ngIf="editCards">
+                    <input type="text" id="cbar-{{a.placa}}" >
+                    <span class="saveCod icon-floppy" (click)="updateCampos('cbar-', a.placa, inventChoice, 'barra')" ></span>
                 </td>
-                <td class="animated fadeInRight fast" style="background-color: rgb(116, 72, 37);" *ngIf="editCards">{{a.cpadre}} </td>
-                <td>{{a.marca}} </td>
+                <td class="cmsEdit animated fadeInRight fast"
+                    style="background-color: rgb(116, 72, 37);"  *ngIf="editCards">
+                    <input type="text"  id="cPad-{{a.placa}}">
+                    <span class="saveCod icon-floppy" (click)="updateCampos('cPad-', a.placa, inventChoice, 'cpadre')"></span>
+                </td>
+                <td class="cmsEdit animated fadeInRight fast"
+                    style="background-color: rgb(116, 72, 37);" *ngIf="editCards">
+                    <input type="text" id="cRef-{{a.placa}}" >
+                    <span class="saveCod icon-floppy" (click)="updateCampos('cRef-', a.placa, inventChoice, 'refer')"></span>
+                </td>                
+                <td>{{a.barra}}  </td>
+                <td>{{a.cpadre}} </td>
+                <td>{{a.refer}}  </td>
+                <td>{{a.marca}}  </td>
                 <td>{{a.modelo}} </td>
-                <td>{{a.refer}} </td>
-                <td>{{a.costo_historico}}</td>
-                <td>{{a.valor_normal}}</td>
-                <td>{{a.valor_revaluo}}</td>
-                <td>{{a.da_per00}}</td>
-                <td>{{a.da_rev00}}</td>
-                <td>{{a.sumDa_per}}</td>
-                <td>{{a.sumRev}}</td>
-                <th scope="col" class="evaluo" title="Evaluo" (click)="controlModal(true, a.placa, a.refer)"> <span class="icon-doc-text-1"></span> </th>
+                <td *ngIf="_contsCostos">{{a.costo_historico}}  </td>
+                <td *ngIf="_contsCostos">{{a.valor_normal}}     </td>
+                <td *ngIf="_contsCostos">{{a.valor_revaluo}}    </td>
+                <td *ngIf="_contsCostos">{{a.da_per00}}         </td>
+                <td *ngIf="_contsCostos">{{a.da_rev00}}         </td>
+                <td *ngIf="_contsCostos">{{a.sumDa_per}}        </td>
+                <td *ngIf="_contsCostos">{{a.sumRev}}           </td>
+                <th scope="col" class="evaluo" title="Evaluo"
+                    (click)="controlModal(true, a.placa, a.refer)">
+                    <span class="icon-doc-text-1"></span>
+                </th>
             </tr>
         </tbody>
     </table>
@@ -113,7 +141,7 @@
                     <li class="list-group-item"><strong>Vida útil:  </strong> {{ anexosText.vidutil }} <br>
                         <input type="number" [(ngModel)]="_editVidUtil" name="_editVidUtil">
                     </li>
-                    <li class="list-group-item"><strong>Avaluo comercial: </strong>{{ anexosText.avcomer }}<br>
+                    <li class="list-group-item" ><strong>Avaluo comercial: </strong>{{ anexosText.avcomer }}<br>
                         <input type="number" [(ngModel)]="_avComer" name="_avComer">
                     </li>
                     <li class="list-group-item"><strong>M. Técnica: </strong> {{ anexosText.metodtec }}<br>
@@ -156,7 +184,7 @@
                     Placa: {{placaText}} / Cod. Barra: {{codBarraText}}
                 </div>
             </div>
-            <div class="inptsn">
+            <div class="inptsn" >
                 <input type="number" [(ngModel)]="_vUtilNg" name="_vUtilNg" class="numb" placeholder="Vida útil estimada...">
             </div>
             <div class="inptsn">
@@ -179,6 +207,58 @@
                 </div>
             </section>
         </div>
+    </div>
+</div>
+
+<div class="reporteria" style="width: 100%; height: 500px"  *ngIf="_reportShow">
+        
+    <div id="report" class="container animated bounceInDown fast" >
+        <strong>
+            <h2 class="mb-4 mt-4" style="text-align: center;">
+            ACTA PROVICIONAL EN LA CUSTODIA DE ACTIVO FIJOS. </h2>
+        </strong>
+        <hr>           
+        <h5>
+            <strong>Inventariador:</strong>  {{invName}}  / RGPACCIOLI
+        </h5>
+        <h5>
+            <strong>Fecha Actual:</strong>  {{fechActual | date: 'short'}}
+        </h5>
+        <h5>
+            <strong>Reporte por custodio:</strong> <input type="text" (keyup.enter)="searchByCust(_CustBusqueda)"
+                    [(ngModel)]="_CustBusqueda" name="_CustBusqueda" style="border: none; width: 260px; padding: 5px; background-color: transparent; color: gray;" placeholder="Busque por custodio.... ">
+        </h5>
+        <table class="table table-sm table-bordered">
+        <thead class='thead-light' >
+            <th>Custodio    </th>
+            <th>Dep.        </th>
+            <th>Ciudad      </th>
+            <th>Descripción </th>
+            <th>Referencia  </th>
+            <th>Serie       </th>
+            <th>Fecha       </th>
+        </thead>
+        <tbody id='tbodyFor'>
+            <tr *ngFor="let report of arrReporte">
+                <td> {{report.custName}}                </td>
+                <td> {{report.depName}}                 </td>
+                <td> {{report.ciudName}}                </td>
+                <td> {{report.nombre}}                  </td>
+                <td> {{report.refer}}                   </td>
+                <td> {{report.serie}}                   </td>
+                <td> {{report.fechac | date: 'short'}}  </td>
+            </tr>        
+        </tbody>
+    </table>
+    </div>
+
+    <div class="Footer container mb-4">
+        <div class="firma   mb-4" style="margin-top: 85px;">
+            <hr class="hr" style="width: 300px;">
+            <strong> Firma del custodio: {{_CustBusqueda}} </strong>
+        </div>
+        <h6>En presente documento es un acta de entrega provisional de los activos que se custodia y son de pertenencia exclusiva de TC TELEVISIÓN.</h6>
+        <h6>Me comprometo a comunicar al departamentos de activos fijos cualquier transferencia y/o momiviente que resultare a partir de la presente acta.</h6>
     </div>
 
 </div>

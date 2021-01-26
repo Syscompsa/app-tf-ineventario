@@ -26,4 +26,21 @@ export class ANEXODP12A120FService {
     return this.http.get(this.apiURL + 'api/anexos/DeletAnexo/' + id);
   }
 
+  updateForElement(PLACA, ELEMENT, CODIGO) {
+    return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/UpdateElement/' + PLACA + '/' + ELEMENT + '/' + CODIGO);
+  }
+
+  getFechaIngreso( DATE, INVENTOR ) {
+    return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/GetDp12a120FDate/' + DATE + '/' + INVENTOR);
+  }
+
+  getReporte(INV) {
+    return this.http.get(this.apiURL + 'api/Diario/GetReporteUser/' + INV );
+  }
+
+  
+  getReporteCust(CUST) {   
+    return this.http.get(this.apiURL + 'api/Diario/GetReporteCustodio/' + CUST );
+  }
+
 }
