@@ -34,7 +34,7 @@
     "qrcode-generator": "^1.4.4",
     "rxjs": "~6.4.0",
     "sweetalert2": "^9.17.1",
-    "tippy.js": "^6.2.6",
+    "tippy.js": "^6.2.7",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },

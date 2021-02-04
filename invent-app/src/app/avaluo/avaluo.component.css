@@ -9,12 +9,7 @@
     transition: ease all 0.5s;
 }
 
-th:hover {
-    transition: ease all 0.5s;
-    background-color: black;
-    cursor: pointer;
-    color: yellowgreen;
-}
+
 
 .esData {
     color: rgb(132, 172, 213);
@@ -104,8 +99,15 @@ th:hover {
     flex-wrap: wrap;
 }
 
+.Edit {
+    display: flex;
+    justify-content: stretch;
+    align-items: center;
+}
+
 .cmsEdit {
     width: 375px;;
+
 }
 
 #thrder {
@@ -155,13 +157,42 @@ input {
     border: none;
     border-bottom: solid 0.5px rgb(24, 24, 24)
 }
-/* 
+
+.specialInputs {
+    font-size: 10pt !important;
+    background-color: transparent;
+    outline: none;
+    color: greenyellow;
+    border-bottom: solid 0.5px greenyellow;
+}
+
+
+.clos {
+    color: orangered;
+    transition: ease all 0.5s;
+    float: right;
+    font-size: 10pt;
+}
+.clos:hover{
+    color: orange;
+    transition: ease all 0.5s;
+    cursor: pointer;
+}
 
 th{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
+    transition: ease all 0.3s;
+    font-size: 10pt;
+    font-weight: normal !important;
+}
+
+th:hover {
+    transition: ease all 0.6s;
+    background-color: black;
+    cursor: pointer;
+    color: yellowgreen;
+    font-size: 9pt;
+}
+
 .btnClose {
     width: 25px;
     height: 25px;
@@ -249,6 +280,12 @@ input {
     }
     .inptsn {
         width: 100%;
+    }
+}
+
+@keyframes animTHIn{
+    0% {
+        /* font-size: ; */
     }
 }
 

@@ -3,13 +3,22 @@ import { ANEXODP12A120FService } from '../Services/anexo-dp12-a120-f.service';
 import { DataCallService } from '../Services/data-call.service';
 import Swal from 'sweetalert2';
 
-import * as am4core from '@amcharts/amcharts4/core';
-import * as am4charts from '@amcharts/amcharts4/charts';
-import am4themes_animated from '@amcharts/amcharts4/themes/animated';
-import am4themes_moonrisekingdom from "@amcharts/amcharts4/themes/moonrisekingdom";
+import * as am4core from "@amcharts/amcharts4/core";
+import * as am4charts from "@amcharts/amcharts4/charts";
+import am4themes_spiritedaway from "@amcharts/amcharts4/themes/spiritedaway";
+import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 
+
+import tippy from 'tippy.js';
+import 'tippy.js/dist/tippy.css';
+import 'tippy.js/animations/scale.css';
+import 'tippy.js/animations/scale-subtle.css';
+import 'tippy.js/animations/scale-extreme.css';
 // am4core.useTheme(am4themes_moonrisekingdom);
 // am4core.useTheme(am4themes_animated);
+
+am4core.useTheme(am4themes_spiritedaway);
+am4core.useTheme(am4themes_animated);
 
 @Component({
   selector: 'app-avaluo',
@@ -26,7 +35,21 @@ export class AvaluoComponent implements OnInit {
     this.Call_Inventariadores();
     this.screen();
     this.getCustod('a');
+    this.SearchDep('a');
   }
+  
+
+  //#region inputs TH TABLE
+  public _In_des: boolean = false;
+  public _In_bar: boolean = false;
+  public _In_pad: boolean = false;
+  public _In_refer: boolean = false;
+  //#endregion
+
+  public _filter_barra;
+  public _filter_refer;
+  public _filter_desc;
+  public _filter_cpadre;
 
   public inventChoice: string;
   public _CustBusqueda;
@@ -49,6 +72,7 @@ export class AvaluoComponent implements OnInit {
 
   public arrAnexo: any = [];
 
+  public labelDescription: string;
   public _vUtilNg: any;
   public _aComerNg: any;
   public _metTecnicaNg: string;
@@ -92,6 +116,79 @@ export class AvaluoComponent implements OnInit {
           
         // })
   }
+
+  // TooltipJS(content) {
+  //   //console.log('askdfjkasdjfksdjfl')
+  //   const b = document.createElement('input');
+  //   b.setAttribute('class', 'form-control')
+  //   b.setAttribute('type', 'text')
+  //   b.setAttribute('id', `${content}`);
+  //   tippy('#descripTH', {
+  //     content: b,
+  //     hideOnClick: 'toggle',
+  //     maxWidth: 'none',
+  //     trigger: 'click',
+  //     placement: 'bottom',
+  //     allowHTML: true,
+  //     moveTransition: 'transform 0.2s ease-out',
+  //     touch: true,
+  //   });
+
+  //   const a = document.getElementById(`${content}`);
+  //   a.innerText = `${content}`;
+ 
+  // }  
+
+  desbloqDes(a){
+    this._In_des = a;
+  }
+
+  desbloqBarra(a){
+    this._In_bar = a;
+  }
+  
+  desbloqPadre(a){
+    this._In_pad = a;
+  }
+
+  desbloqRefer(a) {
+    this._In_refer = a;
+  }
+
+//   chartForInventory(contentData){
+ 
+//    // Create axes
+//    let chart = am4core.create("chartdiv", am4charts.XYChart);
+
+//    // Add data
+//    chart.data = contentData
+// let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+// categoryAxis.dataFields.category = "country";
+// categoryAxis.renderer.grid.template.location = 0;
+// categoryAxis.renderer.minGridDistance = 30;
+
+// categoryAxis.renderer.labels.template.adapter.add("dy", function(dy:any, target: any) {
+//   if (target.dataItem && target.dataItem.index & 2 == 2) {
+//     return dy + 25;
+//   }
+//   return dy;
+// });
+
+// let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+
+// // Create series
+// let series = chart.series.push(new am4charts.ColumnSeries());
+// series.dataFields.valueY = "visits";
+// series.dataFields.categoryX = "country";
+// series.name = "Visits";
+// series.columns.template.tooltipText = "{categoryX}: [bold]{valueY}[/]";
+// series.columns.template.fillOpacity = .8;
+
+// let columnTemplate = series.columns.template;
+// columnTemplate.strokeWidth = 2;
+// columnTemplate.strokeOpacity = 1;
+
+//   }
 
   expandTable() {
     let a = document.getElementById('expand');
@@ -184,7 +281,10 @@ export class AvaluoComponent implements OnInit {
   public cantidad: any;
   public valueSQL: string;
   public dataSQL: string;
+  public dataSerach: any;
   getDep12a120F(inv, a, b, c) {
+    
+   
     
     if ( (b == '' || c == '') || (b == undefined || c == undefined) ) {
      
@@ -196,36 +296,68 @@ export class AvaluoComponent implements OnInit {
      
     }
 
-
+    this.dataSerach = c;
     this.inventChoice = inv;
-    this.data.getDp12a120F(inv, a, b, c).subscribe( data => {
+    this.data.getDp12a120F(inv, a, b, c).subscribe( data => {     
       
-      let dat = [];
-
       this.arrData = data;
       this.invProd = this.arrData.length;
       this.invChoice(inv);
       console.log(this.arrData);
 
       this.createReport(inv);
-      
-    })
 
+      // let datos = [];
+
+      // {
+      //   date:new Date(2019,5,12),
+      //   value1:50,
+      //  },
+
+      // this.chartForInventory(datos);
+      // for( let i = 0; i <= this.arrData.length; i++) {
+      //   let fecha = this.arrData[i].fechac.toString().slice(0,10);
+      //   let value = i;
+
+      //   datos.push({
+      //     visits: value,
+      //     country: fecha
+      //   })
+      // }
+  
+
+    //   {
+    //     date: '2020-01-05',
+    //     first: 40
+    // },
+    // {
+    //     category: '2020-02-06',
+    //     first: 30
+    // } 
+
+      
+
+    })
   }
 
   public order: boolean = true;
-  orderType(inv) {
+  public orderTy: any;
+  public coloRow: string;
+  orderType(inv, type, valueDefect) {
+    this.labelDescription = `Se está ordenando por ${type}`;
     switch (this.order) {
       case true:
         this.order = false;
-        this.getDep12a120F(inv, 'desc', 'a.BARRA', 'TC01101-006279');
-        console.log(this.order);
+        this.orderTy = 'icon-down-big';
+        this.coloRow = 'orangered';
+        this.getDep12a120F(inv, 'desc', `a.${type}`, `${valueDefect}`);
         break;
 
       case false:
         this.order = true;
-        this.getDep12a120F(inv, 'asc', 'a.BARRA', '0');
-        console.log(this.order);
+        this.orderTy = 'icon-up-big';
+        this.coloRow = 'steelblue';
+        this.getDep12a120F(inv, 'asc' , `a.${type}`, `${valueDefect}`);
         break;
      
       default:
@@ -315,6 +447,8 @@ export class AvaluoComponent implements OnInit {
   }
 
 
+
+
 //BUSCA POR CUSTODIO
   searchByCust(cust) {
     console.log(cust);
@@ -322,6 +456,23 @@ export class AvaluoComponent implements OnInit {
       this.arrReporte = CUST;
       console.log(this.arrReporte);
       this._CustBusqueda = cust;
+      if(this.arrReporte.length == 0) {
+        alert('No hemos encontrado nada');
+      }
+    }, (err) => {
+      alert(err);
+    }
+
+    )
+  }
+
+  //BUSCA POR DEPARTAMENTOS
+  public arrDEPTS: any = [];
+  public _Sdpts: string;
+  SearchDep(DEP) {
+    this.anexo.getDep(DEP).subscribe( DEPTS => {
+      this.arrDEPTS = DEPTS;
+      console.log(this.arrDEPTS);
     })
   }
 

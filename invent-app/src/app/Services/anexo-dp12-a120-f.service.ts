@@ -45,4 +45,13 @@ export class ANEXODP12A120FService {
   getCustodiosByReport(CUST) {
     return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/GetCustodios/' + CUST );
   }
+
+  getDep(DEP) {
+    return this.http.get(this.apiURL + 'api/Diario/GetDeptALP/' + DEP );
+  }
+
+  //FILTROS PARA LA TABLA PRINCIPAL
+  
+
+
 }

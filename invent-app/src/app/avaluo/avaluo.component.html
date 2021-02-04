@@ -30,7 +30,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor=" let inv of arrDataInv " (click)="getDep12a120F(inv.nombre, 'asc')">
+                        <tr *ngFor=" let inv of arrDataInv " (click)="getDep12a120F(inv.nombre, 'asc', 'a.placa', '0')">
                             <th scope="row">{{ inv.codigo }}</th>
                             <td class="trPointer"> {{ inv.nombre }} </td>
                         </tr>
@@ -38,28 +38,83 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                <button type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal">Close
+                </button>
             </div>
         </div>
     </div>
 </div>
+
+       <!-- Modal -->
+       <div class="modal fade" id="ModalDEPTS" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel"><span class="icon-equalizer"></span> Filtrar </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" style="height: 450px; overflow-y: scroll;" >
+
+                <label for="depts"><span class="icon-search"></span>Busqueda por Departamentos:</label>
+                <input type="text" [(ngModel)]="_Sdpts" name="_Sdpts" (keyup.enter)="SearchDep(_Sdpts)" placeholder="Escribe y presiona ENTER para iniciar la busqueda..." >
+                <table class="table table-dark table-hover"  >
+                    <thead>
+                      <tr>
+                        <th scope="col">Código</th>
+                        <th scope="col">Nombre</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let dep of arrDEPTS" (click)="searchByCust(dep.nombre)">
+                        <th scope="row">{{dep.codigo}}</th>
+                        <td>{{dep.nombre}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
 <div class="Edit" *ngIf="_editShow">
+    
     <button class="btn btn-dark" style="border-radius: 0px; font-size: 9pt;" [ngStyle]="{'background-color': _bColor}" (click)="editTableCodBar()"> <span class="icon-edit-2"></span> Editar </button>
     <!-- <button class="btn btn-dark" style="border-radius: 0px; font-size: 9pt;"> <span class=" icon-chart-line-1"></span> Productividad </button> -->
     <button class="btn btn-dark" style="border-radius: 0px; font-size: 9pt;" [ngStyle]="{'background-color': _bColorA}" (click)="ShowReport()"> <span class=" icon-briefcase-1"></span> Reportería </button>
     <button class="btn btn-dark" style="border-radius: 0px; font-size: 9pt;" (click)="expandTable()" [ngStyle]="{'background-color': _bColorExpand}"> <span class=" icon-right-3" id="expand"></span> </button>
+    <div>
+        <span class="icon-eye"></span> {{labelDescription}} | <strong>{{dataSerach}}</strong> | <span [ngStyle]="{'color': coloRow}" [class]="orderTy"></span>
+    </div>
 </div>
+
+<!-- <div id="chartdiv" style="height: 300px;"></div> -->
 <div class="tableData animated fadeIn fast" *ngIf="_showOtherHead">
     <table class="table table-dark table-hover" style="font-size: 9pt;" >
         <thead>
             <tr>
-                <th scope="col" id="thrder" (click)="orderType(invName)">Placa</th>
+                <th scope="col" id="thrder" (click)="orderType(invName, 'placa', '')">Placa</th>
                 <th scope="col">
                     <span class="icon-contacts"></span>
                 </th>
                 <th scope="col">Fecha Inv.</th>
-                <th scope="col">Descripción</th>
+                <th scope="col" id="descripTH" (dblclick)="desbloqDes(true)"
+                    (click)="orderType(invName, 'nombre', _filter_desc)">Descripción 
+                    <span class=" clos icon-cancel" *ngIf="_In_des" (click)="desbloqDes(false)" ></span>
+                    <input type="text" class="specialInputs"
+                           [(ngModel)]="_filter_desc" name="_filter_desc"
+                           placeholder="Busqueda..." *ngIf="_In_des"
+                           (keyup.enter)="getDep12a120F(invName, 'asc', 'a.nombre', _filter_desc)">
+                          
+                </th>
                 <th scope="col" class="cmsEdit animated fadeInLeft fast"
                     style="background-color: rgb(255, 119, 0);"
                     *ngIf="editCards"  >
@@ -71,10 +126,31 @@
                 <th scope="col" class="cmsEdit animated fadeInRight fast" style="background-color: rgb(255, 119, 0);" *ngIf="editCards">
                     Referencia <span class="icon-edit"></span>
                 </th>
-                <th scope="col" (dblclick)="getDep12a120F(invName, 'asc', 'a.BARRA', 'TC01101-006279' )" >C. Barra</th>
-                <th scope="col">C. Padre</th>
-                <th scope="col">Referencia</th>
-                <th scope="col" *ngIf="_contsCostos">Marca</th>
+                <th scope="col" (dblclick)="desbloqBarra(true)"
+                    (click)="orderType(invName, 'barra', _filter_barra)">C. Barra 
+                    <span class=" clos icon-cancel" *ngIf="_In_bar" (click)="desbloqBarra(false)" ></span>
+                    <input type="text" class="specialInputs"
+                           [(ngModel)]="_filter_barra" name="_filter_barra"
+                           placeholder="Busqueda..." *ngIf="_In_bar"                           
+                           (keyup.enter)="getDep12a120F(invName, 'asc', 'a.barra', _filter_barra)" >
+                </th>
+                <th scope="col" (click)="orderType(invName, 'cpadre', _filter_cpadre)"
+                    (dblclick)="desbloqPadre(true)">C. Padre
+                    <span class=" clos icon-cancel" *ngIf="_In_pad" (click)="desbloqPadre(false)" ></span>
+                    <input type="text" class="specialInputs"
+                           [(ngModel)]="_filter_cpadre" name="_filter_cpadre"
+                           placeholder="Busqueda..." *ngIf="_In_pad"
+                           (keyup.enter)="getDep12a120F(invName, 'asc', 'a.cpadre', _filter_cpadre)">
+                </th>
+                <th scope="col" (click)="orderType(invName, 'refer', _filter_refer)" 
+                    (dblclick)="desbloqRefer(true)" >Referencia
+                    <span class=" clos icon-cancel" *ngIf="_In_refer" (click)="desbloqRefer(false)" ></span>
+                    <input type="text" class="specialInputs"
+                           [(ngModel)]="_filter_refer" name="_filter_refer"
+                           placeholder="Busqueda..." *ngIf="_In_refer"
+                           (keyup.enter)="getDep12a120F(invName, 'asc', 'a.refer', _filter_refer)">
+                </th>
+                <th scope="col" *ngIf="_contsCostos">Marca </th>
                 <th scope="col" *ngIf="_contsCostos">Modelo</th>
                 <th scope="col" *ngIf="_contsCostos">Costo Historico</th>
                 <th scope="col" *ngIf="_contsCostos">Valor Normal</th>
@@ -88,10 +164,10 @@
         </thead>
         <tbody>
             <tr *ngFor="let a of arrData | paginate: {itemsPerPage: _nPag, currentPage: pageActual  };">
-                <th scope="row" (click)="getImgByPlaca(a.placa)" class="thPlaca">
+                <td scope="row" (click)="getImgByPlaca(a.placa)" class="thPlaca">
                     <span class="icon-picture"></span> {{ a.placa }}
-                </th>
-                <th scope="col" (click)="controlDataAnexo(a.placa)" class="thPlaca"><span class="icon-contacts"></span></th>
+                </td>
+                <td scope="col" (click)="controlDataAnexo(a.placa)" class="thPlaca"><span class="icon-contacts"></span></td>
                 <td title="mm/dd/yyyy" >{{a.fechac |  date:"MM/dd/yy" }}</td>
                 <td>{{a.nombre}} </td>
                 <td class="cmsEdit animated fadeInLeft fast"
@@ -230,18 +306,21 @@
             <strong>Fecha Actual:</strong>  {{fechActual | date: 'short'}}
         </h5>
         <h5>
-            <strong>Reporte por custodio:</strong><div class="btn btn-info" data-toggle="modal" data-target="#exampleModal2"><span class="icon-search"></span></div>
+            <strong>Reporte por custodio:</strong>
+            <div class="btn btn-info" data-toggle="modal"
+                 data-target="#exampleModal2"><span class="icon-search"></span>
+            </div>
             <input type="text" (keyup.enter)="searchByCust(_CustBusqueda)" (dblclick)="getCustod('a')"
                    [(ngModel)]="_CustBusqueda"
                    name="_CustBusqueda"
                    style="border: none; width: 260px; padding: 5px; background-color: transparent; color: gray;"
                    placeholder="Busque por custodio.... ">
         </h5>
-       
+
         <table class="table table-sm table-bordered">
         <thead class='thead-light' >
             <!-- <th>Custodio    </th> -->
-            <th>Dep.        </th>
+            <th data-toggle="modal" data-target="#ModalDEPTS">Dep.        </th>
             <!-- <th>Ciudad      </th> -->
             <th>Descripción </th>
             <th>Referencia  </th>
@@ -309,3 +388,6 @@
       </div>
     </div>
   </div>
+
+
+  
