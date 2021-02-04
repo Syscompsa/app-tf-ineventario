@@ -9,6 +9,13 @@
     transition: ease all 0.5s;
 }
 
+th:hover {
+    transition: ease all 0.5s;
+    background-color: black;
+    cursor: pointer;
+    color: yellowgreen;
+}
+
 .esData {
     color: rgb(132, 172, 213);
     font-size: 14pt;
@@ -101,6 +108,24 @@
     width: 375px;;
 }
 
+#thrder {
+    transition: ease all 0.5s;
+}
+
+#thrder:hover {
+    transition: ease all 0.5s;
+    background-color: #121212;
+}
+
+tr {
+    cursor: pointer;
+}
+
+.sp_a {
+    height: 350px;
+    overflow-y: auto;
+}
+
 .firma {
     display: flex;
     flex-direction: column;
@@ -125,10 +150,10 @@
 
 input {
     width: 140px;
-    background-color: #351a0e;
-    color: white;
+    background-color: #c6c6c6;
+    color: rgb(16, 16, 16);
     border: none;
-    border-bottom: solid 0.5px rgb(231, 184, 158)
+    border-bottom: solid 0.5px rgb(24, 24, 24)
 }
 /* 
 

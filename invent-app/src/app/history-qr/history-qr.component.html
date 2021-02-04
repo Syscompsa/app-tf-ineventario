@@ -23,11 +23,29 @@
 </div>
 
 <div class="cons container" id="const">
+    
     <div class="paginador">
-        <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
+        <pagination-controls (pageChange)="_nPageCont = $event"></pagination-controls>
+        
     </div>
+    <div class="numb"  >
+        Pag. Actual:
+        <input type="number"
+               class="paginationId"
+               [(ngModel)]="_nPageCont"
+               name="_nPageCont" id="pID"
+               (change)="shist(_nPageCont)"
+               (keyup)="shist(_nPageCont)"
+               (keyup.enter)="shist(_nPageCont)">
+    </div>
+    <!-- <div class="numb">N. Etiquetas x pag.
+        <input type="number" class="paginationId" [(ngModel)]="_nPageContDIV" name="_nPageContDIV">
+    </div> -->
     <div class="filterfor" data-toggle="modal" data-target="#exampleModal">
-        <span class="filter icon-filter" data-toggle="modal" data-target="#exampleModal" id="an" (mouseover)="retAnim('animFilter')" (mouseleave)="retAnim('')" title="El filtro está activado por, {{filtro}}"></span> Filtrado por:
+        <span class="filter icon-filter" data-toggle="modal"
+              data-target="#exampleModal" id="an" (mouseover)="retAnim('animFilter')"
+              (mouseleave)="retAnim('')"
+              title="El filtro está activado por, {{filtro}}"></span> Filtrado por:
         <strong style="font-size: 14pt; color: steelblue;">
            {{filtro}} | Productos alcanzados: <strong> {{contadorProdAct}} <span class="icon-database"></span> </strong>
         </strong>
@@ -133,7 +151,7 @@
 
     <div class="dataQR mb-4 animated fadeIn" id="dataQR" *ngIf="true">
 
-        <div class="box" style="cursor: pointer; margin: 10px;" *ngFor="let a of dataQRExtract | paginate: {itemsPerPage: 16, currentPage: pageActual}" id="box-{{a.placa}}" (click)="imprimirUnidad(a.placa)">
+        <div class="box" style="cursor: pointer; margin: 10px;" *ngFor="let a of dataQRExtract | paginate: {itemsPerPage: 16, currentPage: sesHiystPrint}" id="box-{{a.placa}}" (click)="imprimirUnidad(a.placa)">
 
 
             <!-- <div class="data" style="font-size: 9pt; padding: 5px;" width="20%">

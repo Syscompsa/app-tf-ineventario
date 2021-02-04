@@ -30,8 +30,8 @@ export class DataCallService {
     return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/GetImage_a120F/' + COD);
   }
 
-  getDp12a120F(INV) {
-    return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/Get_data_120F/' + INV);
+  getDp12a120F(INV, otype, valueTypeSQL, valor) {
+    return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/Get_data_120F/' + INV + '/' + otype + '/' + valueTypeSQL + '/' + valor);
   }
 
   Get_Inventariadores() {

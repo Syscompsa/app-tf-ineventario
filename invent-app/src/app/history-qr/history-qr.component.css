@@ -15,6 +15,15 @@
     width: 100%;
 }
 
+.paginationId {
+    border: none;
+    border-bottom: solid 0.5px;
+    width: 80px;
+    height: 20px;
+    outline: none;
+    text-align: center;
+}
+
 #prevImprimir {
     background-color: rgb(220, 233, 245);
     /* border-top-right-radius: 5px; */

@@ -7,9 +7,8 @@ import { Injectable } from '@angular/core';
 export class ANEXODP12A120FService {
 
   private apiURL = 'https://alp-cloud.com:8446/';
-
-  constructor(private http: HttpClient) { }
-
+  constructor(private http: HttpClient) {  }
+  
   saveAnexos(content) {
     return this.http.post(this.apiURL + 'api/anexos/PostAnexo/', content);
   }
@@ -26,7 +25,7 @@ export class ANEXODP12A120FService {
     return this.http.get(this.apiURL + 'api/anexos/DeletAnexo/' + id);
   }
 
-  updateForElement(PLACA, ELEMENT, CODIGO) {
+  updateForElement(PLACA, ELEMENT, CODIGO) { 
     return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/UpdateElement/' + PLACA + '/' + ELEMENT + '/' + CODIGO);
   }
 
@@ -43,4 +42,7 @@ export class ANEXODP12A120FService {
     return this.http.get(this.apiURL + 'api/Diario/GetReporteCustodio/' + CUST );
   }
 
+  getCustodiosByReport(CUST) {
+    return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/GetCustodios/' + CUST );
+  }
 }

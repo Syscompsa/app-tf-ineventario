@@ -16,7 +16,7 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class HistoryQRComponent implements OnInit {
   constructor(public QRData: GQRService, public data: DataCallService) { }
-
+  public _nPageCont: any = 1;
   public dataQRExtract: any;
   public https = 'https://alp-cloud.com:8446/api/AR_INV-QRcodProdGet/getPlaca/';
   public conterA = true;
@@ -43,11 +43,13 @@ export class HistoryQRComponent implements OnInit {
   public tooltipView;
   public filterPost = '';
   public filterPostCust = '';
-  public pageActual: number = 1;
   public adnimBool = true;
   public QRCOUNT = 0;
+  public sesHiystPrint;
 
   ngOnInit() {
+    this.sesHiystPrint = localStorage.getItem('hystPrint');
+    this._nPageCont = localStorage.getItem('hystPrint');
     this.getMarcRep();
     this.getQR_F();
     this.viewOptionsB();
@@ -59,6 +61,12 @@ export class HistoryQRComponent implements OnInit {
       this.contadorProdAct = this.dataQRExtract.length;
       console.log(this.dataQRExtract);
     });
+  }
+ 
+  shist(a) {
+    localStorage.setItem('hystPrint', a);
+    this.sesHiystPrint = localStorage.getItem('hystPrint');
+    console.log(a);
   }
 
   overProduct(ids, disp) {

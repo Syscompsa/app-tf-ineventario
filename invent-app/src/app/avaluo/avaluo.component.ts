@@ -16,6 +16,7 @@ import am4themes_moonrisekingdom from "@amcharts/amcharts4/themes/moonrisekingdo
   templateUrl: './avaluo.component.html',
   styleUrls: ['./avaluo.component.css']
 })
+
 export class AvaluoComponent implements OnInit {
 
   constructor( public data: DataCallService, private anexo: ANEXODP12A120FService ) { }
@@ -24,6 +25,7 @@ export class AvaluoComponent implements OnInit {
     //this.getDep12a120F();
     this.Call_Inventariadores();
     this.screen();
+    this.getCustod('a');
   }
 
   public inventChoice: string;
@@ -47,11 +49,11 @@ export class AvaluoComponent implements OnInit {
 
   public arrAnexo: any = [];
 
-  public _vUtilNg: number = 0 ;
-  public _aComerNg: number = 0;
+  public _vUtilNg: any;
+  public _aComerNg: any;
   public _metTecnicaNg: string;
   public _observNg: string;
-
+  public _nPageContDIV = 16;
 
   public placaText: string;
   public codBarraText: string;
@@ -69,6 +71,8 @@ export class AvaluoComponent implements OnInit {
   public _observac;
 
 //#endregion
+
+  public custCount: number = 0;
 
   public editCards: boolean = false;
 
@@ -113,6 +117,8 @@ export class AvaluoComponent implements OnInit {
   }
 
 
+  
+
   public arrCbarra: any = [];
   updateCampos( vId, placa, inv, ELEMENT) { 
     let nbarra = <HTMLInputElement> document.getElementById(vId+placa);
@@ -133,12 +139,13 @@ export class AvaluoComponent implements OnInit {
       console.log(inv);
       console.log(vId);
       console.log(ELEMENT);
-      this.getDep12a120F(inv);
+      this.getDep12a120F(inv, 'asc', 'a.placa', '0');
 
       // console.log( CBARRA )
     } );
   
   }
+
 
   getImgByPlaca(COD) {
     this.data.geIMGDp12a120F(COD).subscribe( z => {
@@ -175,9 +182,24 @@ export class AvaluoComponent implements OnInit {
 
   public fecha: any;
   public cantidad: any;
-  getDep12a120F(inv) {
+  public valueSQL: string;
+  public dataSQL: string;
+  getDep12a120F(inv, a, b, c) {
+    
+    if ( (b == '' || c == '') || (b == undefined || c == undefined) ) {
+     
+      this.valueSQL = 'a.placa';
+      this.dataSQL = '0';
+
+      b = this.valueSQL;
+      c = this.dataSQL;
+     
+    }
+
+
     this.inventChoice = inv;
-    this.data.getDp12a120F(inv).subscribe( data => {
+    this.data.getDp12a120F(inv, a, b, c).subscribe( data => {
+      
       let dat = [];
 
       this.arrData = data;
@@ -189,6 +211,39 @@ export class AvaluoComponent implements OnInit {
       
     })
 
+  }
+
+  public order: boolean = true;
+  orderType(inv) {
+    switch (this.order) {
+      case true:
+        this.order = false;
+        this.getDep12a120F(inv, 'desc', 'a.BARRA', 'TC01101-006279');
+        console.log(this.order);
+        break;
+
+      case false:
+        this.order = true;
+        this.getDep12a120F(inv, 'asc', 'a.BARRA', '0');
+        console.log(this.order);
+        break;
+     
+      default:
+        break;
+    }
+  } 
+
+  public custArr: any = [];
+  public _custoSearch: string;
+  getCustod(cust) {
+    this.anexo.getCustodiosByReport(cust).subscribe( CUSTOD => {
+      this.custArr = CUSTOD;
+      this.custCount = this.custArr.length;
+      console.log(this.custArr);      
+    })
+
+    console.log(cust);
+  
   }
 
   public _bColor: string;
@@ -251,17 +306,26 @@ export class AvaluoComponent implements OnInit {
     this.anexo.getReporte(inv).subscribe( DATAREPORT => {
       this.arrReporte = DATAREPORT;
       console.log(DATAREPORT);      
-    } )
+    })
   }
 
+  public _editShow = true;
+  edShow(a) {
+    this._editShow = a;
+  }
+
+
+//BUSCA POR CUSTODIO
   searchByCust(cust) {
     console.log(cust);
     this.anexo.getReporteCust(cust).subscribe( CUST => {
       this.arrReporte = CUST;
       console.log(this.arrReporte);
+      this._CustBusqueda = cust;
     })
   }
 
+//GUARDA LOS ANEXOS HACIA LA PLACA EN LA BASE DE DATOS ANEXOS_DP12A120_F
   insertanexo(placa, codBarra) {
 
     let arr: any = {
@@ -289,6 +353,7 @@ export class AvaluoComponent implements OnInit {
     })
   }
 
+
   controlDataAnexo(placa) {
     this.controlAvaluo(true);
     this.anexo.selectAnexos(placa).subscribe( control => {
@@ -296,12 +361,15 @@ export class AvaluoComponent implements OnInit {
       console.log(this.controlArr);
       this.anexosCounts = this.controlArr.length;
       if(this.anexosCounts == 0) {
+
         Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Esta placa no tiene anexos'
+          icon:   'error',
+          title:  'Oops...',
+          text:   'Esta placa no tiene anexos'
         })
+
         this.controlAvaluo(false);
+
       }
 
     })

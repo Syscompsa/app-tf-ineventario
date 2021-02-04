@@ -17,12 +17,11 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Inventariadores (<span class="icon-users"></span>{{invCount}} )</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
 
             <div class="modal-body">
-
                 <table class="table table-hover table-primary">
                     <thead>
                         <tr>
@@ -31,7 +30,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor=" let inv of arrDataInv " (click)="getDep12a120F(inv.nombre)">
+                        <tr *ngFor=" let inv of arrDataInv " (click)="getDep12a120F(inv.nombre, 'asc')">
                             <th scope="row">{{ inv.codigo }}</th>
                             <td class="trPointer"> {{ inv.nombre }} </td>
                         </tr>
@@ -45,21 +44,21 @@
         </div>
     </div>
 </div>
-<div class="Edit">
+<div class="Edit" *ngIf="_editShow">
     <button class="btn btn-dark" style="border-radius: 0px; font-size: 9pt;" [ngStyle]="{'background-color': _bColor}" (click)="editTableCodBar()"> <span class="icon-edit-2"></span> Editar </button>
     <!-- <button class="btn btn-dark" style="border-radius: 0px; font-size: 9pt;"> <span class=" icon-chart-line-1"></span> Productividad </button> -->
     <button class="btn btn-dark" style="border-radius: 0px; font-size: 9pt;" [ngStyle]="{'background-color': _bColorA}" (click)="ShowReport()"> <span class=" icon-briefcase-1"></span> Reportería </button>
     <button class="btn btn-dark" style="border-radius: 0px; font-size: 9pt;" (click)="expandTable()" [ngStyle]="{'background-color': _bColorExpand}"> <span class=" icon-right-3" id="expand"></span> </button>
 </div>
 <div class="tableData animated fadeIn fast" *ngIf="_showOtherHead">
-    <table class="table table-dark" style="font-size: 9pt;">
+    <table class="table table-dark table-hover" style="font-size: 9pt;" >
         <thead>
             <tr>
-                <th scope="col">Placa</th>
+                <th scope="col" id="thrder" (click)="orderType(invName)">Placa</th>
                 <th scope="col">
                     <span class="icon-contacts"></span>
                 </th>
-                <th scope="col">Inventeriador</th>
+                <th scope="col">Fecha Inv.</th>
                 <th scope="col">Descripción</th>
                 <th scope="col" class="cmsEdit animated fadeInLeft fast"
                     style="background-color: rgb(255, 119, 0);"
@@ -71,20 +70,20 @@
                 </th>
                 <th scope="col" class="cmsEdit animated fadeInRight fast" style="background-color: rgb(255, 119, 0);" *ngIf="editCards">
                     Referencia <span class="icon-edit"></span>
-                </th>                
-                <th scope="col">C. Barra</th>
+                </th>
+                <th scope="col" (dblclick)="getDep12a120F(invName, 'asc', 'a.BARRA', 'TC01101-006279' )" >C. Barra</th>
                 <th scope="col">C. Padre</th>
                 <th scope="col">Referencia</th>
-                <th scope="col">Marca</th>
-                <th scope="col">Modelo</th>
+                <th scope="col" *ngIf="_contsCostos">Marca</th>
+                <th scope="col" *ngIf="_contsCostos">Modelo</th>
                 <th scope="col" *ngIf="_contsCostos">Costo Historico</th>
                 <th scope="col" *ngIf="_contsCostos">Valor Normal</th>
-                <th scope="col" *ngIf="_contsCostos">Valor Revaluo</th>
+                <!-- <th scope="col" *ngIf="_contsCostos">Valor Revaluo</th>
                 <th scope="col" *ngIf="_contsCostos">Dep. Acum. Ini.</th>
                 <th scope="col" *ngIf="_contsCostos">Dep. Reval. Ini.</th>
                 <th scope="col" *ngIf="_contsCostos">Sum D.A.I.</th>
-                <th scope="col" *ngIf="_contsCostos">Sum D.R.I.</th>
-                <th scope="col" title="Evaluo"> <span class="icon-doc-text-1"></span> </th>
+                <th scope="col" *ngIf="_contsCostos">Sum D.R.I.</th> -->
+                <th scope="col" title="Evaluo"><span class="icon-doc-text-1"></span></th>
             </tr>
         </thead>
         <tbody>
@@ -93,7 +92,7 @@
                     <span class="icon-picture"></span> {{ a.placa }}
                 </th>
                 <th scope="col" (click)="controlDataAnexo(a.placa)" class="thPlaca"><span class="icon-contacts"></span></th>
-                <td>{{a.usucrea}}</td>
+                <td title="mm/dd/yyyy" >{{a.fechac |  date:"MM/dd/yy" }}</td>
                 <td>{{a.nombre}} </td>
                 <td class="cmsEdit animated fadeInLeft fast"
                     style="background-color: rgb(75, 51, 31);" *ngIf="editCards">
@@ -110,19 +109,19 @@
                     <input type="text" id="cRef-{{a.placa}}" >
                     <span class="saveCod icon-floppy" (click)="updateCampos('cRef-', a.placa, inventChoice, 'refer')"></span>
                 </td>                
-                <td>{{a.barra}}  </td>
+                <td>{{a.barra_f}}  </td>
                 <td>{{a.cpadre}} </td>
                 <td>{{a.refer}}  </td>
-                <td>{{a.marca}}  </td>
-                <td>{{a.modelo}} </td>
-                <td *ngIf="_contsCostos">{{a.costo_historico}}  </td>
-                <td *ngIf="_contsCostos">{{a.valor_normal}}     </td>
-                <td *ngIf="_contsCostos">{{a.valor_revaluo}}    </td>
-                <td *ngIf="_contsCostos">{{a.da_per00}}         </td>
+                <td *ngIf="_contsCostos">   {{a.marca}}              </td>
+                <td *ngIf="_contsCostos">   {{a.modelo}}             </td>
+                <td *ngIf="_contsCostos">   $.. {{a.valor}}          </td>
+                <td *ngIf="_contsCostos">   $.. {{a.vaL_NORMAL}}     </td>
+                <!-- <td *ngIf="_contsCostos">{{a.valor_revaluo}}    </td> -->
+                <!-- <td *ngIf="_contsCostos">{{a.da_per00}}         </td>
                 <td *ngIf="_contsCostos">{{a.da_rev00}}         </td>
                 <td *ngIf="_contsCostos">{{a.sumDa_per}}        </td>
-                <td *ngIf="_contsCostos">{{a.sumRev}}           </td>
-                <th scope="col" class="evaluo" title="Evaluo"
+                <td *ngIf="_contsCostos">{{a.sumRev}}           </td> -->
+                <th scope="col" class="evaluo" title="Evaluo" 
                     (click)="controlModal(true, a.placa, a.refer)">
                     <span class="icon-doc-text-1"></span>
                 </th>
@@ -137,20 +136,25 @@
 
                 <ul class="list-group">
                     <li class="list-group-item"><strong>Placa-Anexo:</strong> {{ anexosText.placa }} </li>
-                    <li class="list-group-item"><strong>Cod. Barra: </strong> {{ anexosText.codBarra }}</li>
+
+                    <!-- <li class="list-group-item"><strong>Cod. Barra: </strong> {{ anexosText.codBarra }}</li> -->
+                    
                     <li class="list-group-item"><strong>Vida útil:  </strong> {{ anexosText.vidutil }} <br>
                         <input type="number" [(ngModel)]="_editVidUtil" name="_editVidUtil">
                     </li>
+
                     <li class="list-group-item" ><strong>Avaluo comercial: </strong>{{ anexosText.avcomer }}<br>
                         <input type="number" [(ngModel)]="_avComer" name="_avComer">
                     </li>
+
                     <li class="list-group-item"><strong>M. Técnica: </strong> {{ anexosText.metodtec }}<br>
                         <input type="text" [(ngModel)]="_mTecnica" name="_mTecnica">
                     </li>
+
                     <li class="list-group-item"><strong>Observaciones: </strong> {{ anexosText.observaciones }} <br>
-                        <textarea rows="3" class="lg-textarea form-control" [(ngModel)]="_observac" name="_observac">
-                         </textarea>
+                        <textarea rows="3" class="lg-textarea form-control" [(ngModel)]="_observac" name="_observac"></textarea>
                     </li>
+
                     <div style="display: flex; justify-content: stretch;" class="animated fadeInRight fast" *ngIf="controlUpdate">
                         <button class="btn btn-info" (click)="updateAnexo(anexosText.id,
                                                               anexosText.placa,
@@ -215,7 +219,8 @@
     <div id="report" class="container animated bounceInDown fast" >
         <strong>
             <h2 class="mb-4 mt-4" style="text-align: center;">
-            ACTA PROVICIONAL EN LA CUSTODIA DE ACTIVO FIJOS. </h2>
+                ACTA PROVISIONAL EN LA CUSTODIA DE ACTIVO FIJOS.
+            </h2>
         </strong>
         <hr>           
         <h5>
@@ -225,14 +230,19 @@
             <strong>Fecha Actual:</strong>  {{fechActual | date: 'short'}}
         </h5>
         <h5>
-            <strong>Reporte por custodio:</strong> <input type="text" (keyup.enter)="searchByCust(_CustBusqueda)"
-                    [(ngModel)]="_CustBusqueda" name="_CustBusqueda" style="border: none; width: 260px; padding: 5px; background-color: transparent; color: gray;" placeholder="Busque por custodio.... ">
+            <strong>Reporte por custodio:</strong><div class="btn btn-info" data-toggle="modal" data-target="#exampleModal2"><span class="icon-search"></span></div>
+            <input type="text" (keyup.enter)="searchByCust(_CustBusqueda)" (dblclick)="getCustod('a')"
+                   [(ngModel)]="_CustBusqueda"
+                   name="_CustBusqueda"
+                   style="border: none; width: 260px; padding: 5px; background-color: transparent; color: gray;"
+                   placeholder="Busque por custodio.... ">
         </h5>
+       
         <table class="table table-sm table-bordered">
         <thead class='thead-light' >
-            <th>Custodio    </th>
+            <!-- <th>Custodio    </th> -->
             <th>Dep.        </th>
-            <th>Ciudad      </th>
+            <!-- <th>Ciudad      </th> -->
             <th>Descripción </th>
             <th>Referencia  </th>
             <th>Serie       </th>
@@ -240,9 +250,9 @@
         </thead>
         <tbody id='tbodyFor'>
             <tr *ngFor="let report of arrReporte">
-                <td> {{report.custName}}                </td>
+                <!-- <td> {{report.custName}}                </td> -->
                 <td> {{report.depName}}                 </td>
-                <td> {{report.ciudName}}                </td>
+                <!-- <td> {{report.ciudName}}                </td> -->
                 <td> {{report.nombre}}                  </td>
                 <td> {{report.refer}}                   </td>
                 <td> {{report.serie}}                   </td>
@@ -262,3 +272,40 @@
     </div>
 
 </div>
+
+
+ <!-- Modal -->
+ <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"> <span class="icon-users"></span> Custodios: {{custCount}} </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="sp_a">
+                <label for="seCust"> <span class="icon-search"></span> Custodio: </label>
+                <input type="text" [(ngModel)]="_custoSearch" id="seCust" (keyup.enter)="getCustod(_custoSearch)" >
+            <table class="table table-dark table-hover table-sm">
+                <thead class="table-primary" style="color: darkblue;">
+                  <tr>
+                    <th scope="col">Nombre Custodio</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor=" let cust of custArr " (click)="searchByCust(cust.custodio)">
+                    <th scope="row">{{cust.custodio}}</th>
+                  </tr>
+                </tbody>
+              </table>
+              </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
