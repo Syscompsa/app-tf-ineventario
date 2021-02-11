@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 import { Dp12a120 } from '../Models/Dp12a120';
 import { WebuserService } from '../Services/webuser.service';
 import { data } from 'jquery';
+import { NgServicesService } from '../Services/ng-services.service';
 
 
 
@@ -27,10 +28,14 @@ export class ActivoFijoComponent implements OnInit {
   constructor(public conf: ConfigService,
               public data: DataCallService,
               public router: Router,
-              public us: WebuserService
+              public us: WebuserService,
+              private spinnerServices: NgServicesService
               ) { }
     //#endregion
 
+
+
+    
 //#region "@Input()"
 
   @Input()
@@ -505,6 +510,7 @@ public arr: any[] = [];
     public val = 0;
 
   ngOnInit() {
+    // this.spinnerServices.callSpinner();
     this.controlDate();
     this.fechActual();
     this.data.getDataByPlaca().subscribe( x => {
@@ -514,22 +520,22 @@ public arr: any[] = [];
        this.data.getDataByPlacaId(placaNow).subscribe(resp => {
 
         this.modelData[0] = resp;
-        console.log('-------------------------------------');
+        // console.log('-------------------------------------');
         console.log(this.modelData[0]);
-        console.log('-------------------------------------');
+        // console.log('-------------------------------------');
 
         // Control vehicular variables INICIO
-        this._ANO = this.modelData[0][0].periodo;
-        this._MOT = this.modelData[0][0].motor;
+        this._ANO   = this.modelData[0][0].periodo;
+        this._MOT   = this.modelData[0][0].motor;
         this._PVEHI = this.modelData[0][0].placa_aux;
-        this._CHAS = this.modelData[0][0].chasis;
-        this._CPD =   this.modelData[0][0].cpadre;
-        this._CMS = this.modelData[0][0].cmatriz_nomstd;
-        this._EPER = this.modelData[0][0].edi_periodo;
-        this._EDIR = this.modelData[0][0].edi_direccion;
-        this._TDIM = this.modelData[0][0].terre_dimension;
-        this._TLIN = this.modelData[0][0].terre_linder;
-        this._CART = this.modelData[0][0].caracteristica;
+        this._CHAS  = this.modelData[0][0].chasis;
+        this._CPD   = this.modelData[0][0].cpadre;
+        this._CMS   = this.modelData[0][0].cmatriz_nomstd;
+        this._EPER  = this.modelData[0][0].edi_periodo;
+        this._EDIR  = this.modelData[0][0].edi_direccion;
+        this._TDIM  = this.modelData[0][0].terre_dimension;
+        this._TLIN  = this.modelData[0][0].terre_linder;
+        this._CART  = this.modelData[0][0].caracteristica;
         this._MDPRE = this.modelData[0][0].met_depreciacion;
         this._BARRACOD = this.modelData[0][0].barra;
         // Control vehicular variables FIN

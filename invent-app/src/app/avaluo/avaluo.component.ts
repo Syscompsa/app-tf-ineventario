@@ -450,15 +450,31 @@ export class AvaluoComponent implements OnInit {
 
 
 //BUSCA POR CUSTODIO
+public custAsigActivos: number;
   searchByCust(cust) {
     console.log(cust);
     this.anexo.getReporteCust(cust).subscribe( CUST => {
       this.arrReporte = CUST;
       console.log(this.arrReporte);
       this._CustBusqueda = cust;
-      if(this.arrReporte.length == 0) {
-        alert('No hemos encontrado nada');
+      this.custAsigActivos = this.arrReporte.length;
+      if( this.arrReporte.length == 0)  {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Este custodio no tiene activos asignados!',
+          footer: ''
+        })
       }
+      else {
+        Swal.fire({
+          icon: 'info',
+          title: 'Excelente!',
+          html: `Este custodio tiene <strong> ${this.arrReporte.length} activos </strong>  asignados!`,
+          footer: ''
+        })
+      }
+        
     }, (err) => {
       alert(err);
     }

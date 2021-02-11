@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ANEXODP12A120FService {
 
   private apiURL = 'https://alp-cloud.com:8446/';

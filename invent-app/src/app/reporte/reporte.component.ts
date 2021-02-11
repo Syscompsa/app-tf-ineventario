@@ -119,12 +119,13 @@ export class ReporteComponent implements OnInit {
                     {observe: 'events', reportProgress: true}).subscribe( event => {
 
         if (event.type === HttpEventType.DownloadProgress) {
+          
           let a = document.getElementById('bProg');
           this.ValueInit = event.loaded;
           this.ValueFini = event.total;
           this.ValuePerc = (event.loaded / event.total) * 100;
           console.log('Descarga: ' + this.ValuePerc.toFixed(2) + '%');    
-          a.style.width = `${this.ValuePerc}%`;       
+          a.style.width = `${this.ValuePerc}%`;
 
         }
 

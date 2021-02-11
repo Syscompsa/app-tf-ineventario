@@ -306,15 +306,15 @@
             <strong>Fecha Actual:</strong>  {{fechActual | date: 'short'}}
         </h5>
         <h5>
-            <strong>Reporte por custodio:</strong>
+            <strong>Reporte por custodio:</strong> 
             <div class="btn btn-info" data-toggle="modal"
                  data-target="#exampleModal2"><span class="icon-search"></span>
             </div>
             <input type="text" (keyup.enter)="searchByCust(_CustBusqueda)" (dblclick)="getCustod('a')"
                    [(ngModel)]="_CustBusqueda"
                    name="_CustBusqueda"
-                   style="border: none; width: 260px; padding: 5px; background-color: transparent; color: gray;"
-                   placeholder="Busque por custodio.... ">
+                   style="border: none; width: 300px; padding: 5px; background-color: transparent; color: gray;"
+                   placeholder="Busque por custodio.... ">| Activos asignados: <strong>{{custAsigActivos}}</strong>
         </h5>
 
         <table class="table table-sm table-bordered">

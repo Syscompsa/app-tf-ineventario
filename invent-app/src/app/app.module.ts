@@ -60,10 +60,11 @@ import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
 import { ReporteProdComponent } from './reporte-prod/reporte-prod.component';
 import { AvaluoComponent } from './avaluo/avaluo.component';
+import { DbchoiceComponent } from './dbchoice/dbchoice.component';
 // import { FilterPipe } from './pipes/filter.pipe';
 
 //#endregion
-//import { NgxSpinnerModule } from 'ngx-spinner';
+// import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -77,11 +78,13 @@ import { AvaluoComponent } from './avaluo/avaluo.component';
     ActivoFijoComponent,
     ReporteProdComponent,
     AvaluoComponent,
+    DbchoiceComponent,
     // FilterPipe
   ],
   imports: [
     //#region Angular MAterial
     A11yModule,
+    // NgxSpinnerModule,
     CdkStepperModule,
     CdkTableModule,
     CdkTreeModule,
