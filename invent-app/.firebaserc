@@ -1,6 +1,5 @@
 {
   "projects": {
-    "default": "tc-app-inv",
-    "TC": "tc-inv"
+    "default": "qr-exposynergy"
   }
 }
