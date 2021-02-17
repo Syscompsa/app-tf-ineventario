@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DataCallService } from './data-call.service';
+import { URLGestionService } from './url-gestion.service';
 
-describe('DataCallService', () => {
+describe('URLGestionService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: DataCallService = TestBed.get(DataCallService);
+    const service: URLGestionService = TestBed.get(URLGestionService);
     expect(service).toBeTruthy();
   });
 });

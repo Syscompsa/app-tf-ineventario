@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { GQRService } from '../Services/gqr.service';
-import { Placa_Post_Url } from '../Models/Placa_Post_Url';
+// import { Placa_Post_Url } from '../Models/Placa_Post_Url';
 // import { resolve } from 'url';
-import { QRDATA } from '../Models/QRDATA';
-import { DemoService } from '../Services/demo.service';
-import { Demo } from '../Models/Demo';
+// import { QRDATA } from '../Models/QRDATA';
+// import { DemoService } from '../Services/demo.service';
+// import { Demo } from '../Models/Demo';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import 'sweetalert2/src/sweetalert2.scss';
@@ -18,9 +18,9 @@ import 'sweetalert2/src/sweetalert2.scss';
 export class HomeViewComponent implements OnInit {
 
   public datenow: any;
-  public placa: Placa_Post_Url[] = [];
-  public product: QRDATA[] = [];
-  public productByPlaca: QRDATA[] = [];
+  // public placa: Placa_Post_Url[] = [];
+  // public product: QRDATA[] = [];
+  // public productByPlaca: QRDATA[] = [];
 
   // data form
   public dateInv: Date;
@@ -29,40 +29,40 @@ export class HomeViewComponent implements OnInit {
   public invTrue: string;
   public invFalse: string;
 
-  public data: Demo = {
-    Placa: this.invPlaca,
-    Nombre_P: this.invNombre,
-    Custodio: 'Nombre Test Custodio',
-    Ciudad: 'Nombre Test Ciudad',
-    // tslint:disable-next-line: no-unused-expression
-    Fecha_Back:  new Date(),
-    Fecha_Inv: this.dateInv,
-    Existe: this.invTrue
-  };
-
+  // public data: Demo = {
+  //   Placa: this.invPlaca,
+  //   Nombre_P: this.invNombre,
+  //   Custodio: 'Nombre Test Custodio',
+  //   Ciudad: 'Nombre Test Ciudad',
+  //   // tslint:disable-next-line: no-unused-expression
+  //   Fecha_Back:  new Date(),
+  //   Fecha_Inv: this.dateInv,
+  //   Existe: this.invTrue
+  // };
+  // public saveDemo: DemoService,
   constructor(public placas: GQRService,
               public products: GQRService,
-              public saveDemo: DemoService,
+              
               public router: Router) { }
 
   ngOnInit() {
     this.fechActual();
     // this.detectHeight();
-    this.placas.getPlaca().subscribe( resp =>
-       {
-         this.placa = resp ;
-         const lengthPlaca = this.placa.length;
-         const DataPlaca = this.placa[0].placa_Post;
-         //console.log(this.placa);
-         //console.log(DataPlaca);
-         //console.log(lengthPlaca);
-         // this.products.getQRGenById()
-         this.products.getProductByPlaca(DataPlaca).subscribe(x => {
-           this.productByPlaca = x;
-           console.log(this.productByPlaca);
-         });
-       }
-      );
+    // this.placas.getPlaca().subscribe( resp =>
+    //    {
+    //      this.placa = resp ;
+    //      const lengthPlaca = this.placa.length;
+    //      const DataPlaca = this.placa[0].placa_Post;
+    //      //console.log(this.placa);
+    //      //console.log(DataPlaca);
+    //      //console.log(lengthPlaca);
+    //      // this.products.getQRGenById()
+    //      this.products.getProductByPlaca(DataPlaca).subscribe(x => {
+    //        this.productByPlaca = x;
+    //        console.log(this.productByPlaca);
+    //      });
+    //    }
+    //   );
    // this.placas.getQRGenById().subscribe(x => console.log(x));
   }
 

@@ -18,16 +18,19 @@
                 <span class="icon-qrcode"></span>{{QRCOUNT}}
             </div>
         </div>
+    
     </div>
+
     <div class="d" style="width: 100%;" id="contenidoPrev"></div>
+
 </div>
 
 <div class="cons container" id="const">
     
     <div class="paginador">
-        <pagination-controls (pageChange)="_nPageCont = $event"></pagination-controls>
-        
+        <pagination-controls (pageChange)="_nPageCont = $event"></pagination-controls>        
     </div>
+
     <div class="numb"  >
         Pag. Actual:
         <input type="number"
@@ -50,6 +53,25 @@
            {{filtro}} | Productos alcanzados: <strong> {{contadorProdAct}} <span class="icon-database"></span> </strong>
         </strong>
     </div>
+    <div  class="container p-4 animated bounceInDown fast" id="disenadorQR">
+        <div class="content" >
+            <div class="progressbar">
+                <div class="prog" [ngStyle]="{'width': _wCharge}" id="wCharge" > 0% </div>
+            </div>
+            <div class="viewer" id="viewer">
+
+            </div>
+        </div>
+        <div class="content">
+
+            <div id="content">
+
+            </div>
+            <div id="btnSettings">
+                <button class="btn btn-success"> <span class="icon-floppy"></span> Guardar cambios</button>
+            </div>
+        </div>
+    </div>
     <div class="container-fluid display d-flex justify-content-between align-items-end">
         <!-- <button type="button" id="prods" (mouseover)="changeHeight('auto')" (mouseleave)="changeHeight('410px')" (click)="prints()">
           <span class="icon-print"></span>  Imprimir Productos
@@ -57,7 +79,7 @@
 
         <div class="botones">
             <div class="bn" title="Mostrar QR" id="bnA" (click)="viewOptionsA()">
-                <span class="icon-qrcode"></span> Mostrar etiquetas QR
+                <span class="icon-qrcode"></span> Diseñar etiquetas QR
             </div>
             <div class="bn" (click)="imprSelec('dataQR')">
                 <span class="icon-print"></span> Imprimir por página
@@ -66,85 +88,7 @@
 
         <div class="prods">
             <div class="md-form mt-0">
-                <!-- <label title="Busqueda por local...">
-                  <span class="icon-info"></span> Filtrar por Local:
-                </label> -->
-                <div class="btnFilter">
-                    <!-- <button type="button" style="border-bottom-right-radius: 0px !important; border-top-right-radius: 0px !important;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                      <span class="icon-equalizer"></span>
-                    </button> -->
-                    <!-- Modal -->
-                    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel"><span class="icon-equalizer"></span> Filtrar por otros parámetros.
-                                    </h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                                </div>
-                                <div class="modal-body" id="filtros">
-                                    <div class="accordion" id="accordionExample">
-                                        <div class="card">
-                                            <div class="card-header" id="headingOne">
-                                                <h2 class="mb-0">
-                                                    <button class="btn btn-link btn-block text-left" [id]="ida" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                                      <strong>Por custodio:</strong> Actualmente tiene(s), <strong> {{cantCust}}
-                                                           </strong> custodio(s), registrado en la base de datos.
-                                                    </button>
-                                                    <div class="display d-flex">
-                                                        <label for="inpts">
-                                                            <span style="color: steelblue;" class="icon-search"></span>
-                                                        </label>
-                                                        <input id="inpts" type="text" class="inpts" placeholder="Buscar por Departamento..." [(ngModel)]="filterPost" name="filterPost" (keyup)="getCustoRep()">
-
-                                                    </div>
-                                                </h2>
-                                            </div>
-
-                                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                                <div class="card-body" style="height: 300px !important; overflow-y: auto !important;">
-                                                    <a class="dropdown-item" href="javascript: void(0)" (click)="getID(ida, cust.dpto)" *ngFor="let cust of custodios">
-                                                        <strong> Nombres: </strong> {{ cust.nombre | titlecase }} {{ cust.apellido | titlecase }} <br>
-                                                        <strong> Código: </strong> {{cust.codigo}} <br>
-                                                        <strong> Ciudad: </strong> {{cust.nombre1 | titlecase}} / {{cust.dpto}}
-                                                    </a>
-                                                    <hr>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="card">
-                                            <div class="card-header" id="headingOne">
-                                                <h2 class="mb-0">
-                                                    <button class="btn btn-link btn-block text-left" [id]="idb" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                      <strong>Por marca:</strong> Actualmente tiene(s), <strong> {{Mcs}} </strong> marca(s), registrado en la base de datos.
-                                                    </button>
-                                                </h2>
-                                            </div>
-
-                                            <div id="collapseTwo" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                                <div class="card-body" style="height: 300px !important; overflow-y: auto !important;">
-                                                    <a class="dropdown-item" href="javascript: void(0)" *ngFor="let mc of Marcas" (click)="getID(idb, mc.nombre)">
-                                                      {{mc.nombre }}
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- <input class="form-control" style="border-bottom-left-radius: 0px !important; border-top-left-radius: 0px !important;"
-                    (keyup)="getDep(SearchDep)" [(ngModel)]="SearchDep" name="SearchDep" type="text" placeholder="Search" aria-label="Search"> -->
-                </div>
+                <div class="btnFilter"></div>
             </div>
         </div>
     </div>
@@ -153,12 +97,7 @@
 
         <div class="box" style="cursor: pointer; margin: 10px;" *ngFor="let a of dataQRExtract | paginate: {itemsPerPage: 16, currentPage: sesHiystPrint}" id="box-{{a.placa}}" (click)="imprimirUnidad(a.placa)">
 
-
-            <!-- <div class="data" style="font-size: 9pt; padding: 5px;" width="20%">
-                <img [src]="LogoTC" width="25px" height="auto">
-            </div> -->
-
-            <div class="QR" [id]="a.placa" width="100%" style="display: flex; justify-content: center;">{{ createQRO(a.placa) }}</div>
+            <div class="QR" [id]="a.placa" width="100%" style="display: flex; justify-content: center;">{{ QRmethod.createQRO() }}</div>
 
         </div>
 

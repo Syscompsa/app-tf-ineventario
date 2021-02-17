@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { GQRService } from '../Services/gqr.service';
-import { QRDATA } from '../Models/QRDATA';
+// import { QRDATA } from '../Models/QRDATA';
 import * as qrcode from 'qrcode-generator';
-import { DataCallService } from '../Services/data-call.service';
+// import { DataCallService } from '../Services/data-call.service';
 // const qrcode = require('qrcode-generator');
 import Swal from 'sweetalert2';
 import { createPopper } from '@popperjs/core';
 import { PageEvent } from '@angular/material/paginator';
+import { QRGeneratorService } from '../Services/qr-generator.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -14,11 +16,13 @@ import { PageEvent } from '@angular/material/paginator';
   templateUrl: './history-qr.component.html',
   styleUrls: ['./history-qr.component.css']
 })
+// public data: DataCallService, 
 export class HistoryQRComponent implements OnInit {
-  constructor(public QRData: GQRService, public data: DataCallService) { }
+  constructor(public QRData: GQRService, public QRmethod: QRGeneratorService) { }
+
   public _nPageCont: any = 1;
   public dataQRExtract: any;
-  public https = 'https://alp-cloud.com:8446/api/AR_INV-QRcodProdGet/getPlaca/';
+  // public https = 'https://alp-cloud.com:8446/api/AR_INV-QRcodProdGet/getPlaca/';
   public conterA = true;
   public conterB = false;
   public departemento;
@@ -43,26 +47,35 @@ export class HistoryQRComponent implements OnInit {
   public tooltipView;
   public filterPost = '';
   public filterPostCust = '';
-  public adnimBool = true;
+  public adnimBool = false;
   public QRCOUNT = 0;
   public sesHiystPrint;
+
+  public env = environment;
+
 
   ngOnInit() {
     this.sesHiystPrint = localStorage.getItem('hystPrint');
     this._nPageCont = localStorage.getItem('hystPrint');
-    this.getMarcRep();
-    this.getQR_F();
-    this.viewOptionsB();
+    // this.getMarcRep();
+    // this.getQR_F();
+    //this.viewOptionsB();
+    
+    const a = document.getElementById('prevImprimir');
+    console.log(a);
+    a.style.transform = 'translate(-155px)';
+
+    this.getWorkers();
+
   }
 
-  getDep(master) {
-    this.data.getDptoReporte(master).subscribe(x => {
-      this.dataQRExtract = x;
-      this.contadorProdAct = this.dataQRExtract.length;
-      console.log(this.dataQRExtract);
-    });
+
+  getWorkers() {
+    console.log(this.QRData.getWorkers('b', 'a000').subscribe( WORKERS => {
+      console.log( WORKERS );
+    }));
   }
- 
+
   shist(a) {
     localStorage.setItem('hystPrint', a);
     this.sesHiystPrint = localStorage.getItem('hystPrint');
@@ -74,16 +87,6 @@ export class HistoryQRComponent implements OnInit {
     tooltip.style.display = 'none';
     tooltip.style.display = disp;
   }
-
-  getQR_F() {
-    this.QRData.getQR_F().subscribe( QR => {
-      this.dataQRExtract = QR;
-      this.contadorProdAct = this.dataQRExtract.length;
-      console.log(QR);
-    });
-  }
-
-  public LogoTC: string = 'data:image/png;base64,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'
 
   imprimirUnidad(placa) {
 
@@ -116,32 +119,29 @@ export class HistoryQRComponent implements OnInit {
         ids.style.boxShadow = '3px 3px 7px rgba(0,0,0,0.0)';
         ids.style.transition = 'ease all 0.5s';
         break;
-
     }
 
   }
 
-  createQRO(placa) {
-    const qr = qrcode(4, 'L');
-    const url = `https://alp-cloud.com:8446/api/AR_INV-QRcodProdGet/getPlaca/${placa}`;
-    qr.addData(url);
-    qr.make();
-    document.getElementById(placa).innerHTML = `<div style="mergin-top: 15px;" id="${placa}">${qr.createSvgTag(2.0)}</div>
-                                                <br><img src="${this.LogoTC}" style="width: 40px; height: 35px; margin-top: 25px;">`;
+  public imgLogo: string = '';
+  uploadFotoLogo() {
+
   }
+
 
   animhide() {
 
-    let a = document.getElementById('prevImprimir');
-    let b = document.getElementById('spclo');
-    let c = document.getElementById('closeI');
+    const a = document.getElementById('prevImprimir');
+    const b = document.getElementById('spclo');
+    const c = document.getElementById('closeI');
+    
     switch (this.adnimBool) {
 
       case true:
         this.adnimBool = false;
         a.style.animation = 'ease prevImprimirAnim 0.5s';
         setTimeout(() => {
-          a.style.transform = 'translate(-185px)';
+          a.style.transform = 'translate(-155px)';
           c.style.backgroundColor = 'orange';
           c.style.color = 'black';
           b.setAttribute('class', 'icon-right-open');
@@ -174,6 +174,8 @@ export class HistoryQRComponent implements OnInit {
    return this.contEt;
   }
 
+  public _wCharge;
+
   createLi(placaText) {
 
     const node = document.createElement('li');
@@ -195,23 +197,25 @@ export class HistoryQRComponent implements OnInit {
     node.style.alignItems = 'center';
     node.style.backgroundColor = 'whitesmoke';
 //#endregion
+
     const createDiv = document.createElement('div');
     createDiv.innerHTML = ` &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <img src='${this.LogoTC}' width='50px' height='auto'>`
-                            // <strong style="font-family: arial;"> Placa: ${placaText} <br>
-                            // ${nombre} </strong>;
+                            <img src='${this.imgLogo}' width='50px' height='auto'>`
 
     createDiv.style.fontSize = '7pt';
-    node.appendChild(createSects);
-    node.appendChild(createDiv);
-    node.appendChild(logo);
-    const qr = qrcode(4, 'L');
-    const urlD =  `https://alp-cloud.com:8446/api/AR_INV-QRcodProdGet/getPlaca/${placaText}`;
-    qr.addData(urlD);
-    qr.make();
-    createSects.innerHTML = qr.createSvgTag(1.6);
+    // node.appendChild(createSects);
+    // node.appendChild(createDiv);
+    // node.appendChild(logo);
+    // const qr = qrcode(4, 'L');
+    // const urlD =  `https://alp-cloud.com:8446/api/AR_INV-QRcodProdGet/getPlaca/${placaText}`;
+    // qr.addData(urlD);
+    // qr.make();
+    // createSects.innerHTML = qr.createSvgTag(1.6);
+
+    //this.QRmethod.createQRO(placaText, imgs, data);
+
     return node;
 
   }
@@ -245,49 +249,6 @@ export class HistoryQRComponent implements OnInit {
    an.style.animationName = param;
   }
 
-  getProductCustodio(custodio) {
-    this.data.getCustodioReporte(custodio).subscribe( x => {
-      this.dataQRExtract = x;
-      console.log('Estos son lo datos de la tabla que genera QR');
-      console.log(this.dataQRExtract);
-      this.contadorProdAct = this.dataQRExtract.length;
-    });
-  }
-
-  getID(IDS, a) {
-
-    switch (IDS) {
-      case 1:
-        this.filter(a);
-        this.getProductCustodio(this.filtro);
-        break;
-      case 2:
-        this.filter(a);
-        this.getProductMarca(this.filtro);
-        break;
-    }
-    console.log(IDS);
-
-  }
-
-
-  public fPost;
-  getProductMarca(marca) {
-    this.data.getMarcaReporte(marca).subscribe( x => {
-      this.dataQRExtract = x;
-      // console.log(this.dataQRExtract);
-      this.contadorProdAct = this.dataQRExtract.length;
-    });
-  }
-
-  // getQRbyCustName(CustName) {
-  //   this.QRData.getDataQRByCustName(CustName).subscribe(QRDATA => {
-  //     this.dataQRExtract = QRDATA;
-  //     console.log(QRDATA);
-  //     this.contadorProdAct = this.dataQRExtract.length;
-  //   });
-  // }
-
   filter(a) {
     this.filtro = a;
   }
@@ -313,44 +274,6 @@ export class HistoryQRComponent implements OnInit {
     b.style.color = 'gray';
   }
 
-  viewOptionsB() {
-    this.conterB = false;
-    this.conterA = true;
-    const a = document.getElementById('bnA');
-    const b = document.getElementById('bnB');
-    b.style.color = 'white';
-    b.style.backgroundColor = 'rgba(0,0,0,0.4)';
-    b.style.borderTopRightRadius = '6px';
-    b.style.borderTopLeftRadius = '6px';
-    b.style.borderRight = 'solid 1px #777777';
-    b.style.borderTop = 'solid 1px #B8B8B8';
-    b.style.borderLeft = 'solid 1px #CACACA';
-    a.style.borderRight = 'solid 0px transparent';
-    a.style.borderTop = 'solid 0px transparent';
-    a.style.borderLeft = 'solid 0px transparent';
-    b.style.boxShadow = '0px 0px 7px rgba(0,0,0,0.6)';
-    a.style.boxShadow = '0px 0px 7px rgba(0,0,0,0.0)';
-    a.style.color = 'gray';
-    a.style.backgroundColor = 'transparent';
-  }
-
-
-  getCustoRep() {
-    this.data.getDataCustodio(this.filterPost).subscribe( x => {
-      this.custodios = x;
-      this.cantCust = this.custodios.length;
-      // console.log(this.custodios);
-    });
-  }
-
-
-  getMarcRep() {
-    this.data.getDataMarca('0').subscribe( z => {
-      this.Marcas = z;
-      this.Mcs = this.Marcas.length;
-      // console.log(this.Marcas);
-    });
-  }
 
   prints() {
     var ficha = document.getElementById('dataQR');
@@ -366,46 +289,6 @@ export class HistoryQRComponent implements OnInit {
   changeHeight(h) {
     const dataQR = document.getElementById('dataQR');
     dataQR.style.height = h;
-  }
-
-  delProd(a) {
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger'
-      },
-      buttonsStyling: false
-    });
-
-    swalWithBootstrapButtons.fire({
-      title: 'Estás seguro?',
-      text: 'Esta acción no se puede revertir!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Sí, eliminarlo!',
-      cancelButtonText: 'No, eliminar!',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.data.delProduct(a).subscribe(x => {
-          this.getDep(this.SearchDep);
-        });
-        swalWithBootstrapButtons.fire(
-          'Eliminado!',
-          `Tu producto con placa ${a}, ha sido eliminado exitosamente`,
-          'success'
-        );
-      } else if (
-        /* Read more about handling dismissals below */
-        result.dismiss === Swal.DismissReason.cancel
-      ) {
-        swalWithBootstrapButtons.fire(
-          'Cancelar',
-          'Tu producto ha sido salvado :)',
-          'error'
-        );
-      }
-    });
   }
 
 }

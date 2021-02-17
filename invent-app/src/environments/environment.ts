@@ -9,7 +9,12 @@ export const environment = {
   cargaA: 0,
   cargaB: 0,
   cargaC: 0,
-  cargaD: 0
+  cargaD: 0,
+
+  //COMUNICATE PORT WITH SERVER
+  PORT: '8449',
+  HTTPSECURE: 'https',
+  HOST: 'alp-cloud.com'
 
 };
 

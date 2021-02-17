@@ -9,9 +9,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeViewComponent } from './home-view/home-view.component';
 import { HeaderComponent } from './header/header.component';
 import { HistoryQRComponent } from './history-qr/history-qr.component';
-import { ReporteComponent } from './reporte/reporte.component';
-import { ConfigurationsComponent } from './configurations/configurations.component';
-import { ActivoFijoComponent } from './activo-fijo/activo-fijo.component';
+//import { ReporteComponent } from './reporte/reporte.component';
+// import { ConfigurationsComponent } from './configurations/configurations.component';
+// import { ActivoFijoComponent } from './activo-fijo/activo-fijo.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgxPaginationModule} from 'ngx-pagination';
@@ -58,8 +58,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
-import { ReporteProdComponent } from './reporte-prod/reporte-prod.component';
-import { AvaluoComponent } from './avaluo/avaluo.component';
+//import { ReporteProdComponent } from './reporte-prod/reporte-prod.component';
+// import { AvaluoComponent } from './avaluo/avaluo.component';
 import { DbchoiceComponent } from './dbchoice/dbchoice.component';
 // import { FilterPipe } from './pipes/filter.pipe';
 
@@ -73,11 +73,11 @@ import { DbchoiceComponent } from './dbchoice/dbchoice.component';
     HomeViewComponent,
     HeaderComponent,
     HistoryQRComponent,
-    ReporteComponent,
-    ConfigurationsComponent,
-    ActivoFijoComponent,
-    ReporteProdComponent,
-    AvaluoComponent,
+    // ReporteComponent,
+    // ConfigurationsComponent,
+    // ActivoFijoComponent,
+    // ReporteProdComponent,
+    // AvaluoComponent,
     DbchoiceComponent,
     // FilterPipe
   ],
@@ -136,11 +136,11 @@ import { DbchoiceComponent } from './dbchoice/dbchoice.component';
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: 'Conf', component: ConfigurationsComponent },
-      { path: 'HomeView', component: HomeViewComponent },
-      { path: 'Reporte', component: ReporteComponent },
+      // { path: 'Conf', component: ConfigurationsComponent },
+      // { path: 'HomeView', component: HomeViewComponent },
+      // { path: 'Reporte', component: ReporteComponent },
       { path: 'QRData', component: HistoryQRComponent },
-      { path: 'avaluo', component: AvaluoComponent },
+      // { path: 'avaluo', component: AvaluoComponent },
       { path: 'Login', component: LoginComponent, pathMatch: 'full' },
       { path: '**', pathMatch: 'full', redirectTo: 'Login'  }
     ]),

@@ -78,7 +78,7 @@ export class LoginComponent implements OnInit {
   verificacion (){
     if (localStorage.getItem('User') != null) {
       this.env.header = true;
-      this.router.navigate(['\HomeView']);
+      this.router.navigate(['\QRData']);
     }
     else {
       this.router.navigate(['\Login']);

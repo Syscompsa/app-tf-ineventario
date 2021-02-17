@@ -1,10 +1,12 @@
 <header class="head pl-4 pr-4 display d-flex justify-content-between align-items-center">
     <div class="m display d-flex justify-content-sm-start align-items-center">
-        <img src="../../assets/icono-act-fijo.png" width="45px" height="auto">
-        <p style="font-size: 13pt;">Aplicación de Inventario fijo. |
+        <!-- <img src="../../assets/icono-act-fijo.png" width="45px" height="auto"> -->
+        <span class="icon-qrcode" style="font-size: 24pt;"></span>
+        <p style="font-size: 13pt;"> Generador - QR |
             <strong style="color: rgb(187, 250, 255); text-shadow: 1px 1px 3px rgba(0,0,0,0.4);"
                     class="animated fadeInLeft slow">
-                    {{Site}} <span class="icon-location"></span>
+                    {{Site}}
+                    <!-- <span class="icon-location"></span> -->
             </strong>
         </p>
     </div>
@@ -23,7 +25,7 @@
         <span class="icon-calendar"></span> {{fechActual() | date: 'short'}}
     </div>
 </div>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -33,7 +35,7 @@
             <!-- <li class="nav-item active">
                 <a class="nav-link" [routerLink]="[ '/Conf' ]"><span class="icon-cog"></span>Configuración<span class="sr-only">(current)</span></a>
             </li> -->
-            <li class="nav-item" id="c">
+            <!-- <li class="nav-item" id="c">
                 <a class="nav-link" (mouseover)="active('c', mActivos, 'a', 'd', '/QRData')" (click)="active('c', report, 'a', 'd', '/QRData')">
                    {{mActivos}}
                 </a>
@@ -42,13 +44,13 @@
                 <a class="nav-link" (mouseover)="active('b', actFijo, 'a', 'c', '/HomeView')" (click)="active('b', report, 'a', 'c', '/HomeView')">
                    {{actFijo}}
                 </a>
-            </li>
+            </li> -->
             <!-- <li class="nav-item" id="a">
                 <a class="nav-link" (mouseover)="active('a', report, 'b', 'c', '/Reporte')" (click)="active('a', report, 'b', 'c', '/Reporte')">
                    {{report}}
                 </a>
             </li> -->
-            <li class="nav-item" id="d"><a class="nav-link" (click)="especialPage('/avaluo')" >{{evaluo}}</a></li>
+            <!--<li class="nav-item" id="d"><a class="nav-link" (click)="especialPage('/avaluo')" >{{evaluo}}</a></li>
             <li class="nav-item" id="app" *ngIf="app">
                 <a class="btn btn-success" href="https://play.google.com/store/apps/details?id=com.gamma.scan" target="_BLANK">
                     <span class=" icon-mobile-2"></span> Toma de Inventario
@@ -56,4 +58,4 @@
             </li>
         </ul>
     </div>
-</nav>
+</nav> -->
