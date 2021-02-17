@@ -50,10 +50,10 @@
               (mouseleave)="retAnim('')"
               title="El filtro está activado por, {{filtro}}"></span> Filtrado por:
         <strong style="font-size: 14pt; color: steelblue;">
-           {{filtro}} | Productos alcanzados: <strong> {{contadorProdAct}} <span class="icon-database"></span> </strong>
+           {{filtro}} | Items alcanzados: <strong> {{contadorProdAct}} <span class="icon-database"></span> </strong>
         </strong>
     </div>
-    <div  class="container p-4 animated bounceInDown fast" id="disenadorQR">
+    <div  class="container p-4 animated bounceInDown fast" id="disenadorQR" *ngIf="false">
         <div class="content" >
             <div class="progressbar">
                 <div class="prog" [ngStyle]="{'width': _wCharge}" id="wCharge" > 0% </div>
@@ -85,22 +85,15 @@
                 <span class="icon-print"></span> Imprimir por página
             </div>
         </div>
-
-        <div class="prods">
-            <div class="md-form mt-0">
-                <div class="btnFilter"></div>
+        <div class="prods"><div class="md-form mt-0"><div class="btnFilter"></div></div></div>
+    </div>
+    <div class="dataQR mb-4 animated fadeIn" id="dataQR" *ngIf="true">
+        <div class="box" style="cursor: pointer; margin: 10px;" 
+             *ngFor="let a of dataQRExtract | paginate: {itemsPerPage: 16, currentPage: sesHiystPrint}"
+             id="box-{{a.codigo}}" (click)="imprimirUnidad(a.codigo)">
+            <div class="QR" [id]="a.codigo"> 
+                {{ createQR(a.codigo, a.codigo) }}
             </div>
         </div>
     </div>
-
-    <div class="dataQR mb-4 animated fadeIn" id="dataQR" *ngIf="true">
-
-        <div class="box" style="cursor: pointer; margin: 10px;" *ngFor="let a of dataQRExtract | paginate: {itemsPerPage: 16, currentPage: sesHiystPrint}" id="box-{{a.placa}}" (click)="imprimirUnidad(a.placa)">
-
-            <div class="QR" [id]="a.placa" width="100%" style="display: flex; justify-content: center;">{{ QRmethod.createQRO() }}</div>
-
-        </div>
-
-    </div>
-
 </div>

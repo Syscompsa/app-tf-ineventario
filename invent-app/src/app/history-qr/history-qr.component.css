@@ -114,10 +114,6 @@
     background-color: orange;
 }
 
-.QR {
-    width: 50%;
-}
-
 .data {
     width: 50%;
     font-size: 9pt;
@@ -280,7 +276,7 @@ td {
 
 .box {
     width: 200px;
-    height: 120px;
+    height: 100px;
     border: solid 0.2px rgb(211, 211, 211);
     display: flex;
     justify-content: center;

@@ -72,14 +72,21 @@ export class HistoryQRComponent implements OnInit {
 
   getWorkers() {
     console.log(this.QRData.getWorkers('b', 'a000').subscribe( WORKERS => {
-      console.log( WORKERS );
+      this.dataQRExtract = WORKERS;
+      this.contadorProdAct = this.dataQRExtract.length;
+      console.log( this.dataQRExtract );      
     }));
   }
+
+  createQR(id, Data){
+    this.QRmethod.createQRO(id, '', Data, 'EXPOSYNERGY S.A.');
+  }
+
 
   shist(a) {
     localStorage.setItem('hystPrint', a);
     this.sesHiystPrint = localStorage.getItem('hystPrint');
-    console.log(a);
+    // console.log(a);
   }
 
   overProduct(ids, disp) {
@@ -205,20 +212,21 @@ export class HistoryQRComponent implements OnInit {
                             <img src='${this.imgLogo}' width='50px' height='auto'>`
 
     createDiv.style.fontSize = '7pt';
-    // node.appendChild(createSects);
-    // node.appendChild(createDiv);
-    // node.appendChild(logo);
-    // const qr = qrcode(4, 'L');
+    node.appendChild(createSects);
+    node.appendChild(createDiv);
+    node.appendChild(logo);
+    const qr = qrcode(4, 'L');
     // const urlD =  `https://alp-cloud.com:8446/api/AR_INV-QRcodProdGet/getPlaca/${placaText}`;
-    // qr.addData(urlD);
-    // qr.make();
-    // createSects.innerHTML = qr.createSvgTag(1.6);
+    qr.addData(placaText);
+    qr.make();
+    createSects.innerHTML = qr.createSvgTag(1.6);
 
     //this.QRmethod.createQRO(placaText, imgs, data);
 
     return node;
 
   }
+
 
   limpiarLi() {
 

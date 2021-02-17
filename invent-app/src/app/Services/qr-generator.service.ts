@@ -35,20 +35,26 @@ export class QRGeneratorService {
         console.log(option);
           break;
     }
-
-    // return this.http.get(this.gUrl.changeURL(this.env.HTTPSECURE, this.env.HOST, this.env.PORT)
-    //                      + 'api/AR_dp08r/getworkers/' + valueA + '/' + valueB);
-
+    
   }
 
-  createQRO(id, imgs, data) {
+  createQRO(id, imgs, data, EMPRESA) {
     let img = imgs;
     const qr = qrcode(4, 'L');
     // const url = `https://alp-cloud.com:8446/api/AR_INV-QRcodProdGet/getPlaca/${placa}`;
     qr.addData(data);
     qr.make();
-    document.getElementById(id).innerHTML = `<div style="margin-top: 15px;" id="${id}">${qr.createSvgTag(2.0)}</div>
-                                                <br><img src="${img}" style="width: 40px; height: 35px; margin-top: 25px;">`;
+    document.getElementById(id).innerHTML = ` <div style="display: flex; font-family: arial; justify-content: center; align-items: center;  padding: 1px;">
+                                                <div id="${id}">${qr.createSvgTag(2.0)}</div>
+                                                  <div class="text">
+                                                    <div id="EMPRESA" style="font-size: 7pt;">
+                                                      <strong>${EMPRESA}</strong>
+                                                    
+                                                    <!--<img src="${img}" style=" width: 40px; height: 35px; margin-top: 25px;">--!><br>
+                                                  Cod.: <strong>${data}</strong>
+                                                  </div>
+                                                <div>
+                                              </div>`;
   }
 
 
