@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { GQRService } from '../Services/gqr.service';
-// import { Placa_Post_Url } from '../Models/Placa_Post_Url';
-// import { resolve } from 'url';
-// import { QRDATA } from '../Models/QRDATA';
-// import { DemoService } from '../Services/demo.service';
-// import { Demo } from '../Models/Demo';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import 'sweetalert2/src/sweetalert2.scss';
@@ -18,28 +13,12 @@ import 'sweetalert2/src/sweetalert2.scss';
 export class HomeViewComponent implements OnInit {
 
   public datenow: any;
-  // public placa: Placa_Post_Url[] = [];
-  // public product: QRDATA[] = [];
-  // public productByPlaca: QRDATA[] = [];
-
-  // data form
   public dateInv: Date;
   public invPlaca: string;
   public invNombre: string;
   public invTrue: string;
   public invFalse: string;
 
-  // public data: Demo = {
-  //   Placa: this.invPlaca,
-  //   Nombre_P: this.invNombre,
-  //   Custodio: 'Nombre Test Custodio',
-  //   Ciudad: 'Nombre Test Ciudad',
-  //   // tslint:disable-next-line: no-unused-expression
-  //   Fecha_Back:  new Date(),
-  //   Fecha_Inv: this.dateInv,
-  //   Existe: this.invTrue
-  // };
-  // public saveDemo: DemoService,
   constructor(public placas: GQRService,
               public products: GQRService,
               
@@ -47,32 +26,7 @@ export class HomeViewComponent implements OnInit {
 
   ngOnInit() {
     this.fechActual();
-    // this.detectHeight();
-    // this.placas.getPlaca().subscribe( resp =>
-    //    {
-    //      this.placa = resp ;
-    //      const lengthPlaca = this.placa.length;
-    //      const DataPlaca = this.placa[0].placa_Post;
-    //      //console.log(this.placa);
-    //      //console.log(DataPlaca);
-    //      //console.log(lengthPlaca);
-    //      // this.products.getQRGenById()
-    //      this.products.getProductByPlaca(DataPlaca).subscribe(x => {
-    //        this.productByPlaca = x;
-    //        console.log(this.productByPlaca);
-    //      });
-    //    }
-    //   );
-   // this.placas.getQRGenById().subscribe(x => console.log(x));
   }
-
-  // detectHeight(){
-  //   let infoCont = document.getElementById('infoCont').style.height;
-  //   console.log(infoCont);
-  //   if( infoCont == '590px'){
-  //     console.log('Llegaste al limite de el alto del div');
-  //   }
-  // }
 
   fechActual() {
      // tslint:disable-next-line: prefer-const
@@ -90,19 +44,17 @@ export class HomeViewComponent implements OnInit {
     this.datenow = ano + '-' + mes + '-' + dia;
   }
 
-  // saveInv() {
-  //   console.log(this.data);
-  //   this.router.navigate(['\https://play.google.com/store/apps/details?id=com.gamma.scan']);
-  // }
+  // reporte() {
 
-  reporte() {
-    Swal.fire({
-      icon: 'success',
-      title: 'Bien...',
-      text: 'Reporte generado con éxito!',
-      footer: ''
-});
-    this.router.navigate(['\Reporte']);
-  }
+  //   Swal.fire({
+  //     icon: 'success',
+  //     title: 'Bien...',
+  //     text: 'Reporte generado con éxito!',
+  //     footer: ''
+  //   });
+
+  //   this.router.navigate(['\Reporte']);
+  
+  // }
 
 }
