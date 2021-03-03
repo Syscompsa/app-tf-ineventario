@@ -74,6 +74,14 @@ export class DataCallService {
   getDataCiud(codigo) {
     return this.http.get(this.apiURL + 'api/ALPTABLA/ACTCIU/' + codigo);
   }
+  
+  getDataSmartCiud(codigo) {
+    return this.http.get(this.apiURL + 'api/ALPTABLA/smartciud/' + codigo);
+  }
+  
+  getDataSmartDep(codigo) {
+    return this.http.get(this.apiURL + 'api/ALPTABLA/smartDpto/' + codigo);
+  }
 
   getDataDep(codigo) {
     return this.http.get(this.apiURL + 'api/ALPTABLA/DPTOS/' + codigo);

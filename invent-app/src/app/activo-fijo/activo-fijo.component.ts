@@ -12,8 +12,6 @@ import { data } from 'jquery';
 import { NgServicesService } from '../Services/ng-services.service';
 
 
-
-
 @Component({
   selector: 'app-activo-fijo',
   templateUrl: './activo-fijo.component.html',
@@ -32,11 +30,6 @@ export class ActivoFijoComponent implements OnInit {
               private spinnerServices: NgServicesService
               ) { }
     //#endregion
-
-
-
-    
-//#region "@Input()"
 
   @Input()
   set Factual(value: any) {
@@ -1034,7 +1027,9 @@ public arr: any[] = [];
             this._grupRead = y
           ];
         });
+
       this.funcClose(false, false, false, false, false, false, true, false);
+
     }
 
     getDataMarca(w, y) {
@@ -1393,8 +1388,7 @@ public arr: any[] = [];
     public valu: number;
     //#region  "Update function()"
     UpdateProduct() {
-
-      this.sendReporte();
+      // this.sendReporte();
       if(this._IMGE != '' || this._IMGE != null) {
         // console.log('no esta vacio');
         this.valu = 1;
@@ -1458,8 +1452,8 @@ public arr: any[] = [];
         placa_aux: this._PVEHI
       };
 
-      console.log(this._BARRACOD);
-      console.log(this.optionSel);
+      // console.log(this._BARRACOD);
+      // console.log(this.optionSel);
 
       this.data.updateProduct(this._PLAC, arr).subscribe(x => {
 

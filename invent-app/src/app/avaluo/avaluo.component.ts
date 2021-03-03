@@ -14,6 +14,11 @@ import 'tippy.js/dist/tippy.css';
 import 'tippy.js/animations/scale.css';
 import 'tippy.js/animations/scale-subtle.css';
 import 'tippy.js/animations/scale-extreme.css';
+import { cleanFormat } from '@amcharts/amcharts4/.internal/core/utils/Utils';
+import { MantenimientoCustodiosService } from '../Services/mantenimiento-custodios.service';
+import { Router } from '@angular/router';
+import { ok } from 'assert';
+// import { timeStamp } from 'console';
 // am4core.useTheme(am4themes_moonrisekingdom);
 // am4core.useTheme(am4themes_animated);
 
@@ -28,28 +33,33 @@ am4core.useTheme(am4themes_animated);
 
 export class AvaluoComponent implements OnInit {
 
-  constructor( public data: DataCallService, private anexo: ANEXODP12A120FService ) { }
+  constructor( public data: DataCallService,
+               public route: Router,
+               private anexo: ANEXODP12A120FService,
+               public mantCust: MantenimientoCustodiosService ) { }
 
   ngOnInit() {
     //this.getDep12a120F();
     this.Call_Inventariadores();
     this.screen();
-    this.getCustod('a');
-    this.SearchDep('a');
+    this.getCustod('a', 'asc');
+    this.SearchDep(0);
+    // this.controlAv();
   }
   
-
   //#region inputs TH TABLE
   public _In_des: boolean = false;
   public _In_bar: boolean = false;
   public _In_pad: boolean = false;
   public _In_refer: boolean = false;
+  public _In_cust: boolean = false;
   //#endregion
 
   public _filter_barra;
   public _filter_refer;
   public _filter_desc;
   public _filter_cpadre;
+  public _filter_cust;
 
   public inventChoice: string;
   public _CustBusqueda;
@@ -105,39 +115,31 @@ export class AvaluoComponent implements OnInit {
   public _contsCostos: boolean = true;
   public _bColorExpand: string = 'steelblue';
 
+
+  //#region NGMODEL Mantenimiento de custodios
+  
+  public _Mant_codigo;
+  public _Mant_apellidos;
+  public _Mant_nombres;
+  public _Mant_ciudad;
+  public _Mant_departamento;
+  public _Mant_telfA;
+  public _Mant_telfB;
+  public _Mant_activo;
+  public _Mant_inactivo;
+  public _Mant_empleado;
+  public _Mant_proveedor;
+  
+  //#endregion
+
   async screen() {
     let contsNewData = document.getElementById('contsNewData');
     contsNewData.style.height = screen.height + 'px';
-    // this.anexo.getFechaIngreso( this.arrData[i].fechac.toString().slice(0, 10) ,inv ).subscribe( DATA => { 
-        //   this.prodArrDate = DATA;
-        //   this.prodCountByDate = this.prodArrDate.length;
-        //   console.log(this.prodCountByDate);
-        //   console.log(this.prodArrDate);
-          
-        // })
   }
 
-  // TooltipJS(content) {
-  //   //console.log('askdfjkasdjfksdjfl')
-  //   const b = document.createElement('input');
-  //   b.setAttribute('class', 'form-control')
-  //   b.setAttribute('type', 'text')
-  //   b.setAttribute('id', `${content}`);
-  //   tippy('#descripTH', {
-  //     content: b,
-  //     hideOnClick: 'toggle',
-  //     maxWidth: 'none',
-  //     trigger: 'click',
-  //     placement: 'bottom',
-  //     allowHTML: true,
-  //     moveTransition: 'transform 0.2s ease-out',
-  //     touch: true,
-  //   });
-
-  //   const a = document.getElementById(`${content}`);
-  //   a.innerText = `${content}`;
- 
-  // }  
+  reporte() {
+    this.route.navigate(['/Seguimiento'])
+  }
 
   desbloqDes(a){
     this._In_des = a;
@@ -155,49 +157,19 @@ export class AvaluoComponent implements OnInit {
     this._In_refer = a;
   }
 
-//   chartForInventory(contentData){
- 
-//    // Create axes
-//    let chart = am4core.create("chartdiv", am4charts.XYChart);
-
-//    // Add data
-//    chart.data = contentData
-// let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-// categoryAxis.dataFields.category = "country";
-// categoryAxis.renderer.grid.template.location = 0;
-// categoryAxis.renderer.minGridDistance = 30;
-
-// categoryAxis.renderer.labels.template.adapter.add("dy", function(dy:any, target: any) {
-//   if (target.dataItem && target.dataItem.index & 2 == 2) {
-//     return dy + 25;
-//   }
-//   return dy;
-// });
-
-// let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-
-// // Create series
-// let series = chart.series.push(new am4charts.ColumnSeries());
-// series.dataFields.valueY = "visits";
-// series.dataFields.categoryX = "country";
-// series.name = "Visits";
-// series.columns.template.tooltipText = "{categoryX}: [bold]{valueY}[/]";
-// series.columns.template.fillOpacity = .8;
-
-// let columnTemplate = series.columns.template;
-// columnTemplate.strokeWidth = 2;
-// columnTemplate.strokeOpacity = 1;
-
-//   }
+  desbloqCust(a) {
+    this._In_cust = a;
+  }
 
   expandTable() {
     let a = document.getElementById('expand');
+    
     switch (this._contsCostos) {
       case true:
         this._contsCostos = false;
         this._bColorExpand = 'orangered';
         a.setAttribute('class', 'icon-left-3');
-        console.log(this._contsCostos);
+        //console.log(this._contsCostos);
         break;
       
       case false:
@@ -205,44 +177,196 @@ export class AvaluoComponent implements OnInit {
         this._bColorExpand = 'steelblue';
         a.setAttribute('class', 'icon-right-3');
 
-        console.log(this._contsCostos);
+        //console.log(this._contsCostos);
         break;
     
       default:
         break;
+    
     }
   }
 
+  public arrCusts: any = [];
+  saveCustodios() {
 
-  
+    if(this._Mant_empleado == true) {
+      this._Mant_empleado = 'E';
+    }
+    else {
+      this._Mant_empleado = 'P';
+    }
+
+    if(this._Mant_activo == true) {
+      this._Mant_activo = 'A';
+    }
+    else {
+      this._Mant_activo = 'I';
+    }
+
+    this.arrCusts = {
+      codigo: this._Mant_codigo,
+      apellido: this._Mant_apellidos,
+      nombre: this._Mant_nombres,
+      ciudad: this._Mant_ciudad,
+      dpto: this._Mant_departamento,
+      teleF1: this._Mant_telfA,
+      teleF2: this._Mant_telfB,
+      tipo: this._Mant_empleado,
+      estado: this._Mant_activo,
+      usucrea: this.invName,
+      usumodi: this.invName
+    }
+    if( this._Mant_codigo == '' || this._Mant_apellidos == '' || this._Mant_nombres == '' || this._Mant_departamento == '' || this._Mant_ciudad == ''   ) {
+
+      //console.log('vacio');
+
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'Completa los campos requeridos (*)',
+        //html: '<span class="icon-warning" style="font-size: 7pt; color: gray;"> Hemos detectado que el código está en uso. Intenta con uno diferente </span>',
+        showConfirmButton: true,
+        timer: 5000
+      })
+
+    }
+    else {
+      this.mantCust.saveCustodios(this.arrCusts).subscribe( mantenim => {
+        //console.log(mantenim)
+        this.getCustod('a', 'asc');
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'El custodio ha sido guardado con éxito',
+          showConfirmButton: false,
+          timer: 2000
+        })
+      }, (err) => {
+        Swal.fire({
+          position: 'center',
+          icon: 'error',
+          title: 'No hemos podido crear el custodio con éxito',
+          html: '<span class="icon-warning" style="font-size: 7pt; color: gray;"> Hemos detectado que el código está en uso. Intenta con uno diferente </span>',
+          showConfirmButton: true,
+          timer: 5000
+        })
+      } )
+  }
+    //console.log(this.arrCusts);
+    
+  }
+
+  deleteCust(CODEC) {
+    this.anexo.deleteCust(CODEC).subscribe( delCust => {
+      //console.log(delCust);
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: `Custodio con el siguiente código ${CODEC}, eliminado!`,
+        showConfirmButton: true,
+        timer: 3200
+      })
+      this.getCustod('a', 'asc');
+    }, (err) => {
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: `No hemos podido borrar este custodio con el siguiente código ${CODEC}`,
+        showConfirmButton: true,
+        timer: 3200
+      })
+    } )
+  }
+
+  contCust(b){
+    this._Mant_codigo = b;
+    
+  }
+
+  public lockActive: boolean = false;
+  public countCod:number = 10; 
+  public _expressColor: string ;
+  insertControl(a, value, id) {
+    let codigoCust = <HTMLInputElement> document.getElementById(id);
+    let operTotal = value - a.length;
+    this._expressColor = 'yellowgreen';
+
+    if(operTotal <= value/2 && operTotal >= 1) {
+      this._expressColor = 'orange';      
+    }
+    if(operTotal <= 0) {
+      this.disabledInputs(codigoCust, true);
+      this._expressColor = 'red';      
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Haz llegado al límite!',
+        footer: `Este campo solo acepta ${a.length} caracteres`
+      })
+
+      
+      this.lockActive= true;
+      
+    }
+
+    this.countCod = operTotal;
+
+  }
+  public closeCodEmp: boolean = false;
+  public codEmpArr:any = [];
+  getCodEmpl() {
+    this.anexo.getCodigEmpleados('_void_', 1).subscribe( cod => {
+      this.codEmpArr = cod;
+      this.closeCodEmp = true;
+    }, (err) => {
+      Swal.fire({
+        position: 'top'   ,
+        icon:     'error' ,
+        title:    'Hubo un fallo: ' + err,
+        showConfirmButton: true
+      })
+    }) 
+  }
+
+  generateCodEmpl( cod ) {
+    this.anexo.getCodigEmpleados(cod,1).subscribe( codUnit => {
+      let addTotal = parseInt(cod) + 1;
+      this.countCod = 10 - addTotal.toString().length;
+      this.closeCodEmp = false;
+      this._Mant_codigo = addTotal.toString();
+    })
+  }
+
+  chanActc(id, val) {
+    const a = <HTMLInputElement> document.getElementById('lAc');
+    const b = <HTMLInputElement> document.getElementById(id);
+    a.setAttribute('class', 'candado icon-unlock');
+    b.disabled = val;
+    //console.log('activo')
+  }
+
+  disabledInputs = (a, b) => a.disabled = b; 
 
   public arrCbarra: any = [];
   updateCampos( vId, placa, inv, ELEMENT) { 
     let nbarra = <HTMLInputElement> document.getElementById(vId+placa);
     let nBarraValue = nbarra.value;
-
-    // console.log(nBarraValue);
-    // console.log(this.arrCbarra);
-    // console.log(placa);
     
     this.anexo.updateForElement(placa, ELEMENT, nBarraValue).subscribe( CBARRA => {
-      Swal.fire({
-        position: 'top',
-        icon: 'success',
-        title: `Código ${nBarraValue}, guardado en ${placa}, exitosamente!`,
-        showConfirmButton: false,
-        timer: 1000
-      })
-      console.log(inv);
-      console.log(vId);
-      console.log(ELEMENT);
-      this.getDep12a120F(inv, 'asc', 'a.placa', '0');
+      console.log(CBARRA);
+    });
 
-      // console.log( CBARRA )
-    } );
+    Swal.fire ({
+      position: 'center',
+      icon: 'success',
+      title: `${ELEMENT}  se ha añadido`, 
+      showConfirmButton: false,
+      timer: 3000
+    })
+
+    this.getDep12a120F(inv, 'asc', 'a.placa', '0');
   
   }
-
 
   getImgByPlaca(COD) {
     this.data.geIMGDp12a120F(COD).subscribe( z => {
@@ -250,7 +374,7 @@ export class AvaluoComponent implements OnInit {
       this.ImgCont = true;
       this._img = this.arrImg[0].imagen;
       this.plInv = COD;
-      console.log(z);
+      //console.log(z);
     })
   }
 
@@ -258,7 +382,6 @@ export class AvaluoComponent implements OnInit {
     this.cMods = a;
     this.placaText = placa;
     this.codBarraText = codBarra;
-    // console.log(this.cMods);
   }
 
   Call_Inventariadores() {
@@ -273,71 +396,35 @@ export class AvaluoComponent implements OnInit {
   }
 
   invChoice = (a) => this.invName = a;
-
   public prodCountByDate: number;
   public prodArrDate:any = [];
-
   public fecha: any;
   public cantidad: any;
   public valueSQL: string;
   public dataSQL: string;
   public dataSerach: any;
+  public dataSQLs:string = "c.NOMBRE + ' ' +  c.APELLIDO";
   getDep12a120F(inv, a, b, c) {
     
-   
-    
     if ( (b == '' || c == '') || (b == undefined || c == undefined) ) {
-     
-      this.valueSQL = 'a.placa';
-      this.dataSQL = '0';
-
+      this.valueSQL='a.placa';
+      this.dataSQL='0';
       b = this.valueSQL;
       c = this.dataSQL;
-     
     }
 
     this.dataSerach = c;
     this.inventChoice = inv;
-    this.data.getDp12a120F(inv, a, b, c).subscribe( data => {     
-      
+    this.data.getDp12a120F(inv, a, b, c).subscribe( data => {      
       this.arrData = data;
+      //console.log(this.arrData)
       this.invProd = this.arrData.length;
       this.invChoice(inv);
-      console.log(this.arrData);
-
-      this.createReport(inv);
-
-      // let datos = [];
-
-      // {
-      //   date:new Date(2019,5,12),
-      //   value1:50,
-      //  },
-
-      // this.chartForInventory(datos);
-      // for( let i = 0; i <= this.arrData.length; i++) {
-      //   let fecha = this.arrData[i].fechac.toString().slice(0,10);
-      //   let value = i;
-
-      //   datos.push({
-      //     visits: value,
-      //     country: fecha
-      //   })
-      // }
-  
-
-    //   {
-    //     date: '2020-01-05',
-    //     first: 40
-    // },
-    // {
-    //     category: '2020-02-06',
-    //     first: 30
-    // } 
-
-      
-
-    })
+      this.createReport(inv);  
+      this.controlAv();
+    }, (err) => {
+      console.log(err);
+  })
   }
 
   public order: boolean = true;
@@ -367,42 +454,38 @@ export class AvaluoComponent implements OnInit {
 
   public custArr: any = [];
   public _custoSearch: string;
-  getCustod(cust) {
-    this.anexo.getCustodiosByReport(cust).subscribe( CUSTOD => {
+  getCustod(cust, order) {
+    this.anexo.getCustodiosByReport(cust, order).subscribe( CUSTOD => {
       this.custArr = CUSTOD;
+      this._filter_cust = cust
       this.custCount = this.custArr.length;
-      console.log(this.custArr);      
-    })
-
-    console.log(cust);
-  
+      //console.log(this.custArr);
+    });  
   }
 
   public _bColor: string;
   public a: boolean = false;
   editTableCodBar() {
-    // console.log('activado');
-    // x.style.backgroundColor = 'yellowgreen';
     switch (this.a) {
       case true:
         this.a = false;
         this.editCards = this.a;
         this._bColor = '';
-        console.log(this.editCards);
+        //console.log(this.editCards);
         break;
 
       case false:
         this.a = true;
         this._bColor = 'steelblue';
-        console.log(this.editCards);
+        //console.log(this.editCards);
         this.editCards = this.a;
         break;
 
       default:
         break;
     }
-
   }
+
   public _reportShow: boolean = false;
   public _bColorA: string;
   public _showOtherHead: boolean = true;
@@ -415,14 +498,12 @@ export class AvaluoComponent implements OnInit {
         this._showOtherHead = true;
         this._reportShow = this.a;
         this._bColorA = '';
-        console.log(this._reportShow);
         break;
 
       case false:
         this.a = true;
         this._showOtherHead = false;
         this._bColorA = 'steelblue';
-        console.log(this._reportShow);
         this._reportShow = this.a;
         break;
 
@@ -437,7 +518,6 @@ export class AvaluoComponent implements OnInit {
   createReport(inv) {
     this.anexo.getReporte(inv).subscribe( DATAREPORT => {
       this.arrReporte = DATAREPORT;
-      console.log(DATAREPORT);      
     })
   }
 
@@ -451,14 +531,16 @@ export class AvaluoComponent implements OnInit {
 
 //BUSCA POR CUSTODIO
 public custAsigActivos: number;
-  searchByCust(cust) {
+  searchByCust(cust, cod) {
     console.log(cust);
-    this.anexo.getReporteCust(cust).subscribe( CUST => {
+    this.anexo.getReporteCust(cod).subscribe( CUST => {
       this.arrReporte = CUST;
-      console.log(this.arrReporte);
+      //console.log(this.arrReporte);
       this._CustBusqueda = cust;
+      this._filter_cust = cust;
       this.custAsigActivos = this.arrReporte.length;
       if( this.arrReporte.length == 0)  {
+
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
@@ -467,11 +549,14 @@ public custAsigActivos: number;
         })
       }
       else {
+
         Swal.fire({
           icon: 'info',
           title: 'Excelente!',
-          html: `Este custodio tiene <strong> ${this.arrReporte.length} activos </strong>  asignados!`,
-          footer: ''
+          html: `Este custodio tiene <strong>
+                 ${this.arrReporte.length} activos
+                 </strong>  asignados!`,
+
         })
       }
         
@@ -488,11 +573,53 @@ public custAsigActivos: number;
   SearchDep(DEP) {
     this.anexo.getDep(DEP).subscribe( DEPTS => {
       this.arrDEPTS = DEPTS;
-      console.log(this.arrDEPTS);
     })
   }
 
-//GUARDA LOS ANEXOS HACIA LA PLACA EN LA BASE DE DATOS ANEXOS_DP12A120_F
+  searchByDpt(dpt) {
+    this.anexo.getReportDep(dpt).subscribe(dp => {
+      this.arrReporte = dp;
+      this.custAsigActivos = this.arrReporte.length;
+      //console.log(this.arrReporte)
+    })
+  }
+  public arrCiud:any = [];
+  public closeCiudEmr: boolean = false;
+  getCiudad(cod) {    
+    if( cod == 0 ){
+      this.data.getDataSmartCiud(cod).subscribe( CIUD => {
+        this.arrCiud = CIUD;
+        this.closeCiudEmr = true;
+      }) 
+    }
+    else {
+      this.data.getDataSmartCiud(cod).subscribe( CIUD => {
+        this.arrCiud = CIUD;
+        this._Mant_ciudad = cod;      
+        this.closeCiudEmr = false;  
+      }) 
+    }
+  }
+
+  public arrDpto:any = [];
+  public closeDptoEmr: boolean = false;
+  getDpto(cod) {
+    if( cod == 0 ){
+      this.data.getDataSmartDep(cod).subscribe( CIUD => {
+        this.arrDpto = CIUD;
+        this.closeDptoEmr = true;
+      })
+    }
+    else {
+      this.data.getDataSmartDep(cod).subscribe( CIUD => {
+        this.arrDpto = CIUD;
+        this._Mant_departamento = cod;      
+        this.closeDptoEmr = false;
+      })
+    }
+  }
+
+  //GUARDA LOS ANEXOS HACIA LA PLACA EN LA BASE DE DATOS ANEXOS_DP12A120_F
   insertanexo(placa, codBarra) {
 
     let arr: any = {
@@ -504,7 +631,7 @@ public custAsigActivos: number;
       observaciones: this._observNg
     }
 
-    console.log(arr);
+    // console.log(arr);
 
     this.anexo.saveAnexos(arr).subscribe(anexo => {
       this.arrAnexo = anexo;
@@ -513,33 +640,45 @@ public custAsigActivos: number;
         icon: 'success',
         title: 'Se guardó con exito',
         html: '<p> Placa: ' + placa +  '</p>',
-        showConfirmButton: false,
+        showConfirmButton: false, 
         timer: 2000
       })
-      console.log(this.arrAnexo);
+     // console.log(this.arrAnexo);
     })
+
   }
 
 
-  controlDataAnexo(placa) {
-    this.controlAvaluo(true);
+
+
+  public repoAnexoCant: number = 0;
+  controlDataAnexo(placa) {  
+    
     this.anexo.selectAnexos(placa).subscribe( control => {
       this.controlArr = control;
-      console.log(this.controlArr);
       this.anexosCounts = this.controlArr.length;
-      if(this.anexosCounts == 0) {
-
+      this.controlAvaluo(true);
+      if(this.anexosCounts == 0) {        
         Swal.fire({
           icon:   'error',
           title:  'Oops...',
           text:   'Esta placa no tiene anexos'
         })
-
         this.controlAvaluo(false);
-
       }
 
     })
+  }
+
+  public repoAnexo: any = [];
+
+  controlAv() {
+
+    this.anexo.SelectAnexoGen().subscribe( repAnexo => {
+      this.repoAnexo = repAnexo;
+      //console.log(this.repoAnexo);
+    });
+  
   }
 
   controlAvaluo(a) {
@@ -571,27 +710,47 @@ public custAsigActivos: number;
       observaciones: observaciones
     }
 
-    console.log(arr);
-    this.anexo.putAnexos(id, arr).subscribe( x => {
-      this.controlDataAnexo(placa);
+    if(vidautil == 0 || avcomer == 0 || metodtec == '' || observaciones == '') {
       Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Se actualizó información con éxito',
-        html: '<p> Placa: ' + placa +  '</p>',
-        showConfirmButton: false,
-        timer: 2000
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Necesitas llenar los demás campos, o no pordás actualizar la demás información'
+        //footer: '<a href>Why do I have this issue?</a>'
       })
-
-    })
+    }
+    else {
+      // console.log(arr);
+      this.anexo.putAnexos(id, arr).subscribe( x => {
+       this.controlDataAnexo(placa);
+       Swal.fire({
+         position: 'center',
+         icon: 'success',
+         title: 'Se actualizó información con éxito',
+         html: '<p> Placa: ' + placa +  '</p>',
+         showConfirmButton: false,
+         timer: 2000
+       })
+       this.cleanFormat();
+      })
+    }
+ 
   }
 
   deleteAnexo(id, placa) {
     this.anexo.deletAnexos(id).subscribe( del => {
         this.controlDataAnexo(placa);
-        console.log(del);
+        //console.log(del);
     });
   }
+
+
+  cleanFormat() {
+    this._editVidUtil = 0;
+    this._avComer = 0;
+    this._mTecnica = '';
+    this._observac = ''
+  }
+  
 
 }
 

@@ -1,3 +1,135 @@
+  <!-- Modal Mantenimiento de Custodios INICIO -->
+  <div class="modal fade" id="ModalCustodio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><span class="icon-user-add-1"></span> Crear Custodio</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body" id="modalBody">
+            <div class="sectionsB">
+                <div class="visCust">
+                    Custodios creados  {{custCount}}: 
+                </div>
+                <div class="tabBody">
+                <table class="table table-hover table-sm">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col" (click)="getCustod('a', 'desc')" (dblclick)="getCustod('a', 'asc')">Codigo</th>
+                        <th scope="col">Nombre</th>
+                        <th> <span class="icon-trash" ></span> </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let b of custArr">
+                        <th scope="row" (dblclick)="contCust(b.codigo)">{{b.codigo}}</th>
+                        <td>{{b.custodio}}</td>
+                        <th class="del"> 
+                            <span class="icon-trash"  (click)="deleteCust(b.codigo)"></span> </th>
+                       
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+            <div class="sectionsA">
+            <div  id="sectionA">
+                <div>
+                    <label for="codigo">Código:
+                        <span class="note icon-warning"></span>
+                        Solo <strong [ngStyle]="{'color': _expressColor}" >
+                             {{countCod}} </strong> dígitos. / Permitido solo dato numérico.
+                    </label>
+                    <input type="text"
+                           (keyup)="insertControl(_Mant_codigo, 10, 'codigoCust')"
+                           class="form-control"
+                           [(ngModel)]="_Mant_codigo"
+                           id="codigoCust"
+                           placeholder="Código">
+
+                    <span class="candado icon-lock" (click)="chanActc('codigoCust', false)" *ngIf="lockActive" id="lAc"></span>
+                    <span class="candado icon-flash" (click)="getCodEmpl()"></span>
+                    <div class="optionsA" *ngIf="closeCodEmp">
+                        <ul class="list-group" *ngFor="let cEmp of codEmpArr" (click)="generateCodEmpl(cEmp.codigo)" >
+                            <li class="list-group-item">{{ cEmp.codigo }}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <label for="apellidos">Apellidos: <strong class="importanceText">*</strong></label>
+                    <input type="text" class="form-control" id="apellidos" [(ngModel)]="_Mant_apellidos" placeholder="Apellidos">
+                </div>
+                <div>
+                    <label for="nombres">Nombres: <strong class="importanceText">*</strong></label>
+                    <input type="text" class="form-control" id="nombres" [(ngModel)]="_Mant_nombres" placeholder="nombres">
+                </div>
+            </div>
+            <div class="sections" id="sectionB">
+                <div class="ciuds">
+                    <label for="codigo">Ciudad: <strong class="importanceText">*</strong></label>
+                    <input type="text" class="form-control" (keyup.enter)="getCiudad(_Mant_ciudad)" id="ciudad" [(ngModel)]="_Mant_ciudad" placeholder="ciudad">
+                    <div class="optionsA" *ngIf="closeCiudEmr">
+                        <ul class="list-group" *ngFor="let ciud of arrCiud" (click)="getCiudad(ciud.codigo)">
+                            <li class="list-group-item" (click)="getCiudad(ciud.codigo)">{{ ciud.codigo }} - {{ ciud.nombre }}</li>
+                        </ul>
+                    </div>
+                </div>                
+                <div>
+                    <label for="codigo">Departamento: <strong class="importanceText">*</strong></label>
+                    <input type="text" class="form-control" id="departamento" (keyup.enter)="getDpto(_Mant_departamento)" [(ngModel)]="_Mant_departamento" placeholder="departamento">
+                    <div class="optionsA" *ngIf="closeDptoEmr">
+                        <ul class="list-group" *ngFor=" let dpto of arrDpto " (click)="getDpto(dpto.codigo)">
+                            <li class="list-group-item" (click)=" getDpto(dpto.codigo) ">
+                                {{ dpto.codigo }} - {{ dpto.nombre }}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sections" id="sectionC">
+
+                <div>
+                    <label for="telefA">Teléfono A:</label>
+                    <input type="number" class="form-control" id="telefA" [(ngModel)]="_Mant_telfA" placeholder="Teléfono A">
+                </div>
+                
+                <div>
+                    <label for="telefB">Teléfono B:</label>
+                    <input type="number" class="form-control" id="telefB" [(ngModel)]="_Mant_telfB" placeholder="Teléfono B">
+                </div>
+
+            </div>
+
+            <div class="inputCheck">
+
+                <div>
+                    <label for="Activo">Activo:</label>
+                    <input type="checkbox" [(ngModel)]="_Mant_activo" class="form-control" id="Activo">
+                </div>
+                
+                <div>
+                    <label for="Empleado">Empleado:</label>
+                    <input type="checkbox" [(ngModel)]="_Mant_empleado"
+                           class="form-control"
+                           id="Empleado">
+                </div>
+
+            </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary" (click)="saveCustodios()" ><span class="icon-floppy"></span>  Guardar cambios</button>
+        </div>
+    </div>
+    </div>
+</div>
+<!-- Modal Mantenimiento de Custodios FIN -->
+
+
 <!-- Button trigger modal -->
 <div class="contsHeader" *ngIf="_showOtherHead">
     <div class="invName" id="invHead" style="cursor: pointer; width: 150px;" data-toggle="modal" data-target="#exampleModal">
@@ -8,6 +140,7 @@
         <input type="number" style="width: 50px; height: 25px; border: none; border-bottom: solid 0.5px gray; text-align: center;" [(ngModel)]="_nPag" name="_nPag">
         <pagination-controls (pageChange)="pageActual = $event"></pagination-controls>
         <div class="invName"> <strong class="esData"> {{invName}} </strong> Productos Inventariados, <strong class="esData">{{invProd}}</strong></div>
+        <div class="btnReport" (click)="reporte()"><span class=" icon-lightbulb-2"></span></div>
     </div>
 </div>
 <!-- Modal -->
@@ -15,12 +148,13 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Inventariadores (<span class="icon-users"></span>{{invCount}} )</h5>
+                <h5 class="modal-title" id="exampleModalLabel">
+                    Inventariadores (<span class="icon-users"></span>{{invCount}} )
+                </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-
             <div class="modal-body">
                 <table class="table table-hover table-primary">
                     <thead>
@@ -31,7 +165,7 @@
                     </thead>
                     <tbody>
                         <tr *ngFor=" let inv of arrDataInv " (click)="getDep12a120F(inv.nombre, 'asc', 'a.placa', '0')">
-                            <th scope="row">{{ inv.codigo }}</th>
+                            <td scope="row">{{ inv.codigo }}</td>
                             <td class="trPointer"> {{ inv.nombre }} </td>
                         </tr>
                     </tbody>
@@ -70,7 +204,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let dep of arrDEPTS" (click)="searchByCust(dep.nombre)">
+                      <tr *ngFor="let dep of arrDEPTS" (click)="searchByDpt(dep.codigo)">
                         <th scope="row">{{dep.codigo}}</th>
                         <td>{{dep.nombre}}</td>
                       </tr>
@@ -85,14 +219,13 @@
         </div>
       </div>
 
-<div class="Edit" *ngIf="_editShow">
-    
+<div class="Edit" *ngIf="_editShow">    
     <button class="btn btn-dark" style="border-radius: 0px; font-size: 9pt;" [ngStyle]="{'background-color': _bColor}" (click)="editTableCodBar()"> <span class="icon-edit-2"></span> Editar </button>
-    <!-- <button class="btn btn-dark" style="border-radius: 0px; font-size: 9pt;"> <span class=" icon-chart-line-1"></span> Productividad </button> -->
     <button class="btn btn-dark" style="border-radius: 0px; font-size: 9pt;" [ngStyle]="{'background-color': _bColorA}" (click)="ShowReport()"> <span class=" icon-briefcase-1"></span> Reportería </button>
     <button class="btn btn-dark" style="border-radius: 0px; font-size: 9pt;" (click)="expandTable()" [ngStyle]="{'background-color': _bColorExpand}"> <span class=" icon-right-3" id="expand"></span> </button>
     <div>
-        <span class="icon-eye"></span> {{labelDescription}} | <strong>{{dataSerach}}</strong> | <span [ngStyle]="{'color': coloRow}" [class]="orderTy"></span>
+        <span class="icon-eye"></span> {{labelDescription}} | <strong>{{dataSerach}}</strong>
+         | <span [ngStyle]="{'color': coloRow}" [class]="orderTy"></span>
     </div>
 </div>
 
@@ -101,39 +234,65 @@
     <table class="table table-dark table-hover" style="font-size: 9pt;" >
         <thead>
             <tr>
+                
                 <th scope="col" id="thrder" (click)="orderType(invName, 'placa', '')">Placa</th>
+                
                 <th scope="col">
                     <span class="icon-contacts"></span>
                 </th>
-                <th scope="col">Fecha Inv.</th>
+                
+                <th scope="col" *ngIf="_contsCostos">Fecha Inv.</th>
+                
                 <th scope="col" id="descripTH" (dblclick)="desbloqDes(true)"
-                    (click)="orderType(invName, 'nombre', _filter_desc)">Descripción 
+                    (click)="orderType(invName, 'nombre', _filter_desc)" *ngIf="_contsCostos">Descripción 
                     <span class=" clos icon-cancel" *ngIf="_In_des" (click)="desbloqDes(false)" ></span>
                     <input type="text" class="specialInputs"
                            [(ngModel)]="_filter_desc" name="_filter_desc"
                            placeholder="Busqueda..." *ngIf="_In_des"
                            (keyup.enter)="getDep12a120F(invName, 'asc', 'a.nombre', _filter_desc)">
-                          
                 </th>
+
+                <th scope="col" (click)="orderType(invName, 'CUSTODIO', _filter_cust)" (dblclick)="desbloqCust(true)"  >
+                    Custodio<!--  <span class="iconButton icon-user-add-1"
+                                   data-toggle="modal" data-target="#exampleModal2" ></span> -->
+                    <span class=" clos icon-cancel" *ngIf="_In_cust" (click)="desbloqCust(false)"></span>
+                    <input type="text" class="specialInputs"
+                           [(ngModel)]="_filter_cust" name="_filter_cust"
+                           placeholder="Busqueda..." *ngIf="_In_cust"
+                           (keyup.enter)="getDep12a120F(invName, 'asc', '_DCAST_', _filter_cust)">
+                           <span class="icon-add-user-1"></span>
+                </th>
+                
                 <th scope="col" class="cmsEdit animated fadeInLeft fast"
                     style="background-color: rgb(255, 119, 0);"
-                    *ngIf="editCards"  >
-                    Cod. Barra <span class="icon-edit"></span>
+                    *ngIf="editCards"  >Custodio 
+                    <span class="icon-edit"></span>
+                    <span title="Crear custodios" style="background-color: rgb(68, 20, 5) !important;" class="saveCod  icon-user-add-1" data-toggle="modal" data-target="#ModalCustodio"></span>
                 </th>
+                
+                <th scope="col" class="cmsEdit animated fadeInLeft fast"
+                    style="background-color: rgb(255, 119, 0);"
+                    *ngIf="editCards"  >Cod. Barra 
+                    <span class="icon-edit"></span>
+                </th>
+
                 <th scope="col" class="cmsEdit animated fadeInRight fast" style="background-color: rgb(255, 119, 0);" *ngIf="editCards">
                     Cod. Padre <span class="icon-edit"></span>
                 </th>
+                
                 <th scope="col" class="cmsEdit animated fadeInRight fast" style="background-color: rgb(255, 119, 0);" *ngIf="editCards">
                     Referencia <span class="icon-edit"></span>
                 </th>
+                
                 <th scope="col" (dblclick)="desbloqBarra(true)"
                     (click)="orderType(invName, 'barra', _filter_barra)">C. Barra 
                     <span class=" clos icon-cancel" *ngIf="_In_bar" (click)="desbloqBarra(false)" ></span>
                     <input type="text" class="specialInputs"
                            [(ngModel)]="_filter_barra" name="_filter_barra"
-                           placeholder="Busqueda..." *ngIf="_In_bar"                           
+                           placeholder="Busqueda..." *ngIf="_In_bar"
                            (keyup.enter)="getDep12a120F(invName, 'asc', 'a.barra', _filter_barra)" >
                 </th>
+                
                 <th scope="col" (click)="orderType(invName, 'cpadre', _filter_cpadre)"
                     (dblclick)="desbloqPadre(true)">C. Padre
                     <span class=" clos icon-cancel" *ngIf="_In_pad" (click)="desbloqPadre(false)" ></span>
@@ -141,7 +300,8 @@
                            [(ngModel)]="_filter_cpadre" name="_filter_cpadre"
                            placeholder="Busqueda..." *ngIf="_In_pad"
                            (keyup.enter)="getDep12a120F(invName, 'asc', 'a.cpadre', _filter_cpadre)">
-                </th>
+                </th>                
+                
                 <th scope="col" (click)="orderType(invName, 'refer', _filter_refer)" 
                     (dblclick)="desbloqRefer(true)" >Referencia
                     <span class=" clos icon-cancel" *ngIf="_In_refer" (click)="desbloqRefer(false)" ></span>
@@ -150,15 +310,12 @@
                            placeholder="Busqueda..." *ngIf="_In_refer"
                            (keyup.enter)="getDep12a120F(invName, 'asc', 'a.refer', _filter_refer)">
                 </th>
+                
                 <th scope="col" *ngIf="_contsCostos">Marca </th>
+                <th scope="col" *ngIf="_contsCostos" title="Usuario de modificación">User Mod. </th>
                 <th scope="col" *ngIf="_contsCostos">Modelo</th>
                 <th scope="col" *ngIf="_contsCostos">Costo Historico</th>
                 <th scope="col" *ngIf="_contsCostos">Valor Normal</th>
-                <!-- <th scope="col" *ngIf="_contsCostos">Valor Revaluo</th>
-                <th scope="col" *ngIf="_contsCostos">Dep. Acum. Ini.</th>
-                <th scope="col" *ngIf="_contsCostos">Dep. Reval. Ini.</th>
-                <th scope="col" *ngIf="_contsCostos">Sum D.A.I.</th>
-                <th scope="col" *ngIf="_contsCostos">Sum D.R.I.</th> -->
                 <th scope="col" title="Evaluo"><span class="icon-doc-text-1"></span></th>
             </tr>
         </thead>
@@ -167,28 +324,43 @@
                 <td scope="row" (click)="getImgByPlaca(a.placa)" class="thPlaca">
                     <span class="icon-picture"></span> {{ a.placa }}
                 </td>
-                <td scope="col" (click)="controlDataAnexo(a.placa)" class="thPlaca"><span class="icon-contacts"></span></td>
-                <td title="mm/dd/yyyy" >{{a.fechac |  date:"MM/dd/yy" }}</td>
-                <td>{{a.nombre}} </td>
+                <td scope="col" (click)="controlDataAnexo(a.placa)" class="thPlaca">
+                    <span class="icon-contacts"></span>
+                </td>
+                <td title="mm/dd/yyyy" *ngIf="_contsCostos">
+                    {{a.fechac |  date:"MM/dd/yy" }}
+                </td>
+                <td *ngIf="_contsCostos">
+                    {{a.nombre}}
+                </td>
+                <td >
+                    {{a.namE_CUSTODIO}}
+                </td>
                 <td class="cmsEdit animated fadeInLeft fast"
-                    style="background-color: rgb(75, 51, 31);" *ngIf="editCards">
+                    style="background-color: rgb(216, 105, 0);" *ngIf="editCards">
+                    <input type="text" id="cCust-{{a.placa}}" >                    
+                    <span class="saveCod icon-floppy" (click)="updateCampos('cCust-', a.placa, inventChoice, 'custodio')" ></span>
+                </td>
+                <td class="cmsEdit animated fadeInLeft fast"
+                    style="background-color: rgb(182, 82, 0);" *ngIf="editCards">
                     <input type="text" id="cbar-{{a.placa}}" >
                     <span class="saveCod icon-floppy" (click)="updateCampos('cbar-', a.placa, inventChoice, 'barra')" ></span>
                 </td>
                 <td class="cmsEdit animated fadeInRight fast"
-                    style="background-color: rgb(116, 72, 37);"  *ngIf="editCards">
+                    style="background-color: rgb(114, 53, 4);" *ngIf="editCards">
                     <input type="text"  id="cPad-{{a.placa}}">
                     <span class="saveCod icon-floppy" (click)="updateCampos('cPad-', a.placa, inventChoice, 'cpadre')"></span>
                 </td>
                 <td class="cmsEdit animated fadeInRight fast"
-                    style="background-color: rgb(116, 72, 37);" *ngIf="editCards">
+                    style="background-color: rgb(79, 36, 0);" *ngIf="editCards">
                     <input type="text" id="cRef-{{a.placa}}" >
                     <span class="saveCod icon-floppy" (click)="updateCampos('cRef-', a.placa, inventChoice, 'refer')"></span>
                 </td>                
-                <td>{{a.barra_f}}  </td>
+                <td>{{a.barra_f}}</td>
                 <td>{{a.cpadre}} </td>
                 <td>{{a.refer}}  </td>
                 <td *ngIf="_contsCostos">   {{a.marca}}              </td>
+                <td *ngIf="_contsCostos">   {{a.usumodi}}              </td>
                 <td *ngIf="_contsCostos">   {{a.modelo}}             </td>
                 <td *ngIf="_contsCostos">   $.. {{a.valor}}          </td>
                 <td *ngIf="_contsCostos">   $.. {{a.vaL_NORMAL}}     </td>
@@ -205,6 +377,7 @@
         </tbody>
     </table>
 
+  
     <div class="messageAnexo animated fadeInLeft fast container p-4" *ngIf="controlTextAnexos">
         <button class="btnClose btn btn-dark" (click)="closeInfAnexo()"><span class="icon-cancel"></span></button>
         <div style="height: 595px; overflow-y: auto;">
@@ -212,33 +385,26 @@
 
                 <ul class="list-group">
                     <li class="list-group-item"><strong>Placa-Anexo:</strong> {{ anexosText.placa }} </li>
-
-                    <!-- <li class="list-group-item"><strong>Cod. Barra: </strong> {{ anexosText.codBarra }}</li> -->
-                    
                     <li class="list-group-item"><strong>Vida útil:  </strong> {{ anexosText.vidutil }} <br>
-                        <input type="number" [(ngModel)]="_editVidUtil" name="_editVidUtil">
+                        <input type="number" [(ngModel)]="_editVidUtil" name="_editVidUtil" required>
                     </li>
 
                     <li class="list-group-item" ><strong>Avaluo comercial: </strong>{{ anexosText.avcomer }}<br>
-                        <input type="number" [(ngModel)]="_avComer" name="_avComer">
+                        <input type="number"  [(ngModel)]="_avComer" name="_avComer" required>
                     </li>
 
                     <li class="list-group-item"><strong>M. Técnica: </strong> {{ anexosText.metodtec }}<br>
-                        <input type="text" [(ngModel)]="_mTecnica" name="_mTecnica">
+                        <textarea type="text" class="lg-textarea form-control" [(ngModel)]="_mTecnica" name="_mTecnica" required></textarea>
                     </li>
 
                     <li class="list-group-item"><strong>Observaciones: </strong> {{ anexosText.observaciones }} <br>
-                        <textarea rows="3" class="lg-textarea form-control" [(ngModel)]="_observac" name="_observac"></textarea>
+                        <textarea rows="3" class="lg-textarea form-control" [(ngModel)]="_observac" name="_observac" required></textarea>
                     </li>
 
                     <div style="display: flex; justify-content: stretch;" class="animated fadeInRight fast" *ngIf="controlUpdate">
-                        <button class="btn btn-info" (click)="updateAnexo(anexosText.id,
-                                                              anexosText.placa,
-                                                              anexosText.codBarra,
-                                                              _editVidUtil,
-                                                              _avComer,
-                                                              _mTecnica,
-                                                              _observac)">
+                        <button class="btn btn-info" (click)="updateAnexo(anexosText.id, anexosText.placa,
+                                                              anexosText.codBarra, _editVidUtil,
+                                                              _avComer, _mTecnica, _observac)">
                             <span class="icon-edit"></span>
                         </button>
                         <button class="btn btn-danger" (click)="deleteAnexo(anexosText.id, anexosText.placa)">
@@ -283,7 +449,7 @@
                     </button>
                 </div>
                 <div class="btnSetts">
-                    <button id="btnc" (click)="controlModal(false, 0, 0)" class="btn btn-dark"><span class="icon-cancel"></span>Cancelar</button>
+                    <button id="btnc" (click)="controlModal(false, 0, 0)" class="btn btn-dark"><span class="icon-cancel"></span>Salir</button>
                 </div>
             </section>
         </div>
@@ -310,11 +476,15 @@
             <div class="btn btn-info" data-toggle="modal"
                  data-target="#exampleModal2"><span class="icon-search"></span>
             </div>
-            <input type="text" (keyup.enter)="searchByCust(_CustBusqueda)" (dblclick)="getCustod('a')"
+            <input type="text" (keyup.enter)="searchByCust(_CustBusqueda,0)" (dblclick)="getCustod('a', 'asc')"
                    [(ngModel)]="_CustBusqueda"
                    name="_CustBusqueda"
                    style="border: none; width: 300px; padding: 5px; background-color: transparent; color: gray;"
-                   placeholder="Busque por custodio.... ">| Activos asignados: <strong>{{custAsigActivos}}</strong>
+                   placeholder="Busque por custodio.... ">
+                   | Activos asignados: 
+                   <strong>
+                       {{custAsigActivos}}
+                   </strong>
         </h5>
 
         <table class="table table-sm table-bordered">
@@ -328,15 +498,13 @@
             <th>Fecha       </th>
         </thead>
         <tbody id='tbodyFor'>
-            <tr *ngFor="let report of arrReporte">
-                <!-- <td> {{report.custName}}                </td> -->
-                <td> {{report.depName}}                 </td>
-                <!-- <td> {{report.ciudName}}                </td> -->
+            <tr *ngFor="let report of arrReporte">                
+                <td> {{report.nam_dep}}                 </td>
                 <td> {{report.nombre}}                  </td>
                 <td> {{report.refer}}                   </td>
                 <td> {{report.serie}}                   </td>
                 <td> {{report.fechac | date: 'short'}}  </td>
-            </tr>        
+            </tr>
         </tbody>
     </table>
     </div>
@@ -347,13 +515,13 @@
             <strong> Firma del custodio: {{_CustBusqueda}} </strong>
         </div>
         <h6>En presente documento es un acta de entrega provisional de los activos que se custodia y son de pertenencia exclusiva de TC TELEVISIÓN.</h6>
-        <h6>Me comprometo a comunicar al departamentos de activos fijos cualquier transferencia y/o momiviente que resultare a partir de la presente acta.</h6>
+        <h6>Me comprometo a comunicar al departamentos de activos fijos cualquier transferencia y/o movimiento que resultare a partir de la presente acta.</h6>
     </div>
 
 </div>
 
 
- <!-- Modal -->
+
  <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -366,16 +534,18 @@
         <div class="modal-body">
             <div class="sp_a">
                 <label for="seCust"> <span class="icon-search"></span> Custodio: </label>
-                <input type="text" [(ngModel)]="_custoSearch" id="seCust" (keyup.enter)="getCustod(_custoSearch)" >
+                <input type="text" [(ngModel)]="_custoSearch" id="seCust" (keyup.enter)="getCustod(_custoSearch, 'asc')" >
             <table class="table table-dark table-hover table-sm">
                 <thead class="table-primary" style="color: darkblue;">
                   <tr>
                     <th scope="col">Nombre Custodio</th>
+                    <th scope="col">Código Custodio</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor=" let cust of custArr " (click)="searchByCust(cust.custodio)">
+                  <tr *ngFor=" let cust of custArr " (click)="searchByCust(cust.custodio, cust.codigo)">
                     <th scope="row">{{cust.custodio}}</th>
+                    <th scope="row">{{cust.codigo}}</th>
                   </tr>
                 </tbody>
               </table>

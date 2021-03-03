@@ -21,13 +21,17 @@ export class ANEXODP12A120FService {
   selectAnexos(placa) {
     return this.http.get(this.apiURL + 'api/anexos/SelectAnexo/' + placa);
   }
+
+  SelectAnexoGen() {
+    return this.http.get(this.apiURL + 'api/anexos/SelectAnexoGen/' );
+  }
   
   deletAnexos(id) {
     return this.http.get(this.apiURL + 'api/anexos/DeletAnexo/' + id);
   }
 
   updateForElement(PLACA, ELEMENT, CODIGO) { 
-    return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/UpdateElement/' + PLACA + '/' + ELEMENT + '/' + CODIGO);
+    return this.http.get(this.apiURL + 'api/anexos/UpdateElement/' + PLACA + '/' + ELEMENT + '/' + CODIGO);
   }
 
   getFechaIngreso( DATE, INVENTOR ) {
@@ -37,22 +41,31 @@ export class ANEXODP12A120FService {
   getReporte(INV) {
     return this.http.get(this.apiURL + 'api/Diario/GetReporteUser/' + INV );
   }
-
   
   getReporteCust(CUST) {   
     return this.http.get(this.apiURL + 'api/Diario/GetReporteCustodio/' + CUST );
   }
 
-  getCustodiosByReport(CUST) {
-    return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/GetCustodios/' + CUST );
+  getCustodiosByReport(CUST, ORDER) {
+    return this.http.get(this.apiURL + 'api/AR_INV-QRcodProdGet/GetCustodios/' + CUST + '/' + ORDER);
   }
 
   getDep(DEP) {
     return this.http.get(this.apiURL + 'api/Diario/GetDeptALP/' + DEP );
   }
 
-  //FILTROS PARA LA TABLA PRINCIPAL
-  
+  getReportDep(DEP) {
+    return this.http.get(this.apiURL + 'api/Diario/GetReportByOption/' + DEP );
+  }
 
+  getCodigEmpleados(cod, topOption) {
+    return this.http.get(this.apiURL + 'api/diario/GeneratePlaca/'+ cod + '/' + topOption );
+  }
+
+  deleteCust(CODEC) {
+    return this.http.get(this.apiURL + 'api/diario/DeleteCust/' + CODEC);
+  }
 
 }
+
+

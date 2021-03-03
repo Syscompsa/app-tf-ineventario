@@ -61,6 +61,7 @@ import {OverlayModule} from '@angular/cdk/overlay';
 import { ReporteProdComponent } from './reporte-prod/reporte-prod.component';
 import { AvaluoComponent } from './avaluo/avaluo.component';
 import { DbchoiceComponent } from './dbchoice/dbchoice.component';
+import { ReportAnexosSegimientoComponent } from './report-anexos-segimiento/report-anexos-segimiento.component';
 // import { FilterPipe } from './pipes/filter.pipe';
 
 //#endregion
@@ -79,6 +80,7 @@ import { DbchoiceComponent } from './dbchoice/dbchoice.component';
     ReporteProdComponent,
     AvaluoComponent,
     DbchoiceComponent,
+    ReportAnexosSegimientoComponent,
     // FilterPipe
   ],
   imports: [
@@ -141,6 +143,7 @@ import { DbchoiceComponent } from './dbchoice/dbchoice.component';
       { path: 'Reporte', component: ReporteComponent },
       { path: 'QRData', component: HistoryQRComponent },
       { path: 'avaluo', component: AvaluoComponent },
+      { path: 'Seguimiento', component: ReportAnexosSegimientoComponent },
       { path: 'Login', component: LoginComponent, pathMatch: 'full' },
       { path: '**', pathMatch: 'full', redirectTo: 'Login'  }
     ]),

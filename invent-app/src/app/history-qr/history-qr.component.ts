@@ -140,7 +140,7 @@ export class HistoryQRComponent implements OnInit {
       case true:
         this.adnimBool = false;
         a.style.animation = 'ease prevImprimirAnim 0.5s';
-        setTimeout(() => {
+        setTimeout( () => {
           a.style.transform = 'translate(-185px)';
           c.style.backgroundColor = 'orange';
           c.style.color = 'black';
@@ -152,7 +152,7 @@ export class HistoryQRComponent implements OnInit {
         this.adnimBool = true;
         a.style.animation = 'ease prevImprimirAnimC 0.5s';
         b.setAttribute('class', 'icon-left-open');
-        setTimeout(() => {
+        setTimeout( () => {
           a.style.transform = 'translate(0px)';
           c.style.backgroundColor = 'cornflowerblue';
           c.style.color = 'rgb(52, 21, 102)';

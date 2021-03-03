@@ -1,0 +1,45 @@
+<h3 class="text mt-2 p-3">{{ avanceAv }} Items evaluados. / {{dateN | date: 'short'}}</h3><hr>
+<div class="container-fluid">
+<table class="table table-hover table-sm  " style="font-size: 11pt;">
+    <thead class="thead-light thead-bordered">
+      <tr>
+        <th scope="col">
+            Placa
+        </th>
+        <th scope="col">
+            Cod. Barra
+        </th>
+        <th scope="col">
+            Observaciones
+        </th>
+        <th scope="col">
+            Metodologìa Técnica.
+        </th>
+        <th scope="col">
+            Vida Útil
+        </th>
+        <th scope="col">
+            Avaluo Comercial
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let b of repoAnexo">
+        <td scope="row">{{ b.placa }}</td>
+        <td>{{ b.codBarra }}</td>
+        <td>    
+            {{ b.metodtec }}        
+            <!-- <textarea [(ngModel)]="mTec" disabled class="form-control" rows="3" cols="100">
+            </textarea> -->
+        </td>
+        <td>
+            {{b.observaciones}}
+            <!-- <textarea [(ngModel)]="Observ" disabled class="form-control" rows="3" cols="100">
+            </textarea> -->
+        </td>
+        <td>{{b.vidutil}}</td>        
+        <td>{{ b.avcomer }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
